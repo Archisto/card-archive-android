@@ -1,0 +1,143 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.laurikosonen.cardarchive.MainActivity">
+    <item
+        android:id="@+id/submenu_modes"
+        android:enabled="true"
+        android:icon="@drawable/ic_category"
+        android:title="@string/mode"
+        android:titleCondensed="@string/mode"
+        android:visible="true">
+        <menu
+            android:id="@+id/menu_modes"
+            android:title="@string/mode">
+            <item
+                android:id="@+id/action_setMode_classic"
+                android:title="@string/mode_classic" />
+            <item
+                android:id="@+id/action_setMode_list"
+                android:title="@string/mode_list" />
+            <item
+                android:id="@+id/action_setMode_combine"
+                android:title="@string/mode_combine" />
+            <item
+                android:id="@+id/action_setMode_chooseOne"
+                android:title="@string/mode_chooseOne" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/submenu_cardCount"
+        android:enabled="true"
+        android:icon="@drawable/ic_category"
+        android:title="@string/action_cardCount"
+        android:titleCondensed="@string/action_cardCount"
+        android:visible="true">
+        <menu
+            android:id="@+id/menu_cardCount"
+            android:title="@string/action_cardCount">
+            <item
+                android:id="@+id/action_setCardCount_1"
+                android:title="1" />
+            <item
+                android:id="@+id/action_setCardCount_2"
+                android:title="2" />
+            <item
+                android:id="@+id/action_setCardCount_3"
+                android:title="3" />
+            <item
+                android:id="@+id/action_setCardCount_4"
+                android:title="4" />
+            <item
+                android:id="@+id/action_setCardCount_5"
+                android:title="5" />
+            <item
+                android:id="@+id/action_setCardCount_6"
+                android:title="6" />
+            <item
+                android:id="@+id/action_setCardCount_7"
+                android:title="7" />
+            <item
+                android:id="@+id/action_setCardCount_8"
+                android:title="8" />
+            <item
+                android:id="@+id/action_setCardCount_9"
+                android:title="9" />
+            <item
+                android:id="@+id/action_setCardCount_10"
+                android:title="10" />
+        </menu>
+    </item>
+    <group android:id="@+id/group_displayCategories" >
+        <item
+            android:id="@+id/action_displayAll"
+            android:icon="@drawable/ic_category"
+            android:orderInCategory="101"
+            android:title="@string/action_displayAll" />
+        <item
+            android:id="@+id/action_displayCategory0"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory1"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory2"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory3"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory4"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory5"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory6"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory7"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory8"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory9"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory10"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory11"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+        <item
+            android:id="@+id/action_displayCategory12"
+            android:icon="@drawable/ic_category2"
+            android:orderInCategory="101"
+            android:title="@string/action_displayCategory" />
+    </group>
+</menu>
