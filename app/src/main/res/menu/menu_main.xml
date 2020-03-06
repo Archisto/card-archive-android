@@ -24,6 +24,9 @@
             <item
                 android:id="@+id/action_setMode_chooseOne"
                 android:title="@string/mode_chooseOne" />
+            <item
+                android:id="@+id/action_setMode_fundamentals"
+                android:title="@string/mode_fundamentals" />
         </menu>
     </item>
     <item

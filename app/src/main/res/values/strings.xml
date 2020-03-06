@@ -11,6 +11,7 @@
     <string name="mode_classic">Classic</string>
     <string name="mode_combine">Splice</string>
     <string name="mode_list">List</string>
+    <string name="mode_fundamentals">Fundamentals</string>
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
     <string name="cardCountTip">There are %d cards in the currently selected category.</string>

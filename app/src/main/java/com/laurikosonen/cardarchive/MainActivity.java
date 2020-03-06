@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     //private List<Card> displayedDeck;
     private List<Card> chooseOneCards;
     private List<Card> chosenCards;
+    private List<Card> fundamentals;
     private List<TextView> cardSlots;
     private int displayedCategory = -1;
     private int displayedCardCount = 10;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         classic,
         list,
         splice,
-        chooseOne
+        chooseOne,
+        fundamentals
     }
 
     @Override
@@ -71,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         // TODO: Have card count info in its own screen
-        categoryCardCountText = (TextView) findViewById(R.id.cardCountText);
-        updateCategoryCardCountText();
+        //categoryCardCountText = (TextView) findViewById(R.id.cardCountText);
+        //updateCategoryCardCountText();
 
         fab1 = (FloatingActionButton) findViewById(R.id.fab_main);
         fab1.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +128,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCategoryCardCountText() {
+
+        // TODO: No categoryCardCountText -> remove this method
+        if (categoryCardCountText == null)
+            return;
+
         int categoryCardCount = 0;
         if (displayedCategory < 0) {
             categoryCardCount = allCards.size();
@@ -139,9 +146,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDecks() {
+        // Normal cards
         decks = new ArrayList<>();
         allCards = new ArrayList<>();
         CustomXmlResourceParser.parseCards(getResources(), R.xml.game_elements, decks, allCards);
+
+        // Fundamentals
+        fundamentals = new ArrayList<>();
+        XmlResourceParser_Fundamentals.
+            parseFundamentals(getResources(), R.xml.fundamentals, fundamentals);
 
         allCardsShuffled = new ArrayList<>(allCards);
         shuffleDeck(allCardsShuffled);
@@ -187,7 +200,10 @@ public class MainActivity extends AppCompatActivity {
         List<Card> displayedCards = allCards;
 
         boolean anyCategory = category < 0;
-        if (anyCategory) {
+        if (displayMode == DisplayMode.fundamentals) {
+            displayedCards = fundamentals;
+        }
+        else if (anyCategory) {
             if (displayMode != DisplayMode.list) {
                 displayedCards = allCardsShuffled;
             }
@@ -285,8 +301,6 @@ public class MainActivity extends AppCompatActivity {
         if (card1.firstHalfType != null && card1.secondHalfPreference == null) {
             switch (card1.firstHalfType) {
                 case verb:
-                    secondHalfType = Card.NameHalfType.plural;
-                    break;
                 case adjective:
                     secondHalfType = Card.NameHalfType.plural;
                     break;
@@ -357,9 +371,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             updateProgressBar(false, chosenCards.size());
-            choosingActive = false;
-            fab2.hide();
-            fab3.hide();
+
+            // Choosing continues until all choices have been made
+            displayCards(displayedCardCount, displayedCategory);
         }
     }
 
@@ -480,6 +494,8 @@ public class MainActivity extends AppCompatActivity {
                 updateProgressBar(true, -1);
             }
 
+            displayCards(displayedCardCount, displayedCategory);
+
             return true;
         }
         else {
@@ -499,6 +515,10 @@ public class MainActivity extends AppCompatActivity {
             currentDisplayedCatItem = item;
             updateCategoryCardCountText();
             resetListMode();
+
+            if (displayMode != DisplayMode.fundamentals)
+                displayCards(displayedCardCount, displayedCategory);
+
             return true;
         }
 
@@ -510,6 +530,9 @@ public class MainActivity extends AppCompatActivity {
         item.setEnabled(false);
         currentDisplayedDisplayModeItem.setEnabled(true);
         currentDisplayedDisplayModeItem = item;
+
+        displayCards(displayedCardCount, displayedCategory);
+
         return true;
     }
 
@@ -538,7 +561,8 @@ public class MainActivity extends AppCompatActivity {
         return id == R.id.action_setMode_classic
             || id == R.id.action_setMode_combine
             || id == R.id.action_setMode_list
-            || id == R.id.action_setMode_chooseOne;
+            || id == R.id.action_setMode_chooseOne
+            || id == R.id.action_setMode_fundamentals;
     }
 
     private boolean isSetCardCountId(int id) {
@@ -574,6 +598,9 @@ public class MainActivity extends AppCompatActivity {
             }
             case R.id.action_setMode_chooseOne: {
                 return setDisplayMode(item, DisplayMode.chooseOne);
+            }
+            case R.id.action_setMode_fundamentals: {
+                return setDisplayMode(item, DisplayMode.fundamentals);
             }
         }
 

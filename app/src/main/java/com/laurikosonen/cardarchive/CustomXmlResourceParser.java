@@ -127,6 +127,7 @@ public class CustomXmlResourceParser {
                         }
                     }
                 }
+
                 eventType = parser.next();
             }
         }
