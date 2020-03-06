@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <fundamentals name="Fundamentals" shortName="Fun">
+    <fundamentals name="Fundamentals" shortName="Fnd">
         <element name="Ability" />
         <element name="Ally" />
         <element name="Attack" />
         <element name="Audio" />
         <element name="Building" />
+        <element name="Change" />
         <element name="Character" />
+        <element name="Choice" />
         <element name="Communication" />
         <element name="Competition" />
         <element name="Cooperation" />
@@ -25,6 +27,7 @@
         <element name="Healing" />
         <element name="Help" />
         <element name="Improvement" />
+        <element name="Information" />
         <element name="Input" />
         <element name="Item" />
         <element name="Knowledge" />
@@ -36,6 +39,7 @@
         <element name="Opportunity" />
         <element name="Penalty" />
         <element name="Permanence" />
+        <element name="Place" />
         <element name="Player" />
         <element name="Problem" />
         <element name="Randomness" />
@@ -43,7 +47,7 @@
         <element name="Resource" />
         <element name="Reward" />
         <element name="Rule" />
-        <element name="Saving" />
+        <element name="Saving &amp; Loading" />
         <element name="Score" />
         <element name="Sight" />
         <element name="Sky" />
