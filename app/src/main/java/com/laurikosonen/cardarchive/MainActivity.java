@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         textColors[0] = R.color.colorGray;
         textColors[1] = R.color.colorPrimary;
-        textColors[2] = R.color.colorBlueLight;
-        textColors[3] = R.color.colorBlue;
+        textColors[2] = R.color.colorCyan;
+        textColors[3] = R.color.colorGreen;
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

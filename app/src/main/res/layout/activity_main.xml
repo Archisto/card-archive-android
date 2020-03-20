@@ -33,27 +33,27 @@
         app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_generate" />
+        app:srcCompat="@android:drawable/ic_media_play" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_secondary"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorBlueLight"
+        app:backgroundTint="@color/colorCyan"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center"
-        app:srcCompat="@drawable/ic_generate" />
+        app:srcCompat="@android:drawable/ic_media_play" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_tertiary"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorBlue"
+        app:backgroundTint="@color/colorGreen"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|start"
-        app:srcCompat="@drawable/ic_generate" />
+        app:srcCompat="@android:drawable/ic_media_play" />
 
     <ProgressBar
         android:id="@+id/progressBar"
