@@ -76,71 +76,71 @@
             android:id="@+id/action_displayAll"
             android:icon="@drawable/ic_category"
             android:orderInCategory="101"
-            android:title="@string/action_displayAll" />
+            android:title="@string/action_useAllCategories" />
         <item
             android:id="@+id/action_displayCategory0"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory1"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory2"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory3"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory4"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory5"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory6"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory7"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory8"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory9"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory10"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory11"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
         <item
             android:id="@+id/action_displayCategory12"
             android:icon="@drawable/ic_category2"
             android:orderInCategory="101"
-            android:title="@string/action_displayCategory" />
+            android:title="@string/action_useCategory" />
     </group>
 </menu>

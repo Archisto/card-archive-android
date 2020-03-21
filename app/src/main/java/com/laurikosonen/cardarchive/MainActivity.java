@@ -31,18 +31,20 @@ public class MainActivity extends AppCompatActivity {
     private List<List<Card>> decks;
     private List<Card> allCards;
     private List<Card> allCardsShuffled;
-    //private List<Card> displayedDeck;
     private List<Card> chooseOneCards;
     private List<Card> chosenCards;
     private List<Card> fundamentals;
     private List<TextView> cardSlots;
     private int displayedCategory = -1;
     private int displayedCardCount = 10;
-    private int nextShownCard = 0;
+    private int listStartIndex = 0;
+    private int listSize = 0;
+    private int nextShownCardInList = 0;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
     private int[] textColors = new int[cardsToChooseFromAmount + 1];
+    private boolean listModeJustStarted;
     private boolean choosingActive;
 
     private enum DisplayMode {
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: Have card count info on its own screen
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initDecks();
         initCardSlots();
         displayMode = DisplayMode.classic;
-        displayCards(displayedCardCount, displayedCategory);
+        displayCards(displayedCardCount, displayedCategory, false);
 
         textColors[0] = R.color.colorGray;
         textColors[1] = R.color.colorPrimary;
@@ -72,16 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        // TODO: Have card count info in its own screen
-        //categoryCardCountText = (TextView) findViewById(R.id.cardCountText);
-        //updateCategoryCardCountText();
-
         fab1 = (FloatingActionButton) findViewById(R.id.fab_main);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!choosingActive) {
-                    displayCards(displayedCardCount, displayedCategory);
+                    displayCards(displayedCardCount, displayedCategory, false);
 
                     // Snackbar example:
 //                    Snackbar.make(view, String.format(getString(R.string.cardCountTip), displayedCards.size()), Snackbar.LENGTH_SHORT)
@@ -161,13 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
         chooseOneCards = new ArrayList<>(cardsToChooseFromAmount);
         chosenCards = new ArrayList<>();
-
-//        for (Card card : allCardsShuffled){
-//            Log.d("CAGE", "[" + card.categoryName + "] " + card.name);
-//        }
-//        for (Card card : allCards){
-//            Log.d("CAGE", "[" + card.categoryName + "] " + card.name);
-//        }
     }
 
     private void initCardSlots() {
@@ -196,28 +189,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayCards(int shownCardCount, int category) {
-        List<Card> displayedCards = allCards;
-
-        boolean anyCategory = category < 0;
-        if (displayMode == DisplayMode.fundamentals) {
-            displayedCards = fundamentals;
-        }
-        else if (anyCategory) {
-            if (displayMode != DisplayMode.list) {
-                displayedCards = allCardsShuffled;
-            }
-        }
-        else if (category < decks.size()) {
-            // TODO: In List mode, previously shuffled categories should be unshuffled
-            displayedCards = decks.get(category);
-        }
-        else {
+    private void displayCards(int shownCardCount, int category, boolean shownCardCountChanged) {
+        if (category >= decks.size()) {
             Log.e("CAGE", "Invalid category ID: " + category);
-            //return null;
             return;
         }
 
+        List<Card> displayedCards = allCards;
+
+        boolean anyCategory = category < 0;
+        if (displayMode != DisplayMode.list) {
+            // In List mode, uses allCards deck with the start and end indexes
+            // according to the used category
+
+            if (displayMode == DisplayMode.fundamentals) {
+                displayedCards = fundamentals;
+            }
+            else if (anyCategory) {
+                displayedCards = allCardsShuffled;
+            }
+            else {
+                displayedCards = decks.get(category);
+            }
+        }
+
+        // Checks if the amount of cards we want to show is too large
+        // (more than there are cards to show)
         if (shownCardCount > displayedCards.size()) {
             shownCardCount = displayedCards.size();
         }
@@ -228,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (displayMode) {
             case list:
-                displayCardList(shownCardCount, displayedCards);
+                displayCardList(shownCardCount, shownCardCountChanged);
                 break;
             case chooseOne:
                 displayCardsToChooseFrom(displayedCards);
@@ -266,31 +263,61 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayCardList(int shownCardCount, List<Card> displayedCards) {
-        boolean outOfCards = nextShownCard >= displayedCards.size();
-        if (outOfCards) {
-            nextShownCard = 0;
-            outOfCards = false;
+    private void initListMode() {
+        listStartIndex = 0;
+        if (displayedCategory < 0) {
+            listSize = allCards.size();
         }
+        else {
+            for (int i = 0; i < displayedCategory; i++) {
+                listStartIndex += decks.get(i).size();
+            }
+
+            listSize = decks.get(displayedCategory).size();
+        }
+
+        listModeJustStarted = true;
+    }
+
+    private void displayCardList(int shownCardCount, boolean shownCardCountChanged) {
+        // Uses allCards deck with the start and end indexes
+        // according to the used category
+
+        boolean outOfCards = nextShownCardInList + shownCardCount >= listStartIndex + listSize;
+        if (listModeJustStarted) {
+            //Log.d("CAGE", "LIST MODE. Just started");
+            nextShownCardInList = listStartIndex;
+            listModeJustStarted = false;
+        }
+        else if (outOfCards) {
+            //Log.d("CAGE", "LIST MODE. Out of cards");
+            nextShownCardInList = listStartIndex;
+        }
+        else if (!shownCardCountChanged) {
+            //Log.d("CAGE", "LIST MODE. Next page");
+            nextShownCardInList += shownCardCount;
+        }
+
+        //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
+        //      ". listStartIndex: " + listStartIndex +
+        //      ". listSize: " + listSize);
 
         for (int i = 0; i < cardSlots.size(); i++) {
             boolean emptySlot = i >= shownCardCount;
-            int deckIndex = nextShownCard + i;
+            int deckIndex = nextShownCardInList + i;
 
-            if (deckIndex >= displayedCards.size()) {
+            if (deckIndex - listStartIndex >= listSize) {
+                // Out of cards
                 emptySlot = true;
-                outOfCards = true;
             }
 
-            setCardSlotText(deckIndex, displayedCards, cardSlots.get(i), emptySlot);
+            setCardSlotText(deckIndex, allCards, cardSlots.get(i), emptySlot);
         }
+    }
 
-        if (outOfCards) {
-            nextShownCard = 0;
-        }
-        else {
-            nextShownCard += shownCardCount;
-        }
+    private void resetListMode() {
+        nextShownCardInList = 0;
+        listModeJustStarted = false;
     }
 
     private String getCombineCardDisplayText(int index, List<Card> cards) {
@@ -366,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
             updateProgressBar(false, false, chosenCards.size());
 
             // Choosing continues until all choices have been made
-            displayCards(displayedCardCount, displayedCategory);
+            displayCards(displayedCardCount, displayedCategory, false);
         }
     }
 
@@ -393,10 +420,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!keepProgressBarVisible)
             setProgressBarActive(false);
-    }
-
-    private void resetListMode() {
-        nextShownCard = 0;
     }
 
     @TargetApi(26)
@@ -465,7 +488,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < displayCategories.length; i++) {
                 menu.findItem(displayCategories[i]).
-                    setTitle(String.format(getString(R.string.action_displayCategory), decks.get(i).get(0).categoryName));
+                    setTitle(String.format(getString(R.string.action_useCategory), decks.get(i).get(0).categoryName));
             }
         }
 
@@ -508,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else {
-                displayCards(displayedCardCount, displayedCategory);
+                displayCards(displayedCardCount, displayedCategory, true);
             }
 
             return true;
@@ -522,17 +545,17 @@ public class MainActivity extends AppCompatActivity {
         if (categoryId < decks.size()) {
             displayedCategory = categoryId;
 
-            // TODO: Change the displayed deck here (and also where the mode is set)
-            // so the List mode could have unshuffled decks
-
             item.setEnabled(false);
             currentDisplayedCatItem.setEnabled(true);
             currentDisplayedCatItem = item;
             updateCategoryCardCountText();
             resetListMode();
 
+            if (displayMode == DisplayMode.list)
+                initListMode();
+
             if (displayMode != DisplayMode.fundamentals)
-                displayCards(displayedCardCount, displayedCategory);
+                displayCards(displayedCardCount, displayedCategory, false);
 
             return true;
         }
@@ -546,7 +569,10 @@ public class MainActivity extends AppCompatActivity {
         currentDisplayedDisplayModeItem.setEnabled(true);
         currentDisplayedDisplayModeItem = item;
 
-        displayCards(displayedCardCount, displayedCategory);
+        if (displayMode == DisplayMode.list)
+            initListMode();
+
+        displayCards(displayedCardCount, displayedCategory, false);
 
         return true;
     }

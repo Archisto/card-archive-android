@@ -5,8 +5,8 @@
     <string name="text1">Card: %s</string>
     <string name="cardSlot">[%s] %s</string>
     <string name="action_cardCount">Card Count: %d</string>
-    <string name="action_displayCategory">> %s</string>
-    <string name="action_displayAll">Display All Categories</string>
+    <string name="action_useCategory">> %s</string>
+    <string name="action_useAllCategories">Use All Categories</string>
     <string name="cardSlotCombine">[%s+%s] %s %s</string>
     <string name="mode_classic">Classic</string>
     <string name="mode_combine">Splice</string>
