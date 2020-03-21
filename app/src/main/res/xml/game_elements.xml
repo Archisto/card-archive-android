@@ -1789,6 +1789,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Laser beams</name>
+            <firstHalf type="noun">Laser</firstHalf>
+            <secondHalf the="false">
+                <singular>laser</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Mines</name>
             <firstHalf type="noun" preference="plural">Mines</firstHalf>
             <secondHalf the="false">
@@ -1842,6 +1849,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Different damage types</name>
+            <firstHalf type="adjective">Different types of</firstHalf>
+            <secondHalf the="false">
+                <singular>damage</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Weaknesses and resistances to attacks</name>
             <firstHalf type="noun" preference="plural">Weaknesses and resistances to</firstHalf>
             <secondHalf the="false">
@@ -1854,6 +1868,13 @@
             <firstHalf type="verb" preference="plural">Injuries affect</firstHalf>
             <secondHalf>
                 <plural>stats</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Attacking leaves the character vulnerable to opponents' attacks</name>
+            <firstHalf type="verb">Attacking</firstHalf>
+            <secondHalf the="false">
+                <singular>leaves the character vulnerable</singular>
             </secondHalf>
         </element>
         <element>
@@ -2736,6 +2757,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Upgrading storage space</name>
+            <firstHalf type="verb">Upgrading</firstHalf>
+            <secondHalf the="false">
+                <singular>storage</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Renewable resources/items in the world</name>
             <firstHalf type="adjective">Renewable</firstHalf>
             <secondHalf the="false">
@@ -3022,6 +3050,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Hiding something from the opponent</name>
+            <firstHalf type="verb">Hiding</firstHalf>
+            <secondHalf the="true">
+                <singular>opponent</singular>
+                <plural>opponents</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Protecting a target</name>
             <firstHalf type="verb">Protecting</firstHalf>
             <secondHalf the="false">
@@ -3038,10 +3074,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Taking an item to the goal</name>
+            <name>Taking an item to a specific location</name>
             <firstHalf type="verb">Taking an item</firstHalf>
             <secondHalf the="true">
-                <singular>goal</singular>
+                <singular>a specific location</singular>
             </secondHalf>
         </element>
         <element>
@@ -3049,14 +3085,6 @@
             <firstHalf type="verb">Delivering</firstHalf>
             <secondHalf the="false">
                 <singular>cargo/payload</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hiding something from the opponent</name>
-            <firstHalf type="verb">Hiding</firstHalf>
-            <secondHalf the="true">
-                <singular>opponent</singular>
-                <plural>opponents</plural>
             </secondHalf>
         </element>
         <element>
@@ -3148,6 +3176,13 @@
             <firstHalf type="noun" preference="singular">Sandbox mode</firstHalf>
             <secondHalf the="false">
                 <plural>with unlimited resources</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The game only ends in the player's failure</name>
+            <firstHalf type="verb">The game only ends in</firstHalf>
+            <secondHalf the="true">
+                <singular>player's failure</singular>
             </secondHalf>
         </element>
     </category>
@@ -3791,13 +3826,6 @@
             <firstHalf type="adjective">More</firstHalf>
             <secondHalf the="false">
                 <singular>after the game is over</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The game only ends in the player's failure</name>
-            <firstHalf type="verb">The game only ends in</firstHalf>
-            <secondHalf the="true">
-                <singular>player's failure</singular>
             </secondHalf>
         </element>
         <element>

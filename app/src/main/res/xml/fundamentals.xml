@@ -30,7 +30,6 @@
         <element name="Information" />
         <element name="Input" />
         <element name="Item" />
-        <element name="Knowledge" />
         <element name="Limit" />
         <element name="Map" />
         <element name="Mood" />
@@ -50,6 +49,7 @@
         <element name="Saving &amp; Loading" />
         <element name="Score" />
         <element name="Sight" />
+        <element name="Skill" />
         <element name="Sky" />
         <element name="Solution" />
         <element name="Spawning" />
