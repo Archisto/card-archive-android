@@ -331,11 +331,10 @@ public class MainActivity extends AppCompatActivity {
     private void displayCardsToChooseFrom(List<Card> displayedCards) {
         if (cardsToChooseFromAmount <= displayedCards.size()) {
             if (chosenCards.size() == 0) {
-                updateProgressBar(true, 0);
+                updateProgressBar(true, false, 0);
             }
             else if (chosenCards.size() >= displayedCardCount) {
-                resetChooseOneMode(true);
-                updateProgressBar(false, 0);
+                finishChooseOneMode(0);
             }
 
             chooseOneCards.clear();
@@ -347,6 +346,7 @@ public class MainActivity extends AppCompatActivity {
             setTextColor(1, textColors[2]);
             setTextColor(2, textColors[3]);
 
+            // Sets up three cards from which the user can choose one
             for (int i = 0; i < cardSlots.size(); i++) {
                 boolean emptySlot = i >= cardsToChooseFromAmount;
                 setCardSlotText(i, displayedCards, cardSlots.get(i), emptySlot);
@@ -357,28 +357,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void chooseCard(int choice) {
         chosenCards.add(chooseOneCards.get(choice));
-
         setTextColors(textColors[0]);
 
-        for (int i = 0; i < cardSlots.size(); i++) {
-            boolean emptySlot = i >= chosenCards.size();
-            setCardSlotText(i, chosenCards, cardSlots.get(i), emptySlot);
-        }
-
         if (chosenCards.size() >= displayedCardCount) {
-            resetChooseOneMode(true);
-            updateProgressBar(false, displayedCardCount);
+            finishChooseOneMode(displayedCardCount);
         }
         else {
-            updateProgressBar(false, chosenCards.size());
+            updateProgressBar(false, false, chosenCards.size());
 
             // Choosing continues until all choices have been made
             displayCards(displayedCardCount, displayedCategory);
         }
     }
 
-    private void resetListMode() {
-        nextShownCard = 0;
+    private void finishChooseOneMode(int chosenCardCount) {
+        if (chosenCardCount > 0) {
+            // Shows the chosen cards
+            for (int i = 0; i < cardSlots.size(); i++) {
+                boolean emptySlot = i >= chosenCards.size();
+                setCardSlotText(i, chosenCards, cardSlots.get(i), emptySlot);
+            }
+        }
+
+        resetChooseOneMode(true);
+        updateProgressBar(false, true, 0);
     }
 
     private void resetChooseOneMode(boolean keepProgressBarVisible) {
@@ -393,8 +395,12 @@ public class MainActivity extends AppCompatActivity {
             setProgressBarActive(false);
     }
 
+    private void resetListMode() {
+        nextShownCard = 0;
+    }
+
     @TargetApi(26)
-    private void updateProgressBar(boolean initialize, int progress) {
+    private void updateProgressBar(boolean initialize, boolean finish, int progress) {
         Log.d("CAGE", "Updating progress: " + progress);
         if (initialize) {
             progressBar.setMin(0);
@@ -409,7 +415,10 @@ public class MainActivity extends AppCompatActivity {
             progressBar.setProgress(progress);
             setProgressBarActive(true);
         } else {
-            progressBar.setProgress(progress);
+            if (finish)
+                progressBar.setProgress(progressBar.getMax());
+            else
+                progressBar.setProgress(progress);
         }
     }
 
@@ -491,10 +500,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (displayMode == DisplayMode.chooseOne) {
-                updateProgressBar(true, -1);
+                if (choosingActive) {
+                    if (displayedCardCount <= chosenCards.size())
+                        finishChooseOneMode(displayedCardCount);
+                    else
+                        updateProgressBar(true, false, -1);
+                }
             }
-
-            displayCards(displayedCardCount, displayedCategory);
+            else {
+                displayCards(displayedCardCount, displayedCategory);
+            }
 
             return true;
         }
