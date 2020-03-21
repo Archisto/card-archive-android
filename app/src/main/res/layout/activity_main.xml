@@ -18,6 +18,14 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <TextView
+            android:id="@+id/pageNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/allCatAndCardCount"
+            android:textColor="@android:color/white" />
+
     </android.support.design.widget.AppBarLayout>
 
     <include

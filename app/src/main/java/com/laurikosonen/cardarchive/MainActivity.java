@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
     private ProgressBar progressBar;
+    private TextView headerInfoText;
     private TextView categoryCardCountText;
 
     private List<List<Card>> decks;
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        headerInfoText = (TextView) findViewById(R.id.pageNum);
+        headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
+
         fab1 = (FloatingActionButton) findViewById(R.id.fab_main);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
         fab3.hide();
     }
 
+    private String getCategoryName(int categoryIndex, boolean shortName) {
+        if (shortName)
+            return decks.get(categoryIndex).get(0).categoryShortName;
+        else
+            return decks.get(categoryIndex).get(0).categoryName;
+    }
+
     private void setTextColors(int colorId) {
         for (TextView text : cardSlots) {
             text.setTextColor(getResources().getColor(colorId));
@@ -125,6 +136,53 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTextColor(int textIndex, int colorId) {
         cardSlots.get(textIndex).setTextColor(getResources().getColor(colorId));
+    }
+
+    private void updateHeaderInfoText() {
+        String newString;
+        String categoryName = "";
+
+        boolean usingAllCards = displayedCategory < 0;
+        if (!usingAllCards)
+            categoryName = getCategoryName(displayedCategory, false);
+
+        if (displayMode == DisplayMode.fundamentals) {
+            newString = String.format(getString(R.string.fundamentalCount), "" + fundamentals.size());
+        }
+        else if (displayMode == DisplayMode.list) {
+            String currentPage = "1";
+            if (nextShownCardInList > listStartIndex)
+                currentPage = "" + ((int)(0.5f + ((nextShownCardInList - listStartIndex) / displayedCardCount)) + 1);
+
+            String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
+
+            if (usingAllCards)
+                newString = String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
+            else
+                newString = String.format(getString(R.string.catAndPageNum), categoryName, currentPage, maxPage);
+        }
+        else if (displayMode == DisplayMode.chooseOne) {
+            // TODO: Choose One mode header info text
+            String currentSelection = "1";
+            String maxSelection = "1";
+
+            if (usingAllCards)
+                newString = String.format(getString(R.string.allCatAndSelNum), currentSelection, maxSelection);
+            else
+                newString = String.format(getString(R.string.catAndSelNum), categoryName, currentSelection, maxSelection);
+        }
+        else {
+            String cardCount = "" + allCards.size();
+            if (!usingAllCards)
+                cardCount = "" + decks.get(displayedCategory).size();
+
+            if (usingAllCards)
+                newString = String.format(getString(R.string.allCatAndCardCount), cardCount);
+            else
+                newString = String.format(getString(R.string.catAndCardCount), categoryName, cardCount);
+        }
+
+        headerInfoText.setText(newString);
     }
 
     private void updateCategoryCardCountText() {
@@ -219,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             shownCardCount = displayedCards.size();
         }
 
-        if (displayMode != DisplayMode.list) {
+        if (displayMode != DisplayMode.list && displayedCards != allCards) {
             shuffleDeck(displayedCards);
         }
 
@@ -280,6 +338,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayCardList(int shownCardCount, boolean shownCardCountChanged) {
+        // TODO: Going back a page
+
         // Uses allCards deck with the start and end indexes
         // according to the used category
 
@@ -297,6 +357,8 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("CAGE", "LIST MODE. Next page");
             nextShownCardInList += shownCardCount;
         }
+
+        updateHeaderInfoText();
 
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
         //      ". listStartIndex: " + listStartIndex +
@@ -488,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < displayCategories.length; i++) {
                 menu.findItem(displayCategories[i]).
-                    setTitle(String.format(getString(R.string.action_useCategory), decks.get(i).get(0).categoryName));
+                    setTitle(String.format(getString(R.string.action_useCategory), getCategoryName(i, false)));
             }
         }
 
@@ -516,6 +578,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean setDisplayedCardCount(int value, int min, int max) {
         if (value >= min && value <= max) {
             displayedCardCount = value;
+
+            updateHeaderInfoText();
 
             if (menu != null) {
                 menu.findItem(R.id.submenu_cardCount).
@@ -545,6 +609,8 @@ public class MainActivity extends AppCompatActivity {
         if (categoryId < decks.size()) {
             displayedCategory = categoryId;
 
+            updateHeaderInfoText();
+
             item.setEnabled(false);
             currentDisplayedCatItem.setEnabled(true);
             currentDisplayedCatItem = item;
@@ -570,7 +636,10 @@ public class MainActivity extends AppCompatActivity {
         currentDisplayedDisplayModeItem = item;
 
         if (displayMode == DisplayMode.list)
+            // List mode updates the header info text when the cards are drawn
             initListMode();
+        else
+            updateHeaderInfoText();
 
         displayCards(displayedCardCount, displayedCategory, false);
 
