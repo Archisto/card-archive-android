@@ -19,8 +19,11 @@
                 android:id="@+id/action_setMode_list"
                 android:title="@string/mode_list" />
             <item
-                android:id="@+id/action_setMode_combine"
-                android:title="@string/mode_combine" />
+                android:id="@+id/action_setMode_splice"
+                android:title="@string/mode_splice" />
+            <item
+                android:id="@+id/action_setMode_spliceAlt"
+                android:title="@string/mode_spliceAlt" />
             <item
                 android:id="@+id/action_setMode_chooseOne"
                 android:title="@string/mode_chooseOne" />

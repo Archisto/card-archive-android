@@ -17,7 +17,8 @@
     <string name="action_useAllCategories">Use All Categories</string>
     <string name="mode_classic">Classic</string>
     <string name="mode_list">List</string>
-    <string name="mode_combine">Splice</string>
+    <string name="mode_splice">Splice</string>
+    <string name="mode_spliceAlt">Splice Alt</string>
     <string name="mode_chooseOne">Choose One</string>
     <string name="mode_fundamentals">Fundamentals</string>
     <string name="modes">Modes</string>

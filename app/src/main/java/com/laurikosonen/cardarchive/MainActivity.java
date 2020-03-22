@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private List<List<Card>> decks;
     private List<Card> allCards;
     private List<Card> allCardsShuffled;
+    private List<Card> displayedCards;
     private List<Card> chooseOneCards;
     private List<Card> chosenCards;
     private List<Card> fundamentals;
@@ -45,12 +46,16 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem currentDisplayedDisplayModeItem;
     private int[] textColors = new int[cardsToChooseFromAmount + 1];
     private boolean listModeJustStarted;
+    private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
+
+    private Card spliceBeginning;
 
     private enum DisplayMode {
         classic,
         list,
         splice,
+        spliceAlt,
         chooseOne,
         fundamentals
     }
@@ -104,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
                 else if (displayMode == DisplayMode.list) {
                     prevPageInCardList();
                 }
+                else if (displayMode == DisplayMode.spliceAlt) {
+                    takeNewSpliceAltBeginning();
+                    displayCards(displayedCardCount, displayedCategory, false);
+                }
             }
         });
 
@@ -119,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
         fab2.hide();
         fab3.hide();
+    }
+
+    private void hideFab2() {
+        fab2.hide();
     }
 
     private String getCategoryName(int categoryIndex, boolean shortName) {
@@ -231,8 +244,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private List<Card> getDisplayedCards(int category) {
-        List<Card> displayedCards = allCards;
+    private void updateDisplayedCards(int category) {
+        displayedCards = allCards;
 
         boolean anyCategory = category < 0;
         if (displayMode != DisplayMode.list) {
@@ -249,8 +262,6 @@ public class MainActivity extends AppCompatActivity {
                 displayedCards = decks.get(category);
             }
         }
-
-        return displayedCards;
     }
 
     private void displayCards(int shownCardCount, int category, boolean shownCardCountChanged) {
@@ -259,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        List<Card> displayedCards = getDisplayedCards(category);
+        updateDisplayedCards(category);
 
         // Checks if the amount of cards we want to show is too large
         // (more than there are cards to show)
@@ -275,12 +286,22 @@ public class MainActivity extends AppCompatActivity {
             case list:
                 startOrNextPageInCardList(shownCardCount, shownCardCountChanged);
                 break;
+            case spliceAlt:
+                startOrUpdateSpliceAltMode(displayedCards, shownCardCount);
+                break;
             case chooseOne:
                 displayCardsToChooseFrom(displayedCards);
                 break;
             default:
-                setCardsSlotTexts(shownCardCount, displayedCards);
+                setAllCardSlotTexts(displayedCards, shownCardCount);
                 break;
+        }
+    }
+
+    private void setAllCardSlotTexts(List<Card> displayedCards, int shownCardCount) {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            boolean emptySlot = i >= shownCardCount || i >= displayedCards.size();
+            setCardSlotText(i, displayedCards, cardSlots.get(i), emptySlot);
         }
     }
 
@@ -289,10 +310,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (!empty) {
             if (displayMode == DisplayMode.splice) {
+                // Index is doubled because every other card in the deck
+                // is used as the end part of the splice
                 index = index * 2;
                 if (index < cards.size() - 1) {
-                    text = getCombineCardDisplayText(index, cards);
+                    text = getSpliceCardDisplayText(index, cards);
                 }
+            }
+            else if (displayMode == DisplayMode.spliceAlt) {
+                // Index must be one larger, otherwise the beginning part's card is used twice;
+                // see takeNewSpliceAltBeginning()
+                text = getSpliceAltCardDisplayText(index + 1, cards);
             }
             else {
                 Card card = cards.get(index);
@@ -304,11 +332,10 @@ public class MainActivity extends AppCompatActivity {
         cardSlot.setText(text);
     }
 
-    private void setCardsSlotTexts(int shownCardCount, List<Card> displayedCards) {
-        for (int i = 0; i < cardSlots.size(); i++) {
-            boolean emptySlot = i >= shownCardCount || i >= displayedCards.size();
-            setCardSlotText(i, displayedCards, cardSlots.get(i), emptySlot);
-        }
+    private void updateFab2Alpha() {
+        // This is needed because fab2 is really reluctant to keep its transparency if it's hidden
+        fab2.setAlpha(0.8f);
+        //Log.d("CAGE", "Fab2 transparency: " + fab2.getAlpha());
     }
 
     private void initListMode() {
@@ -325,12 +352,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         listModeJustStarted = true;
-    }
-
-    private void updateFab2Alpha() {
-        // This is needed because fab2 is really reluctant to keep its transparency if it's hidden
-        fab2.setAlpha(0.8f);
-        //Log.d("CAGE", "Fab2 transparency: " + fab2.getAlpha());
     }
 
     private void startOrNextPageInCardList(int shownCardCount, boolean shownCardCountChanged) {
@@ -402,45 +423,67 @@ public class MainActivity extends AppCompatActivity {
             updateFab2Alpha();
     }
 
-    private void resetListMode() {
-        //Log.d("CAGE", "LIST MODE. Reset");
-        fab2.hide();
-    }
-
-    private String getCombineCardDisplayText(int index, List<Card> cards) {
+    private String getSpliceCardDisplayText(int index, List<Card> cards) {
         Card card1 = cards.get(index);
         Card card2 = cards.get(index + 1);
-
-        Card.NameHalfType secondHalfType = Card.NameHalfType.singular;
-        if (card1.firstHalfType != null && card1.secondHalfPreference == null) {
-            switch (card1.firstHalfType) {
-                case verb:
-                case adjective:
-                    secondHalfType = Card.NameHalfType.plural;
-                    break;
-                case noun:
-                    break;
-            }
-        }
-
-        // TODO: Completely voids the previous secondHalfType set?
-        if (card1.secondHalfPreference != null) {
-            switch (card1.secondHalfPreference) {
-                case singular:
-                    secondHalfType = Card.NameHalfType.singular;
-                    break;
-                case plural:
-                    secondHalfType = Card.NameHalfType.plural;
-                    break;
-            }
-        }
+        Card.NameHalfType secondHalfPreference = getSecondHalfPreference(card1);
 
         return String.format(
             getString(R.string.cardSlotCombine),
             card1.categoryShortName,
             card2.categoryShortName,
             card1.getNameHalf(true, null),
-            card2.getNameHalf(false, secondHalfType));
+            card2.getNameHalf(false, secondHalfPreference));
+    }
+
+    private Card.NameHalfType getSecondHalfPreference(Card card) {
+        Card.NameHalfType secondHalfPreference = Card.NameHalfType.singular;
+
+        if (card.secondHalfPreference != null) {
+            secondHalfPreference = card.secondHalfPreference;
+        }
+        else if (card.firstHalfType != null) {
+            switch (card.firstHalfType) {
+                case verb:
+                case adjective:
+                    secondHalfPreference = Card.NameHalfType.plural;
+                    break;
+                case noun:
+                    break;
+            }
+        }
+
+        return secondHalfPreference;
+    }
+
+    private void initSpliceAltMode() {
+        spliceAltModeJustStarted = true;
+    }
+
+    private void takeNewSpliceAltBeginning() {
+        spliceBeginning = displayedCards.get(0);
+    }
+
+    private void startOrUpdateSpliceAltMode(List<Card> displayedCards, int shownCardCount) {
+        if (spliceAltModeJustStarted) {
+            spliceAltModeJustStarted = false;
+            takeNewSpliceAltBeginning();
+            fab2.show();
+        }
+
+        setAllCardSlotTexts(displayedCards, shownCardCount);
+    }
+
+    private String getSpliceAltCardDisplayText(int index, List<Card> cards) {
+        Card card = cards.get(index);
+        Card.NameHalfType secondHalfPreference = getSecondHalfPreference(spliceBeginning);
+
+        return String.format(
+            getString(R.string.cardSlotCombine),
+            spliceBeginning.categoryShortName,
+            card.categoryShortName,
+            spliceBeginning.getNameHalf(true, null),
+            card.getNameHalf(false, secondHalfPreference));
     }
 
     private void displayCardsToChooseFrom(List<Card> displayedCards) {
@@ -657,20 +700,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean setDisplayMode(MenuItem item, DisplayMode mode) {
-        if (displayMode == DisplayMode.list && mode != DisplayMode.list)
-            resetListMode();
+
+        // Hides fab2 only if the mode it's used in is ending
+        if ((displayMode == DisplayMode.list && mode != DisplayMode.list)
+            || (displayMode == DisplayMode.spliceAlt && mode != DisplayMode.spliceAlt))
+            hideFab2();
 
         displayMode = mode;
         item.setEnabled(false);
         currentDisplayedDisplayModeItem.setEnabled(true);
         currentDisplayedDisplayModeItem = item;
 
-        if (displayMode == DisplayMode.list)
+        if (displayMode == DisplayMode.list) {
             // List mode updates the header info text when the cards are drawn
             initListMode();
-        else
+        }
+        else if (displayMode == DisplayMode.spliceAlt) {
+            // Splice Alt mode updates the header info text differently
+            initSpliceAltMode();
+        }
+        else {
             // All other modes do it here
             updateHeaderInfoText();
+        }
 
         displayCards(displayedCardCount, displayedCategory, false);
 
@@ -700,8 +752,9 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isSetModeId(int id) {
         return id == R.id.action_setMode_classic
-            || id == R.id.action_setMode_combine
             || id == R.id.action_setMode_list
+            || id == R.id.action_setMode_splice
+            || id == R.id.action_setMode_spliceAlt
             || id == R.id.action_setMode_chooseOne
             || id == R.id.action_setMode_fundamentals;
     }
@@ -725,21 +778,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         switch (id) {
-            case R.id.action_setMode_classic: {
+            case R.id.action_setMode_classic:
                 return setDisplayMode(item, DisplayMode.classic);
-            }
-            case R.id.action_setMode_combine: {
-                return setDisplayMode(item, DisplayMode.splice);
-            }
-            case R.id.action_setMode_list: {
+            case R.id.action_setMode_list:
                 return setDisplayMode(item, DisplayMode.list);
-            }
-            case R.id.action_setMode_chooseOne: {
+            case R.id.action_setMode_splice:
+                return setDisplayMode(item, DisplayMode.splice);
+            case R.id.action_setMode_spliceAlt:
+                return setDisplayMode(item, DisplayMode.spliceAlt);
+            case R.id.action_setMode_chooseOne:
                 return setDisplayMode(item, DisplayMode.chooseOne);
-            }
-            case R.id.action_setMode_fundamentals: {
+            case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
-            }
         }
 
         return false;
