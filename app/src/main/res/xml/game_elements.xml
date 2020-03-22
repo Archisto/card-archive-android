@@ -2151,6 +2151,14 @@
     </category>
     <category id="7" name="Abilities" shortName="Abi">
         <element>
+            <name>A unique ability no one else has</name>
+            <firstHalf type="adjective">Unique</firstHalf>
+            <secondHalf the="false">
+                <singular>is unique</singular>
+                <plural>are unique</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Abilities with cooldowns</name>
             <firstHalf type="noun" preference="plural">Abilities</firstHalf>
             <secondHalf the="false">
@@ -2322,7 +2330,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Immediately taking over another character after dying</name>
+            <name>Taking over another character after dying</name>
             <firstHalf type="verb" preference="singular">Taking over</firstHalf>
             <secondHalf the="false">
                 <singular>after dying</singular>
@@ -3255,14 +3263,21 @@
             </secondHalf>
         </element>
         <element>
-            <name>The game only ends in the player's failure</name>
-            <firstHalf type="verb">The game only ends in</firstHalf>
+            <name>The game ends in the player's failure</name>
+            <firstHalf type="verb">The game ends in</firstHalf>
             <secondHalf the="true">
                 <singular>player's failure</singular>
             </secondHalf>
         </element>
     </category>
     <category id="10" name="Interaction" shortName="IAct">
+        <element>
+            <name>Interacting with characters or objects</name>
+            <firstHalf type="verb" preference="plural">Interacting with</firstHalf>
+            <secondHalf the="false">
+                <singular>interaction</singular>
+            </secondHalf>
+        </element>
         <element>
             <name>Input shortcuts</name>
             <firstHalf type="noun" preference="singular">Input</firstHalf>
@@ -3305,6 +3320,13 @@
             <firstHalf type="verb">The controls consist of</firstHalf>
             <secondHalf the="false">
                 <plural>one or two buttons</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Refraining from doing or using something is preferable</name>
+            <firstHalf type="verb">Refraining from</firstHalf>
+            <secondHalf the="false">
+                <singular>doing or using something</singular>
             </secondHalf>
         </element>
         <element>
@@ -3469,7 +3491,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Leaving characters or objects undisturbed lets them replenish health or energy</name>
+            <name>Leaving characters or objects undisturbed lets them recover</name>
             <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
             <secondHalf the="false">
                 <singular>replenishes health or energy</singular>
