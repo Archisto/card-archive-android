@@ -162,9 +162,8 @@ public class MainActivity extends AppCompatActivity {
                 newString = String.format(getString(R.string.catAndPageNum), categoryName, currentPage, maxPage);
         }
         else if (displayMode == DisplayMode.chooseOne) {
-            // TODO: Choose One mode header info text
-            String currentSelection = "1";
-            String maxSelection = "1";
+            String currentSelection = "" + chosenCards.size();
+            String maxSelection = "" + displayedCardCount;
 
             if (usingAllCards)
                 newString = String.format(getString(R.string.allCatAndSelNum), currentSelection, maxSelection);
@@ -398,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // TODO: Completely voids the previous secondHalfType set?
         if (card1.secondHalfPreference != null) {
             switch (card1.secondHalfPreference) {
                 case singular:
@@ -468,8 +468,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        resetChooseOneMode(true);
         updateProgressBar(false, true, 0);
+        resetChooseOneMode(true);
     }
 
     private void resetChooseOneMode(boolean keepProgressBarVisible) {
@@ -500,11 +500,15 @@ public class MainActivity extends AppCompatActivity {
             progressBar.setProgress(progress);
             setProgressBarActive(true);
         } else {
-            if (finish)
+            if (finish) {
                 progressBar.setProgress(progressBar.getMax());
-            else
+            }
+            else {
                 progressBar.setProgress(progress);
+            }
         }
+
+        updateHeaderInfoText();
     }
 
     @TargetApi(26)
@@ -579,8 +583,6 @@ public class MainActivity extends AppCompatActivity {
         if (value >= min && value <= max) {
             displayedCardCount = value;
 
-            updateHeaderInfoText();
-
             if (menu != null) {
                 menu.findItem(R.id.submenu_cardCount).
                     setTitle(String.format(getString(R.string.action_cardCount), displayedCardCount));
@@ -595,6 +597,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else {
+                updateHeaderInfoText();
                 displayCards(displayedCardCount, displayedCategory, true);
             }
 
