@@ -327,6 +327,12 @@ public class MainActivity extends AppCompatActivity {
         listModeJustStarted = true;
     }
 
+    private void updateFab2Alpha() {
+        // This is needed because fab2 is really reluctant to keep its transparency if it's hidden
+        fab2.setAlpha(0.8f);
+        //Log.d("CAGE", "Fab2 transparency: " + fab2.getAlpha());
+    }
+
     private void startOrNextPageInCardList(int shownCardCount, boolean shownCardCountChanged) {
 
         // Uses allCards deck with the start index and list size set in initListMode()
@@ -337,6 +343,7 @@ public class MainActivity extends AppCompatActivity {
             nextShownCardInList = listStartIndex;
             listModeJustStarted = false;
             fab2.show();
+            updateFab2Alpha();
         }
         else if (outOfCards) {
             //Log.d("CAGE", "LIST MODE. Out of cards");
@@ -388,9 +395,15 @@ public class MainActivity extends AppCompatActivity {
 
             setCardSlotText(deckIndex, allCards, cardSlots.get(i), emptySlot);
         }
+
+        // TODO: fab2 is not transparent before changing page if
+        //  it has just been unhidden
+        if (fab2.getAlpha() == 1f)
+            updateFab2Alpha();
     }
 
     private void resetListMode() {
+        //Log.d("CAGE", "LIST MODE. Reset");
         fab2.hide();
     }
 
@@ -499,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
 
     @TargetApi(26)
     private void updateProgressBar(boolean initialize, boolean finish, int progress) {
-        Log.d("CAGE", "Updating progress: " + progress);
+        //Log.d("CAGE", "Updating progress: " + progress);
         if (initialize) {
             progressBar.setMin(0);
             progressBar.setMax(displayedCardCount);
