@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab3;
     private ProgressBar progressBar;
     private TextView headerInfoText;
-    private TextView categoryCardCountText;
 
     private List<List<Card>> decks;
     private List<Card> allCards;
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: Have card count info on its own screen
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -103,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (displayMode == DisplayMode.chooseOne && choosingActive) {
                     chooseCard(1);
+                }
+                else if (displayMode == DisplayMode.list) {
+                    prevPageInCardList();
                 }
             }
         });
@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
             newString = String.format(getString(R.string.fundamentalCount), "" + fundamentals.size());
         }
         else if (displayMode == DisplayMode.list) {
+            // TODO: If the displayed card count is changed in a specific way,
+            //  if shows the second page as the first. Fix this.
+
             String currentPage = "1";
             if (nextShownCardInList > listStartIndex)
                 currentPage = "" + ((int)(0.5f + ((nextShownCardInList - listStartIndex) / displayedCardCount)) + 1);
@@ -182,24 +185,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         headerInfoText.setText(newString);
-    }
-
-    private void updateCategoryCardCountText() {
-
-        // TODO: No categoryCardCountText -> remove this method
-        if (categoryCardCountText == null)
-            return;
-
-        int categoryCardCount = 0;
-        if (displayedCategory < 0) {
-            categoryCardCount = allCards.size();
-        }
-        else if (decks.size() > 0) {
-            categoryCardCount = decks.get(displayedCategory).size();
-        }
-
-        categoryCardCountText.setText(
-            String.format(getString(R.string.cardCountTip), categoryCardCount));
     }
 
     private void initDecks() {
@@ -246,12 +231,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayCards(int shownCardCount, int category, boolean shownCardCountChanged) {
-        if (category >= decks.size()) {
-            Log.e("CAGE", "Invalid category ID: " + category);
-            return;
-        }
-
+    private List<Card> getDisplayedCards(int category) {
         List<Card> displayedCards = allCards;
 
         boolean anyCategory = category < 0;
@@ -270,6 +250,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        return displayedCards;
+    }
+
+    private void displayCards(int shownCardCount, int category, boolean shownCardCountChanged) {
+        if (category >= decks.size()) {
+            Log.e("CAGE", "Invalid category ID: " + category);
+            return;
+        }
+
+        List<Card> displayedCards = getDisplayedCards(category);
+
         // Checks if the amount of cards we want to show is too large
         // (more than there are cards to show)
         if (shownCardCount > displayedCards.size()) {
@@ -282,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (displayMode) {
             case list:
-                displayCardList(shownCardCount, shownCardCountChanged);
+                startOrNextPageInCardList(shownCardCount, shownCardCountChanged);
                 break;
             case chooseOne:
                 displayCardsToChooseFrom(displayedCards);
@@ -336,17 +327,16 @@ public class MainActivity extends AppCompatActivity {
         listModeJustStarted = true;
     }
 
-    private void displayCardList(int shownCardCount, boolean shownCardCountChanged) {
-        // TODO: Going back a page
+    private void startOrNextPageInCardList(int shownCardCount, boolean shownCardCountChanged) {
 
-        // Uses allCards deck with the start and end indexes
-        // according to the used category
+        // Uses allCards deck with the start index and list size set in initListMode()
 
         boolean outOfCards = nextShownCardInList + shownCardCount >= listStartIndex + listSize;
         if (listModeJustStarted) {
             //Log.d("CAGE", "LIST MODE. Just started");
             nextShownCardInList = listStartIndex;
             listModeJustStarted = false;
+            fab2.show();
         }
         else if (outOfCards) {
             //Log.d("CAGE", "LIST MODE. Out of cards");
@@ -357,12 +347,36 @@ public class MainActivity extends AppCompatActivity {
             nextShownCardInList += shownCardCount;
         }
 
-        updateHeaderInfoText();
-
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
         //      ". listStartIndex: " + listStartIndex +
         //      ". listSize: " + listSize);
 
+        updateHeaderInfoText();
+        updateCardList(shownCardCount);
+    }
+
+    private void prevPageInCardList() {
+        boolean atListFirstElement = nextShownCardInList == listStartIndex;
+
+        nextShownCardInList -= displayedCardCount;
+        if (nextShownCardInList < listStartIndex) {
+            nextShownCardInList = listStartIndex;
+
+            // Looping around to the last page
+            if (atListFirstElement) {
+                int pagesForward = listSize / displayedCardCount;
+                if (listSize % displayedCardCount == 0)
+                    pagesForward--;
+
+                nextShownCardInList += pagesForward * displayedCardCount;
+            }
+        }
+
+        updateHeaderInfoText();
+        updateCardList(displayedCardCount);
+    }
+
+    private void updateCardList(int shownCardCount) {
         for (int i = 0; i < cardSlots.size(); i++) {
             boolean emptySlot = i >= shownCardCount;
             int deckIndex = nextShownCardInList + i;
@@ -377,8 +391,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetListMode() {
-        nextShownCardInList = 0;
-        listModeJustStarted = false;
+        fab2.hide();
     }
 
     private String getCombineCardDisplayText(int index, List<Card> cards) {
@@ -617,8 +630,6 @@ public class MainActivity extends AppCompatActivity {
             item.setEnabled(false);
             currentDisplayedCatItem.setEnabled(true);
             currentDisplayedCatItem = item;
-            updateCategoryCardCountText();
-            resetListMode();
 
             if (displayMode == DisplayMode.list)
                 initListMode();
@@ -633,6 +644,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean setDisplayMode(MenuItem item, DisplayMode mode) {
+        if (displayMode == DisplayMode.list && mode != DisplayMode.list)
+            resetListMode();
+
         displayMode = mode;
         item.setEnabled(false);
         currentDisplayedDisplayModeItem.setEnabled(true);
@@ -642,6 +656,7 @@ public class MainActivity extends AppCompatActivity {
             // List mode updates the header info text when the cards are drawn
             initListMode();
         else
+            // All other modes do it here
             updateHeaderInfoText();
 
         displayCards(displayedCardCount, displayedCategory, false);
@@ -692,10 +707,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean handleSetDisplayModeOptions(int id, MenuItem item) {
-        if (displayMode == DisplayMode.list) {
-            resetListMode();
-        }
-        else if (displayMode == DisplayMode.chooseOne) {
+        if (displayMode == DisplayMode.chooseOne) {
             resetChooseOneMode(false);
         }
 
