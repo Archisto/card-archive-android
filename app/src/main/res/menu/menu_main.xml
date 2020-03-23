@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.laurikosonen.cardarchive.MainActivity">
     <item
+        android:id="@+id/action_help"
+        android:enabled="true"
+        android:title="@string/title_activity_help"
+        android:titleCondensed="@string/title_activity_help"
+        android:visible="true"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
         android:id="@+id/submenu_modes"
         android:enabled="true"
         android:icon="@drawable/ic_category"
@@ -30,6 +38,9 @@
             <item
                 android:id="@+id/action_setMode_fundamentals"
                 android:title="@string/mode_fundamentals" />
+            <item
+                android:id="@+id/action_setMode_fundamentalElem"
+                android:title="@string/mode_fundamentalElem" />
         </menu>
     </item>
     <item

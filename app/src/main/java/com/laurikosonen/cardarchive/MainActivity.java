@@ -1,6 +1,7 @@
 package com.laurikosonen.cardarchive;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         splice,
         spliceAlt,
         chooseOne,
-        fundamentals
+        fundamentals,
+        fundamentalElem
     }
 
     @Override
@@ -132,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideFab2() {
         fab2.hide();
+    }
+
+    private void goToHelp() {
+        Intent i = new Intent(MainActivity.this, HelpActivity.class);
+        startActivity(i);
     }
 
     private String getCategoryName(int categoryIndex, boolean shortName) {
@@ -244,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateDisplayedCards(int category) {
+    private void updateDisplayedDeck(int category) {
         displayedCards = allCards;
 
         boolean anyCategory = category < 0;
@@ -270,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        updateDisplayedCards(category);
+        updateDisplayedDeck(category);
 
         // Checks if the amount of cards we want to show is too large
         // (more than there are cards to show)
@@ -280,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (displayMode != DisplayMode.list && displayedCards != allCards) {
             shuffleDeck(displayedCards);
+
+            if (displayMode == DisplayMode.fundamentalElem) {
+                shuffleDeck(fundamentals);
+            }
         }
 
         switch (displayMode) {
@@ -321,6 +332,12 @@ public class MainActivity extends AppCompatActivity {
                 // Index must be one larger, otherwise the beginning part's card is used twice;
                 // see takeNewSpliceAltBeginning()
                 text = getSpliceAltCardDisplayText(index + 1, cards);
+            }
+            else if (displayMode == DisplayMode.fundamentalElem) {
+                Card fundamental = fundamentals.get(index);
+                Card card = cards.get(index);
+                text = String.format(getString(R.string.cardSlotFundElem),
+                    card.categoryShortName, fundamental.name.toUpperCase(), card.name);
             }
             else {
                 Card card = cards.get(index);
@@ -429,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
         Card.NameHalfType secondHalfPreference = getSecondHalfPreference(card1);
 
         return String.format(
-            getString(R.string.cardSlotCombine),
+            getString(R.string.cardSlotSplice),
             card1.categoryShortName,
             card2.categoryShortName,
             card1.getNameHalf(true, null),
@@ -479,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
         Card.NameHalfType secondHalfPreference = getSecondHalfPreference(spliceBeginning);
 
         return String.format(
-            getString(R.string.cardSlotCombine),
+            getString(R.string.cardSlotSplice),
             spliceBeginning.categoryShortName,
             card.categoryShortName,
             spliceBeginning.getNameHalf(true, null),
@@ -736,15 +753,18 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (isSetModeId(id)) {
+        if (id == R.id.action_help) {
+            goToHelp();
+            return true;
+        }
+        else if (isSetModeId(id)) {
             return handleSetDisplayModeOptions(id, item);
         }
         else if (isSetCardCountId(id)) {
             return handleSetCardCountOptions(id);
         }
-        else {
-            if (handleDisplayedCategoryOptions(id, item))
-                return true;
+        else if (handleDisplayedCategoryOptions(id, item)) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -756,7 +776,8 @@ public class MainActivity extends AppCompatActivity {
             || id == R.id.action_setMode_splice
             || id == R.id.action_setMode_spliceAlt
             || id == R.id.action_setMode_chooseOne
-            || id == R.id.action_setMode_fundamentals;
+            || id == R.id.action_setMode_fundamentals
+            || id == R.id.action_setMode_fundamentalElem;
     }
 
     private boolean isSetCardCountId(int id) {
@@ -790,6 +811,8 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayMode(item, DisplayMode.chooseOne);
             case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
+            case R.id.action_setMode_fundamentalElem:
+                return setDisplayMode(item, DisplayMode.fundamentalElem);
         }
 
         return false;
