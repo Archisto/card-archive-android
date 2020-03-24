@@ -53,6 +53,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>One versus many</name>
+            <firstHalf type="noun" preference="singular">One</firstHalf>
+            <secondHalf the="false">
+                <plural>versus many</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Game master</name>
             <firstHalf type="noun" preference="singular">Game</firstHalf>
             <secondHalf the="false">
@@ -387,6 +394,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Trap</name>
+            <firstHalf type="noun">Trap</firstHalf>
+            <secondHalf the="true">
+                <singular>trap</singular>
+                <plural>traps</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Dungeon</name>
             <firstHalf type="noun">Dungeon</firstHalf>
             <secondHalf the="false">
@@ -431,6 +446,13 @@
             <secondHalf the="false">
                 <singular>era</singular>
                 <plural>eras</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rich scenery</name>
+            <firstHalf type="adjective">Rich</firstHalf>
+            <secondHalf the="false">
+                <singular>scenery</singular>
             </secondHalf>
         </element>
         <element>
@@ -730,11 +752,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>One player's decision affects other players</name>
-            <firstHalf type="verb">The player's decision affects</firstHalf>
-            <secondHalf the="true">
-                <singular>player</singular>
-                <plural>players</plural>
+            <name>Restoring old buildings or systems</name>
+            <firstHalf type="verb">Restoring</firstHalf>
+            <secondHalf the="false">
+                <singular>restoration</singular>
             </secondHalf>
         </element>
         <element>
@@ -763,6 +784,14 @@
             <firstHalf type="noun" preference="plural">Some rules can be</firstHalf>
             <secondHalf the="false">
                 <singular>can be broken</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>One player's decision affects other players</name>
+            <firstHalf type="verb">The player's decision affects</firstHalf>
+            <secondHalf the="true">
+                <singular>player</singular>
+                <plural>players</plural>
             </secondHalf>
         </element>
         <element>
@@ -938,6 +967,13 @@
             <secondHalf the="false">
                 <singular>character/unit</singular>
                 <plural>characters/units</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Simultaneous control of multiple characters/units</name>
+            <firstHalf type="adjective">Simultaneous</firstHalf>
+            <secondHalf the="false">
+                <plural>multiple characters</plural>
             </secondHalf>
         </element>
         <element>
@@ -1423,6 +1459,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Crawling</name>
+            <firstHalf type="verb">Crawling</firstHalf>
+            <secondHalf the="false">
+                <singular>crawling</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Burrowing through the ground</name>
             <firstHalf type="verb">Burrowing through</firstHalf>
             <secondHalf the="true">
@@ -1476,7 +1519,7 @@
         </element>
         <element>
             <name>The planet's curvature influences gameplay</name>
-            <firstHalf type="noun" preference="singular">The planet</firstHalf>
+            <firstHalf type="noun" preference="singular">Planet</firstHalf>
             <secondHalf the="false">
                 <singular>influences gameplay</singular>
                 <plural>influence gameplay</plural>
@@ -1579,10 +1622,25 @@
             </secondHalf>
         </element>
         <element>
+            <name>Missing piece</name>
+            <firstHalf type="adjective">Missing</firstHalf>
+            <secondHalf the="false">
+                <singular>piece</singular>
+                <plural>pieces</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Swapping characters' or objects' positions</name>
             <firstHalf type="verb">Swapping</firstHalf>
             <secondHalf the="false">
                 <plural>characters' or objects' positions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Having to prioritize something over another</name>
+            <firstHalf type="verb">Prioritizing</firstHalf>
+            <secondHalf the="false">
+                <singular>prioritization</singular>
             </secondHalf>
         </element>
         <element>
@@ -1956,7 +2014,7 @@
             <name>Armour which must be destroyed before damaging the wearer</name>
             <firstHalf type="noun">Armour</firstHalf>
             <secondHalf the="false">
-                <singular>must be destroyed</singular>
+                <singular>destruction</singular>
             </secondHalf>
         </element>
         <element>
@@ -2234,11 +2292,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Repairing objects</name>
-            <firstHalf type="verb">Repairing</firstHalf>
+            <name>Expanding/extending</name>
+            <firstHalf type="verb">Expanding/extending</firstHalf>
             <secondHalf the="false">
-                <singular>object</singular>
-                <plural>objects</plural>
+                <singular>expansion</singular>
             </secondHalf>
         </element>
         <element>
@@ -2450,6 +2507,13 @@
             <secondHalf the="false">
                 <singular>can form a single entity</singular>
                 <plural>can fuse and form a single entity</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Repairing</name>
+            <firstHalf type="verb">Repairing</firstHalf>
+            <secondHalf the="false">
+                <singular>repair</singular>
             </secondHalf>
         </element>
         <element>
@@ -2687,6 +2751,14 @@
         <element>
             <name>Decoy items</name>
             <firstHalf type="adjective">Decoy</firstHalf>
+            <secondHalf the="false">
+                <singular>an item</singular>
+                <plural>items</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unreliable items</name>
+            <firstHalf type="adjective">Unreliable</firstHalf>
             <secondHalf the="false">
                 <singular>an item</singular>
                 <plural>items</plural>
@@ -3279,11 +3351,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Input shortcuts</name>
-            <firstHalf type="noun" preference="singular">Input</firstHalf>
-            <secondHalf the="false">
-                <singular>a shortcut</singular>
-                <plural>shortcuts</plural>
+            <name>Unusual controls</name>
+            <firstHalf type="adjective">Unusual</firstHalf>
+            <secondHalf the="true">
+                <plural>controls</plural>
             </secondHalf>
         </element>
         <element>
@@ -3294,10 +3365,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Unusual controls</name>
-            <firstHalf type="adjective">Unusual</firstHalf>
-            <secondHalf the="true">
-                <plural>controls</plural>
+            <name>Input shortcuts</name>
+            <firstHalf type="noun" preference="singular">Input</firstHalf>
+            <secondHalf the="false">
+                <singular>a shortcut</singular>
+                <plural>shortcuts</plural>
             </secondHalf>
         </element>
         <element>
@@ -3309,8 +3381,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>360 degree aiming</name>
-            <firstHalf type="adjective">360 degree</firstHalf>
+            <name>360-degree aiming</name>
+            <firstHalf type="adjective">360-degree</firstHalf>
             <secondHalf the="true">
                 <singular>aiming</singular>
             </secondHalf>
@@ -3359,6 +3431,22 @@
             <secondHalf the="false">
                 <singular>mistake</singular>
                 <plural>mistakes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Failed attempts leave marks in the world</name>
+            <firstHalf type="verb">Failing</firstHalf>
+            <secondHalf the="false">
+                <singular>leaves a mark in the world</singular>
+                <plural>leave marks in the world</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving a mark on anything that is touched</name>
+            <firstHalf type="verb">Leaving a mark on</firstHalf>
+            <secondHalf the="false">
+                <singular>a touched object</singular>
+                <plural>touched objects</plural>
             </secondHalf>
         </element>
         <element>
@@ -3476,6 +3564,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>It's impossible to go beyond a maximum distance of something</name>
+            <firstHalf type="adjective">Impossible</firstHalf>
+            <secondHalf the="false">
+                <singular>maximum distance</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Being affected by staying close to certain things</name>
             <firstHalf type="verb">Being affected by</firstHalf>
             <secondHalf the="false">
@@ -3496,6 +3591,14 @@
             <secondHalf the="false">
                 <singular>replenishes health or energy</singular>
                 <plural>replenish health or energy</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving threats undisturbed lets them grow stronger</name>
+            <firstHalf type="noun" preference="plural">Threats</firstHalf>
+            <secondHalf the="false">
+                <singular>grows stronger</singular>
+                <plural>grow stronger</plural>
             </secondHalf>
         </element>
         <element>
@@ -3535,22 +3638,6 @@
             <secondHalf the="false">
                 <singular>reaction</singular>
                 <plural>reactions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving a mark on anything that is touched</name>
-            <firstHalf type="verb">Leaving a mark on</firstHalf>
-            <secondHalf the="false">
-                <singular>a touched object</singular>
-                <plural>touched objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Failed attempts leave marks in the world</name>
-            <firstHalf type="verb">Failing</firstHalf>
-            <secondHalf the="false">
-                <singular>leaves a mark in the world</singular>
-                <plural>leave marks in the world</plural>
             </secondHalf>
         </element>
     </category>
@@ -3641,16 +3728,24 @@
             </secondHalf>
         </element>
         <element>
-            <name>A guiding arrow/line</name>
-            <firstHalf type="adjective">A guiding</firstHalf>
+            <name>A guiding arrow or line</name>
+            <firstHalf type="adjective">Guiding</firstHalf>
             <secondHalf the="false">
                 <singular>line</singular>
                 <plural>lines</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Characters' or objects' paths are visualized</name>
-            <firstHalf type="noun" preference="plural">Characters' or objects' paths</firstHalf>
+            <name>A character's or an object's path is visualized</name>
+            <firstHalf type="noun" preference="singular">Path</firstHalf>
+            <secondHalf the="false">
+                <singular>is visualized</singular>
+                <!--<plural>are visualized</plural>-->
+            </secondHalf>
+        </element>
+        <element>
+            <name>A character's or an object's status is visualized</name>
+            <firstHalf type="noun" preference="singular">Status</firstHalf>
             <secondHalf the="false">
                 <singular>is visualized</singular>
                 <!--<plural>are visualized</plural>-->
@@ -3658,7 +3753,7 @@
         </element>
         <element>
             <name>Enemy health is displayed</name>
-            <firstHalf type="noun" preference="singular">Enemy health</firstHalf>
+            <firstHalf type="noun" preference="singular">Health</firstHalf>
             <secondHalf the="false">
                 <singular>is displayed</singular>
                 <!--<plural>are displayed</plural>-->
@@ -3685,6 +3780,27 @@
             <firstHalf type="adjective">Light</firstHalf>
             <secondHalf the="true">
                 <singular>darkness</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Glow visual effects</name>
+            <firstHalf type="verb">Glowing</firstHalf>
+            <secondHalf the="true">
+                <singular>glow</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Wave or flow visual effects</name>
+            <firstHalf type="noun">Wave</firstHalf>
+            <secondHalf the="true">
+                <singular>flow</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Explosion or implosion visual effects</name>
+            <firstHalf type="verb">Exploding</firstHalf>
+            <secondHalf the="true">
+                <singular>explosion</singular>
             </secondHalf>
         </element>
         <element>
@@ -3767,6 +3883,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Dialogue/chat log</name>
+            <firstHalf type="noun">Dialogue/chat</firstHalf>
+            <secondHalf the="false">
+                <singular>log</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>In-game music player for the soundtrack</name>
             <firstHalf type="adjective">In-game</firstHalf>
             <secondHalf the="false">
@@ -3782,7 +3905,7 @@
         </element>
         <element>
             <name>Alternate cosmetic items for the player character or UI</name>
-            <firstHalf type="adjective" preference="plural">Cosmetic</firstHalf>
+            <firstHalf type="adjective">Cosmetic</firstHalf>
             <secondHalf the="false">
                 <singular>cosmetic item</singular>
                 <plural>cosmetic items</plural>
