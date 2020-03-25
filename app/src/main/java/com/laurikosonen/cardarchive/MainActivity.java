@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private final int maxDisplayedCards = 10;
     private final int cardsToChooseFromAmount = 3;
 
+    private View mainView;
     private Menu menu;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
@@ -39,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private List<TextView> cardSlots;
     private int displayedCategory = -1;
     private int displayedCardCount = 10;
-    private int listStartIndex = 0;
+    private int deckStartIndex = 0;
+    private int nextCardInDeck = 0;
     private int listSize = 0;
-    private int nextShownCardInList = 0;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mainView = (View) findViewById(R.id.include);
 
         initDecks();
         initCardSlots();
@@ -84,16 +87,35 @@ public class MainActivity extends AppCompatActivity {
         headerInfoText = (TextView) findViewById(R.id.pageNum);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
 
+        mainView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        handleCardSlotTouch(y);
+//                        Log.d("CAGE", "touched down");
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+//                        Log.d("CAGE", "moving: (" + x + ", " + y + ")");
+                        break;
+                    case MotionEvent.ACTION_UP:
+//                        Log.d("CAGE", "touched up");
+                        break;
+                }
+
+                return true;
+            }
+        });
+
         fab1 = (FloatingActionButton) findViewById(R.id.fab_main);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!choosingActive) {
                     displayCards(displayedCardCount, displayedCategory, false);
-
-                    // Snackbar example:
-//                    Snackbar.make(view, String.format(getString(R.string.cardCountTip), displayedCards.size()), Snackbar.LENGTH_SHORT)
-//                        .setAction("Action", null).show();
                 }
                 else {
                     chooseCard(0);
@@ -131,6 +153,45 @@ public class MainActivity extends AppCompatActivity {
         fab2.hide();
         fab3.hide();
     }
+
+    // Alternate way of checking touch. Not as powerful as OnTouchListener.
+    // The other necessary part is in content_main: android:onClick="onTouch
+    //public void onTouch(View view) {
+    //}
+
+    private int getTouchedCardSlotIndex(int touchY) {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            // The y-coordinate increases when going down and vice versa
+            if (touchY >= cardSlots.get(i).getTop() && touchY <= cardSlots.get(i).getBottom())
+                return i;
+        }
+
+        return -1;
+    }
+
+    private TextView getTouchedCardSlot(int touchY, boolean allowEmpty) {
+        int index = getTouchedCardSlotIndex(touchY);
+        if (index < 0)
+            return null;
+        else if (allowEmpty || cardSlots.get(index).length() > 0)
+            return cardSlots.get(index);
+
+        return null;
+    }
+
+    private TextView getFirstEmptyCardSlot(int y) {
+        for (TextView cardSlot : cardSlots) {
+            if (cardSlot.getText().length() == 0)
+                return cardSlot;
+        }
+
+        return null;
+    }
+
+//    private void makeSnackbar(View view, String text) {
+//        Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
+//            .setAction("Action", null).show();
+//    }
 
     private void hideFab2() {
         fab2.hide();
@@ -174,8 +235,8 @@ public class MainActivity extends AppCompatActivity {
             //  if shows the second page as the first. Fix this.
 
             String currentPage = "1";
-            if (nextShownCardInList > listStartIndex)
-                currentPage = "" + ((int)(0.5f + ((nextShownCardInList - listStartIndex) / displayedCardCount)) + 1);
+            if (nextCardInDeck > deckStartIndex)
+                currentPage = "" + ((int)(0.5f + ((nextCardInDeck - deckStartIndex) / displayedCardCount)) + 1);
 
             String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
 
@@ -301,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
                 startOrUpdateSpliceAltMode(displayedCards, shownCardCount);
                 break;
             case chooseOne:
-                displayCardsToChooseFrom(displayedCards);
+                displayChooseOneCards(displayedCards);
                 break;
             default:
                 setAllCardSlotTexts(displayedCards, shownCardCount);
@@ -312,11 +373,13 @@ public class MainActivity extends AppCompatActivity {
     private void setAllCardSlotTexts(List<Card> displayedCards, int shownCardCount) {
         for (int i = 0; i < cardSlots.size(); i++) {
             boolean emptySlot = i >= shownCardCount || i >= displayedCards.size();
-            setCardSlotText(i, displayedCards, cardSlots.get(i), emptySlot);
+            setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
+
+        nextCardInDeck = displayedCardCount + 1;
     }
 
-    private void setCardSlotText(int index, List<Card> cards, TextView cardSlot, boolean empty) {
+    private void setCardSlotText(TextView cardSlot, List<Card> cards, int index, boolean empty) {
         String text = "";
 
         if (!empty) {
@@ -355,14 +418,67 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("CAGE", "Fab2 transparency: " + fab2.getAlpha());
     }
 
+    private void handleCardSlotTouch(int touchY) {
+        // TODO: Interesting things with selecting individual cards;
+        //  maybe use getFirstEmptyCardSlot()
+
+        if (displayMode == DisplayMode.chooseOne) {
+            if (choosingActive) {
+                int chosenCardNum = getTouchedCardSlotIndex(touchY);
+                if (chosenCardNum >= 0 && chosenCardNum <= 2) {
+                    chooseCard(chosenCardNum);
+                }
+            }
+        }
+        else if (displayMode == DisplayMode.classic) {
+            addOrSwitchCard(touchY);
+        }
+        else if (displayMode != DisplayMode.list) {
+            switchCard(touchY);
+        }
+    }
+
+    private void addOrSwitchCard(int touchY) {
+        TextView cardSlot = getTouchedCardSlot(touchY, true);
+        TextView firstEmptySlot = getFirstEmptyCardSlot(touchY);
+
+        if (cardSlot == null && firstEmptySlot != null && touchY >= firstEmptySlot.getTop()) {
+            cardSlot = firstEmptySlot;
+        }
+        else if (cardSlot != null && cardSlot.length() == 0) {
+            cardSlot = firstEmptySlot;
+        }
+        else if (cardSlot == null)
+            return;
+
+        drawNewCard(cardSlot);
+    }
+
+    private void switchCard(int touchY) {
+        TextView cardSlot = getTouchedCardSlot(touchY, false);
+        if (cardSlot == null)
+            return;
+
+        //makeSnackbar(v, "Switched " + cardSlot.getText().toString());
+        drawNewCard(cardSlot);
+    }
+
+    private void drawNewCard(TextView cardSlot) {
+        nextCardInDeck++;
+        if (nextCardInDeck >= displayedCards.size())
+            nextCardInDeck = 0; // TODO: No card duplication
+
+        setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+    }
+
     private void initListMode() {
-        listStartIndex = 0;
+        deckStartIndex = 0;
         if (displayedCategory < 0) {
             listSize = allCards.size();
         }
         else {
             for (int i = 0; i < displayedCategory; i++) {
-                listStartIndex += decks.get(i).size();
+                deckStartIndex += decks.get(i).size();
             }
 
             listSize = decks.get(displayedCategory).size();
@@ -375,21 +491,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Uses allCards deck with the start index and list size set in initListMode()
 
-        boolean outOfCards = nextShownCardInList + shownCardCount >= listStartIndex + listSize;
+        boolean outOfCards = nextCardInDeck + shownCardCount >= deckStartIndex + listSize;
         if (listModeJustStarted) {
             //Log.d("CAGE", "LIST MODE. Just started");
-            nextShownCardInList = listStartIndex;
+            nextCardInDeck = deckStartIndex;
             listModeJustStarted = false;
             fab2.show();
             updateFab2Alpha();
         }
         else if (outOfCards) {
             //Log.d("CAGE", "LIST MODE. Out of cards");
-            nextShownCardInList = listStartIndex;
+            nextCardInDeck = deckStartIndex;
         }
         else if (!shownCardCountChanged) {
             //Log.d("CAGE", "LIST MODE. Next page");
-            nextShownCardInList += shownCardCount;
+            nextCardInDeck += shownCardCount;
         }
 
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
@@ -401,11 +517,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prevPageInCardList() {
-        boolean atListFirstElement = nextShownCardInList == listStartIndex;
+        boolean atListFirstElement = nextCardInDeck == deckStartIndex;
 
-        nextShownCardInList -= displayedCardCount;
-        if (nextShownCardInList < listStartIndex) {
-            nextShownCardInList = listStartIndex;
+        nextCardInDeck -= displayedCardCount;
+        if (nextCardInDeck < deckStartIndex) {
+            nextCardInDeck = deckStartIndex;
 
             // Looping around to the last page
             if (atListFirstElement) {
@@ -413,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
                 if (listSize % displayedCardCount == 0)
                     pagesForward--;
 
-                nextShownCardInList += pagesForward * displayedCardCount;
+                nextCardInDeck += pagesForward * displayedCardCount;
             }
         }
 
@@ -424,18 +540,18 @@ public class MainActivity extends AppCompatActivity {
     private void updateCardList(int shownCardCount) {
         for (int i = 0; i < cardSlots.size(); i++) {
             boolean emptySlot = i >= shownCardCount;
-            int deckIndex = nextShownCardInList + i;
+            int deckIndex = nextCardInDeck + i;
 
-            if (deckIndex - listStartIndex >= listSize) {
+            if (deckIndex - deckStartIndex >= listSize) {
                 // Out of cards
                 emptySlot = true;
             }
 
-            setCardSlotText(deckIndex, allCards, cardSlots.get(i), emptySlot);
+            setCardSlotText(cardSlots.get(i), allCards, deckIndex, emptySlot);
         }
 
         // TODO: fab2 is not transparent before changing page if
-        //  it has just been unhidden
+        //  it had previously been hidden (outside onCreate()) and afterwards unhidden
         if (fab2.getAlpha() == 1f)
             updateFab2Alpha();
     }
@@ -503,7 +619,7 @@ public class MainActivity extends AppCompatActivity {
             card.getNameHalf(false, secondHalfPreference));
     }
 
-    private void displayCardsToChooseFrom(List<Card> displayedCards) {
+    private void displayChooseOneCards(List<Card> displayedCards) {
         if (cardsToChooseFromAmount <= displayedCards.size()) {
             if (chosenCards.size() == 0) {
                 updateProgressBar(true, false, 0);
@@ -524,7 +640,7 @@ public class MainActivity extends AppCompatActivity {
             // Sets up three cards from which the user can choose one
             for (int i = 0; i < cardSlots.size(); i++) {
                 boolean emptySlot = i >= cardsToChooseFromAmount;
-                setCardSlotText(i, displayedCards, cardSlots.get(i), emptySlot);
+                setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
                 chooseOneCards.add(displayedCards.get(i));
             }
         }
@@ -550,7 +666,7 @@ public class MainActivity extends AppCompatActivity {
             // Shows the chosen cards
             for (int i = 0; i < cardSlots.size(); i++) {
                 boolean emptySlot = i >= chosenCards.size();
-                setCardSlotText(i, chosenCards, cardSlots.get(i), emptySlot);
+                setCardSlotText(cardSlots.get(i), chosenCards, i, emptySlot);
             }
         }
 
