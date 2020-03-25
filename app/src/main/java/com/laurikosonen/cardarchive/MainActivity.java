@@ -47,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
+    private MenuItem autoUpdateResultsToggle;
     private int[] textColors = new int[cardsToChooseFromAmount + 1];
     private boolean listModeJustStarted;
     private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
+    private boolean autoUpdateResults = true;
 
     private Card spliceBeginning;
 
@@ -376,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
-        nextCardInDeck = displayedCardCount + 1;
+        nextCardInDeck = displayedCardCount;
     }
 
     private void setCardSlotText(TextView cardSlot, List<Card> cards, int index, boolean empty) {
@@ -384,12 +386,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!empty) {
             if (displayMode == DisplayMode.splice) {
-                // Index is doubled because every other card in the deck
-                // is used as the end part of the splice
-                index = index * 2;
-                if (index < cards.size() - 1) {
-                    text = getSpliceCardDisplayText(index, cards);
-                }
+                text = getSpliceCardDisplayText(index, cards);
             }
             else if (displayMode == DisplayMode.spliceAlt) {
                 // Index must be one larger, otherwise the beginning part's card is used twice;
@@ -430,7 +427,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        else if (displayMode == DisplayMode.classic) {
+        else if (displayMode == DisplayMode.classic
+                 || displayMode == DisplayMode.splice
+                 || displayMode == DisplayMode.spliceAlt
+                 || displayMode == DisplayMode.fundamentalElem) {
             addOrSwitchCard(touchY);
         }
         else if (displayMode != DisplayMode.list) {
@@ -464,6 +464,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void drawNewCard(TextView cardSlot) {
+        // Note: Skips one index because it's set here and not after setCardSlotText()
         nextCardInDeck++;
         if (nextCardInDeck >= displayedCards.size())
             nextCardInDeck = 0; // TODO: No card duplication
@@ -557,8 +558,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getSpliceCardDisplayText(int index, List<Card> cards) {
+        int index2 = index;
+        while (index2 == index)
+            index2 = (int) (Math.random() * cards.size());
+
         Card card1 = cards.get(index);
-        Card card2 = cards.get(index + 1);
+        Card card2 = cards.get(index2);
         Card.NameHalfType secondHalfPreference = getSecondHalfPreference(card1);
 
         return String.format(
@@ -736,6 +741,9 @@ public class MainActivity extends AppCompatActivity {
         currentDisplayedCatItem = menu.findItem(R.id.action_displayAll);
         currentDisplayedCatItem.setEnabled(false);
 
+        autoUpdateResultsToggle = menu.findItem(R.id.action_autoUpdateResults);
+        autoUpdateResultsToggle.setChecked(autoUpdateResults);
+
         if (decks.size() > 0) {
             int[] displayCategories = new int[]
                 {
@@ -761,6 +769,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_help) {
+            goToHelp();
+            return true;
+        }
+        else if (isSetModeId(id)) {
+            return handleSetDisplayModeOptions(id, item);
+        }
+        else if (isSetCardCountId(id)) {
+            return handleSetCardCountOptions(id);
+        }
+        else if (handleDisplayedCategoryOptions(id, item)) {
+            return true;
+        }
+        else if (handleAutoUpdateResultsActivation(id)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean setDisplayedCardCount(boolean increase, int min, int max, MenuItem item) {
@@ -800,7 +835,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 updateHeaderInfoText();
-                displayCards(displayedCardCount, displayedCategory, true);
+
+                if (autoUpdateResults)
+                    displayCards(displayedCardCount, displayedCategory, true);
             }
 
             return true;
@@ -820,11 +857,18 @@ public class MainActivity extends AppCompatActivity {
             currentDisplayedCatItem.setEnabled(true);
             currentDisplayedCatItem = item;
 
-            if (displayMode == DisplayMode.list)
+            if (displayMode == DisplayMode.list) {
                 initListMode();
-
-            if (displayMode != DisplayMode.fundamentals)
                 displayCards(displayedCardCount, displayedCategory, false);
+            }
+            else if (displayMode != DisplayMode.fundamentals) {
+                if (autoUpdateResults) {
+                    displayCards(displayedCardCount, displayedCategory, false);
+                }
+                else {
+                    updateDisplayedDeck(displayedCategory);
+                }
+            }
 
             return true;
         }
@@ -848,42 +892,18 @@ public class MainActivity extends AppCompatActivity {
             // List mode updates the header info text when the cards are drawn
             initListMode();
         }
-        else if (displayMode == DisplayMode.spliceAlt) {
-            // Splice Alt mode updates the header info text differently
-            initSpliceAltMode();
-        }
         else {
             // All other modes do it here
             updateHeaderInfoText();
         }
 
+        if (displayMode == DisplayMode.spliceAlt) {
+            initSpliceAltMode();
+        }
+
         displayCards(displayedCardCount, displayedCategory, false);
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_help) {
-            goToHelp();
-            return true;
-        }
-        else if (isSetModeId(id)) {
-            return handleSetDisplayModeOptions(id, item);
-        }
-        else if (isSetCardCountId(id)) {
-            return handleSetCardCountOptions(id);
-        }
-        else if (handleDisplayedCategoryOptions(id, item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private boolean isSetModeId(int id) {
@@ -1015,6 +1035,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_displayCategory12: {
                 return setDisplayedCategory(item, 12);
             }
+        }
+
+        return false;
+    }
+
+    private boolean handleAutoUpdateResultsActivation(int id) {
+        if (id == R.id.action_autoUpdateResults) {
+            autoUpdateResults = !autoUpdateResults;
+            autoUpdateResultsToggle.setChecked(autoUpdateResults);
+            return true;
         }
 
         return false;

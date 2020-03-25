@@ -85,6 +85,11 @@
                 android:title="10" />
         </menu>
     </item>
+    <item
+        android:id="@+id/action_autoUpdateResults"
+        android:title="@string/action_autoUpdateResults"
+        android:checkable="true"
+        app:showAsAction="never" />
     <group android:id="@+id/group_displayCategories" >
         <item
             android:id="@+id/action_displayAll"
