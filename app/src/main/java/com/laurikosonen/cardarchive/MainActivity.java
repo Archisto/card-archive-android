@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
     private int listSize = 0;
+    private int touchStartX;
+    private int touchStartY;
+    private int touchDuration;
+    private int maxTouchDuration = 30;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
@@ -53,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
     private boolean autoUpdateResults = true;
+    private boolean touching;
+    private boolean touchHandled;
 
     private Card spliceBeginning;
 
@@ -97,14 +103,17 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        handleCardSlotTouch(y);
-//                        Log.d("CAGE", "touched down");
                         break;
                     case MotionEvent.ACTION_MOVE:
-//                        Log.d("CAGE", "moving: (" + x + ", " + y + ")");
+                        if (longTouch(x, y))
+                            handleCardSlotLongTouch(touchStartY);
+                        //else if (swipe(true, x))
+                        //    handleCardSlotSwipe(true, touchStartY);
                         break;
                     case MotionEvent.ACTION_UP:
-//                        Log.d("CAGE", "touched up");
+                        if (!touchHandled)
+                            handleCardSlotTouch(y);
+                        endTouch();
                         break;
                 }
 
@@ -161,6 +170,52 @@ public class MainActivity extends AppCompatActivity {
     //public void onTouch(View view) {
     //}
 
+    private boolean longTouch(int touchX, int touchY) {
+        if (touchHandled)
+            return false;
+
+        if (!touching) {
+            touching = true;
+            touchStartX = touchX;
+            touchStartY = touchY;
+        }
+        else {
+            touchDuration++;
+            if (touchDuration > maxTouchDuration) {
+                touchHandled = true;
+
+                int touchPosMaxDifference = 10;
+                return Math.abs(touchY - touchStartY) <= touchPosMaxDifference
+                    && Math.abs(touchX - touchStartX) <= touchPosMaxDifference;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean swipe(boolean right, int touchX) {
+        if (touching && !touchHandled) {
+            int touchXRequiredDifference = 40;
+            int difference = touchX - touchStartX;
+            if (right && difference > 0) {
+                touchHandled = true;
+                return true;
+            }
+            else if (!right && difference < 0) {
+                touchHandled = true;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void endTouch() {
+        touching = false;
+        touchHandled = false;
+        touchDuration = 0;
+    }
+
     private int getTouchedCardSlotIndex(int touchY) {
         for (int i = 0; i < cardSlots.size(); i++) {
             // The y-coordinate increases when going down and vice versa
@@ -181,13 +236,21 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    private TextView getFirstEmptyCardSlot(int y) {
-        for (TextView cardSlot : cardSlots) {
-            if (cardSlot.getText().length() == 0)
-                return cardSlot;
+    private int getFirstEmptyCardSlotIndex() {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).length() == 0)
+                return i;
         }
 
-        return null;
+        return -1;
+    }
+
+    private TextView getFirstEmptyCardSlot() {
+        int index = getFirstEmptyCardSlotIndex();
+        if (index >= 0)
+            return cardSlots.get(index);
+        else
+            return null;
     }
 
 //    private void makeSnackbar(View view, String text) {
@@ -233,19 +296,7 @@ public class MainActivity extends AppCompatActivity {
             newString = String.format(getString(R.string.fundamentalCount), "" + fundamentals.size());
         }
         else if (displayMode == DisplayMode.list) {
-            // TODO: If the displayed card count is changed in a specific way,
-            //  if shows the second page as the first. Fix this.
-
-            String currentPage = "1";
-            if (nextCardInDeck > deckStartIndex)
-                currentPage = "" + ((int)(0.5f + ((nextCardInDeck - deckStartIndex) / displayedCardCount)) + 1);
-
-            String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
-
-            if (usingAllCards)
-                newString = String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
-            else
-                newString = String.format(getString(R.string.catAndPageNum), categoryName, currentPage, maxPage);
+            newString = getHeaderInfoListMode(usingAllCards, categoryName);
         }
         else if (displayMode == DisplayMode.chooseOne) {
             String currentSelection = "" + chosenCards.size();
@@ -268,6 +319,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         headerInfoText.setText(newString);
+    }
+
+    private String getHeaderInfoListMode(boolean usingAllCards, String categoryName) {
+        // TODO: If the displayed card count is changed in a specific way,
+        //  if shows the second page as the first. Fix this.
+        //  (This happens because the faux-first page's first card would be on the real first page)
+
+        String currentPage = "1";
+        if (nextCardInDeck > deckStartIndex) {
+            currentPage = "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / displayedCardCount)) + 1);
+            Log.d("CAGE", "currentPage: " + currentPage);
+        }
+
+        String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
+
+        if (usingAllCards)
+            return String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
+        else
+            return String.format(getString(R.string.catAndPageNum), categoryName, currentPage, maxPage);
     }
 
     private void initDecks() {
@@ -389,9 +459,7 @@ public class MainActivity extends AppCompatActivity {
                 text = getSpliceCardDisplayText(index, cards);
             }
             else if (displayMode == DisplayMode.spliceAlt) {
-                // Index must be one larger, otherwise the beginning part's card is used twice;
-                // see takeNewSpliceAltBeginning()
-                text = getSpliceAltCardDisplayText(index + 1, cards);
+                text = getSpliceAltCardDisplayText(index, cards);
             }
             else if (displayMode == DisplayMode.fundamentalElem) {
                 Card fundamental = fundamentals.get(index);
@@ -416,9 +484,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleCardSlotTouch(int touchY) {
-        // TODO: Interesting things with selecting individual cards;
-        //  maybe use getFirstEmptyCardSlot()
-
         if (displayMode == DisplayMode.chooseOne) {
             if (choosingActive) {
                 int chosenCardNum = getTouchedCardSlotIndex(touchY);
@@ -438,18 +503,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void handleCardSlotLongTouch(int touchY) {
+        if (displayMode == DisplayMode.classic
+            || displayMode == DisplayMode.splice
+            || displayMode == DisplayMode.spliceAlt
+            || displayMode == DisplayMode.fundamentalElem) {
+            removeCard(touchY);
+        }
+    }
+
+    private void handleCardSlotSwipe(boolean right, int touchY) {
+        // TODO: Fix swiping
+
+        if (right) {
+            //Log.d("CAGE", "Swiped right");
+            if (displayMode == DisplayMode.spliceAlt) {
+                // Changes both the beginning and the end of the spliced result
+                TextView cardSlot = getTouchedCardSlot(touchY, false);
+                if (cardSlot != null) {
+                    takeNewSpliceAltBeginning();
+                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
+                }
+            }
+        }
+    }
+
     private void addOrSwitchCard(int touchY) {
         TextView cardSlot = getTouchedCardSlot(touchY, true);
-        TextView firstEmptySlot = getFirstEmptyCardSlot(touchY);
+        TextView firstEmptySlot = getFirstEmptyCardSlot();
 
+        // Touched nothing and there's an available card slot
         if (cardSlot == null && firstEmptySlot != null && touchY >= firstEmptySlot.getTop()) {
             cardSlot = firstEmptySlot;
         }
+        // Touched an empty card slot
         else if (cardSlot != null && cardSlot.length() == 0) {
             cardSlot = firstEmptySlot;
         }
+        // Touched nothing and there aren't available card slots
         else if (cardSlot == null)
             return;
+
+        // Otherwise touched a non-empty card slot
 
         drawNewCard(cardSlot);
     }
@@ -470,6 +565,32 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = 0; // TODO: No card duplication
 
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+    }
+
+    private void removeCard(int touchY) {
+        int cardSlotIndex = getTouchedCardSlotIndex(touchY);
+        if (cardSlotIndex < 0 || cardSlotIndex >= cardSlots.size())
+            return;
+
+        if (cardSlotIndex == cardSlots.size() - 1) {
+            cardSlots.get(cardSlotIndex).setText("");
+        }
+        else {
+            for (int i = cardSlotIndex + 1; i < cardSlots.size(); i++) {
+                CharSequence currentText = cardSlots.get(i).getText();
+                if (currentText.length() == 0) {
+                    cardSlots.get(i - 1).setText("");
+                    break;
+                }
+                else {
+                    cardSlots.get(i - 1).setText(currentText);
+
+                    if (i == cardSlots.size() - 1) {
+                        cardSlots.get(i).setText("");
+                    }
+                }
+            }
+        }
     }
 
     private void initListMode() {
@@ -613,6 +734,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getSpliceAltCardDisplayText(int index, List<Card> cards) {
+        // Index must be one larger, otherwise the beginning part's card is used twice;
+        // see takeNewSpliceAltBeginning()
+        index++;
+        if (index >= cards.size())
+            index = 0;
+
         Card card = cards.get(index);
         Card.NameHalfType secondHalfPreference = getSecondHalfPreference(spliceBeginning);
 
@@ -625,6 +752,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayChooseOneCards(List<Card> displayedCards) {
+        // TODO: Add possibility of more than 3 choices; remove unnecessary fabs
+
         if (cardsToChooseFromAmount <= displayedCards.size()) {
             if (chosenCards.size() == 0) {
                 updateProgressBar(true, false, 0);
@@ -836,7 +965,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 updateHeaderInfoText();
 
-                if (autoUpdateResults)
+                if (autoUpdateResults || displayMode == DisplayMode.list)
                     displayCards(displayedCardCount, displayedCategory, true);
             }
 
