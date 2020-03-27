@@ -138,15 +138,15 @@ public class MainActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (displayMode == DisplayMode.chooseOne && choosingActive) {
-                    chooseCard(1);
-                }
-                else if (displayMode == DisplayMode.list) {
+                if (displayMode == DisplayMode.list) {
                     prevPageInCardList();
                 }
                 else if (displayMode == DisplayMode.spliceAlt) {
                     takeNewSpliceAltBeginning();
                     displayCards(displayedCardCount, displayedCategory, false);
+                }
+                else if (displayMode == DisplayMode.chooseOne && choosingActive) {
+                    chooseCard(1);
                 }
             }
         });
@@ -720,7 +720,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takeNewSpliceAltBeginning() {
-        spliceBeginning = displayedCards.get(0);
+        int oldCardId = (spliceBeginning == null ? -1 : spliceBeginning.id);
+
+        while (spliceBeginning == null || spliceBeginning.id == oldCardId) {
+            int index = (int) (Math.random() * displayedCards.size());
+            spliceBeginning = displayedCards.get(index);
+        }
     }
 
     private void startOrUpdateSpliceAltMode(List<Card> displayedCards, int shownCardCount) {
@@ -734,12 +739,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getSpliceAltCardDisplayText(int index, List<Card> cards) {
-        // Index must be one larger, otherwise the beginning part's card is used twice;
-        // see takeNewSpliceAltBeginning()
-        index++;
-        if (index >= cards.size())
-            index = 0;
-
         Card card = cards.get(index);
         Card.NameHalfType secondHalfPreference = getSecondHalfPreference(spliceBeginning);
 

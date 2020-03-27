@@ -100,7 +100,11 @@ public class CustomXmlResourceParser {
                     // Creates a new card
                     if (startTagName.equalsIgnoreCase(nameStr)
                           || startTagName.equalsIgnoreCase(elementStr)) {
-                        card = getParsedCard(text, categoryName, categoryShortName, categoryId);
+
+                        // The card's id is determined by poolAll.size(): if the pool is empty,
+                        // the id is 0, and so on
+                        card = getParsedCard
+                            (text, poolAll.size(), categoryName, categoryShortName, categoryId);
                         if (card != null) {
                             pools.get(categoryId).add(card);
                             poolAll.add(card);
@@ -143,11 +147,12 @@ public class CustomXmlResourceParser {
     }
 
     private static Card getParsedCard(String text,
+                                      int id,
                                       String categoryName,
                                       String categoryShortName,
-                                      int id) {
+                                      int categoryNum) {
         if (text != null && !text.isEmpty()) {
-            return new Card(text, categoryName, categoryShortName, id);
+            return new Card(text, id, categoryName, categoryShortName, categoryNum);
         }
 
         return null;

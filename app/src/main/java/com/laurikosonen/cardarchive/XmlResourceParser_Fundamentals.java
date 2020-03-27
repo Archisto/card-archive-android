@@ -35,7 +35,7 @@ public class XmlResourceParser_Fundamentals {
 
                     if (startTagName.equalsIgnoreCase(elementStr)) {
                         name = parser.getAttributeValue(null, nameStr);
-                        fundamental = new Fundamental(name);
+                        fundamental = new Fundamental(name, fundamentals.size());
                         fundamentals.add(fundamental);
                     }
                 }

@@ -1,9 +1,8 @@
 package com.laurikosonen.cardarchive;
 
-import android.util.Log;
-
 public class Card {
     public String name;
+    public int id;
     public String categoryName;
     public String categoryShortName;
     public int categoryNum;
@@ -21,8 +20,13 @@ public class Card {
         plural
     }
 
-    public Card(String name, String categoryName, String categoryShortName, int categoryNum) {
+    public Card(String name,
+                int id,
+                String categoryName,
+                String categoryShortName,
+                int categoryNum) {
         this.name = name;
+        this.id = id;
         this.categoryName = categoryName;
         this.categoryShortName = categoryShortName;
         this.categoryNum = categoryNum;
