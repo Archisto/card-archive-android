@@ -30,6 +30,24 @@
     <string name="help_text">
         "\nGame Elements was designed and developed by Lauri Kosonen."
 
-        <i>"\n\nExit the help screen with your device's back button."</i>
+        "\n\n\nELEMENT COUNTS"
+
+        "\n\n- Total: %s elements"
+        "\n\n- Group: %s elements"
+        "\n- World: %s elements"
+        "\n- Influence: %s elements"
+        "\n- Character: %s elements"
+        "\n- Navigation: %s elements"
+        "\n- Thinking: %s elements"
+        "\n- Combat: %s elements"
+        "\n- Abilities: %s elements"
+        "\n- Items: %s elements"
+        "\n- Goal: %s elements"
+        "\n- Interaction: %s elements"
+        "\n- Audio &amp; Visuals: %s elements"
+        "\n- Miscellaneous: %s elements"
+        "\n\n- Fundamentals: %s"
+
+        <i>"\n\n\n[Exit the help screen with your device's back button.]"</i>
     </string>
 </resources>
