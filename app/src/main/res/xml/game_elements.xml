@@ -290,6 +290,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Different paths to take</name>
+            <firstHalf type="adjective">Different</firstHalf>
+            <secondHalf the="false">
+                <singular>path</singular>
+                <plural>paths</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Day-night cycle</name>
             <firstHalf type="adjective">Day-night</firstHalf>
             <secondHalf the="false">
@@ -458,6 +466,14 @@
             <secondHalf the="false">
                 <singular>structure</singular>
                 <plural>structures</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>A floating island or structure</name>
+            <firstHalf type="adjective">Floating</firstHalf>
+            <secondHalf the="false">
+                <singular>island or structure</singular>
+                <plural>islands or structures</plural>
             </secondHalf>
         </element>
         <element>
@@ -1036,6 +1052,20 @@
             </secondHalf>
         </element>
         <element>
+            <name>Stamina</name>
+            <firstHalf type="noun">Stamina</firstHalf>
+            <secondHalf the="false">
+                <singular>stamina</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Resting</name>
+            <firstHalf type="verb">Resting</firstHalf>
+            <secondHalf the="false">
+                <singular>resting</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Looking after the character's needs</name>
             <firstHalf type="verb">Maintaining</firstHalf>
             <secondHalf the="true">
@@ -1047,13 +1077,6 @@
             <firstHalf type="noun" preference="plural">The character's</firstHalf>
             <secondHalf the="false">
                 <plural>feelings</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Resting</name>
-            <firstHalf type="verb">Resting</firstHalf>
-            <secondHalf the="false">
-                <singular>resting</singular>
             </secondHalf>
         </element>
         <element>
@@ -1176,14 +1199,6 @@
             <firstHalf type="verb">Disguising</firstHalf>
             <secondHalf the="false">
                 <plural>disguises</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Changing form</name>
-            <firstHalf type="verb">Changing</firstHalf>
-            <secondHalf the="false">
-                <singular>form</singular>
-                <plural>forms</plural>
             </secondHalf>
         </element>
         <element>
@@ -1398,6 +1413,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Jumping on falling objects</name>
+            <firstHalf type="verb">Jumping</firstHalf>
+            <secondHalf the="false">
+                <singular>a falling object</singular>
+                <plural>falling objects</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Rolling/spinning/orbiting</name>
             <firstHalf type="verb">Rolling/spinning/orbiting</firstHalf>
             <secondHalf the="false">
@@ -1413,11 +1436,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Jumping on falling objects</name>
-            <firstHalf type="verb">Jumping</firstHalf>
+            <name>Spiral motion</name>
+            <firstHalf type="noun">Spiral</firstHalf>
             <secondHalf the="false">
-                <singular>a falling object</singular>
-                <plural>falling objects</plural>
+                <singular>motion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Returning to where the player failed</name>
+            <firstHalf type="verb" preference="singular">Returning to</firstHalf>
+            <secondHalf the="false">
+                <singular>where the player failed</singular>
             </secondHalf>
         </element>
         <element>
@@ -1482,10 +1511,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Riding</name>
-            <firstHalf type="verb">Riding</firstHalf>
+            <name>Traffic</name>
+            <firstHalf type="noun" preference="singular">Traffic</firstHalf>
             <secondHalf the="false">
-                <singular>riding</singular>
+                <singular>traffic</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Shipwreck</name>
+            <firstHalf type="noun" preference="singular">Ship</firstHalf>
+            <secondHalf the="false">
+                <singular>wreck</singular>
             </secondHalf>
         </element>
         <element>
@@ -1517,6 +1553,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Riding</name>
+            <firstHalf type="verb">Riding</firstHalf>
+            <secondHalf the="false">
+                <singular>riding</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Crawling</name>
             <firstHalf type="verb">Crawling</firstHalf>
             <secondHalf the="false">
@@ -1529,6 +1572,13 @@
             <secondHalf the="true">
                 <singular>ground</singular>
                 <plural>grounds</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rail transport</name>
+            <firstHalf type="adjective">Rail</firstHalf>
+            <secondHalf the="false">
+                <singular>transport</singular>
             </secondHalf>
         </element>
         <element>
@@ -1548,31 +1598,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Rail transport</name>
-            <firstHalf type="adjective">Rail</firstHalf>
+            <name>Visiting different planets</name>
+            <firstHalf type="verb">Going into</firstHalf>
             <secondHalf the="false">
-                <singular>transport</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Traffic</name>
-            <firstHalf type="noun" preference="singular">Traffic</firstHalf>
-            <secondHalf the="false">
-                <singular>traffic</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Shipwreck</name>
-            <firstHalf type="noun" preference="singular">Ship</firstHalf>
-            <secondHalf the="false">
-                <singular>wreck</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Spiral motion</name>
-            <firstHalf type="noun">Spiral</firstHalf>
-            <secondHalf the="false">
-                <singular>motion</singular>
+                <singular>planet</singular>
+                <plural>planets</plural>
             </secondHalf>
         </element>
         <element>
@@ -2366,6 +2396,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Transformation</name>
+            <firstHalf type="verb">Transforming</firstHalf>
+            <secondHalf the="false">
+                <singular>transformation</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Necromancy</name>
             <firstHalf type="noun" preference="plural">Necromancy</firstHalf>
             <secondHalf the="false">
@@ -2661,18 +2698,18 @@
                 <plural>are necessary to progress</plural>
             </secondHalf>
         </element>
-        <element>
-            <name>Getting back lost items or power</name>
-            <firstHalf type="verb">Retrieving</firstHalf>
-            <secondHalf the="false">
-                <plural>lost items or power</plural>
-            </secondHalf>
-        </element>
     </category>
     <category id="8" name="Items" shortName="Itm">
         <element>
             <name>Inventory</name>
             <firstHalf type="noun" preference="singular">Inventory</firstHalf>
+            <secondHalf the="false">
+                <singular>inventory</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Shared inventory</name>
+            <firstHalf type="adjective">Shared</firstHalf>
             <secondHalf the="false">
                 <singular>inventory</singular>
             </secondHalf>
@@ -3068,7 +3105,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Having too much of an item is a problem</name>
+            <name>Having too many items is a problem</name>
             <firstHalf type="adjective" preference="plural">Overabundance of</firstHalf>
             <secondHalf the="false">
                 <singular>problem</singular>
@@ -3610,6 +3647,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Getting back lost items or power</name>
+            <firstHalf type="verb">Retrieving</firstHalf>
+            <secondHalf the="false">
+                <plural>lost items or power</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Sharing money or points with other players</name>
             <firstHalf type="verb">Sharing</firstHalf>
             <secondHalf the="false">
@@ -3840,11 +3884,19 @@
             </secondHalf>
         </element>
         <element>
-            <name>A character's or an object's path is visualized</name>
-            <firstHalf type="noun" preference="singular">Path</firstHalf>
+            <name>Status gauge</name>
+            <firstHalf type="noun">Status</firstHalf>
+            <secondHalf the="true">
+                <singular>gauge</singular>
+                <plural>gauges</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Enemy health is displayed</name>
+            <firstHalf type="noun" preference="singular">Health</firstHalf>
             <secondHalf the="false">
-                <singular>is visualized</singular>
-                <!--<plural>are visualized</plural>-->
+                <singular>is displayed</singular>
+                <!--<plural>are displayed</plural>-->
             </secondHalf>
         </element>
         <element>
@@ -3856,11 +3908,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Enemy health is displayed</name>
-            <firstHalf type="noun" preference="singular">Health</firstHalf>
+            <name>A character's or an object's path is visualized</name>
+            <firstHalf type="noun" preference="singular">Path</firstHalf>
             <secondHalf the="false">
-                <singular>is displayed</singular>
-                <!--<plural>are displayed</plural>-->
+                <singular>is visualized</singular>
+                <!--<plural>are visualized</plural>-->
             </secondHalf>
         </element>
         <element>
@@ -3987,6 +4039,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Announcer</name>
+            <firstHalf type="noun" preference="singular">Announcer</firstHalf>
+            <secondHalf the="true">
+                <singular>announcer</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Narrator</name>
             <firstHalf type="noun" preference="singular">Narrator</firstHalf>
             <secondHalf the="true">
@@ -4054,11 +4113,18 @@
             </secondHalf>
         </element>
         <element>
-            <name>The core gameplay loop lasts only a minute or less</name>
-            <firstHalf type="noun" preference="singular">The core gameplay loop</firstHalf>
+            <name>Random stats for items, abilities or enemies</name>
+            <firstHalf type="adjective">Random</firstHalf>
             <secondHalf the="false">
-                <singular>lasts only a minute or less</singular>
-                <!--<plural>last only a minute or less</plural>-->
+                <plural>stats</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Random gameplay modifiers</name>
+            <firstHalf type="adjective">Random</firstHalf>
+            <secondHalf the="false">
+                <singular>gameplay modifier</singular>
+                <plural>gameplay modifiers</plural>
             </secondHalf>
         </element>
         <element>
@@ -4069,6 +4135,29 @@
             </secondHalf>
         </element>
         <element>
+            <name>The core gameplay loop lasts only a minute or less</name>
+            <firstHalf type="noun" preference="singular">The core gameplay loop</firstHalf>
+            <secondHalf the="false">
+                <singular>lasts only a minute or less</singular>
+                <!--<plural>last only a minute or less</plural>-->
+            </secondHalf>
+        </element>
+        <element>
+            <name>Alternate playstyles</name>
+            <firstHalf type="adjective">Alternate</firstHalf>
+            <secondHalf the="false">
+                <singular>playstyle</singular>
+                <plural>playstyles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Optional feats of skill</name>
+            <firstHalf type="adjective">Optional</firstHalf>
+            <secondHalf the="false">
+                <plural>feats of skill</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Levels can be played in any order</name>
             <firstHalf type="adjective" preference="plural">Freedom of choice in</firstHalf>
             <secondHalf the="false">
@@ -4076,10 +4165,63 @@
             </secondHalf>
         </element>
         <element>
+            <name>Configurable gameplay variables</name>
+            <firstHalf type="adjective">Configurable</firstHalf>
+            <secondHalf the="false">
+                <plural>gameplay variables</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Many things to unlock</name>
             <firstHalf type="adjective">Unlockable</firstHalf>
             <secondHalf the="false">
                 <singular>can be unlocked</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Different quality tiers of objects or abilities</name>
+            <firstHalf type="noun" preference="plural">Different quality tiers of</firstHalf>
+            <secondHalf the="false">
+                <singular>an object or ability</singular>
+                <plural>objects or abilities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Save points</name>
+            <firstHalf type="verb">Saving</firstHalf>
+            <secondHalf the="true">
+                <singular>point</singular>
+                <plural>points</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Saving the game anytime</name>
+            <firstHalf type="verb">Saving</firstHalf>
+            <secondHalf the="false">
+                <singular>anytime</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Limited tries/lives</name>
+            <firstHalf type="adjective">Limited</firstHalf>
+            <secondHalf the="true">
+                <singular>try/life</singular>
+                <plural>tries/lives</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>New game +</name>
+            <firstHalf type="adjective">New</firstHalf>
+            <secondHalf the="false">
+                <singular>becomes more difficult</singular>
+                <plural>become more difficult</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>There's more to do after the game is over</name>
+            <firstHalf type="adjective">More</firstHalf>
+            <secondHalf the="false">
+                <singular>after the game is over</singular>
             </secondHalf>
         </element>
         <element>
@@ -4174,51 +4316,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Limited tries/lives</name>
-            <firstHalf type="adjective">Limited</firstHalf>
-            <secondHalf the="true">
-                <singular>try/life</singular>
-                <plural>tries/lives</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Save points</name>
-            <firstHalf type="verb">Saving</firstHalf>
-            <secondHalf the="true">
-                <singular>point</singular>
-                <plural>points</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Saving the game anytime</name>
-            <firstHalf type="verb">Saving</firstHalf>
-            <secondHalf the="false">
-                <singular>anytime</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>New game +</name>
-            <firstHalf type="adjective">New</firstHalf>
-            <secondHalf the="false">
-                <singular>becomes more difficult</singular>
-                <plural>become more difficult</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>There's more to do after the game is over</name>
-            <firstHalf type="adjective">More</firstHalf>
-            <secondHalf the="false">
-                <singular>after the game is over</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Optional feats of skill</name>
-            <firstHalf type="adjective">Optional</firstHalf>
-            <secondHalf the="false">
-                <plural>feats of skill</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Player performance stats screen</name>
             <firstHalf type="noun" preference="singular">Player performance</firstHalf>
             <secondHalf the="false">
@@ -4226,40 +4323,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Random stats for items, abilities or enemies</name>
-            <firstHalf type="adjective">Random</firstHalf>
-            <secondHalf the="false">
-                <plural>stats</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Different quality tiers of objects or abilities</name>
-            <firstHalf type="noun" preference="plural">Different quality tiers of</firstHalf>
-            <secondHalf the="false">
-                <singular>an object or ability</singular>
-                <plural>objects or abilities</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Support for multiple monitors or other display devices</name>
             <firstHalf type="adjective" preference="plural">Multiple</firstHalf>
             <secondHalf the="false">
                 <singular>screen</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Configurable gameplay variables</name>
-            <firstHalf type="adjective">Configurable</firstHalf>
-            <secondHalf the="false">
-                <plural>gameplay variables</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Random gameplay modifiers</name>
-            <firstHalf type="adjective">Random</firstHalf>
-            <secondHalf the="false">
-                <singular>gameplay modifier</singular>
-                <plural>gameplay modifiers</plural>
             </secondHalf>
         </element>
         <element>
