@@ -8,7 +8,7 @@ public class Card {
     public int categoryNum;
     private String firstHalf;
     public NameHalfType firstHalfType;
-    public NameHalfType secondHalfPreference;
+    private NameHalfType secondHalfPreference;
     private String secondHalfSingular;
     private String secondHalfPlural;
 
@@ -87,5 +87,25 @@ public class Card {
             return NameHalfType.plural;
         else
             return null;
+    }
+
+    public NameHalfType getSecondHalfPreference() {
+        NameHalfType result = NameHalfType.singular;
+
+        if (secondHalfPreference != null) {
+            result = secondHalfPreference;
+        }
+        else if (firstHalfType != null) {
+            switch (firstHalfType) {
+                case verb:
+                case adjective:
+                    result = NameHalfType.plural;
+                    break;
+                case noun:
+                    break;
+            }
+        }
+
+        return result;
     }
 }

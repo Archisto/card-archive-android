@@ -700,7 +700,7 @@ public class MainActivity extends AppCompatActivity {
 
         Card card1 = cards.get(index);
         Card card2 = cards.get(index2);
-        Card.NameHalfType secondHalfPreference = getSecondHalfPreference(card1);
+        Card.NameHalfType secondHalfPreference = card1.getSecondHalfPreference();
 
         return String.format(
             getString(R.string.cardSlotSplice),
@@ -708,26 +708,6 @@ public class MainActivity extends AppCompatActivity {
             card2.categoryShortName,
             card1.getNameHalf(true, null),
             card2.getNameHalf(false, secondHalfPreference));
-    }
-
-    private Card.NameHalfType getSecondHalfPreference(Card card) {
-        Card.NameHalfType secondHalfPreference = Card.NameHalfType.singular;
-
-        if (card.secondHalfPreference != null) {
-            secondHalfPreference = card.secondHalfPreference;
-        }
-        else if (card.firstHalfType != null) {
-            switch (card.firstHalfType) {
-                case verb:
-                case adjective:
-                    secondHalfPreference = Card.NameHalfType.plural;
-                    break;
-                case noun:
-                    break;
-            }
-        }
-
-        return secondHalfPreference;
     }
 
     private void initSpliceAltMode() {
@@ -755,14 +735,13 @@ public class MainActivity extends AppCompatActivity {
 
     private String getSpliceAltCardDisplayText(int index, List<Card> cards) {
         Card card = cards.get(index);
-        Card.NameHalfType secondHalfPreference = getSecondHalfPreference(spliceBeginning);
 
         return String.format(
             getString(R.string.cardSlotSplice),
             spliceBeginning.categoryShortName,
             card.categoryShortName,
             spliceBeginning.getNameHalf(true, null),
-            card.getNameHalf(false, secondHalfPreference));
+            card.getNameHalf(false, spliceBeginning.getSecondHalfPreference()));
     }
 
     private void displayChooseOneCards(List<Card> displayedCards) {
