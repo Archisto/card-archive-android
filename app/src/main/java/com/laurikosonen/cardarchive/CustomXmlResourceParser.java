@@ -72,7 +72,7 @@ public class CustomXmlResourceParser {
                         if (pools.size() <= categoryId) {
                             List<Card> newPool = new ArrayList<>();
                             pools.add(newPool);
-                            //Log.d("CAGE", "Created pool; new pool count: " + pools.size());
+                            //Log.d("CAGE", "Created pool; name: " + categoryName);
                         }
                     }
                     // Gets first half type

@@ -1,279 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <category id="0" name="Group" shortName="Grp">
-        <element>
-            <name>Multiplayer</name>
-            <firstHalf type="adjective">Multiplayer</firstHalf>
-            <secondHalf the="true">
-                <singular>player</singular>
-                <plural>players</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Local multiplayer</name>
-            <firstHalf type="adjective">Local</firstHalf>
-            <secondHalf the="false">
-                <singular>multiplayer</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Co-op/versus game</name>
-            <firstHalf type="adjective">Co-op/versus</firstHalf>
-            <secondHalf the="false">
-                <singular>game</singular>
-                <plural>games</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Asymmetrical multiplayer</name>
-            <firstHalf type="adjective">Asymmetrical</firstHalf>
-            <secondHalf the="false">
-                <singular>multiplayer</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Asynchronous multiplayer</name>
-            <firstHalf type="adjective">Asynchronous</firstHalf>
-            <secondHalf the="false">
-                <singular>multiplayer</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Players start at different times</name>
-            <firstHalf type="verb">Starting</firstHalf>
-            <secondHalf the="false">
-                <plural>at different times</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Other players can join and leave anytime</name>
-            <firstHalf type="noun" preference="plural">Other players</firstHalf>
-            <secondHalf the="false">
-                <singular>can join and leave anytime</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>One versus many</name>
-            <firstHalf type="noun" preference="singular">One</firstHalf>
-            <secondHalf the="false">
-                <plural>versus many</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Game master</name>
-            <firstHalf type="noun" preference="singular">Game</firstHalf>
-            <secondHalf the="false">
-                <singular>master</singular>
-                <plural>masters</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Mentor</name>
-            <firstHalf type="noun" preference="singular">Mentor</firstHalf>
-            <secondHalf the="false">
-                <singular>mentor</singular>
-                <plural>mentors</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Referee</name>
-            <firstHalf type="noun" preference="singular">Referee</firstHalf>
-            <secondHalf the="false">
-                <singular>referee</singular>
-                <plural>referees</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hero party</name>
-            <firstHalf type="noun">Hero</firstHalf>
-            <secondHalf the="false">
-                <singular>party</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Player guilds</name>
-            <firstHalf type="noun" preference="plural">Player</firstHalf>
-            <secondHalf the="false">
-                <singular>guild</singular>
-                <plural>guilds</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Faction war</name>
-            <firstHalf type="noun" preference="singular">Faction</firstHalf>
-            <secondHalf the="false">
-                <singular>war</singular>
-                <plural>wars</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Membership in different groups</name>
-            <firstHalf type="noun" preference="singular">Membership</firstHalf>
-            <secondHalf the="false">
-                <singular>a different group</singular>
-                <plural>different groups</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rising through the ranks</name>
-            <firstHalf type="verb">Rising</firstHalf>
-            <secondHalf the="false">
-                <singular>rank</singular>
-                <plural>ranks</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Commanding players/units</name>
-            <firstHalf type="verb">Commanding</firstHalf>
-            <secondHalf the="true">
-                <singular>player/unit</singular>
-                <plural>players/units</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Recruiting characters/units</name>
-            <firstHalf type="verb">Recruiting</firstHalf>
-            <secondHalf the="true">
-                <singular>character/unit</singular>
-                <plural>characters/units</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Converting enemies to the player's team</name>
-            <firstHalf type="verb">Converting enemies to</firstHalf>
-            <secondHalf the="true">
-                <singular>player's team</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Dead players change teams</name>
-            <firstHalf type="noun" preference="plural">Dead players</firstHalf>
-            <secondHalf the="false">
-                <singular>changes teams</singular>
-                <plural>change teams</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Betraying one's own team</name>
-            <firstHalf type="verb">Betraying</firstHalf>
-            <secondHalf the="false">
-                <singular>one's own team</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being undercover as a member of a different team</name>
-            <firstHalf type="noun" preference="singular">Being undercover as</firstHalf>
-            <secondHalf the="false">
-                <singular>member of a different team</singular>
-                <plural>members of a different team</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Temporary alliance against a common threat</name>
-            <firstHalf type="adjective">Temporary</firstHalf>
-            <secondHalf the="false">
-                <singular>against a common threat</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Working together on a project</name>
-            <firstHalf type="noun" preference="singular">Teamwork</firstHalf>
-            <secondHalf the="false">
-                <singular>project</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Summonable allies</name>
-            <firstHalf type="adjective">Summonable</firstHalf>
-            <secondHalf the="false">
-                <singular>ally</singular>
-                <plural>allies</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>AI-controlled sidekick/companion/pet</name>
-            <firstHalf type="adjective">AI-controlled</firstHalf>
-            <secondHalf the="true">
-                <singular>sidekick/companion/pet</singular>
-                <plural>sidekicks/companions/pets</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>AI-controlled minions</name>
-            <firstHalf type="verb">AI-controlled</firstHalf>
-            <secondHalf the="false">
-                <singular>minion</singular>
-                <plural>minions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Speaking to a crowd</name>
-            <firstHalf type="verb">Speaking to</firstHalf>
-            <secondHalf the="false">
-                <singular>crowd</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Family</name>
-            <firstHalf type="noun" preference="plural">Family</firstHalf>
-            <secondHalf the="false">
-                <singular>family</singular>
-                <plural>families</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Innocent civilians</name>
-            <firstHalf type="adjective">Innocent</firstHalf>
-            <secondHalf the="false">
-                <plural>civilians</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Crowd/horde</name>
-            <firstHalf type="noun">Crowd/horde</firstHalf>
-            <secondHalf the="false">
-                <singular>crowd/horde</singular>
-                <plural>crowds/hordes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hive mind</name>
-            <firstHalf type="adjective">Hive</firstHalf>
-            <secondHalf the="false">
-                <singular>mind</singular>
-                <plural>minds</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Secret society</name>
-            <firstHalf type="adjective">Secret</firstHalf>
-            <secondHalf the="false">
-                <singular>society</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Tyrannical leadership</name>
-            <firstHalf type="adjective">Tyrannical</firstHalf>
-            <secondHalf the="false">
-                <singular>leadership</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Criminal organisation</name>
-            <firstHalf type="adjective">Criminal</firstHalf>
-            <secondHalf the="false">
-                <singular>organisation</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Ancient civilization</name>
-            <firstHalf type="adjective">Ancient</firstHalf>
-            <secondHalf the="false">
-                <singular>civilization</singular>
-            </secondHalf>
-        </element>
-    </category>
-    <category id="1" name="World" shortName="Wld">
+    <category id="0" name="World" shortName="Wld">
         <element>
             <name>Open world</name>
             <firstHalf type="verb">Open</firstHalf>
@@ -705,299 +432,7 @@
             </secondHalf>
         </element>
     </category>
-    <category id="2" name="Influence" shortName="Inf">
-        <element>
-            <name>Management</name>
-            <firstHalf type="verb">Management</firstHalf>
-            <secondHalf the="false">
-                <singular>management</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Controlling an area</name>
-            <firstHalf type="verb">Controlling</firstHalf>
-            <secondHalf the="false">
-                <singular>an area</singular>
-                <plural>areas</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Level editor</name>
-            <firstHalf type="noun" preference="singular">Level</firstHalf>
-            <secondHalf the="false">
-                <singular>editor</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Reshaping the environment</name>
-            <firstHalf type="verb">Reshaping</firstHalf>
-            <secondHalf the="false">
-                <singular>the environment</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The environment reshapes itself</name>
-            <firstHalf type="noun" preference="singular">Environment</firstHalf>
-            <secondHalf the="false">
-                <singular>reshapes itself</singular>
-                <plural>reshape themselves</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Constantly changing terrain</name>
-            <firstHalf type="adjective">Constantly changing</firstHalf>
-            <secondHalf the="false">
-                <singular>terrain</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Destroying objects or environment</name>
-            <firstHalf type="verb">Destroying</firstHalf>
-            <secondHalf the="false">
-                <singular>an object or a part of the environment</singular>
-                <plural>objects or environment</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Duplication</name>
-            <firstHalf type="verb">Duplicating</firstHalf>
-            <secondHalf the="false">
-                <singular>duplication</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Keeping balance</name>
-            <firstHalf type="verb">Keeping</firstHalf>
-            <secondHalf the="false">
-                <singular>balance</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Base building</name>
-            <firstHalf type="noun" preference="singular">Base</firstHalf>
-            <secondHalf the="false">
-                <singular>building</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Home decoration</name>
-            <firstHalf type="noun" preference="singular">Home</firstHalf>
-            <secondHalf the="false">
-                <singular>decoration</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Vehicle customization</name>
-            <firstHalf type="noun" preference="plural">Vehicles</firstHalf>
-            <secondHalf the="false">
-                <singular>customization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Founding cities or other settlements</name>
-            <firstHalf type="verb">Founding</firstHalf>
-            <secondHalf the="false">
-                <singular>a city or other settlement</singular>
-                <plural>cities or other settlements</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Building roads</name>
-            <firstHalf type="verb">Building</firstHalf>
-            <secondHalf the="false">
-                <singular>a road</singular>
-                <plural>roads</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Restoring old buildings or systems</name>
-            <firstHalf type="verb">Restoring</firstHalf>
-            <secondHalf the="false">
-                <singular>restoration</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Making an area safe</name>
-            <firstHalf type="noun" preference="plural">Areas</firstHalf>
-            <secondHalf the="false">
-                <singular>can be made safe</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Different areas have different rules</name>
-            <firstHalf type="verb" preference="plural">Different areas have different</firstHalf>
-            <secondHalf the="false">
-                <plural>rules</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Some rules can be broken, intentionally or not</name>
-            <firstHalf type="noun" preference="plural">Some rules can be</firstHalf>
-            <secondHalf the="false">
-                <singular>can be broken</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Creating custom rules</name>
-            <firstHalf type="verb">Creating</firstHalf>
-            <secondHalf the="false">
-                <singular>rule</singular>
-                <plural>rules</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Creating quests</name>
-            <firstHalf type="verb">Creating</firstHalf>
-            <secondHalf the="false">
-                <singular>quest</singular>
-                <plural>quests</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>One player's decision affects other players</name>
-            <firstHalf type="verb">The player's decision affects</firstHalf>
-            <secondHalf the="true">
-                <singular>player</singular>
-                <plural>players</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Player-driven economy</name>
-            <firstHalf type="adjective">Player-driven</firstHalf>
-            <secondHalf the="true">
-                <singular>economy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Affecting the ecosystem</name>
-            <firstHalf type="verb">Affecting</firstHalf>
-            <secondHalf the="true">
-                <singular>ecosystem</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Factions and reputation</name>
-            <firstHalf type="noun" preference="plural">Factions</firstHalf>
-            <secondHalf the="false">
-                <singular>reputation</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Research and technology</name>
-            <firstHalf type="verb">Researching</firstHalf>
-            <secondHalf the="false">
-                <singular>technology</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Automating tasks</name>
-            <firstHalf type="verb">Automating</firstHalf>
-            <secondHalf the="false">
-                <singular>a task</singular>
-                <plural>tasks</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rerouting power to different systems</name>
-            <firstHalf type="verb">Rerouting power to</firstHalf>
-            <secondHalf the="false">
-                <plural>systems</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Getting feedback from advisors/citizens/customers</name>
-            <firstHalf type="verb">Getting feedback from</firstHalf>
-            <secondHalf the="false">
-                <plural>advisors/citizens/customers</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Keeping people happy</name>
-            <firstHalf type="verb">Keeping</firstHalf>
-            <secondHalf the="false">
-                <singular>person</singular>
-                <plural>people</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Participating in politics</name>
-            <firstHalf type="verb">Participating in</firstHalf>
-            <secondHalf the="false">
-                <plural>politics</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Voting</name>
-            <firstHalf type="verb">Voting on</firstHalf>
-            <secondHalf the="false">
-                <singular>election</singular>
-                <plural>elections</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Court of law</name>
-            <firstHalf type="verb">Court</firstHalf>
-            <secondHalf the="true">
-                <singular>law</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Running a business</name>
-            <firstHalf type="verb">Running</firstHalf>
-            <secondHalf the="false">
-                <singular>a business</singular>
-                <plural>businesses</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Creating production lines</name>
-            <firstHalf type="verb">Creating</firstHalf>
-            <secondHalf the="false">
-                <plural>production lines</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Creating traps/obstacles/barricades</name>
-            <firstHalf type="verb">Creating</firstHalf>
-            <secondHalf the="false">
-                <singular>a trap/obstacle/barricade</singular>
-                <plural>traps/obstacles/barricades</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Creating climbable surfaces</name>
-            <firstHalf type="verb">Creating</firstHalf>
-            <secondHalf the="false">
-                <singular>a climbable surface</singular>
-                <plural>climbable surfaces</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Attaching things to the floor or walls</name>
-            <firstHalf type="verb">Attaching things to</firstHalf>
-            <secondHalf the="true">
-                <singular>floor or wall</singular>
-                <plural>floor or walls</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Dead/frozen characters remain as parts of the environment</name>
-            <firstHalf type="noun" preference="plural">Dead/frozen characters</firstHalf>
-            <secondHalf the="false">
-                <singular>remains as a part of the environment</singular>
-                <plural>remain as parts of the environment</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Remote-controlled objects</name>
-            <firstHalf type="adjective">Remote-controlled</firstHalf>
-            <secondHalf the="false">
-                <singular>object</singular>
-                <plural>objects</plural>
-            </secondHalf>
-        </element>
-    </category>
-    <category id="3" name="Character" shortName="Cha">
+    <category id="1" name="Character" shortName="Cha">
         <element>
             <name>Character customization</name>
             <firstHalf type="noun" preference="singular">Character</firstHalf>
@@ -1293,7 +728,1316 @@
             </secondHalf>
         </element>
     </category>
-    <category id="4" name="Navigation" shortName="Nav">
+    <category id="2" name="Group" shortName="Grp">
+        <element>
+            <name>Multiplayer</name>
+            <firstHalf type="adjective">Multiplayer</firstHalf>
+            <secondHalf the="true">
+                <singular>player</singular>
+                <plural>players</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Local multiplayer</name>
+            <firstHalf type="adjective">Local</firstHalf>
+            <secondHalf the="false">
+                <singular>multiplayer</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Co-op/versus game</name>
+            <firstHalf type="adjective">Co-op/versus</firstHalf>
+            <secondHalf the="false">
+                <singular>game</singular>
+                <plural>games</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Asymmetrical multiplayer</name>
+            <firstHalf type="adjective">Asymmetrical</firstHalf>
+            <secondHalf the="false">
+                <singular>multiplayer</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Asynchronous multiplayer</name>
+            <firstHalf type="adjective">Asynchronous</firstHalf>
+            <secondHalf the="false">
+                <singular>multiplayer</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Players start at different times</name>
+            <firstHalf type="verb">Starting</firstHalf>
+            <secondHalf the="false">
+                <plural>at different times</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Other players can join and leave anytime</name>
+            <firstHalf type="noun" preference="plural">Other players</firstHalf>
+            <secondHalf the="false">
+                <singular>can join and leave anytime</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>One versus many</name>
+            <firstHalf type="noun" preference="singular">One</firstHalf>
+            <secondHalf the="false">
+                <plural>versus many</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Game master</name>
+            <firstHalf type="noun" preference="singular">Game</firstHalf>
+            <secondHalf the="false">
+                <singular>master</singular>
+                <plural>masters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mentor</name>
+            <firstHalf type="noun" preference="singular">Mentor</firstHalf>
+            <secondHalf the="false">
+                <singular>mentor</singular>
+                <plural>mentors</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Referee</name>
+            <firstHalf type="noun" preference="singular">Referee</firstHalf>
+            <secondHalf the="false">
+                <singular>referee</singular>
+                <plural>referees</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hero party</name>
+            <firstHalf type="noun">Hero</firstHalf>
+            <secondHalf the="false">
+                <singular>party</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Player guilds</name>
+            <firstHalf type="noun" preference="plural">Player</firstHalf>
+            <secondHalf the="false">
+                <singular>guild</singular>
+                <plural>guilds</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Faction war</name>
+            <firstHalf type="noun" preference="singular">Faction</firstHalf>
+            <secondHalf the="false">
+                <singular>war</singular>
+                <plural>wars</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Membership in different groups</name>
+            <firstHalf type="noun" preference="singular">Membership</firstHalf>
+            <secondHalf the="false">
+                <singular>a different group</singular>
+                <plural>different groups</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rising through the ranks</name>
+            <firstHalf type="verb">Rising</firstHalf>
+            <secondHalf the="false">
+                <singular>rank</singular>
+                <plural>ranks</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Commanding players/units</name>
+            <firstHalf type="verb">Commanding</firstHalf>
+            <secondHalf the="true">
+                <singular>player/unit</singular>
+                <plural>players/units</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Recruiting characters/units</name>
+            <firstHalf type="verb">Recruiting</firstHalf>
+            <secondHalf the="true">
+                <singular>character/unit</singular>
+                <plural>characters/units</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Converting enemies to the player's team</name>
+            <firstHalf type="verb">Converting enemies to</firstHalf>
+            <secondHalf the="true">
+                <singular>player's team</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Dead players change teams</name>
+            <firstHalf type="noun" preference="plural">Dead players</firstHalf>
+            <secondHalf the="false">
+                <singular>changes teams</singular>
+                <plural>change teams</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Betraying one's own team</name>
+            <firstHalf type="verb">Betraying</firstHalf>
+            <secondHalf the="false">
+                <singular>one's own team</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being undercover as a member of a different team</name>
+            <firstHalf type="noun" preference="singular">Being undercover as</firstHalf>
+            <secondHalf the="false">
+                <singular>member of a different team</singular>
+                <plural>members of a different team</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Temporary alliance against a common threat</name>
+            <firstHalf type="adjective">Temporary</firstHalf>
+            <secondHalf the="false">
+                <singular>against a common threat</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Working together on a project</name>
+            <firstHalf type="noun" preference="singular">Teamwork</firstHalf>
+            <secondHalf the="false">
+                <singular>project</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Summonable allies</name>
+            <firstHalf type="adjective">Summonable</firstHalf>
+            <secondHalf the="false">
+                <singular>ally</singular>
+                <plural>allies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>AI-controlled sidekick/companion/pet</name>
+            <firstHalf type="adjective">AI-controlled</firstHalf>
+            <secondHalf the="true">
+                <singular>sidekick/companion/pet</singular>
+                <plural>sidekicks/companions/pets</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>AI-controlled minions</name>
+            <firstHalf type="verb">AI-controlled</firstHalf>
+            <secondHalf the="false">
+                <singular>minion</singular>
+                <plural>minions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Speaking to a crowd</name>
+            <firstHalf type="verb">Speaking to</firstHalf>
+            <secondHalf the="false">
+                <singular>crowd</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Family</name>
+            <firstHalf type="noun" preference="plural">Family</firstHalf>
+            <secondHalf the="false">
+                <singular>family</singular>
+                <plural>families</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Innocent civilians</name>
+            <firstHalf type="adjective">Innocent</firstHalf>
+            <secondHalf the="false">
+                <plural>civilians</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Crowd/horde</name>
+            <firstHalf type="noun">Crowd/horde</firstHalf>
+            <secondHalf the="false">
+                <singular>crowd/horde</singular>
+                <plural>crowds/hordes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hive mind</name>
+            <firstHalf type="adjective">Hive</firstHalf>
+            <secondHalf the="false">
+                <singular>mind</singular>
+                <plural>minds</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Secret society</name>
+            <firstHalf type="adjective">Secret</firstHalf>
+            <secondHalf the="false">
+                <singular>society</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tyrannical leadership</name>
+            <firstHalf type="adjective">Tyrannical</firstHalf>
+            <secondHalf the="false">
+                <singular>leadership</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Criminal organisation</name>
+            <firstHalf type="adjective">Criminal</firstHalf>
+            <secondHalf the="false">
+                <singular>organisation</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Ancient civilization</name>
+            <firstHalf type="adjective">Ancient</firstHalf>
+            <secondHalf the="false">
+                <singular>civilization</singular>
+            </secondHalf>
+        </element>
+    </category>
+    <category id="3" name="Influence" shortName="Inf">
+        <element>
+            <name>Management</name>
+            <firstHalf type="verb">Management</firstHalf>
+            <secondHalf the="false">
+                <singular>management</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Controlling an area</name>
+            <firstHalf type="verb">Controlling</firstHalf>
+            <secondHalf the="false">
+                <singular>an area</singular>
+                <plural>areas</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Level editor</name>
+            <firstHalf type="noun" preference="singular">Level</firstHalf>
+            <secondHalf the="false">
+                <singular>editor</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reshaping the environment</name>
+            <firstHalf type="verb">Reshaping</firstHalf>
+            <secondHalf the="false">
+                <singular>the environment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The environment reshapes itself</name>
+            <firstHalf type="noun" preference="singular">Environment</firstHalf>
+            <secondHalf the="false">
+                <singular>reshapes itself</singular>
+                <plural>reshape themselves</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Constantly changing terrain</name>
+            <firstHalf type="adjective">Constantly changing</firstHalf>
+            <secondHalf the="false">
+                <singular>terrain</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Destroying objects or environment</name>
+            <firstHalf type="verb">Destroying</firstHalf>
+            <secondHalf the="false">
+                <singular>an object or a part of the environment</singular>
+                <plural>objects or environment</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Duplication</name>
+            <firstHalf type="verb">Duplicating</firstHalf>
+            <secondHalf the="false">
+                <singular>duplication</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Keeping balance</name>
+            <firstHalf type="verb">Keeping</firstHalf>
+            <secondHalf the="false">
+                <singular>balance</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Base building</name>
+            <firstHalf type="noun" preference="singular">Base</firstHalf>
+            <secondHalf the="false">
+                <singular>building</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Home decoration</name>
+            <firstHalf type="noun" preference="singular">Home</firstHalf>
+            <secondHalf the="false">
+                <singular>decoration</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Vehicle customization</name>
+            <firstHalf type="noun" preference="plural">Vehicles</firstHalf>
+            <secondHalf the="false">
+                <singular>customization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Founding cities or other settlements</name>
+            <firstHalf type="verb">Founding</firstHalf>
+            <secondHalf the="false">
+                <singular>a city or other settlement</singular>
+                <plural>cities or other settlements</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Building roads</name>
+            <firstHalf type="verb">Building</firstHalf>
+            <secondHalf the="false">
+                <singular>a road</singular>
+                <plural>roads</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Restoring old buildings or systems</name>
+            <firstHalf type="verb">Restoring</firstHalf>
+            <secondHalf the="false">
+                <singular>restoration</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Making an area safe</name>
+            <firstHalf type="noun" preference="plural">Areas</firstHalf>
+            <secondHalf the="false">
+                <singular>can be made safe</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Different areas have different rules</name>
+            <firstHalf type="verb" preference="plural">Different areas have different</firstHalf>
+            <secondHalf the="false">
+                <plural>rules</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Some rules can be broken, intentionally or not</name>
+            <firstHalf type="noun" preference="plural">Some rules can be</firstHalf>
+            <secondHalf the="false">
+                <singular>can be broken</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Creating custom rules</name>
+            <firstHalf type="verb">Creating</firstHalf>
+            <secondHalf the="false">
+                <singular>rule</singular>
+                <plural>rules</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Creating quests</name>
+            <firstHalf type="verb">Creating</firstHalf>
+            <secondHalf the="false">
+                <singular>quest</singular>
+                <plural>quests</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>One player's decision affects other players</name>
+            <firstHalf type="verb">The player's decision affects</firstHalf>
+            <secondHalf the="true">
+                <singular>player</singular>
+                <plural>players</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Player-driven economy</name>
+            <firstHalf type="adjective">Player-driven</firstHalf>
+            <secondHalf the="true">
+                <singular>economy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Affecting the ecosystem</name>
+            <firstHalf type="verb">Affecting</firstHalf>
+            <secondHalf the="true">
+                <singular>ecosystem</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Factions and reputation</name>
+            <firstHalf type="noun" preference="plural">Factions</firstHalf>
+            <secondHalf the="false">
+                <singular>reputation</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Research and technology</name>
+            <firstHalf type="verb">Researching</firstHalf>
+            <secondHalf the="false">
+                <singular>technology</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Automating tasks</name>
+            <firstHalf type="verb">Automating</firstHalf>
+            <secondHalf the="false">
+                <singular>a task</singular>
+                <plural>tasks</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rerouting power to different systems</name>
+            <firstHalf type="verb">Rerouting power to</firstHalf>
+            <secondHalf the="false">
+                <plural>systems</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Getting feedback from advisors/citizens/customers</name>
+            <firstHalf type="verb">Getting feedback from</firstHalf>
+            <secondHalf the="false">
+                <plural>advisors/citizens/customers</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Keeping people happy</name>
+            <firstHalf type="verb">Keeping</firstHalf>
+            <secondHalf the="false">
+                <singular>person</singular>
+                <plural>people</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Participating in politics</name>
+            <firstHalf type="verb">Participating in</firstHalf>
+            <secondHalf the="false">
+                <plural>politics</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Voting</name>
+            <firstHalf type="verb">Voting on</firstHalf>
+            <secondHalf the="false">
+                <singular>election</singular>
+                <plural>elections</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Court of law</name>
+            <firstHalf type="verb">Court</firstHalf>
+            <secondHalf the="true">
+                <singular>law</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Running a business</name>
+            <firstHalf type="verb">Running</firstHalf>
+            <secondHalf the="false">
+                <singular>a business</singular>
+                <plural>businesses</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Creating production lines</name>
+            <firstHalf type="verb">Creating</firstHalf>
+            <secondHalf the="false">
+                <plural>production lines</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Creating traps/obstacles/barricades</name>
+            <firstHalf type="verb">Creating</firstHalf>
+            <secondHalf the="false">
+                <singular>a trap/obstacle/barricade</singular>
+                <plural>traps/obstacles/barricades</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Creating climbable surfaces</name>
+            <firstHalf type="verb">Creating</firstHalf>
+            <secondHalf the="false">
+                <singular>a climbable surface</singular>
+                <plural>climbable surfaces</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Attaching things to the floor or walls</name>
+            <firstHalf type="verb">Attaching things to</firstHalf>
+            <secondHalf the="true">
+                <singular>floor or wall</singular>
+                <plural>floor or walls</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Dead/frozen characters remain as parts of the environment</name>
+            <firstHalf type="noun" preference="plural">Dead/frozen characters</firstHalf>
+            <secondHalf the="false">
+                <singular>remains as a part of the environment</singular>
+                <plural>remain as parts of the environment</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Remote-controlled objects</name>
+            <firstHalf type="adjective">Remote-controlled</firstHalf>
+            <secondHalf the="false">
+                <singular>object</singular>
+                <plural>objects</plural>
+            </secondHalf>
+        </element>
+    </category>
+    <category id="4" name="Interaction" shortName="IAct">
+        <element>
+            <name>Interacting with characters or objects</name>
+            <firstHalf type="verb" preference="plural">Interacting with</firstHalf>
+            <secondHalf the="false">
+                <singular>interaction</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Chain reaction</name>
+            <firstHalf type="adjective">Chained</firstHalf>
+            <secondHalf the="false">
+                <singular>reaction</singular>
+                <plural>reactions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unreliability</name>
+            <firstHalf type="adjective">Unreliable</firstHalf>
+            <secondHalf the="false">
+                <singular>is unreliable</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Losing control</name>
+            <firstHalf type="adjective">Losing</firstHalf>
+            <secondHalf the="false">
+                <singular>control</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unusual controls</name>
+            <firstHalf type="adjective">Unusual</firstHalf>
+            <secondHalf the="true">
+                <plural>controls</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Motion controls</name>
+            <firstHalf type="noun" preference="singular">Motion</firstHalf>
+            <secondHalf the="true">
+                <plural>controls</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Input shortcuts</name>
+            <firstHalf type="noun" preference="singular">Input</firstHalf>
+            <secondHalf the="false">
+                <singular>a shortcut</singular>
+                <plural>shortcuts</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The gameplay relies on the mouse cursor</name>
+            <firstHalf type="verb">The gameplay relies on</firstHalf>
+            <secondHalf the="true">
+                <singular>mouse cursor</singular>
+                <plural>mouse cursors</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>360-degree aiming</name>
+            <firstHalf type="adjective">360-degree</firstHalf>
+            <secondHalf the="true">
+                <singular>aiming</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The controls consist of only one or two buttons</name>
+            <firstHalf type="verb">The controls consist of</firstHalf>
+            <secondHalf the="false">
+                <plural>one or two buttons</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Refraining from doing or using something is preferable</name>
+            <firstHalf type="verb">Refraining from</firstHalf>
+            <secondHalf the="false">
+                <singular>doing or using something</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Choosing whether to accept a perk or reward</name>
+            <firstHalf type="adjective">Optional</firstHalf>
+            <secondHalf the="false">
+                <singular>a perk or reward</singular>
+                <plural>perks or rewards</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being defeated makes the threat more difficult</name>
+            <firstHalf type="verb">Being defeated causes</firstHalf>
+            <secondHalf the="true">
+                <singular>is difficult</singular>
+                <!--<plural>are difficult</plural>-->
+            </secondHalf>
+        </element>
+        <element>
+            <name>Failure never has big consequences</name>
+            <firstHalf type="verb">Failing</firstHalf>
+            <secondHalf the="true">
+                <singular>consequence</singular>
+                <plural>consequences</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tricking the player into making mistakes</name>
+            <firstHalf type="verb">Tricking</firstHalf>
+            <secondHalf the="false">
+                <singular>mistake</singular>
+                <plural>mistakes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Failed attempts leave marks in the world</name>
+            <firstHalf type="verb">Failing</firstHalf>
+            <secondHalf the="false">
+                <singular>leaves a mark in the world</singular>
+                <plural>leave marks in the world</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving a mark on anything that is touched</name>
+            <firstHalf type="verb">Leaving a mark on</firstHalf>
+            <secondHalf the="false">
+                <singular>a touched object</singular>
+                <plural>touched objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Physics-based gameplay</name>
+            <firstHalf type="adjective">Physics-based</firstHalf>
+            <secondHalf the="false">
+                <singular>gameplay</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unusual gravity</name>
+            <firstHalf type="adjective">Unusual</firstHalf>
+            <secondHalf the="false">
+                <singular>gravity</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Fall damage</name>
+            <firstHalf type="verb">Falling</firstHalf>
+            <secondHalf the="false">
+                <singular>damage</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being hit by a falling object</name>
+            <firstHalf type="adjective" preference="plural">Dangerous</firstHalf>
+            <secondHalf the="false">
+                <singular>a  falling object</singular>
+                <plural>falling objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Objects bounce off surfaces</name>
+            <firstHalf type="verb">Objects bounce off</firstHalf>
+            <secondHalf the="false">
+                <singular>a surface</singular>
+                <plural>surfaces</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unsecured objects try to escape</name>
+            <firstHalf type="adjective" preference="plural">Unsecured</firstHalf>
+            <secondHalf the="false">
+                <singular>tries to escape</singular>
+                <plural>try to escape</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Funneling a mass of characters or objects down a certain path</name>
+            <firstHalf type="verb">Funneling</firstHalf>
+            <secondHalf the="false">
+                <singular>a path</singular>
+                <plural>paths</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Helping a character reach places</name>
+            <firstHalf type="verb" preference="plural">Helping</firstHalf>
+            <secondHalf the="false">
+                <singular>reaching a place</singular>
+                <plural>reaching places</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being taken to safety after suffering a grave injury</name>
+            <firstHalf type="noun" preference="plural">Saving</firstHalf>
+            <secondHalf the="false">
+                <singular>injury</singular>
+                <plural>injuries</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Getting back lost items or power</name>
+            <firstHalf type="verb">Retrieving</firstHalf>
+            <secondHalf the="false">
+                <plural>lost items or power</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Sharing money or points with other players</name>
+            <firstHalf type="verb">Sharing</firstHalf>
+            <secondHalf the="false">
+                <plural>money or points</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Sharing designs or strategies with other players</name>
+            <firstHalf type="verb">Sharing</firstHalf>
+            <secondHalf the="false">
+                <plural>designs or strategies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unusual form of communication</name>
+            <firstHalf type="adjective" preference="singular">Unusual form of</firstHalf>
+            <secondHalf the="false">
+                <singular>communication</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving messages for others</name>
+            <firstHalf type="verb">Leaving</firstHalf>
+            <secondHalf the="false">
+                <singular>a message</singular>
+                <plural>messages</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Conversation options</name>
+            <firstHalf type="noun" preference="singular">Conversation</firstHalf>
+            <secondHalf the="false">
+                <plural>options</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Moral choices</name>
+            <firstHalf type="adjective">Moral</firstHalf>
+            <secondHalf the="false">
+                <singular>choice</singular>
+                <plural>choices</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Making a deal</name>
+            <firstHalf type="verb">Making</firstHalf>
+            <secondHalf the="false">
+                <singular>deal</singular>
+                <plural>deals</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Noise attracts attention</name>
+            <firstHalf type="noun" preference="singular">Noise</firstHalf>
+            <secondHalf the="false">
+                <singular>attention</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Looking at/away from something causes an effect</name>
+            <firstHalf type="verb">Looking at/away from</firstHalf>
+            <secondHalf the="false">
+                <singular>an effect</singular>
+                <plural>effects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>It's impossible to go beyond a maximum distance of something</name>
+            <firstHalf type="adjective">Impossible</firstHalf>
+            <secondHalf the="false">
+                <singular>maximum distance</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being affected by staying close to certain things</name>
+            <firstHalf type="verb">Being affected by</firstHalf>
+            <secondHalf the="false">
+                <singular>staying close to a certain thing</singular>
+                <plural>staying close to certain things</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>An object gives feedback when getting closer to another relevant object</name>
+            <firstHalf type="verb">Giving feedback when getting closer to</firstHalf>
+            <secondHalf the="false">
+                <singular>close to a relevant object</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving characters or objects undisturbed lets them recover</name>
+            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
+            <secondHalf the="false">
+                <singular>replenishes health or energy</singular>
+                <plural>replenish health or energy</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving threats undisturbed lets them grow stronger</name>
+            <firstHalf type="noun" preference="plural">Threats</firstHalf>
+            <secondHalf the="false">
+                <singular>grows stronger</singular>
+                <plural>grow stronger</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Standing still causes an effect</name>
+            <firstHalf type="adjective">Unmoving</firstHalf>
+            <secondHalf the="false">
+                <singular>stays still</singular>
+                <plural>stay still</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Something happens only if the player moves</name>
+            <firstHalf type="verb">Something happens only to</firstHalf>
+            <secondHalf the="true">
+                <singular>player movement</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The AI learns from the player’s actions</name>
+            <firstHalf type="noun" preference="plural">AI</firstHalf>
+            <secondHalf the="true">
+                <plural>player’s actions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Doing something quicker yields better results</name>
+            <firstHalf type="adjective">Quicker</firstHalf>
+            <secondHalf the="false">
+                <singular>a better result</singular>
+                <plural>better results</plural>
+            </secondHalf>
+        </element>
+    </category>
+    <category id="5" name="Abilities" shortName="Abi">
+        <element>
+            <name>A unique ability no one else has</name>
+            <firstHalf type="adjective">Unique</firstHalf>
+            <secondHalf the="false">
+                <singular>is unique</singular>
+                <plural>are unique</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Abilities with cooldowns</name>
+            <firstHalf type="noun" preference="plural">Abilities</firstHalf>
+            <secondHalf the="false">
+                <singular>with a cooldown</singular>
+                <plural>with cooldowns</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Wielding magic</name>
+            <firstHalf type="verb">Wielding</firstHalf>
+            <secondHalf the="false">
+                <singular>magic</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Psychic abilities</name>
+            <firstHalf type="adjective">Psychic</firstHalf>
+            <secondHalf the="false">
+                <singular>an ability</singular>
+                <plural>abilities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mind control</name>
+            <firstHalf type="noun" preference="plural">Mind</firstHalf>
+            <secondHalf the="false">
+                <singular>control</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Levitating objects</name> <!--Telekinesis-->
+            <firstHalf type="verb">Levitating</firstHalf>
+            <secondHalf the="false">
+                <singular>an object</singular>
+                <plural>objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Pulling and pushing</name>
+            <firstHalf type="verb">Pulling or pushing</firstHalf>
+            <secondHalf the="false">
+                <singular>pushing</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Magnetism</name>
+            <firstHalf type="adjective">Magnetic</firstHalf>
+            <secondHalf the="false">
+                <singular>magnet</singular>
+                <plural>magnets</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Electricity/lightning</name>
+            <firstHalf type="adjective">Electric</firstHalf>
+            <secondHalf the="false">
+                <singular>lightning</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Jamming devices</name>
+            <firstHalf type="verb">Jamming</firstHalf>
+            <secondHalf the="false">
+                <singular>device</singular>
+                <plural>devices</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Taking things apart</name>
+            <firstHalf type="verb">Removing pieces off</firstHalf>
+            <secondHalf the="false">
+                <singular>dismantling</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Repairing</name>
+            <firstHalf type="verb">Repairing</firstHalf>
+            <secondHalf the="false">
+                <singular>repair</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Cloning</name>
+            <firstHalf type="verb">Cloning</firstHalf>
+            <secondHalf the="false">
+                <singular>a clone</singular>
+                <plural>clones</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Transformation</name>
+            <firstHalf type="verb">Transforming</firstHalf>
+            <secondHalf the="false">
+                <singular>transformation</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Necromancy</name>
+            <firstHalf type="noun" preference="plural">Necromancy</firstHalf>
+            <secondHalf the="false">
+                <singular>necromancy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Manipulating time</name>
+            <firstHalf type="verb">Manipulating</firstHalf>
+            <secondHalf the="false">
+                <singular>time</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rewinding time</name>
+            <firstHalf type="verb">Rewinding</firstHalf>
+            <secondHalf the="false">
+                <singular>time</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Recording and playing back actions</name>
+            <firstHalf type="verb">Recording and playing back</firstHalf>
+            <secondHalf the="false">
+                <singular>an action</singular>
+                <plural>actions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Invisibility</name>
+            <firstHalf type="noun" preference="plural">Invisibility</firstHalf>
+            <secondHalf the="false">
+                <singular>invisibility</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Stealth/hiding</name>
+            <firstHalf type="verb">Hiding from</firstHalf>
+            <secondHalf the="false">
+                <singular>stealth</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Blending into the environment</name>
+            <firstHalf type="verb" preference="singular">Looking like</firstHalf>
+            <secondHalf the="true">
+                <singular>environment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Shield/invulnerability</name>
+            <firstHalf type="adjective">Invulnerable</firstHalf>
+            <secondHalf the="false">
+                <singular>shield</singular>
+                <plural>shields</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Invulnerability unless exposed to a certain object or material</name>
+            <firstHalf type="verb">A certain object or material takes away</firstHalf>
+            <secondHalf the="false">
+                <singular>invulnerability</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Preventing death or loss</name>
+            <firstHalf type="verb">Preventing</firstHalf>
+            <secondHalf the="false">
+                <singular>death or loss</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Regenerating health</name>
+            <firstHalf type="verb">Regenerating</firstHalf>
+            <secondHalf the="false">
+                <singular>health</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Healing teammates</name>
+            <firstHalf type="verb">Healing</firstHalf>
+            <secondHalf the="false">
+                <singular>a teammate</singular>
+                <plural>teammates</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reviving fallen teammates</name>
+            <firstHalf type="verb">Reviving</firstHalf>
+            <secondHalf the="false">
+                <singular>a fallen teammate</singular>
+                <plural>fallen teammates</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Respawning next to a teammate</name>
+            <firstHalf type="verb">Respawning</firstHalf>
+            <secondHalf the="false">
+                <singular>next to a teammate</singular>
+                <plural>next to teammates</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reviving after being knocked down</name>
+            <firstHalf type="verb" preference="singular">Reviving with the help of</firstHalf>
+            <secondHalf the="false">
+                <singular>revival</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Taking over another character after dying</name>
+            <firstHalf type="verb" preference="singular">Taking over</firstHalf>
+            <secondHalf the="false">
+                <singular>after dying</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Transferring one's mind into a different body</name>
+            <firstHalf type="verb">Transferring one's mind into</firstHalf>
+            <secondHalf the="false">
+                <singular>a different body</singular>
+                <plural>different bodies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reincarnating as a different being</name>
+            <firstHalf type="verb">Reincarnating as</firstHalf>
+            <secondHalf the="false">
+                <singular>a different being</singular>
+                <plural>different beings</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Haunting</name>
+            <firstHalf type="adjective">Haunted</firstHalf>
+            <secondHalf the="false">
+                <singular>haunting</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>A character/an object can go through walls</name>
+            <firstHalf type="noun" preference="singular">A character/an object</firstHalf>
+            <secondHalf the="false">
+                <singular>can go through walls</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Crashing into things</name>
+            <firstHalf type="verb">Crashing into</firstHalf>
+            <secondHalf the="false">
+                <singular>a thing</singular>
+                <plural>things</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Slowing down or stopping something</name>
+            <firstHalf type="verb">Slowing down</firstHalf>
+            <secondHalf the="false">
+                <singular>still object</singular>
+                <plural>still objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Fixing objects in place</name>
+            <firstHalf type="verb">Fixing</firstHalf>
+            <secondHalf the="false">
+                <singular>in place</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Knocking down targets</name>
+            <firstHalf type="verb" preference="plural">Knocking down</firstHalf>
+            <secondHalf the="false">
+                <singular>a target</singular>
+                <plural>targets</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Grabbing onto characters</name>
+            <firstHalf type="verb">Grabbing onto</firstHalf>
+            <secondHalf the="false">
+                <singular>a character</singular>
+                <plural>characters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Catching thrown/flying objects</name>
+            <firstHalf type="verb">Catching</firstHalf>
+            <secondHalf the="false">
+                <singular>a thrown/flying object</singular>
+                <plural>thrown/flying objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Capturing characters/creatures</name>
+            <firstHalf type="verb">Capturing</firstHalf>
+            <secondHalf the="false">
+                <singular>a character/creature</singular>
+                <plural>characters/creatures</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Characters/objects can fuse and form a single entity</name>
+            <firstHalf type="noun" preference="plural">Characters/objects</firstHalf>
+            <secondHalf the="false">
+                <singular>fusion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Absorbing everything to oneself</name>
+            <firstHalf type="verb">Absorbing</firstHalf>
+            <secondHalf the="false">
+                <plural>everything</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Expanding or extending</name>
+            <firstHalf type="verb">Expanding or extending</firstHalf>
+            <secondHalf the="false">
+                <singular>expansion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Drawing</name>
+            <firstHalf type="verb">Drawing</firstHalf>
+            <secondHalf the="false">
+                <singular>drawing</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Photography</name>
+            <firstHalf type="noun" preference="singular">Photography</firstHalf>
+            <secondHalf the="false">
+                <singular>photography</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Marking targets</name>
+            <firstHalf type="verb">Marking</firstHalf>
+            <secondHalf the="false">
+                <singular>a target</singular>
+                <plural>targets</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Special sight ability</name>
+            <firstHalf type="adjective">Special</firstHalf>
+            <secondHalf the="false">
+                <singular>ability</singular>
+                <plural>abilities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Eavesdropping</name>
+            <firstHalf type="verb">Eavesdropping</firstHalf>
+            <secondHalf the="false">
+                <singular>eavesdropping</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Revealing the locations of enemies or items</name>
+            <firstHalf type="verb">Revealing</firstHalf>
+            <secondHalf the="true">
+                <plural>locations of enemies or items</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Drawing energy/power from the environment</name>
+            <firstHalf type="verb">Drawing energy/power from</firstHalf>
+            <secondHalf the="false">
+                <singular>energy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Drawing energy/power from characters</name>
+            <firstHalf type="verb">Power restoration</firstHalf>
+            <secondHalf the="false">
+                <singular>power</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Power can quickly increase but can also be easily lost</name>
+            <firstHalf type="noun" preference="singular">Power</firstHalf>
+            <secondHalf the="false">
+                <singular>can be easily lost</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Losing abilities or items is necessary to progress</name>
+            <firstHalf type="verb">Losing</firstHalf>
+            <secondHalf the="false">
+                <singular>is necessary to progress</singular>
+                <plural>are necessary to progress</plural>
+            </secondHalf>
+        </element>
+    </category>
+    <category id="6" name="Navigation" shortName="Nav">
         <element>
             <name>Platforming/climbing</name>
             <firstHalf type="verb">Climbing</firstHalf>
@@ -1614,276 +2358,7 @@
             </secondHalf>
         </element>
     </category>
-    <category id="5" name="Thinking" shortName="Thi">
-        <element>
-            <name>Puzzles</name>
-            <firstHalf type="noun" preference="plural">Puzzles</firstHalf>
-            <secondHalf the="false">
-                <singular>puzzle</singular>
-                <plural>puzzles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Using certain tools or skills on certain objects</name>
-            <firstHalf type="verb">Using certain tools or skills on</firstHalf>
-            <secondHalf the="false">
-                <singular>a certain object</singular>
-                <plural>certain objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Revisiting areas/levels with new tools/skills</name>
-            <firstHalf type="verb">Revisiting areas/levels with new</firstHalf>
-            <secondHalf the="true">
-                <plural>tools/skills</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Repeating past events/levels with new knowledge</name>
-            <firstHalf type="verb">Repeating</firstHalf>
-            <secondHalf the="false">
-                <singular>events/levels</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Helping the player's future self via time travel or recording actions</name>
-            <firstHalf type="verb">Helping</firstHalf>
-            <secondHalf the="false">
-                <singular>time travel</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Witnessing past or future events</name>
-            <firstHalf type="verb">Witnessing</firstHalf>
-            <secondHalf the="false">
-                <plural>past or future events</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Scouting an area before entering</name>
-            <firstHalf type="verb">Scouting</firstHalf>
-            <secondHalf the="false">
-                <singular>before entering an area</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Predictable actions or movement</name>
-            <firstHalf type="adjective">Predictable</firstHalf>
-            <secondHalf the="false">
-                <singular>action or movement</singular>
-                <singular>actions or movement</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Figuring out the correct order</name>
-            <firstHalf type="verb">Figuring out</firstHalf>
-            <secondHalf the="false">
-                <singular>in the correct order</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The four classical elements</name>
-            <firstHalf type="adjective">Four</firstHalf>
-            <secondHalf the="false">
-                <plural>elements</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Redirecting beams of light</name>
-            <firstHalf type="verb">Redirecting</firstHalf>
-            <secondHalf the="false">
-                <plural>beams of light</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Making two ends connect</name>
-            <firstHalf type="verb">Making</firstHalf>
-            <secondHalf the="false">
-                <plural>connection</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Missing piece</name>
-            <firstHalf type="adjective">Missing</firstHalf>
-            <secondHalf the="false">
-                <singular>piece</singular>
-                <plural>pieces</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Swapping characters' or objects' positions</name>
-            <firstHalf type="verb">Swapping</firstHalf>
-            <secondHalf the="false">
-                <plural>characters' or objects' positions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Having to prioritize something over another</name>
-            <firstHalf type="verb">Prioritizing</firstHalf>
-            <secondHalf the="false">
-                <singular>prioritization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Exchanging health for something</name>
-            <firstHalf type="verb">Exchanging health for</firstHalf>
-            <secondHalf the="false">
-                <singular>health</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Exchanging freedom for something</name>
-            <firstHalf type="verb">Exchanging freedom for</firstHalf>
-            <secondHalf the="false">
-                <singular>freedom</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Multiple things are fueled by the same resource</name>
-            <firstHalf type="verb">Things are fueled by</firstHalf>
-            <secondHalf the="false">
-                <plural>use the same resource</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Database/journal/bestiary</name>
-            <firstHalf type="verb">Keeping record of</firstHalf>
-            <secondHalf the="false">
-                <singular>database/journal/bestiary</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Item descriptions</name>
-            <firstHalf type="adjective">Descriptive</firstHalf>
-            <secondHalf the="false">
-                <singular>description</singular>
-                <plural>descriptions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Examining documents or recordings</name>
-            <firstHalf type="verb">Examining</firstHalf>
-            <secondHalf the="false">
-                <singular>a document or a recording</singular>
-                <plural>documents or recordings</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Examining the environment's details</name>
-            <firstHalf type="verb">Examining</firstHalf>
-            <secondHalf the="true">
-                <singular>a detail in the environment</singular>
-                <plural>environment's details</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Finding the right perspective</name>
-            <firstHalf type="verb">Finding</firstHalf>
-            <secondHalf the="false">
-                <singular>perspective</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unexplained items and contraptions</name>
-            <firstHalf type="adjective">Unexplained</firstHalf>
-            <secondHalf the="false">
-                <singular>item or contraption</singular>
-                <plural>items and contraptions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Taking notes is recommended</name>
-            <firstHalf type="verb">Taking</firstHalf>
-            <secondHalf the="false">
-                <singular>is recommended</singular>
-                <plural>are recommended</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Detective work</name>
-            <firstHalf type="noun" preference="singular">Detective</firstHalf>
-            <secondHalf the="false">
-                <singular>work</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Deciphering clues</name>
-            <firstHalf type="verb">Deciphering</firstHalf>
-            <secondHalf the="false">
-                <singular>a clue</singular>
-                <plural>clues</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Codes and encrypted messages</name>
-            <firstHalf type="noun" preference="plural">Code</firstHalf>
-            <secondHalf the="false">
-                <singular>an encrypted message</singular>
-                <plural>encrypted messages</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Programming/hacking</name>
-            <firstHalf type="verb">Programming</firstHalf>
-            <secondHalf the="false">
-                <singular>hacking</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Pattern recognition</name>
-            <firstHalf type="noun" preference="singular">Pattern</firstHalf>
-            <secondHalf the="false">
-                <singular>recognition</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Memorization</name>
-            <firstHalf type="verb">Memorizing</firstHalf>
-            <secondHalf the="false">
-                <singular>memorization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hidden roles</name>
-            <firstHalf type="adjective">Hidden</firstHalf>
-            <secondHalf the="false">
-                <plural>roles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Truth and lies</name>
-            <firstHalf type="noun" preference="singular">Truth</firstHalf>
-            <secondHalf the="false">
-                <singular>a lie</singular>
-                <plural>lies</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Doors and keys</name>
-            <firstHalf type="noun" preference="plural">Doors</firstHalf>
-            <secondHalf the="false">
-                <singular>a key</singular>
-                <plural>keys</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Switches</name>
-            <firstHalf type="noun" preference="plural">Switches</firstHalf>
-            <secondHalf the="false">
-                <singular>switch</singular>
-                <plural>switches</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Quiz</name>
-            <firstHalf type="verb">Quiz</firstHalf>
-            <secondHalf the="false">
-                <singular>quiz</singular>
-                <plural>quizzes</plural>
-            </secondHalf>
-        </element>
-    </category>
-    <category id="6" name="Combat" shortName="Com">
+    <category id="7" name="Combat" shortName="Com">
         <element>
             <name>Combat</name>
             <firstHalf type="noun" preference="plural">Combat</firstHalf>
@@ -2296,410 +2771,276 @@
             </secondHalf>
         </element>
     </category>
-    <category id="7" name="Abilities" shortName="Abi">
+    <category id="8" name="Thinking" shortName="Thi">
         <element>
-            <name>A unique ability no one else has</name>
-            <firstHalf type="adjective">Unique</firstHalf>
+            <name>Puzzles</name>
+            <firstHalf type="noun" preference="plural">Puzzles</firstHalf>
             <secondHalf the="false">
-                <singular>is unique</singular>
-                <plural>are unique</plural>
+                <singular>puzzle</singular>
+                <plural>puzzles</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Abilities with cooldowns</name>
-            <firstHalf type="noun" preference="plural">Abilities</firstHalf>
+            <name>Using certain tools or skills on certain objects</name>
+            <firstHalf type="verb">Using certain tools or skills on</firstHalf>
             <secondHalf the="false">
-                <singular>with a cooldown</singular>
-                <plural>with cooldowns</plural>
+                <singular>a certain object</singular>
+                <plural>certain objects</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Wielding magic</name>
-            <firstHalf type="verb">Wielding</firstHalf>
-            <secondHalf the="false">
-                <singular>magic</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Psychic abilities</name>
-            <firstHalf type="adjective">Psychic</firstHalf>
-            <secondHalf the="false">
-                <singular>an ability</singular>
-                <plural>abilities</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Mind control</name>
-            <firstHalf type="noun" preference="plural">Mind</firstHalf>
-            <secondHalf the="false">
-                <singular>control</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Levitating objects</name> <!--Telekinesis-->
-            <firstHalf type="verb">Levitating</firstHalf>
-            <secondHalf the="false">
-                <singular>an object</singular>
-                <plural>objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Pulling and pushing</name>
-            <firstHalf type="verb">Pulling or pushing</firstHalf>
-            <secondHalf the="false">
-                <singular>pushing</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Magnetism</name>
-            <firstHalf type="adjective">Magnetic</firstHalf>
-            <secondHalf the="false">
-                <singular>magnet</singular>
-                <plural>magnets</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Electricity/lightning</name>
-            <firstHalf type="adjective">Electric</firstHalf>
-            <secondHalf the="false">
-                <singular>lightning</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Jamming devices</name>
-            <firstHalf type="verb">Jamming</firstHalf>
-            <secondHalf the="false">
-                <singular>device</singular>
-                <plural>devices</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Taking things apart</name>
-            <firstHalf type="verb">Removing pieces off</firstHalf>
-            <secondHalf the="false">
-                <singular>dismantling</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Repairing</name>
-            <firstHalf type="verb">Repairing</firstHalf>
-            <secondHalf the="false">
-                <singular>repair</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Cloning</name>
-            <firstHalf type="verb">Cloning</firstHalf>
-            <secondHalf the="false">
-                <singular>a clone</singular>
-                <plural>clones</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Transformation</name>
-            <firstHalf type="verb">Transforming</firstHalf>
-            <secondHalf the="false">
-                <singular>transformation</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Necromancy</name>
-            <firstHalf type="noun" preference="plural">Necromancy</firstHalf>
-            <secondHalf the="false">
-                <singular>necromancy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Manipulating time</name>
-            <firstHalf type="verb">Manipulating</firstHalf>
-            <secondHalf the="false">
-                <singular>time</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rewinding time</name>
-            <firstHalf type="verb">Rewinding</firstHalf>
-            <secondHalf the="false">
-                <singular>time</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Recording and playing back actions</name>
-            <firstHalf type="verb">Recording and playing back</firstHalf>
-            <secondHalf the="false">
-                <singular>an action</singular>
-                <plural>actions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Invisibility</name>
-            <firstHalf type="noun" preference="plural">Invisibility</firstHalf>
-            <secondHalf the="false">
-                <singular>invisibility</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Stealth/hiding</name>
-            <firstHalf type="verb">Hiding from</firstHalf>
-            <secondHalf the="false">
-                <singular>stealth</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Blending into the environment</name>
-            <firstHalf type="verb" preference="singular">Looking like</firstHalf>
+            <name>Revisiting areas/levels with new tools/skills</name>
+            <firstHalf type="verb">Revisiting areas/levels with new</firstHalf>
             <secondHalf the="true">
-                <singular>environment</singular>
+                <plural>tools/skills</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Shield/invulnerability</name>
-            <firstHalf type="adjective">Invulnerable</firstHalf>
+            <name>Repeating past events/levels with new knowledge</name>
+            <firstHalf type="verb">Repeating</firstHalf>
             <secondHalf the="false">
-                <singular>shield</singular>
-                <plural>shields</plural>
+                <singular>events/levels</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Invulnerability unless exposed to a certain object or material</name>
-            <firstHalf type="verb">A certain object or material takes away</firstHalf>
+            <name>Helping the player's future self via time travel or recording actions</name>
+            <firstHalf type="verb">Helping</firstHalf>
             <secondHalf the="false">
-                <singular>invulnerability</singular>
+                <singular>time travel</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Preventing death or loss</name>
-            <firstHalf type="verb">Preventing</firstHalf>
+            <name>Witnessing past or future events</name>
+            <firstHalf type="verb">Witnessing</firstHalf>
             <secondHalf the="false">
-                <singular>death or loss</singular>
+                <plural>past or future events</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Regenerating health</name>
-            <firstHalf type="verb">Regenerating</firstHalf>
+            <name>Scouting an area before entering</name>
+            <firstHalf type="verb">Scouting</firstHalf>
+            <secondHalf the="false">
+                <singular>before entering an area</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Predictable actions or movement</name>
+            <firstHalf type="adjective">Predictable</firstHalf>
+            <secondHalf the="false">
+                <singular>action or movement</singular>
+                <singular>actions or movement</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Figuring out the correct order</name>
+            <firstHalf type="verb">Figuring out</firstHalf>
+            <secondHalf the="false">
+                <singular>in the correct order</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The four classical elements</name>
+            <firstHalf type="adjective">Four</firstHalf>
+            <secondHalf the="false">
+                <plural>elements</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Redirecting beams of light</name>
+            <firstHalf type="verb">Redirecting</firstHalf>
+            <secondHalf the="false">
+                <plural>beams of light</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Making two ends connect</name>
+            <firstHalf type="verb">Making</firstHalf>
+            <secondHalf the="false">
+                <plural>connection</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Missing piece</name>
+            <firstHalf type="adjective">Missing</firstHalf>
+            <secondHalf the="false">
+                <singular>piece</singular>
+                <plural>pieces</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Swapping characters' or objects' positions</name>
+            <firstHalf type="verb">Swapping</firstHalf>
+            <secondHalf the="false">
+                <plural>characters' or objects' positions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Having to prioritize something over another</name>
+            <firstHalf type="verb">Prioritizing</firstHalf>
+            <secondHalf the="false">
+                <singular>prioritization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Exchanging health for something</name>
+            <firstHalf type="verb">Exchanging health for</firstHalf>
             <secondHalf the="false">
                 <singular>health</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Healing teammates</name>
-            <firstHalf type="verb">Healing</firstHalf>
+            <name>Exchanging freedom for something</name>
+            <firstHalf type="verb">Exchanging freedom for</firstHalf>
             <secondHalf the="false">
-                <singular>a teammate</singular>
-                <plural>teammates</plural>
+                <singular>freedom</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Reviving fallen teammates</name>
-            <firstHalf type="verb">Reviving</firstHalf>
+            <name>Multiple things are fueled by the same resource</name>
+            <firstHalf type="verb">Things are fueled by</firstHalf>
             <secondHalf the="false">
-                <singular>a fallen teammate</singular>
-                <plural>fallen teammates</plural>
+                <plural>use the same resource</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Respawning next to a teammate</name>
-            <firstHalf type="verb">Respawning</firstHalf>
+            <name>Database/journal/bestiary</name>
+            <firstHalf type="verb">Keeping record of</firstHalf>
             <secondHalf the="false">
-                <singular>next to a teammate</singular>
-                <plural>next to teammates</plural>
+                <singular>database/journal/bestiary</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Reviving after being knocked down</name>
-            <firstHalf type="verb" preference="singular">Reviving with the help of</firstHalf>
+            <name>Item descriptions</name>
+            <firstHalf type="adjective">Descriptive</firstHalf>
             <secondHalf the="false">
-                <singular>revival</singular>
+                <singular>description</singular>
+                <plural>descriptions</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Taking over another character after dying</name>
-            <firstHalf type="verb" preference="singular">Taking over</firstHalf>
+            <name>Examining documents or recordings</name>
+            <firstHalf type="verb">Examining</firstHalf>
             <secondHalf the="false">
-                <singular>after dying</singular>
+                <singular>a document or a recording</singular>
+                <plural>documents or recordings</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Transferring one's mind into a different body</name>
-            <firstHalf type="verb">Transferring one's mind into</firstHalf>
-            <secondHalf the="false">
-                <singular>a different body</singular>
-                <plural>different bodies</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Reincarnating as a different being</name>
-            <firstHalf type="verb">Reincarnating as</firstHalf>
-            <secondHalf the="false">
-                <singular>a different being</singular>
-                <plural>different beings</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Haunting</name>
-            <firstHalf type="adjective">Haunted</firstHalf>
-            <secondHalf the="false">
-                <singular>haunting</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>A character/an object can go through walls</name>
-            <firstHalf type="noun" preference="singular">A character/an object</firstHalf>
-            <secondHalf the="false">
-                <singular>can go through walls</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Crashing into things</name>
-            <firstHalf type="verb">Crashing into</firstHalf>
-            <secondHalf the="false">
-                <singular>a thing</singular>
-                <plural>things</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Slowing down or stopping something</name>
-            <firstHalf type="verb">Slowing down</firstHalf>
-            <secondHalf the="false">
-                <singular>still object</singular>
-                <plural>still objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Fixing objects in place</name>
-            <firstHalf type="verb">Fixing</firstHalf>
-            <secondHalf the="false">
-                <singular>in place</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Knocking down targets</name>
-            <firstHalf type="verb" preference="plural">Knocking down</firstHalf>
-            <secondHalf the="false">
-                <singular>a target</singular>
-                <plural>targets</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Grabbing onto characters</name>
-            <firstHalf type="verb">Grabbing onto</firstHalf>
-            <secondHalf the="false">
-                <singular>a character</singular>
-                <plural>characters</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Catching thrown/flying objects</name>
-            <firstHalf type="verb">Catching</firstHalf>
-            <secondHalf the="false">
-                <singular>a thrown/flying object</singular>
-                <plural>thrown/flying objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Capturing characters/creatures</name>
-            <firstHalf type="verb">Capturing</firstHalf>
-            <secondHalf the="false">
-                <singular>a character/creature</singular>
-                <plural>characters/creatures</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Characters/objects can fuse and form a single entity</name>
-            <firstHalf type="noun" preference="plural">Characters/objects</firstHalf>
-            <secondHalf the="false">
-                <singular>fusion</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Absorbing everything to oneself</name>
-            <firstHalf type="verb">Absorbing</firstHalf>
-            <secondHalf the="false">
-                <plural>everything</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Expanding or extending</name>
-            <firstHalf type="verb">Expanding or extending</firstHalf>
-            <secondHalf the="false">
-                <singular>expansion</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Drawing</name>
-            <firstHalf type="verb">Drawing</firstHalf>
-            <secondHalf the="false">
-                <singular>drawing</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Photography</name>
-            <firstHalf type="noun" preference="singular">Photography</firstHalf>
-            <secondHalf the="false">
-                <singular>photography</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Marking targets</name>
-            <firstHalf type="verb">Marking</firstHalf>
-            <secondHalf the="false">
-                <singular>a target</singular>
-                <plural>targets</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Special sight ability</name>
-            <firstHalf type="adjective">Special</firstHalf>
-            <secondHalf the="false">
-                <singular>ability</singular>
-                <plural>abilities</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Eavesdropping</name>
-            <firstHalf type="verb">Eavesdropping</firstHalf>
-            <secondHalf the="false">
-                <singular>eavesdropping</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Revealing the locations of enemies or items</name>
-            <firstHalf type="verb">Revealing</firstHalf>
+            <name>Examining the environment's details</name>
+            <firstHalf type="verb">Examining</firstHalf>
             <secondHalf the="true">
-                <plural>locations of enemies or items</plural>
+                <singular>a detail in the environment</singular>
+                <plural>environment's details</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Drawing energy/power from the environment</name>
-            <firstHalf type="verb">Drawing energy/power from</firstHalf>
+            <name>Finding the right perspective</name>
+            <firstHalf type="verb">Finding</firstHalf>
             <secondHalf the="false">
-                <singular>energy</singular>
+                <singular>perspective</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Drawing energy/power from characters</name>
-            <firstHalf type="verb">Power restoration</firstHalf>
+            <name>Unexplained items and contraptions</name>
+            <firstHalf type="adjective">Unexplained</firstHalf>
             <secondHalf the="false">
-                <singular>power</singular>
+                <singular>item or contraption</singular>
+                <plural>items and contraptions</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Power can quickly increase but can also be easily lost</name>
-            <firstHalf type="noun" preference="singular">Power</firstHalf>
+            <name>Taking notes is recommended</name>
+            <firstHalf type="verb">Taking</firstHalf>
             <secondHalf the="false">
-                <singular>can be easily lost</singular>
+                <singular>is recommended</singular>
+                <plural>are recommended</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Losing abilities or items is necessary to progress</name>
-            <firstHalf type="verb">Losing</firstHalf>
+            <name>Detective work</name>
+            <firstHalf type="noun" preference="singular">Detective</firstHalf>
             <secondHalf the="false">
-                <singular>is necessary to progress</singular>
-                <plural>are necessary to progress</plural>
+                <singular>work</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Deciphering clues</name>
+            <firstHalf type="verb">Deciphering</firstHalf>
+            <secondHalf the="false">
+                <singular>a clue</singular>
+                <plural>clues</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Codes and encrypted messages</name>
+            <firstHalf type="noun" preference="plural">Code</firstHalf>
+            <secondHalf the="false">
+                <singular>an encrypted message</singular>
+                <plural>encrypted messages</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Programming/hacking</name>
+            <firstHalf type="verb">Programming</firstHalf>
+            <secondHalf the="false">
+                <singular>hacking</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Pattern recognition</name>
+            <firstHalf type="noun" preference="singular">Pattern</firstHalf>
+            <secondHalf the="false">
+                <singular>recognition</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Memorization</name>
+            <firstHalf type="verb">Memorizing</firstHalf>
+            <secondHalf the="false">
+                <singular>memorization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hidden roles</name>
+            <firstHalf type="adjective">Hidden</firstHalf>
+            <secondHalf the="false">
+                <plural>roles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Truth and lies</name>
+            <firstHalf type="noun" preference="singular">Truth</firstHalf>
+            <secondHalf the="false">
+                <singular>a lie</singular>
+                <plural>lies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Doors and keys</name>
+            <firstHalf type="noun" preference="plural">Doors</firstHalf>
+            <secondHalf the="false">
+                <singular>a key</singular>
+                <plural>keys</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Switches</name>
+            <firstHalf type="noun" preference="plural">Switches</firstHalf>
+            <secondHalf the="false">
+                <singular>switch</singular>
+                <plural>switches</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Quiz</name>
+            <firstHalf type="verb">Quiz</firstHalf>
+            <secondHalf the="false">
+                <singular>quiz</singular>
+                <plural>quizzes</plural>
             </secondHalf>
         </element>
     </category>
-    <category id="8" name="Items" shortName="Itm">
+    <category id="9" name="Items" shortName="Itm">
         <element>
             <name>Inventory</name>
             <firstHalf type="noun" preference="singular">Inventory</firstHalf>
@@ -3121,7 +3462,7 @@
             </secondHalf>
         </element>
     </category>
-    <category id="9" name="Goal" shortName="Go">
+    <category id="10" name="Goal" shortName="Go">
         <element>
             <name>Competition</name>
             <firstHalf type="adjective">Competitive</firstHalf>
@@ -3445,347 +3786,6 @@
             <secondHalf the="false">
                 <singular>challenge</singular>
                 <plural>challenges</plural>
-            </secondHalf>
-        </element>
-    </category>
-    <category id="10" name="Interaction" shortName="IAct">
-        <element>
-            <name>Interacting with characters or objects</name>
-            <firstHalf type="verb" preference="plural">Interacting with</firstHalf>
-            <secondHalf the="false">
-                <singular>interaction</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Chain reaction</name>
-            <firstHalf type="adjective">Chained</firstHalf>
-            <secondHalf the="false">
-                <singular>reaction</singular>
-                <plural>reactions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unreliability</name>
-            <firstHalf type="adjective">Unreliable</firstHalf>
-            <secondHalf the="false">
-                <singular>is unreliable</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Losing control</name>
-            <firstHalf type="adjective">Losing</firstHalf>
-            <secondHalf the="false">
-                <singular>control</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unusual controls</name>
-            <firstHalf type="adjective">Unusual</firstHalf>
-            <secondHalf the="true">
-                <plural>controls</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Motion controls</name>
-            <firstHalf type="noun" preference="singular">Motion</firstHalf>
-            <secondHalf the="true">
-                <plural>controls</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Input shortcuts</name>
-            <firstHalf type="noun" preference="singular">Input</firstHalf>
-            <secondHalf the="false">
-                <singular>a shortcut</singular>
-                <plural>shortcuts</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The gameplay relies on the mouse cursor</name>
-            <firstHalf type="verb">The gameplay relies on</firstHalf>
-            <secondHalf the="true">
-                <singular>mouse cursor</singular>
-                <plural>mouse cursors</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>360-degree aiming</name>
-            <firstHalf type="adjective">360-degree</firstHalf>
-            <secondHalf the="true">
-                <singular>aiming</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The controls consist of only one or two buttons</name>
-            <firstHalf type="verb">The controls consist of</firstHalf>
-            <secondHalf the="false">
-                <plural>one or two buttons</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Refraining from doing or using something is preferable</name>
-            <firstHalf type="verb">Refraining from</firstHalf>
-            <secondHalf the="false">
-                <singular>doing or using something</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Choosing whether to accept a perk or reward</name>
-            <firstHalf type="adjective">Optional</firstHalf>
-            <secondHalf the="false">
-                <singular>a perk or reward</singular>
-                <plural>perks or rewards</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being defeated makes the threat more difficult</name>
-            <firstHalf type="verb">Being defeated causes</firstHalf>
-            <secondHalf the="true">
-                <singular>is difficult</singular>
-                <!--<plural>are difficult</plural>-->
-            </secondHalf>
-        </element>
-        <element>
-            <name>Failure never has big consequences</name>
-            <firstHalf type="verb">Failing</firstHalf>
-            <secondHalf the="true">
-                <singular>consequence</singular>
-                <plural>consequences</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Tricking the player into making mistakes</name>
-            <firstHalf type="verb">Tricking</firstHalf>
-            <secondHalf the="false">
-                <singular>mistake</singular>
-                <plural>mistakes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Failed attempts leave marks in the world</name>
-            <firstHalf type="verb">Failing</firstHalf>
-            <secondHalf the="false">
-                <singular>leaves a mark in the world</singular>
-                <plural>leave marks in the world</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving a mark on anything that is touched</name>
-            <firstHalf type="verb">Leaving a mark on</firstHalf>
-            <secondHalf the="false">
-                <singular>a touched object</singular>
-                <plural>touched objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Physics-based gameplay</name>
-            <firstHalf type="adjective">Physics-based</firstHalf>
-            <secondHalf the="false">
-                <singular>gameplay</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unusual gravity</name>
-            <firstHalf type="adjective">Unusual</firstHalf>
-            <secondHalf the="false">
-                <singular>gravity</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Fall damage</name>
-            <firstHalf type="verb">Falling</firstHalf>
-            <secondHalf the="false">
-                <singular>damage</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being hit by a falling object</name>
-            <firstHalf type="adjective" preference="plural">Dangerous</firstHalf>
-            <secondHalf the="false">
-                <singular>a  falling object</singular>
-                <plural>falling objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Objects bounce off surfaces</name>
-            <firstHalf type="verb">Objects bounce off</firstHalf>
-            <secondHalf the="false">
-                <singular>a surface</singular>
-                <plural>surfaces</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unsecured objects try to escape</name>
-            <firstHalf type="adjective" preference="plural">Unsecured</firstHalf>
-            <secondHalf the="false">
-                <singular>tries to escape</singular>
-                <plural>try to escape</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Funneling a mass of characters or objects down a certain path</name>
-            <firstHalf type="verb">Funneling</firstHalf>
-            <secondHalf the="false">
-                <singular>a path</singular>
-                <plural>paths</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Helping a character reach places</name>
-            <firstHalf type="verb" preference="plural">Helping</firstHalf>
-            <secondHalf the="false">
-                <singular>reaching a place</singular>
-                <plural>reaching places</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being taken to safety after suffering a grave injury</name>
-            <firstHalf type="noun" preference="plural">Saving</firstHalf>
-            <secondHalf the="false">
-                <singular>injury</singular>
-                <plural>injuries</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Getting back lost items or power</name>
-            <firstHalf type="verb">Retrieving</firstHalf>
-            <secondHalf the="false">
-                <plural>lost items or power</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Sharing money or points with other players</name>
-            <firstHalf type="verb">Sharing</firstHalf>
-            <secondHalf the="false">
-                <plural>money or points</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Sharing designs or strategies with other players</name>
-            <firstHalf type="verb">Sharing</firstHalf>
-            <secondHalf the="false">
-                <plural>designs or strategies</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unusual form of communication</name>
-            <firstHalf type="adjective" preference="singular">Unusual form of</firstHalf>
-            <secondHalf the="false">
-                <singular>communication</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving messages for others</name>
-            <firstHalf type="verb">Leaving</firstHalf>
-            <secondHalf the="false">
-                <singular>a message</singular>
-                <plural>messages</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Conversation options</name>
-            <firstHalf type="noun" preference="singular">Conversation</firstHalf>
-            <secondHalf the="false">
-                <plural>options</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Moral choices</name>
-            <firstHalf type="adjective">Moral</firstHalf>
-            <secondHalf the="false">
-                <singular>choice</singular>
-                <plural>choices</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Making a deal</name>
-            <firstHalf type="verb">Making</firstHalf>
-            <secondHalf the="false">
-                <singular>deal</singular>
-                <plural>deals</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Noise attracts attention</name>
-            <firstHalf type="noun" preference="singular">Noise</firstHalf>
-            <secondHalf the="false">
-                <singular>attention</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Looking at/away from something causes an effect</name>
-            <firstHalf type="verb">Looking at/away from</firstHalf>
-            <secondHalf the="false">
-                <singular>an effect</singular>
-                <plural>effects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>It's impossible to go beyond a maximum distance of something</name>
-            <firstHalf type="adjective">Impossible</firstHalf>
-            <secondHalf the="false">
-                <singular>maximum distance</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being affected by staying close to certain things</name>
-            <firstHalf type="verb">Being affected by</firstHalf>
-            <secondHalf the="false">
-                <singular>staying close to a certain thing</singular>
-                <plural>staying close to certain things</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>An object gives feedback when getting closer to another relevant object</name>
-            <firstHalf type="verb">Giving feedback when getting closer to</firstHalf>
-            <secondHalf the="false">
-                <singular>close to a relevant object</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving characters or objects undisturbed lets them recover</name>
-            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
-            <secondHalf the="false">
-                <singular>replenishes health or energy</singular>
-                <plural>replenish health or energy</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving threats undisturbed lets them grow stronger</name>
-            <firstHalf type="noun" preference="plural">Threats</firstHalf>
-            <secondHalf the="false">
-                <singular>grows stronger</singular>
-                <plural>grow stronger</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Standing still causes an effect</name>
-            <firstHalf type="adjective">Unmoving</firstHalf>
-            <secondHalf the="false">
-                <singular>stays still</singular>
-                <plural>stay still</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Something happens only if the player moves</name>
-            <firstHalf type="verb">Something happens only to</firstHalf>
-            <secondHalf the="true">
-                <singular>player movement</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The AI learns from the player’s actions</name>
-            <firstHalf type="noun" preference="plural">AI</firstHalf>
-            <secondHalf the="true">
-                <plural>player’s actions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Doing something quicker yields better results</name>
-            <firstHalf type="adjective">Quicker</firstHalf>
-            <secondHalf the="false">
-                <singular>a better result</singular>
-                <plural>better results</plural>
             </secondHalf>
         </element>
     </category>

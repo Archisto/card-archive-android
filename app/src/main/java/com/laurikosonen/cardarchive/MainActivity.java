@@ -265,17 +265,17 @@ public class MainActivity extends AppCompatActivity {
     private void goToHelp() {
         Intent i = new Intent(MainActivity.this, HelpActivity.class);
         i.putExtra("totalElemCount", "" + allCards.size());
-        i.putExtra("grpElemCount", "" + decks.get(0).size());
-        i.putExtra("wldElemCount", "" + decks.get(1).size());
-        i.putExtra("infElemCount", "" + decks.get(2).size());
-        i.putExtra("chaElemCount", "" + decks.get(3).size());
-        i.putExtra("navElemCount", "" + decks.get(4).size());
-        i.putExtra("thiElemCount", "" + decks.get(5).size());
-        i.putExtra("comElemCount", "" + decks.get(6).size());
-        i.putExtra("abiElemCount", "" + decks.get(7).size());
-        i.putExtra("itmElemCount", "" + decks.get(8).size());
-        i.putExtra("goElemCount", "" + decks.get(9).size());
-        i.putExtra("iactElemCount", "" + decks.get(10).size());
+        i.putExtra("wldElemCount", "" + decks.get(0).size());
+        i.putExtra("chaElemCount", "" + decks.get(1).size());
+        i.putExtra("grpElemCount", "" + decks.get(2).size());
+        i.putExtra("infElemCount", "" + decks.get(3).size());
+        i.putExtra("iactElemCount", "" + decks.get(4).size());
+        i.putExtra("abiElemCount", "" + decks.get(5).size());
+        i.putExtra("navElemCount", "" + decks.get(6).size());
+        i.putExtra("comElemCount", "" + decks.get(7).size());
+        i.putExtra("thiElemCount", "" + decks.get(8).size());
+        i.putExtra("itmElemCount", "" + decks.get(9).size());
+        i.putExtra("goElemCount", "" + decks.get(10).size());
         i.putExtra("avElemCount", "" + decks.get(11).size());
         i.putExtra("mscElemCount", "" + decks.get(12).size());
         i.putExtra("fundamentalCount", "" + fundamentals.size());
@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
         String currentPage = "1";
         if (nextCardInDeck > deckStartIndex) {
             currentPage = "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / displayedCardCount)) + 1);
-            Log.d("CAGE", "currentPage: " + currentPage);
+            //Log.d("CAGE", "currentPage: " + currentPage);
         }
 
         String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
