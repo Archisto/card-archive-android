@@ -36,6 +36,12 @@ public class CardSlot {
         return textView.getTop();
     }
 
+    public void setCards(Card card1, Card card2) {
+        if (card1 != null)
+            this.card1 = card1;
+        this.card2 = card2;
+    }
+
     public String getText() {
         return textView.getText().toString();
     }
@@ -61,8 +67,7 @@ public class CardSlot {
     }
 
     public void copyFrom(CardSlot cardSlot) {
-        card1 = cardSlot.card1;
-        card2 = cardSlot.card2;
+        setCards(cardSlot.card1, cardSlot.card2);
         locked = cardSlot.locked;
         setText(cardSlot.getText());
         setTextColor(cardSlot.getTextColor());

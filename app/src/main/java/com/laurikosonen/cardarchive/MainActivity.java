@@ -53,12 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
+    //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoUpdateResultsToggle;
+    private MenuItem showCategoriesToggle;
     private int[] textColors = new int[cardsToChooseFromAmount + 1];
     private boolean listModeJustStarted;
     private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
-    private boolean displayCategory = true;
+    private boolean showCategories = true;
+    private boolean keepResultCategories = false;
     private boolean autoUpdateResults = true;
     private boolean touching;
     private boolean touchHandled;
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         initDecks();
         initCardSlots();
         displayMode = DisplayMode.classic;
-        displayCards(cardCountCap, displayedCategory, false);
+        drawCards(displayedCategory, false);
 
         textColors[0] = ContextCompat.getColor(this, R.color.colorGray);
         textColors[1] = ContextCompat.getColor(this, R.color.colorPrimary);
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!choosingActive) {
-                    displayCards(cardCountCap, displayedCategory, false);
+                    drawCards(displayedCategory, false);
                 }
                 else {
                     chooseCard(0);
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (displayMode == DisplayMode.spliceAlt) {
                     takeNewSpliceAltBeginning();
-                    displayCards(cardCountCap, displayedCategory, false);
+                    drawCards(displayedCategory, false);
                 }
                 else if (displayMode == DisplayMode.chooseOne && choosingActive) {
                     chooseCard(1);
@@ -406,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayCards(int shownCardCount, int category, boolean shownCardCountChanged) {
+    private void drawCards(int category, boolean shownCardCountChanged) {
         if (category >= decks.size()) {
             Log.e("CAGE", "Invalid category ID: " + category);
             return;
@@ -458,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        cardSlot.card1 = cards.get(index);
+        cardSlot.setCards(cards.get(index), null);
         StringBuilder text = new StringBuilder();
         boolean spliceModeActive =
             displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
@@ -468,8 +471,7 @@ public class MainActivity extends AppCompatActivity {
             text.append(getSpliceCardDisplayText(cardSlot, cards, index, true));
         }
         else if (displayMode == DisplayMode.spliceAlt) {
-            cardSlot.card2 = cardSlot.card1;
-            cardSlot.card1 = spliceBeginning;
+            cardSlot.setCards(spliceBeginning, cardSlot.card1);
             text.append(getSpliceCardDisplayText(cardSlot, cards, index, false));
         }
         else if (displayMode == DisplayMode.fundamentalElem) {
@@ -481,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
             text.append(cardSlot.card1.name);
         }
 
-        if (displayCategory) {
+        if (showCategories) {
             String categoryText = spliceModeActive ?
                 String.format(getString(R.string.cardSlotSpliceCategory),
                     cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
@@ -493,6 +495,42 @@ public class MainActivity extends AppCompatActivity {
         cardSlot.setText(text.toString());
     }
 
+    private void showOrHideCategories(boolean showCategories) {
+        if (cardSlots.get(0).isEmpty())
+            return;
+
+        String categoryString = getString(R.string.cardSlotCategory);
+        boolean categoryShown =
+            cardSlots.get(0).getText().charAt(0) == categoryString.charAt(0);
+
+        if (showCategories == categoryShown)
+            return;
+
+        for (CardSlot cardSlot : cardSlots) {
+            if (cardSlot.isEmpty())
+                return;
+
+            StringBuilder text = new StringBuilder(cardSlot.getText());
+            boolean splicedCards = cardSlot.card2 != null;
+
+            String categoryText = splicedCards ?
+                String.format(getString(R.string.cardSlotSpliceCategory),
+                    cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
+                : String.format(getString(R.string.cardSlotCategory),
+                    cardSlot.card1.categoryShortName);
+
+            if (showCategories) {
+                text.insert(0, categoryText + " ");
+            }
+            else {
+                int categoryEndIndex =
+                    text.indexOf("" + categoryString.charAt(categoryString.length() - 1)) + 2;
+                text.delete(0, categoryEndIndex);
+            }
+
+            cardSlot.setText(text.toString());
+        }
+    }
 
     private String getSpliceCardDisplayText(CardSlot cardSlot,
                                             List<Card> cards,
@@ -502,7 +540,7 @@ public class MainActivity extends AppCompatActivity {
             int index2 = index;
             while (index2 == index)
                 index2 = (int) (Math.random() * cards.size());
-            cardSlot.card2 = cards.get(index2);
+            cardSlot.setCards(null, cards.get(index2));
         }
 
         return String.format(getString(R.string.cardSlotSplice),
@@ -840,7 +878,7 @@ public class MainActivity extends AppCompatActivity {
             updateProgressBar(false, false, chosenCards.size());
 
             // Choosing continues until all choices have been made
-            displayCards(cardCountCap, displayedCategory, false);
+            drawCards(displayedCategory, false);
         }
     }
 
@@ -919,8 +957,14 @@ public class MainActivity extends AppCompatActivity {
         currentDisplayedCatItem = menu.findItem(R.id.action_displayAll);
         currentDisplayedCatItem.setEnabled(false);
 
-        autoUpdateResultsToggle = menu.findItem(R.id.action_autoUpdateResults);
+//        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
+//        keepResultCategoriesToggle.setChecked(keepResultCategories);
+
+        autoUpdateResultsToggle = menu.findItem(R.id.action_autoUpdateResultsToggle);
         autoUpdateResultsToggle.setChecked(autoUpdateResults);
+
+        showCategoriesToggle = menu.findItem(R.id.action_showCategoriesToggle);
+        showCategoriesToggle.setChecked(showCategories);
 
         if (decks.size() > 0) {
             int[] displayCategories = new int[] {
@@ -971,7 +1015,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else if (handleClearLocksAction(id))
             return true;
+//        else if (handleKeepResultCategoriesActivation(id))
+//            return true;
         else if (handleAutoUpdateResultsActivation(id))
+            return true;
+        else if (handleShowCategoriesActivation(id))
             return true;
 
         return super.onOptionsItemSelected(item);
@@ -1016,7 +1064,7 @@ public class MainActivity extends AppCompatActivity {
                 updateHeaderInfoText();
 
                 if (autoUpdateResults || displayMode == DisplayMode.list)
-                    displayCards(cardCountCap, displayedCategory, true);
+                    drawCards(displayedCategory, true);
             }
 
             return true;
@@ -1038,11 +1086,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (displayMode == DisplayMode.list) {
                 initListMode();
-                displayCards(cardCountCap, displayedCategory, false);
+                drawCards(displayedCategory, false);
             }
             else if (displayMode != DisplayMode.fundamentals) {
                 if (autoUpdateResults) {
-                    displayCards(cardCountCap, displayedCategory, false);
+                    drawCards(displayedCategory, false);
                 }
                 else {
                     updateDisplayedDeck(displayedCategory);
@@ -1080,7 +1128,7 @@ public class MainActivity extends AppCompatActivity {
             initSpliceAltMode();
         }
 
-        displayCards(cardCountCap, displayedCategory, false);
+        drawCards(displayedCategory, false);
 
         return true;
     }
@@ -1239,10 +1287,31 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+//    private boolean handleKeepResultCategoriesActivation(int id) {
+//        if (id == R.id.action_keepResultCategoriesToggle) {
+//            keepResultCategories = !keepResultCategories;
+//            keepResultCategoriesToggle.setChecked(keepResultCategories);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+
     private boolean handleAutoUpdateResultsActivation(int id) {
-        if (id == R.id.action_autoUpdateResults) {
+        if (id == R.id.action_autoUpdateResultsToggle) {
             autoUpdateResults = !autoUpdateResults;
             autoUpdateResultsToggle.setChecked(autoUpdateResults);
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean handleShowCategoriesActivation(int id) {
+        if (id == R.id.action_showCategoriesToggle) {
+            showCategories = !showCategories;
+            showCategoriesToggle.setChecked(showCategories);
+            showOrHideCategories(showCategories);
             return true;
         }
 
