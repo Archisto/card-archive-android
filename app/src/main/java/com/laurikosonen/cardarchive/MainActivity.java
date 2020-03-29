@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Card> chooseOneCards;
     private List<Card> chosenCards;
     private List<Card> fundamentals;
-    private List<TextView> cardSlots;
+    private List<CardSlot> cardSlots;
     private int displayedCategory = -1;
     private int displayedCardCount = 10;
     private int deckStartIndex = 0;
@@ -218,19 +218,18 @@ public class MainActivity extends AppCompatActivity {
 
     private int getTouchedCardSlotIndex(int touchY) {
         for (int i = 0; i < cardSlots.size(); i++) {
-            // The y-coordinate increases when going down and vice versa
-            if (touchY >= cardSlots.get(i).getTop() && touchY <= cardSlots.get(i).getBottom())
+            if (cardSlots.get(i).touchHit(touchY))
                 return i;
         }
 
         return -1;
     }
 
-    private TextView getTouchedCardSlot(int touchY, boolean allowEmpty) {
+    private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
         int index = getTouchedCardSlotIndex(touchY);
         if (index < 0)
             return null;
-        else if (allowEmpty || cardSlots.get(index).length() > 0)
+        else if (allowEmpty || !cardSlots.get(index).isEmpty())
             return cardSlots.get(index);
 
         return null;
@@ -238,14 +237,14 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFirstEmptyCardSlotIndex() {
         for (int i = 0; i < cardSlots.size(); i++) {
-            if (cardSlots.get(i).length() == 0)
+            if (cardSlots.get(i).isEmpty())
                 return i;
         }
 
         return -1;
     }
 
-    private TextView getFirstEmptyCardSlot() {
+    private CardSlot getFirstEmptyCardSlot() {
         int index = getFirstEmptyCardSlotIndex();
         if (index >= 0)
             return cardSlots.get(index);
@@ -290,8 +289,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTextColors(int colorId) {
-        for (TextView text : cardSlots) {
-            text.setTextColor(getResources().getColor(colorId));
+        for (CardSlot slot : cardSlots) {
+            slot.setTextColor(getResources().getColor(colorId));
         }
     }
 
@@ -375,16 +374,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void initCardSlots() {
         cardSlots = new ArrayList<>();
-        cardSlots.add((TextView) findViewById(R.id.cardSlot01));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot02));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot03));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot04));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot05));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot06));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot07));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot08));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot09));
-        cardSlots.add((TextView) findViewById(R.id.cardSlot10));
+        int[] cardSlotTextViewIds = {
+            R.id.cardSlot01,
+            R.id.cardSlot02,
+            R.id.cardSlot03,
+            R.id.cardSlot04,
+            R.id.cardSlot05,
+            R.id.cardSlot06,
+            R.id.cardSlot07,
+            R.id.cardSlot08,
+            R.id.cardSlot09,
+            R.id.cardSlot10
+        };
+
+        for (int id : cardSlotTextViewIds) {
+            CardSlot cardSlot = new CardSlot((TextView) findViewById(id));
+            cardSlots.add(cardSlot);
+        }
     }
 
     private void shuffleDeck(List<Card> deck) {
@@ -466,30 +472,58 @@ public class MainActivity extends AppCompatActivity {
         nextCardInDeck = displayedCardCount;
     }
 
-    private void setCardSlotText(TextView cardSlot, List<Card> cards, int index, boolean empty) {
-        String text = "";
+    private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
+        // TODO: Possibility of adding a fundamental in any mode
 
-        if (!empty) {
-            if (displayMode == DisplayMode.splice) {
-                text = getSpliceCardDisplayText(index, cards);
-            }
-            else if (displayMode == DisplayMode.spliceAlt) {
-                text = getSpliceAltCardDisplayText(index, cards);
-            }
-            else if (displayMode == DisplayMode.fundamentalElem) {
-                Card fundamental = fundamentals.get(index);
-                Card card = cards.get(index);
-                text = String.format(getString(R.string.cardSlotFundElem),
-                    card.categoryShortName, fundamental.name.toUpperCase(), card.name);
-            }
-            else {
-                Card card = cards.get(index);
-                text = String.format(getString(R.string.cardSlot),
-                    card.categoryShortName, card.name);
-            }
+        if (empty) {
+            cardSlot.clear();
+            return;
+        }
+
+        cardSlot.card1 = cards.get(index);
+        String text = "";
+        //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
+
+        if (displayMode == DisplayMode.splice) {
+            text = getSpliceCardDisplayText(cardSlot, cards, index);
+        }
+        else if (displayMode == DisplayMode.spliceAlt) {
+            text = String.format(getString(R.string.cardSlotSplice),
+                spliceBeginning.categoryShortName,
+                cardSlot.card1.categoryShortName,
+                spliceBeginning.getNameHalf(true, null),
+                cardSlot.card1.getNameHalf(false, spliceBeginning.getSecondHalfPreference()));
+        }
+        else if (displayMode == DisplayMode.fundamentalElem) {
+            Card fundamental = fundamentals.get(index);
+            text = String.format(getString(R.string.cardSlotFundElem),
+                cardSlot.card1.categoryShortName,
+                fundamental.name.toUpperCase(),
+                cardSlot.card1.name);
+        }
+        else {
+            text = String.format(getString(R.string.cardSlot),
+                cardSlot.card1.categoryShortName, cardSlot.card1.name);
         }
 
         cardSlot.setText(text);
+    }
+
+
+    private String getSpliceCardDisplayText(CardSlot cardSlot, List<Card> cards, int index) {
+        int index2 = index;
+        while (index2 == index)
+            index2 = (int) (Math.random() * cards.size());
+
+        cardSlot.card2 = cards.get(index2);
+        Card.NameHalfType secondHalfPreference = cardSlot.card1.getSecondHalfPreference();
+
+        return String.format(
+            getString(R.string.cardSlotSplice),
+            cardSlot.card1.categoryShortName,
+            cardSlot.card2.categoryShortName,
+            cardSlot.card1.getNameHalf(true, null),
+            cardSlot.card2.getNameHalf(false, secondHalfPreference));
     }
 
     private void updateFab2Alpha() {
@@ -534,25 +568,25 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("CAGE", "Swiped right");
             if (displayMode == DisplayMode.spliceAlt) {
                 // Changes both the beginning and the end of the spliced result
-                TextView cardSlot = getTouchedCardSlot(touchY, false);
-                if (cardSlot != null) {
-                    takeNewSpliceAltBeginning();
-                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
-                }
+//                CardSlot cardSlot = getTouchedCardSlot(touchY, false);
+//                if (cardSlot != null) {
+//                    takeNewSpliceAltBeginning();
+//                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
+//                }
             }
         }
     }
 
     private void addOrSwitchCard(int touchY) {
-        TextView cardSlot = getTouchedCardSlot(touchY, true);
-        TextView firstEmptySlot = getFirstEmptyCardSlot();
+        CardSlot cardSlot = getTouchedCardSlot(touchY, true);
+        CardSlot firstEmptySlot = getFirstEmptyCardSlot();
 
         // Touched nothing and there's an available card slot
         if (cardSlot == null && firstEmptySlot != null && touchY >= firstEmptySlot.getTop()) {
             cardSlot = firstEmptySlot;
         }
         // Touched an empty card slot
-        else if (cardSlot != null && cardSlot.length() == 0) {
+        else if (cardSlot != null && cardSlot.isEmpty()) {
             cardSlot = firstEmptySlot;
         }
         // Touched nothing and there aren't available card slots
@@ -565,7 +599,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchCard(int touchY) {
-        TextView cardSlot = getTouchedCardSlot(touchY, false);
+        CardSlot cardSlot = getTouchedCardSlot(touchY, false);
         if (cardSlot == null)
             return;
 
@@ -573,8 +607,9 @@ public class MainActivity extends AppCompatActivity {
         drawNewCard(cardSlot);
     }
 
-    private void drawNewCard(TextView cardSlot) {
-        // Note: Skips one index because it's set here and not after setCardSlotText()
+    private void drawNewCard(CardSlot cardSlot) {
+        // Note: Skips one index (e.g. from 9 to 11) because
+        // it's set here and not after setCardSlotText()
         nextCardInDeck++;
         if (nextCardInDeck >= displayedCards.size())
             nextCardInDeck = 0; // TODO: No card duplication
@@ -588,20 +623,19 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         if (cardSlotIndex == cardSlots.size() - 1) {
-            cardSlots.get(cardSlotIndex).setText("");
+            cardSlots.get(cardSlotIndex).clear();
         }
         else {
             for (int i = cardSlotIndex + 1; i < cardSlots.size(); i++) {
-                CharSequence currentText = cardSlots.get(i).getText();
-                if (currentText.length() == 0) {
-                    cardSlots.get(i - 1).setText("");
+                if (cardSlots.get(i).isEmpty()) {
+                    cardSlots.get(i - 1).clear();
                     break;
                 }
                 else {
-                    cardSlots.get(i - 1).setText(currentText);
+                    cardSlots.get(i - 1).copyFrom(cardSlots.get(i));
 
                     if (i == cardSlots.size() - 1) {
-                        cardSlots.get(i).setText("");
+                        cardSlots.get(i).clear();
                     }
                 }
             }
@@ -693,23 +727,6 @@ public class MainActivity extends AppCompatActivity {
             updateFab2Alpha();
     }
 
-    private String getSpliceCardDisplayText(int index, List<Card> cards) {
-        int index2 = index;
-        while (index2 == index)
-            index2 = (int) (Math.random() * cards.size());
-
-        Card card1 = cards.get(index);
-        Card card2 = cards.get(index2);
-        Card.NameHalfType secondHalfPreference = card1.getSecondHalfPreference();
-
-        return String.format(
-            getString(R.string.cardSlotSplice),
-            card1.categoryShortName,
-            card2.categoryShortName,
-            card1.getNameHalf(true, null),
-            card2.getNameHalf(false, secondHalfPreference));
-    }
-
     private void initSpliceAltMode() {
         spliceAltModeJustStarted = true;
     }
@@ -731,17 +748,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setAllCardSlotTexts(displayedCards, shownCardCount);
-    }
-
-    private String getSpliceAltCardDisplayText(int index, List<Card> cards) {
-        Card card = cards.get(index);
-
-        return String.format(
-            getString(R.string.cardSlotSplice),
-            spliceBeginning.categoryShortName,
-            card.categoryShortName,
-            spliceBeginning.getNameHalf(true, null),
-            card.getNameHalf(false, spliceBeginning.getSecondHalfPreference()));
     }
 
     private void displayChooseOneCards(List<Card> displayedCards) {
@@ -867,22 +873,21 @@ public class MainActivity extends AppCompatActivity {
         autoUpdateResultsToggle.setChecked(autoUpdateResults);
 
         if (decks.size() > 0) {
-            int[] displayCategories = new int[]
-                {
-                    R.id.action_displayCategory0,
-                    R.id.action_displayCategory1,
-                    R.id.action_displayCategory2,
-                    R.id.action_displayCategory3,
-                    R.id.action_displayCategory4,
-                    R.id.action_displayCategory5,
-                    R.id.action_displayCategory6,
-                    R.id.action_displayCategory7,
-                    R.id.action_displayCategory8,
-                    R.id.action_displayCategory9,
-                    R.id.action_displayCategory10,
-                    R.id.action_displayCategory11,
-                    R.id.action_displayCategory12
-                };
+            int[] displayCategories = new int[] {
+                R.id.action_displayCategory0,
+                R.id.action_displayCategory1,
+                R.id.action_displayCategory2,
+                R.id.action_displayCategory3,
+                R.id.action_displayCategory4,
+                R.id.action_displayCategory5,
+                R.id.action_displayCategory6,
+                R.id.action_displayCategory7,
+                R.id.action_displayCategory8,
+                R.id.action_displayCategory9,
+                R.id.action_displayCategory10,
+                R.id.action_displayCategory11,
+                R.id.action_displayCategory12
+            };
 
             for (int i = 0; i < displayCategories.length; i++) {
                 menu.findItem(displayCategories[i]).
@@ -1078,36 +1083,26 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleSetCardCountOptions(int id) {
         switch (id) {
-            case R.id.action_setCardCount_1: {
+            case R.id.action_setCardCount_1:
                 return setDisplayedCardCount(1, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_2: {
+            case R.id.action_setCardCount_2:
                 return setDisplayedCardCount(2, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_3: {
+            case R.id.action_setCardCount_3:
                 return setDisplayedCardCount(3, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_4: {
+            case R.id.action_setCardCount_4:
                 return setDisplayedCardCount(4, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_5: {
+            case R.id.action_setCardCount_5:
                 return setDisplayedCardCount(5, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_6: {
+            case R.id.action_setCardCount_6:
                 return setDisplayedCardCount(6, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_7: {
+            case R.id.action_setCardCount_7:
                 return setDisplayedCardCount(7, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_8: {
+            case R.id.action_setCardCount_8:
                 return setDisplayedCardCount(8, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_9: {
+            case R.id.action_setCardCount_9:
                 return setDisplayedCardCount(9, minDisplayedCards, maxDisplayedCards);
-            }
-            case R.id.action_setCardCount_10: {
+            case R.id.action_setCardCount_10:
                 return setDisplayedCardCount(10, minDisplayedCards, maxDisplayedCards);
-            }
         }
 
         return false;
@@ -1115,48 +1110,34 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleDisplayedCategoryOptions(int id, MenuItem item) {
         switch (id) {
-            case R.id.action_displayAll: {
+            case R.id.action_displayAll:
                 return setDisplayedCategory(item, -1);
-            }
-            case R.id.action_displayCategory0: {
+            case R.id.action_displayCategory0:
                 return setDisplayedCategory(item, 0);
-            }
-            case R.id.action_displayCategory1: {
+            case R.id.action_displayCategory1:
                 return setDisplayedCategory(item, 1);
-            }
-            case R.id.action_displayCategory2: {
+            case R.id.action_displayCategory2:
                 return setDisplayedCategory(item, 2);
-            }
-            case R.id.action_displayCategory3: {
+            case R.id.action_displayCategory3:
                 return setDisplayedCategory(item, 3);
-            }
-            case R.id.action_displayCategory4: {
+            case R.id.action_displayCategory4:
                 return setDisplayedCategory(item, 4);
-            }
-            case R.id.action_displayCategory5: {
+            case R.id.action_displayCategory5:
                 return setDisplayedCategory(item, 5);
-            }
-            case R.id.action_displayCategory6: {
+            case R.id.action_displayCategory6:
                 return setDisplayedCategory(item, 6);
-            }
-            case R.id.action_displayCategory7: {
+            case R.id.action_displayCategory7:
                 return setDisplayedCategory(item, 7);
-            }
-            case R.id.action_displayCategory8: {
+            case R.id.action_displayCategory8:
                 return setDisplayedCategory(item, 8);
-            }
-            case R.id.action_displayCategory9: {
+            case R.id.action_displayCategory9:
                 return setDisplayedCategory(item, 9);
-            }
-            case R.id.action_displayCategory10: {
+            case R.id.action_displayCategory10:
                 return setDisplayedCategory(item, 10);
-            }
-            case R.id.action_displayCategory11: {
+            case R.id.action_displayCategory11:
                 return setDisplayedCategory(item, 11);
-            }
-            case R.id.action_displayCategory12: {
+            case R.id.action_displayCategory12:
                 return setDisplayedCategory(item, 12);
-            }
         }
 
         return false;
