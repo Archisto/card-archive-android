@@ -9,18 +9,24 @@ public class CardSlot {
 
     private TextView textView;
     private boolean locked;
+    private boolean secondaryLock;
     private int defaultTextColor;
     private int defaultBackgroundColor;
 //    private int lockTextColor;
-    private int lockBackgroundColor;
+    private int lockBackgroundColor1;
+    private int lockBackgroundColor2;
 
-    public CardSlot( int id, TextView textView, int lockBackgroundColor) {
+    public CardSlot( int id,
+                     TextView textView,
+                     int lockBackgroundColor1,
+                     int lockBackgroundColor2) {
         this.id = id;
         this.textView = textView;
         defaultTextColor = getTextColor();
         defaultBackgroundColor = 0;
 //        this.lockTextColor = lockTextColor;
-        this.lockBackgroundColor = lockBackgroundColor;
+        this.lockBackgroundColor1 = lockBackgroundColor1;
+        this.lockBackgroundColor2 = lockBackgroundColor2;
     }
 
     public boolean isEmpty() {
@@ -29,6 +35,10 @@ public class CardSlot {
 
     public boolean isLocked() {
         return locked;
+    }
+
+    public boolean secondaryLockEnabled() {
+        return secondaryLock;
     }
 
     public boolean touchHit(int touchY) {
@@ -69,18 +79,33 @@ public class CardSlot {
     public void lock(boolean enable) {
         locked = enable;
         if (locked) {
-//            setTextColor(lockTextColor);
-            setBackgroundColor(lockBackgroundColor);
+            //setTextColor(lockTextColor);
+            setBackgroundColor(lockBackgroundColor1);
         }
         else {
-//            setTextColor(defaultTextColor);
+            secondaryLock = false;
+            //setTextColor(defaultTextColor);
             setBackgroundColor(defaultBackgroundColor);
+        }
+    }
+
+    public void enableSecondaryLock(boolean enable) {
+        if (locked) {
+            if (enable && !secondaryLock) {
+                setBackgroundColor(lockBackgroundColor2);
+                secondaryLock = true;
+            }
+            else if (!enable && secondaryLock) {
+                setBackgroundColor(lockBackgroundColor1);
+                secondaryLock = false;
+            }
         }
     }
 
     public void copyFrom(CardSlot cardSlot) {
         setCards(cardSlot.card1, cardSlot.card2);
         lock(cardSlot.locked);
+        enableSecondaryLock(cardSlot.secondaryLock);
         setText(cardSlot.getText());
         setTextColor(cardSlot.getTextColor());
     }
@@ -90,6 +115,7 @@ public class CardSlot {
             card1 = null;
             card2 = null;
             locked = false;
+            secondaryLock = false;
             setText("");
             setTextColor(defaultTextColor);
             setBackgroundColor(defaultBackgroundColor);

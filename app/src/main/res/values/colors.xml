@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#3C57A2</color>
     <color name="colorAccent">#C89DE3</color>
 <!--    <color name="colorLockText">#585858</color>-->
-    <color name="colorLockBackground">#CCDDFF</color>
+    <color name="colorLockBackground1">#CCDDFF</color>
+    <color name="colorLockBackground2">#DBC8CC</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorCyan">#4CBAA8</color>
     <color name="colorGreen">#53D384</color>

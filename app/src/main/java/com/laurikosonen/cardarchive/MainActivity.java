@@ -372,7 +372,8 @@ public class MainActivity extends AppCompatActivity {
             CardSlot cardSlot = new CardSlot(
                 i,
                 (TextView) findViewById(cardSlotTextViewIds[i]),
-                ContextCompat.getColor(this, R.color.colorLockBackground));
+                ContextCompat.getColor(this, R.color.colorLockBackground1),
+                ContextCompat.getColor(this, R.color.colorLockBackground2));
             cardSlots.add(cardSlot);
         }
     }
@@ -557,23 +558,22 @@ public class MainActivity extends AppCompatActivity {
     private void handleCardSlotTouch(int touchY) {
         if (displayMode == DisplayMode.chooseOne) {
             if (choosingActive) {
-                int chosenCardNum = getTouchedCardSlotIndex(touchY);
-                if (chosenCardNum >= 0 && chosenCardNum <= 2) {
-                    chooseCard(chosenCardNum);
+                int cardSlotIndex = getTouchedCardSlotIndex(touchY);
+                if (cardSlotIndex >= 0 && cardSlotIndex <= 2) {
+                    chooseCard(cardSlotIndex);
                 }
             }
         }
-        else if (displayMode != DisplayMode.list) {
+        else {
             addOrLockCard(touchY);
         }
     }
 
     private void handleCardSlotLongTouch(int touchY) {
-        if (displayMode == DisplayMode.classic
-            || displayMode == DisplayMode.splice
-            || displayMode == DisplayMode.spliceAlt
-            || displayMode == DisplayMode.fundamentalElem) {
-            removeCard(touchY);
+        if (displayMode != DisplayMode.list && displayMode != DisplayMode.chooseOne) {
+            int cardSlotIndex = getTouchedCardSlotIndex(touchY);
+            if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size())
+                removeCard(cardSlotIndex);
         }
     }
 
@@ -651,20 +651,20 @@ public class MainActivity extends AppCompatActivity {
             return cardSlot;
     }
 
-    private void addOrSwitchCard(int touchY) {
-        CardSlot cardSlot = getAvailableCardSlot(touchY);
-        if (cardSlot != null)
-            drawNewCard(cardSlot);
-    }
-
     private void addOrLockCard(int touchY) {
         CardSlot cardSlot = getAvailableCardSlot(touchY);
         if (cardSlot != null) {
-            if (cardSlot.isEmpty())
+            if (cardSlot.isEmpty() && displayMode != DisplayMode.list)
                 drawNewCard(cardSlot);
             else
                 toggleCardLock(cardSlot);
         }
+    }
+
+    private void addOrSwitchCard(int touchY) {
+        CardSlot cardSlot = getAvailableCardSlot(touchY);
+        if (cardSlot != null)
+            drawNewCard(cardSlot);
     }
 
     private void switchCard(int touchY) {
@@ -686,11 +686,17 @@ public class MainActivity extends AppCompatActivity {
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
     }
 
-    private void removeCard(int touchY) {
-        int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (cardSlotIndex < 0 || cardSlotIndex >= cardSlots.size())
-            return;
+    private void removeCardOrEditLock(int cardSlotIndex) {
+        CardSlot cardSlot = cardSlots.get(cardSlotIndex);
+        if (cardSlot.isLocked()) {
+            cardSlot.enableSecondaryLock(!cardSlot.secondaryLockEnabled());
+        }
+        else {
+            removeCard(cardSlotIndex);
+        }
+    }
 
+    private void removeCard(int cardSlotIndex) {
         if (cardSlotIndex == cardSlots.size() - 1) {
             cardSlots.get(cardSlotIndex).clear(true);
         }
@@ -713,8 +719,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleCardLock(CardSlot cardSlot) {
         if (cardSlot != null) {
-            cardSlot.lock(!cardSlot.isLocked());
-            lockedCardCount += cardSlot.isLocked() ? 1: -1;
+            if (cardSlot.isLocked() && !cardSlot.secondaryLockEnabled()) {
+                cardSlot.enableSecondaryLock(true);
+            }
+            else {
+                cardSlot.lock(!cardSlot.isLocked());
+                lockedCardCount += cardSlot.isLocked() ? 1 : -1;
+            }
         }
     }
 
