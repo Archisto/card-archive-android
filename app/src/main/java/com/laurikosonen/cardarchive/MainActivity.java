@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean listModeJustStarted;
     private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
+    private boolean displayCategory = true;
     private boolean autoUpdateResults = true;
     private boolean touching;
     private boolean touchHandled;
@@ -290,12 +292,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTextColors(int colorId) {
         for (CardSlot slot : cardSlots) {
-            slot.setTextColor(getResources().getColor(colorId));
+            slot.setTextColor(ContextCompat.getColor(this, colorId));
         }
     }
 
     private void setTextColor(int textIndex, int colorId) {
-        cardSlots.get(textIndex).setTextColor(getResources().getColor(colorId));
+        cardSlots.get(textIndex).setTextColor(ContextCompat.getColor(this, colorId));
     }
 
     private void updateHeaderInfoText() {
@@ -481,49 +483,55 @@ public class MainActivity extends AppCompatActivity {
         }
 
         cardSlot.card1 = cards.get(index);
-        String text = "";
+        StringBuilder text = new StringBuilder();
+        boolean spliceModeActive =
+            displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
         if (displayMode == DisplayMode.splice) {
-            text = getSpliceCardDisplayText(cardSlot, cards, index);
+            text.append(getSpliceCardDisplayText(cardSlot, cards, index, true));
         }
         else if (displayMode == DisplayMode.spliceAlt) {
-            text = String.format(getString(R.string.cardSlotSplice),
-                spliceBeginning.categoryShortName,
-                cardSlot.card1.categoryShortName,
-                spliceBeginning.getNameHalf(true, null),
-                cardSlot.card1.getNameHalf(false, spliceBeginning.getSecondHalfPreference()));
+            cardSlot.card2 = cardSlot.card1;
+            cardSlot.card1 = spliceBeginning;
+            text.append(getSpliceCardDisplayText(cardSlot, cards, index, false));
         }
         else if (displayMode == DisplayMode.fundamentalElem) {
-            Card fundamental = fundamentals.get(index);
-            text = String.format(getString(R.string.cardSlotFundElem),
-                cardSlot.card1.categoryShortName,
-                fundamental.name.toUpperCase(),
-                cardSlot.card1.name);
+            text.append(String.format(getString(R.string.cardSlotFundElem),
+                fundamentals.get(index).name.toUpperCase(),
+                cardSlot.card1.name));
         }
         else {
-            text = String.format(getString(R.string.cardSlot),
-                cardSlot.card1.categoryShortName, cardSlot.card1.name);
+            text.append(cardSlot.card1.name);
         }
 
-        cardSlot.setText(text);
+        if (displayCategory) {
+            String categoryText = spliceModeActive ?
+                String.format(getString(R.string.cardSlotSpliceCategory),
+                    cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
+                : String.format(getString(R.string.cardSlotCategory),
+                    cardSlot.card1.categoryShortName);
+            text.insert(0, categoryText + " ");
+        }
+
+        cardSlot.setText(text.toString());
     }
 
 
-    private String getSpliceCardDisplayText(CardSlot cardSlot, List<Card> cards, int index) {
-        int index2 = index;
-        while (index2 == index)
-            index2 = (int) (Math.random() * cards.size());
+    private String getSpliceCardDisplayText(CardSlot cardSlot,
+                                            List<Card> cards,
+                                            int index,
+                                            boolean randomCard2) {
+        if (randomCard2) {
+            int index2 = index;
+            while (index2 == index)
+                index2 = (int) (Math.random() * cards.size());
+            cardSlot.card2 = cards.get(index2);
+        }
 
-        cardSlot.card2 = cards.get(index2);
-        Card.NameHalfType secondHalfPreference = cardSlot.card1.getSecondHalfPreference();
-
-        return String.format(
-            getString(R.string.cardSlotSplice),
-            cardSlot.card1.categoryShortName,
-            cardSlot.card2.categoryShortName,
+        return String.format(getString(R.string.cardSlotSplice),
             cardSlot.card1.getNameHalf(true, null),
-            cardSlot.card2.getNameHalf(false, secondHalfPreference));
+            cardSlot.card2.getNameHalf(false, cardSlot.card1.getSecondHalfPreference()));
     }
 
     private void updateFab2Alpha() {
