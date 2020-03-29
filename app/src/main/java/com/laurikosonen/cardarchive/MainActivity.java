@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean showCategories = true;
     private boolean keepResultCategories = false;
     private boolean autoUpdateResults = true;
+    private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
 
@@ -717,6 +718,61 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int clearCards() {
+        int clears = 0;
+        for (int i = 0; i < cardSlots.size(); i++) {
+            boolean cleared = cardSlots.get(i).clear(true);
+            if (cleared) {
+                clears++;
+            }
+            else if (clears > 0) {
+                cardSlots.get(i - clears).copyFrom(cardSlots.get(i));
+                cardSlots.get(i).clear(false);
+            }
+        }
+
+        return clears;
+    }
+
+    private void sortCards() {
+        if (lockedCardCount == 0
+            || lockedCardCount == maxDisplayedCards
+            || getFirstEmptyCardSlotIndex() >= lockedCardCount)
+            return;
+
+        int[] unlockedSlotIndexes = new int[10];
+        short unlockedCards = 0;
+        short unlockedCardsHandled = 0;
+
+        //Log.d("CAGE", "Not sorted");
+
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (!cardSlots.get(i).isLocked()) {
+                // Plus one because 0 means the index is unset
+                unlockedSlotIndexes[unlockedCards] = i + 1;
+                unlockedCards++;
+            }
+        }
+
+        CardSlot temp = new CardSlot(-1,  new TextView(this), 0, 0);
+
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).isLocked()
+                  && unlockedSlotIndexes[unlockedCardsHandled] > 0
+                  && unlockedSlotIndexes[unlockedCardsHandled] - 1 < i) {
+                int unlockedSlotIndex = unlockedSlotIndexes[unlockedCardsHandled] - 1;
+
+                temp.copyFromLite(cardSlots.get(unlockedSlotIndex));
+                cardSlots.get(unlockedSlotIndex).copyFrom(cardSlots.get(i));
+                cardSlots.get(i).copyFrom(temp);
+
+                unlockedCardsHandled++;
+                if (unlockedCardsHandled >= lockedCardCount)
+                    break;
+            }
+        }
+    }
+
     private void toggleCardLock(CardSlot cardSlot) {
         if (cardSlot != null) {
             if (cardSlot.isLocked() && !cardSlot.secondaryLockEnabled()) {
@@ -724,7 +780,12 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 cardSlot.lock(!cardSlot.isLocked());
-                lockedCardCount += cardSlot.isLocked() ? 1 : -1;
+                if (cardSlot.isLocked())
+                    lockedCardCount++;
+                else
+                    lockedCardCount--;
+
+                locksChanged = true;
             }
         }
     }
@@ -760,6 +821,7 @@ public class MainActivity extends AppCompatActivity {
             listModeJustStarted = false;
             fab2.show();
             updateFab2Alpha();
+            locksChanged = false;
         }
         else if (outOfCards) {
             //Log.d("CAGE", "LIST MODE. Out of cards");
@@ -773,6 +835,11 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
         //      ". listStartIndex: " + listStartIndex +
         //      ". listSize: " + listSize);
+
+        if (locksChanged) {
+            sortCards();
+            locksChanged = false;
+        }
 
         updateHeaderInfoText();
         updateCardList();
@@ -794,6 +861,11 @@ public class MainActivity extends AppCompatActivity {
 
                 nextCardInDeck += pagesForward * shownListCardCount;
             }
+        }
+
+        if (locksChanged) {
+            sortCards();
+            locksChanged = false;
         }
 
         updateHeaderInfoText();
@@ -1264,19 +1336,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
-    }
-
-    private void clearCards() {
-        int clears = 0;
-        for (int i = 0; i < cardSlots.size(); i++) {
-            boolean cleared = cardSlots.get(i).clear(true);
-            if (cleared)
-                clears++;
-            else if (clears > 0) {
-                cardSlots.get(i - clears).copyFrom(cardSlots.get(i));
-                cardSlots.get(i).clear(false);
-            }
-        }
     }
 
     private boolean handleClearLocksAction(int id) {

@@ -10,10 +10,10 @@ public class CardSlot {
     private TextView textView;
     private boolean locked;
     private boolean secondaryLock;
-    private int defaultTextColor;
-    private int defaultBackgroundColor;
-//    private int lockTextColor;
+    //private int defaultTextColor;
+    //private int lockTextColor;
     private int lockBackgroundColor1;
+    private int defaultBackgroundColor;
     private int lockBackgroundColor2;
 
     public CardSlot( int id,
@@ -22,9 +22,9 @@ public class CardSlot {
                      int lockBackgroundColor2) {
         this.id = id;
         this.textView = textView;
-        defaultTextColor = getTextColor();
+        //defaultTextColor = getTextColor();
+        //this.lockTextColor = lockTextColor;
         defaultBackgroundColor = 0;
-//        this.lockTextColor = lockTextColor;
         this.lockBackgroundColor1 = lockBackgroundColor1;
         this.lockBackgroundColor2 = lockBackgroundColor2;
     }
@@ -107,7 +107,14 @@ public class CardSlot {
         lock(cardSlot.locked);
         enableSecondaryLock(cardSlot.secondaryLock);
         setText(cardSlot.getText());
-        setTextColor(cardSlot.getTextColor());
+        //setTextColor(cardSlot.getTextColor());
+    }
+
+    public void copyFromLite(CardSlot cardSlot) {
+        setCards(cardSlot.card1, cardSlot.card2);
+        locked = cardSlot.locked;
+        secondaryLock = cardSlot.secondaryLock;
+        setText(cardSlot.getText());
     }
 
     public boolean clear(boolean obeyLock) {
@@ -117,7 +124,7 @@ public class CardSlot {
             locked = false;
             secondaryLock = false;
             setText("");
-            setTextColor(defaultTextColor);
+            //setTextColor(defaultTextColor);
             setBackgroundColor(defaultBackgroundColor);
             return true;
         }
