@@ -4,6 +4,7 @@
     <string name="title_activity_help">Help</string>
     <string name="action_settings">Settings</string>
     <string name="action_clearCards">Clear Results</string>
+    <string name="action_clearAllLocks">Clear All Locks</string>
     <string name="action_autoUpdateResults">Auto-Update Results</string>
     <string name="cardSlotCategory">[%s]</string>
     <string name="cardSlotSpliceCategory">[%s+%s]</string>
@@ -29,6 +30,8 @@
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
     <string name="cardCountTip">There are %d cards in the currently selected category.</string>
+    <string name="listUnavailable_clearLocks">Clear locks to see list</string>
+    <string name="listUnavailable_elemCountCap">Increase element count cap to see list</string>
     <string name="help_text">
         "\nGame Elements was designed and developed by Lauri Kosonen."
 

@@ -6,18 +6,25 @@ public class CardSlot {
     public int id;
     public Card card1;
     public Card card2;
-    public boolean locked;
-    public boolean avoided;
 
     private TextView textView;
+    private boolean locked;
+    private int defaultColor;
+    private int lockColor;
 
-    public CardSlot(TextView textView, int id) {
-        this.textView = textView;
+    public CardSlot( int id,TextView textView, int lockColor) {
         this.id = id;
+        this.textView = textView;
+        defaultColor = getTextColor();
+        this.lockColor = lockColor;
     }
 
     public boolean isEmpty() {
         return getText().isEmpty();
+    }
+
+    public boolean isLocked() {
+        return locked;
     }
 
     public boolean touchHit(int touchY) {
@@ -37,25 +44,40 @@ public class CardSlot {
         textView.setText(text);
     }
 
+    public int getTextColor() {
+        return textView.getTextColors().getDefaultColor();
+    }
+
     public void setTextColor(int color) {
         textView.setTextColor(color);
+    }
+
+    public void lock(boolean enable) {
+        locked = enable;
+        if (locked)
+            setTextColor(lockColor);
+        else
+            setTextColor(defaultColor);
     }
 
     public void copyFrom(CardSlot cardSlot) {
         card1 = cardSlot.card1;
         card2 = cardSlot.card2;
         locked = cardSlot.locked;
-        avoided = cardSlot.avoided;
         setText(cardSlot.getText());
+        setTextColor(cardSlot.getTextColor());
     }
 
-    public void clear(boolean obeyLock) {
-        if (!obeyLock || (!locked && !avoided)) {
+    public boolean clear(boolean obeyLock) {
+        if (!obeyLock || !locked) {
             card1 = null;
             card2 = null;
             locked = false;
-            avoided = false;
             setText("");
+            setTextColor(defaultColor);
+            return true;
         }
+
+        return false;
     }
 }

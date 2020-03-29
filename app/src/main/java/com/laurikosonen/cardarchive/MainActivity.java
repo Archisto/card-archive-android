@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private int touchStartY;
     private int touchDuration;
     private int maxTouchDuration = 30;
+    private int lockedCardCount;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
@@ -87,14 +88,14 @@ public class MainActivity extends AppCompatActivity {
         displayMode = DisplayMode.classic;
         displayCards(cardCountCap, displayedCategory, false);
 
-        textColors[0] = R.color.colorGray;
-        textColors[1] = R.color.colorPrimary;
-        textColors[2] = R.color.colorCyan;
-        textColors[3] = R.color.colorGreen;
+        textColors[0] = ContextCompat.getColor(this, R.color.colorGray);
+        textColors[1] = ContextCompat.getColor(this, R.color.colorPrimary);
+        textColors[2] = ContextCompat.getColor(this, R.color.colorCyan);
+        textColors[3] = ContextCompat.getColor(this, R.color.colorGreen);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        headerInfoText = (TextView) findViewById(R.id.pageNum);
+        headerInfoText = (TextView) findViewById(R.id.headerInfo);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
 
         mainView.setOnTouchListener(new View.OnTouchListener() {
@@ -218,42 +219,6 @@ public class MainActivity extends AppCompatActivity {
         touchDuration = 0;
     }
 
-    private int getTouchedCardSlotIndex(int touchY) {
-        for (int i = 0; i < cardSlots.size(); i++) {
-            if (cardSlots.get(i).touchHit(touchY))
-                return i;
-        }
-
-        return -1;
-    }
-
-    private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
-        int index = getTouchedCardSlotIndex(touchY);
-        if (index < 0)
-            return null;
-        else if (allowEmpty || !cardSlots.get(index).isEmpty())
-            return cardSlots.get(index);
-
-        return null;
-    }
-
-    private int getFirstEmptyCardSlotIndex() {
-        for (int i = 0; i < cardSlots.size(); i++) {
-            if (cardSlots.get(i).isEmpty())
-                return i;
-        }
-
-        return -1;
-    }
-
-    private CardSlot getFirstEmptyCardSlot() {
-        int index = getFirstEmptyCardSlotIndex();
-        if (index >= 0)
-            return cardSlots.get(index);
-        else
-            return null;
-    }
-
 //    private void makeSnackbar(View view, String text) {
 //        Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
 //            .setAction("Action", null).show();
@@ -290,14 +255,14 @@ public class MainActivity extends AppCompatActivity {
             return decks.get(categoryIndex).get(0).categoryName;
     }
 
-    private void setTextColors(int colorId) {
+    private void setTextColors(int color) {
         for (CardSlot slot : cardSlots) {
-            slot.setTextColor(ContextCompat.getColor(this, colorId));
+            slot.setTextColor(color);
         }
     }
 
-    private void setTextColor(int textIndex, int colorId) {
-        cardSlots.get(textIndex).setTextColor(ContextCompat.getColor(this, colorId));
+    private void setTextColor(int textIndex, int color) {
+        cardSlots.get(textIndex).setTextColor(color);
     }
 
     private void updateHeaderInfoText() {
@@ -342,13 +307,24 @@ public class MainActivity extends AppCompatActivity {
         //  if shows the second page as the first. Fix this.
         //  (This happens because the faux-first page's first card would be on the real first page)
 
+        int displayedListCardCount = cardCountCap - lockedCardCount;
+        if (displayedListCardCount <= 0) {
+            if (cardCountCap < maxDisplayedCards)
+                return getString(R.string.listUnavailable_elemCountCap);
+            else
+                return getString(R.string.listUnavailable_clearLocks);
+        }
+
         String currentPage = "1";
         if (nextCardInDeck > deckStartIndex) {
-            currentPage = "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / cardCountCap)) + 1);
+            currentPage =
+                "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / displayedListCardCount)) + 1);
             //Log.d("CAGE", "currentPage: " + currentPage);
         }
 
-        String maxPage = "" + ((listSize / cardCountCap) + (listSize % cardCountCap > 0 ? 1 : 0));
+        String maxPage =
+            "" + ((listSize / displayedListCardCount)
+            + (listSize % displayedListCardCount > 0 ? 1 : 0));
 
         if (usingAllCards)
             return String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
@@ -390,7 +366,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         for (int i = 0; i < cardSlotTextViewIds.length; i++) {
-            CardSlot cardSlot = new CardSlot((TextView) findViewById(cardSlotTextViewIds[i]), i);
+            CardSlot cardSlot = new CardSlot(
+                i,
+                (TextView) findViewById(cardSlotTextViewIds[i]),
+                ContextCompat.getColor(this, R.color.colorYellow));
             cardSlots.add(cardSlot);
         }
     }
@@ -435,12 +414,6 @@ public class MainActivity extends AppCompatActivity {
 
         updateDisplayedDeck(category);
 
-        // Checks if the amount of cards we want to show is too large
-        // (more than there are cards to show)
-        if (shownCardCount > displayedCards.size()) {
-            shownCardCount = displayedCards.size();
-        }
-
         if (displayMode != DisplayMode.list && displayedCards != allCards) {
             shuffleDeck(displayedCards);
 
@@ -451,23 +424,23 @@ public class MainActivity extends AppCompatActivity {
 
         switch (displayMode) {
             case list:
-                startOrNextPageInCardList(shownCardCount, shownCardCountChanged);
+                startOrNextPageInCardList(shownCardCountChanged);
                 break;
             case spliceAlt:
-                startOrUpdateSpliceAltMode(displayedCards, shownCardCount);
+                startOrUpdateSpliceAltMode(displayedCards);
                 break;
             case chooseOne:
                 displayChooseOneCards(displayedCards);
                 break;
             default:
-                setAllCardSlotTexts(displayedCards, shownCardCount);
+                setAllCardSlotTexts(displayedCards);
                 break;
         }
     }
 
-    private void setAllCardSlotTexts(List<Card> displayedCards, int shownCardCount) {
+    private void setAllCardSlotTexts(List<Card> displayedCards) {
         for (int i = 0; i < cardSlots.size(); i++) {
-            boolean emptySlot = i >= shownCardCount || i >= displayedCards.size();
+            boolean emptySlot = i >= cardCountCap || i >= displayedCards.size();
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
@@ -477,7 +450,10 @@ public class MainActivity extends AppCompatActivity {
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
         // TODO: Possibility of adding a fundamental in any mode
 
-        if (empty) {
+        if (cardSlot.isLocked()) {
+            return;
+        }
+        else if (empty) {
             cardSlot.clear(false);
             return;
         }
@@ -549,14 +525,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        else if (displayMode == DisplayMode.classic
-                 || displayMode == DisplayMode.splice
-                 || displayMode == DisplayMode.spliceAlt
-                 || displayMode == DisplayMode.fundamentalElem) {
-            addOrSwitchCard(touchY);
-        }
         else if (displayMode != DisplayMode.list) {
-            switchCard(touchY);
+            addOrLockCard(touchY);
         }
     }
 
@@ -585,12 +555,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void addOrSwitchCard(int touchY) {
-        CardSlot firstEmptySlot = getFirstEmptyCardSlot();
-//        if (firstEmptySlot == null || firstEmptySlot.id >= cardCountCap)
-//            return;
+    private int getTouchedCardSlotIndex(int touchY) {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).touchHit(touchY))
+                return i;
+        }
 
+        return -1;
+    }
+
+    private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
+        int index = getTouchedCardSlotIndex(touchY);
+        if (index < 0)
+            return null;
+        else if (allowEmpty || !cardSlots.get(index).isEmpty())
+            return cardSlots.get(index);
+
+        return null;
+    }
+
+    private int getFirstEmptyCardSlotIndex() {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).isEmpty())
+                return i;
+        }
+
+        return -1;
+    }
+
+    private CardSlot getFirstEmptyCardSlot() {
+        int index = getFirstEmptyCardSlotIndex();
+        if (index >= 0)
+            return cardSlots.get(index);
+        else
+            return null;
+    }
+
+    private CardSlot getAvailableCardSlot(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true);
+        CardSlot firstEmptySlot = getFirstEmptyCardSlot();
 
         // Touched nothing and there's an available card slot
         if (cardSlot == null && firstEmptySlot != null && touchY >= firstEmptySlot.getTop()) {
@@ -604,11 +607,26 @@ public class MainActivity extends AppCompatActivity {
         // Touched nothing and there aren't available card slots
         // or card count cap is reached
         if (cardSlot == null || (cardSlot.isEmpty() && cardSlot.id >= cardCountCap))
-            return;
+            return null;
+        else
+            // Otherwise touched an available (empty or non-empty) card slot
+            return cardSlot;
+    }
 
-        // Otherwise touched an available non-empty card slot
+    private void addOrSwitchCard(int touchY) {
+        CardSlot cardSlot = getAvailableCardSlot(touchY);
+        if (cardSlot != null)
+            drawNewCard(cardSlot);
+    }
 
-        drawNewCard(cardSlot);
+    private void addOrLockCard(int touchY) {
+        CardSlot cardSlot = getAvailableCardSlot(touchY);
+        if (cardSlot != null) {
+            if (cardSlot.isEmpty())
+                drawNewCard(cardSlot);
+            else
+                toggleCardLock(cardSlot);
+        }
     }
 
     private void switchCard(int touchY) {
@@ -655,7 +673,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void toggleCardLock(CardSlot cardSlot) {
+        if (cardSlot != null) {
+            cardSlot.lock(!cardSlot.isLocked());
+            lockedCardCount += cardSlot.isLocked() ? 1: -1;
+        }
+    }
+
     private void initListMode() {
+        clearCards();
+
         deckStartIndex = 0;
         if (displayedCategory < 0) {
             listSize = allCards.size();
@@ -671,11 +698,13 @@ public class MainActivity extends AppCompatActivity {
         listModeJustStarted = true;
     }
 
-    private void startOrNextPageInCardList(int shownCardCount, boolean shownCardCountChanged) {
+    private void startOrNextPageInCardList(boolean shownCardCountChanged) {
 
         // Uses allCards deck with the start index and list size set in initListMode()
 
-        boolean outOfCards = nextCardInDeck + shownCardCount >= deckStartIndex + listSize;
+        boolean outOfCards =
+            nextCardInDeck + cardCountCap - lockedCardCount >= deckStartIndex + listSize;
+
         if (listModeJustStarted) {
             //Log.d("CAGE", "LIST MODE. Just started");
             nextCardInDeck = deckStartIndex;
@@ -689,7 +718,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (!shownCardCountChanged) {
             //Log.d("CAGE", "LIST MODE. Next page");
-            nextCardInDeck += shownCardCount;
+            nextCardInDeck += cardCountCap - lockedCardCount;
         }
 
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
@@ -697,34 +726,42 @@ public class MainActivity extends AppCompatActivity {
         //      ". listSize: " + listSize);
 
         updateHeaderInfoText();
-        updateCardList(shownCardCount);
+        updateCardList();
     }
 
     private void prevPageInCardList() {
         boolean atListFirstElement = nextCardInDeck == deckStartIndex;
+        int shownListCardCount = cardCountCap - lockedCardCount;
 
-        nextCardInDeck -= cardCountCap;
+        nextCardInDeck -= shownListCardCount;
         if (nextCardInDeck < deckStartIndex) {
             nextCardInDeck = deckStartIndex;
 
             // Looping around to the last page
             if (atListFirstElement) {
-                int pagesForward = listSize / cardCountCap;
-                if (listSize % cardCountCap == 0)
+                int pagesForward = listSize / shownListCardCount;
+                if (listSize % shownListCardCount == 0)
                     pagesForward--;
 
-                nextCardInDeck += pagesForward * cardCountCap;
+                nextCardInDeck += pagesForward * shownListCardCount;
             }
         }
 
         updateHeaderInfoText();
-        updateCardList(cardCountCap);
+        updateCardList();
     }
 
-    private void updateCardList(int shownCardCount) {
+    private void updateCardList() {
+        int lockedCardsPassed = 0;
+
         for (int i = 0; i < cardSlots.size(); i++) {
-            boolean emptySlot = i >= shownCardCount;
-            int deckIndex = nextCardInDeck + i;
+            if (cardSlots.get(i).isLocked()) {
+                lockedCardsPassed++;
+                continue;
+            }
+
+            boolean emptySlot = i >= cardCountCap;
+            int deckIndex = nextCardInDeck + i - lockedCardsPassed;
 
             if (deckIndex - deckStartIndex >= listSize) {
                 // Out of cards
@@ -753,14 +790,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startOrUpdateSpliceAltMode(List<Card> displayedCards, int shownCardCount) {
+    private void startOrUpdateSpliceAltMode(List<Card> displayedCards) {
         if (spliceAltModeJustStarted) {
             spliceAltModeJustStarted = false;
             takeNewSpliceAltBeginning();
             fab2.show();
         }
 
-        setAllCardSlotTexts(displayedCards, shownCardCount);
+        setAllCardSlotTexts(displayedCards);
     }
 
     private void displayChooseOneCards(List<Card> displayedCards) {
@@ -922,24 +959,20 @@ public class MainActivity extends AppCompatActivity {
             goToHelp();
             return true;
         }
-        else if (isSetModeId(id)) {
+        else if (isSetModeId(id))
             return handleSetDisplayModeOptions(id, item);
-        }
-        else if (isSetCardCountId(id)) {
+        else if (isSetCardCountId(id))
             return handleSetCardCountOptions(id);
-        }
-        else if (handleDisplayedCategoryOptions(id, item)) {
+        else if (handleDisplayedCategoryOptions(id, item))
             return true;
-        }
-        else if (isSetModeId(id)) {
+        else if (isSetModeId(id))
             return handleSetDisplayModeOptions(id, item);
-        }
-        else if (handleClearCardsAction(id)) {
+        else if (handleClearCardsAction(id))
             return true;
-        }
-        else if (handleAutoUpdateResultsActivation(id)) {
+        else if (handleClearLocksAction(id))
             return true;
-        }
+        else if (handleAutoUpdateResultsActivation(id))
+            return true;
 
         return super.onOptionsItemSelected(item);
     }
@@ -1164,8 +1197,40 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleClearCardsAction(int id) {
         if (id == R.id.action_clearCards) {
-            for (CardSlot slot : cardSlots) {
-                slot.clear(true);
+            if (displayMode == DisplayMode.list)
+                return true;
+
+            clearCards();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void clearCards() {
+        int clears = 0;
+        for (int i = 0; i < cardSlots.size(); i++) {
+            boolean cleared = cardSlots.get(i).clear(true);
+            if (cleared)
+                clears++;
+            else if (clears > 0) {
+                cardSlots.get(i - clears).copyFrom(cardSlots.get(i));
+                cardSlots.get(i).clear(false);
+            }
+        }
+    }
+
+    private boolean handleClearLocksAction(int id) {
+        if (id == R.id.action_clearAllLocks) {
+            for (int i = 0; i < cardSlots.size(); i++) {
+                cardSlots.get(i).lock(false);
+            }
+
+            lockedCardCount = 0;
+
+            if (displayMode == DisplayMode.list) {
+                updateCardList();
+                updateHeaderInfoText();
             }
 
             return true;
