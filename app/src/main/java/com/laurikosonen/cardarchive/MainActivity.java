@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Card> fundamentals;
     private List<CardSlot> cardSlots;
     private int displayedCategory = -1;
-    private int displayedCardCount = 10;
+    private int cardCountCap = 10;
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
     private int listSize = 0;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         initDecks();
         initCardSlots();
         displayMode = DisplayMode.classic;
-        displayCards(displayedCardCount, displayedCategory, false);
+        displayCards(cardCountCap, displayedCategory, false);
 
         textColors[0] = R.color.colorGray;
         textColors[1] = R.color.colorPrimary;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!choosingActive) {
-                    displayCards(displayedCardCount, displayedCategory, false);
+                    displayCards(cardCountCap, displayedCategory, false);
                 }
                 else {
                     chooseCard(0);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (displayMode == DisplayMode.spliceAlt) {
                     takeNewSpliceAltBeginning();
-                    displayCards(displayedCardCount, displayedCategory, false);
+                    displayCards(cardCountCap, displayedCategory, false);
                 }
                 else if (displayMode == DisplayMode.chooseOne && choosingActive) {
                     chooseCard(1);
@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (displayMode == DisplayMode.chooseOne) {
             String currentSelection = "" + chosenCards.size();
-            String maxSelection = "" + displayedCardCount;
+            String maxSelection = "" + cardCountCap;
 
             if (usingAllCards)
                 newString = String.format(getString(R.string.allCatAndSelNum), currentSelection, maxSelection);
@@ -344,11 +344,11 @@ public class MainActivity extends AppCompatActivity {
 
         String currentPage = "1";
         if (nextCardInDeck > deckStartIndex) {
-            currentPage = "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / displayedCardCount)) + 1);
+            currentPage = "" + ((int) (0.5f + ((nextCardInDeck - deckStartIndex) / cardCountCap)) + 1);
             //Log.d("CAGE", "currentPage: " + currentPage);
         }
 
-        String maxPage = "" + ((listSize / displayedCardCount) + (listSize % displayedCardCount > 0 ? 1 : 0));
+        String maxPage = "" + ((listSize / cardCountCap) + (listSize % cardCountCap > 0 ? 1 : 0));
 
         if (usingAllCards)
             return String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
@@ -389,8 +389,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.cardSlot10
         };
 
-        for (int id : cardSlotTextViewIds) {
-            CardSlot cardSlot = new CardSlot((TextView) findViewById(id));
+        for (int i = 0; i < cardSlotTextViewIds.length; i++) {
+            CardSlot cardSlot = new CardSlot((TextView) findViewById(cardSlotTextViewIds[i]), i);
             cardSlots.add(cardSlot);
         }
     }
@@ -471,14 +471,14 @@ public class MainActivity extends AppCompatActivity {
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
-        nextCardInDeck = displayedCardCount;
+        nextCardInDeck = cardCountCap;
     }
 
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
         // TODO: Possibility of adding a fundamental in any mode
 
         if (empty) {
-            cardSlot.clear();
+            cardSlot.clear(false);
             return;
         }
 
@@ -586,8 +586,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addOrSwitchCard(int touchY) {
-        CardSlot cardSlot = getTouchedCardSlot(touchY, true);
         CardSlot firstEmptySlot = getFirstEmptyCardSlot();
+//        if (firstEmptySlot == null || firstEmptySlot.id >= cardCountCap)
+//            return;
+
+        CardSlot cardSlot = getTouchedCardSlot(touchY, true);
 
         // Touched nothing and there's an available card slot
         if (cardSlot == null && firstEmptySlot != null && touchY >= firstEmptySlot.getTop()) {
@@ -597,11 +600,13 @@ public class MainActivity extends AppCompatActivity {
         else if (cardSlot != null && cardSlot.isEmpty()) {
             cardSlot = firstEmptySlot;
         }
+
         // Touched nothing and there aren't available card slots
-        else if (cardSlot == null)
+        // or card count cap is reached
+        if (cardSlot == null || (cardSlot.isEmpty() && cardSlot.id >= cardCountCap))
             return;
 
-        // Otherwise touched a non-empty card slot
+        // Otherwise touched an available non-empty card slot
 
         drawNewCard(cardSlot);
     }
@@ -631,19 +636,19 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         if (cardSlotIndex == cardSlots.size() - 1) {
-            cardSlots.get(cardSlotIndex).clear();
+            cardSlots.get(cardSlotIndex).clear(true);
         }
         else {
             for (int i = cardSlotIndex + 1; i < cardSlots.size(); i++) {
                 if (cardSlots.get(i).isEmpty()) {
-                    cardSlots.get(i - 1).clear();
+                    cardSlots.get(i - 1).clear(false);
                     break;
                 }
                 else {
                     cardSlots.get(i - 1).copyFrom(cardSlots.get(i));
 
                     if (i == cardSlots.size() - 1) {
-                        cardSlots.get(i).clear();
+                        cardSlots.get(i).clear(false);
                     }
                 }
             }
@@ -698,22 +703,22 @@ public class MainActivity extends AppCompatActivity {
     private void prevPageInCardList() {
         boolean atListFirstElement = nextCardInDeck == deckStartIndex;
 
-        nextCardInDeck -= displayedCardCount;
+        nextCardInDeck -= cardCountCap;
         if (nextCardInDeck < deckStartIndex) {
             nextCardInDeck = deckStartIndex;
 
             // Looping around to the last page
             if (atListFirstElement) {
-                int pagesForward = listSize / displayedCardCount;
-                if (listSize % displayedCardCount == 0)
+                int pagesForward = listSize / cardCountCap;
+                if (listSize % cardCountCap == 0)
                     pagesForward--;
 
-                nextCardInDeck += pagesForward * displayedCardCount;
+                nextCardInDeck += pagesForward * cardCountCap;
             }
         }
 
         updateHeaderInfoText();
-        updateCardList(displayedCardCount);
+        updateCardList(cardCountCap);
     }
 
     private void updateCardList(int shownCardCount) {
@@ -765,7 +770,7 @@ public class MainActivity extends AppCompatActivity {
             if (chosenCards.size() == 0) {
                 updateProgressBar(true, false, 0);
             }
-            else if (chosenCards.size() >= displayedCardCount) {
+            else if (chosenCards.size() >= cardCountCap) {
                 finishChooseOneMode(0);
             }
 
@@ -791,14 +796,14 @@ public class MainActivity extends AppCompatActivity {
         chosenCards.add(chooseOneCards.get(choice));
         setTextColors(textColors[0]);
 
-        if (chosenCards.size() >= displayedCardCount) {
-            finishChooseOneMode(displayedCardCount);
+        if (chosenCards.size() >= cardCountCap) {
+            finishChooseOneMode(cardCountCap);
         }
         else {
             updateProgressBar(false, false, chosenCards.size());
 
             // Choosing continues until all choices have been made
-            displayCards(displayedCardCount, displayedCategory, false);
+            displayCards(cardCountCap, displayedCategory, false);
         }
     }
 
@@ -832,13 +837,13 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("CAGE", "Updating progress: " + progress);
         if (initialize) {
             progressBar.setMin(0);
-            progressBar.setMax(displayedCardCount);
+            progressBar.setMax(cardCountCap);
 
             if (progress == -1)
                 progress = progressBar.getProgress();
 
-            if (progress > displayedCardCount)
-                progress = displayedCardCount;
+            if (progress > cardCountCap)
+                progress = cardCountCap;
 
             progressBar.setProgress(progress);
             setProgressBarActive(true);
@@ -869,7 +874,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
         MenuItem menuItem = menu.findItem(R.id.submenu_cardCount);
-        menuItem.setTitle(String.format(getString(R.string.action_cardCount), displayedCardCount));
+        menuItem.setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
 
         currentDisplayedDisplayModeItem = menu.findItem(R.id.action_setMode_classic);
         currentDisplayedDisplayModeItem.setEnabled(false);
@@ -926,6 +931,12 @@ public class MainActivity extends AppCompatActivity {
         else if (handleDisplayedCategoryOptions(id, item)) {
             return true;
         }
+        else if (isSetModeId(id)) {
+            return handleSetDisplayModeOptions(id, item);
+        }
+        else if (handleClearCardsAction(id)) {
+            return true;
+        }
         else if (handleAutoUpdateResultsActivation(id)) {
             return true;
         }
@@ -935,35 +946,35 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean setDisplayedCardCount(boolean increase, int min, int max, MenuItem item) {
         if (increase) {
-            displayedCardCount++;
-            if (displayedCardCount > max) {
-                displayedCardCount = min;
+            cardCountCap++;
+            if (cardCountCap > max) {
+                cardCountCap = min;
             }
         }
         else {
-            displayedCardCount--;
-            if (displayedCardCount < min) {
-                displayedCardCount = max;
+            cardCountCap--;
+            if (cardCountCap < min) {
+                cardCountCap = max;
             }
         }
 
-        item.setTitle(String.format(getString(R.string.action_cardCount), displayedCardCount));
+        item.setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
         return true;
     }
 
     private boolean setDisplayedCardCount(int value, int min, int max) {
         if (value >= min && value <= max) {
-            displayedCardCount = value;
+            cardCountCap = value;
 
             if (menu != null) {
                 menu.findItem(R.id.submenu_cardCount).
-                    setTitle(String.format(getString(R.string.action_cardCount), displayedCardCount));
+                    setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
             }
 
             if (displayMode == DisplayMode.chooseOne) {
                 if (choosingActive) {
-                    if (displayedCardCount <= chosenCards.size())
-                        finishChooseOneMode(displayedCardCount);
+                    if (cardCountCap <= chosenCards.size())
+                        finishChooseOneMode(cardCountCap);
                     else
                         updateProgressBar(true, false, -1);
                 }
@@ -972,7 +983,7 @@ public class MainActivity extends AppCompatActivity {
                 updateHeaderInfoText();
 
                 if (autoUpdateResults || displayMode == DisplayMode.list)
-                    displayCards(displayedCardCount, displayedCategory, true);
+                    displayCards(cardCountCap, displayedCategory, true);
             }
 
             return true;
@@ -994,11 +1005,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (displayMode == DisplayMode.list) {
                 initListMode();
-                displayCards(displayedCardCount, displayedCategory, false);
+                displayCards(cardCountCap, displayedCategory, false);
             }
             else if (displayMode != DisplayMode.fundamentals) {
                 if (autoUpdateResults) {
-                    displayCards(displayedCardCount, displayedCategory, false);
+                    displayCards(cardCountCap, displayedCategory, false);
                 }
                 else {
                     updateDisplayedDeck(displayedCategory);
@@ -1036,7 +1047,7 @@ public class MainActivity extends AppCompatActivity {
             initSpliceAltMode();
         }
 
-        displayCards(displayedCardCount, displayedCategory, false);
+        displayCards(cardCountCap, displayedCategory, false);
 
         return true;
     }
@@ -1146,6 +1157,18 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayedCategory(item, 11);
             case R.id.action_displayCategory12:
                 return setDisplayedCategory(item, 12);
+        }
+
+        return false;
+    }
+
+    private boolean handleClearCardsAction(int id) {
+        if (id == R.id.action_clearCards) {
+            for (CardSlot slot : cardSlots) {
+                slot.clear(true);
+            }
+
+            return true;
         }
 
         return false;

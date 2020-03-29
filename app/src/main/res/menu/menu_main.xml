@@ -86,6 +86,10 @@
         </menu>
     </item>
     <item
+        android:id="@+id/action_clearCards"
+        android:title="@string/action_clearCards"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_autoUpdateResults"
         android:title="@string/action_autoUpdateResults"
         android:checkable="true"

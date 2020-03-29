@@ -3,6 +3,7 @@ package com.laurikosonen.cardarchive;
 import android.widget.TextView;
 
 public class CardSlot {
+    public int id;
     public Card card1;
     public Card card2;
     public boolean locked;
@@ -10,8 +11,9 @@ public class CardSlot {
 
     private TextView textView;
 
-    public CardSlot(TextView textView) {
+    public CardSlot(TextView textView, int id) {
         this.textView = textView;
+        this.id = id;
     }
 
     public boolean isEmpty() {
@@ -47,11 +49,13 @@ public class CardSlot {
         setText(cardSlot.getText());
     }
 
-    public void clear() {
-        card1 = null;
-        card2 = null;
-        locked = false;
-        avoided = false;
-        setText("");
+    public void clear(boolean obeyLock) {
+        if (!obeyLock || (!locked && !avoided)) {
+            card1 = null;
+            card2 = null;
+            locked = false;
+            avoided = false;
+            setText("");
+        }
     }
 }

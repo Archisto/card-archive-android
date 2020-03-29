@@ -3,6 +3,7 @@
     <string name="app_name_full">Card Archive: Game Elements</string>
     <string name="title_activity_help">Help</string>
     <string name="action_settings">Settings</string>
+    <string name="action_clearCards">Clear Results</string>
     <string name="action_autoUpdateResults">Auto-Update Results</string>
     <string name="cardSlotCategory">[%s]</string>
     <string name="cardSlotSpliceCategory">[%s+%s]</string>
@@ -15,7 +16,7 @@
     <string name="catAndSelNum">Category: %s - %s/%s</string>
     <string name="catAndPageNum">Category: %s - Page %s/%s</string>
     <string name="fundamentalCount">Fundamentals - %s Elements</string>
-    <string name="action_cardCount">Card Count: %d</string>
+    <string name="action_cardCount">Element Count Cap: %d</string>
     <string name="action_useCategory">> %s</string>
     <string name="action_useAllCategories">Use All Categories</string>
     <string name="mode_classic">Classic</string>
