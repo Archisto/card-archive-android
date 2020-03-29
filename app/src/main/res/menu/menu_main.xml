@@ -90,8 +90,8 @@
         android:title="@string/action_clearCards"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_clearAllLocks"
-        android:title="@string/action_clearAllLocks"
+        android:id="@+id/action_clearLocks"
+        android:title="@string/action_clearLocks"
         app:showAsAction="never" />
 <!--    <item-->
 <!--        android:id="@+id/action_keepResultCategoriesToggle"-->

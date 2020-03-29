@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
             CardSlot cardSlot = new CardSlot(
                 i,
                 (TextView) findViewById(cardSlotTextViewIds[i]),
-                ContextCompat.getColor(this, R.color.colorYellow));
+                ContextCompat.getColor(this, R.color.colorLockBackground));
             cardSlots.add(cardSlot);
         }
     }
@@ -1269,7 +1269,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean handleClearLocksAction(int id) {
-        if (id == R.id.action_clearAllLocks) {
+        if (id == R.id.action_clearLocks) {
             for (int i = 0; i < cardSlots.size(); i++) {
                 cardSlots.get(i).lock(false);
             }

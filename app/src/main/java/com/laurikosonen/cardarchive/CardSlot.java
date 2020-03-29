@@ -9,14 +9,18 @@ public class CardSlot {
 
     private TextView textView;
     private boolean locked;
-    private int defaultColor;
-    private int lockColor;
+    private int defaultTextColor;
+    private int defaultBackgroundColor;
+//    private int lockTextColor;
+    private int lockBackgroundColor;
 
-    public CardSlot( int id,TextView textView, int lockColor) {
+    public CardSlot( int id, TextView textView, int lockBackgroundColor) {
         this.id = id;
         this.textView = textView;
-        defaultColor = getTextColor();
-        this.lockColor = lockColor;
+        defaultTextColor = getTextColor();
+        defaultBackgroundColor = 0;
+//        this.lockTextColor = lockTextColor;
+        this.lockBackgroundColor = lockBackgroundColor;
     }
 
     public boolean isEmpty() {
@@ -58,17 +62,25 @@ public class CardSlot {
         textView.setTextColor(color);
     }
 
+    public void setBackgroundColor(int color) {
+        textView.setBackgroundColor(color);
+    }
+
     public void lock(boolean enable) {
         locked = enable;
-        if (locked)
-            setTextColor(lockColor);
-        else
-            setTextColor(defaultColor);
+        if (locked) {
+//            setTextColor(lockTextColor);
+            setBackgroundColor(lockBackgroundColor);
+        }
+        else {
+//            setTextColor(defaultTextColor);
+            setBackgroundColor(defaultBackgroundColor);
+        }
     }
 
     public void copyFrom(CardSlot cardSlot) {
         setCards(cardSlot.card1, cardSlot.card2);
-        locked = cardSlot.locked;
+        lock(cardSlot.locked);
         setText(cardSlot.getText());
         setTextColor(cardSlot.getTextColor());
     }
@@ -79,7 +91,8 @@ public class CardSlot {
             card2 = null;
             locked = false;
             setText("");
-            setTextColor(defaultColor);
+            setTextColor(defaultTextColor);
+            setBackgroundColor(defaultBackgroundColor);
             return true;
         }
 
