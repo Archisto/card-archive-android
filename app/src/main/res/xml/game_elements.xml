@@ -3,7 +3,7 @@
     <category id="0" name="World" shortName="Wld">
         <element>
             <name>Open world</name>
-            <firstHalf type="verb">Open</firstHalf>
+            <firstHalf type="adjective">Open</firstHalf>
             <secondHalf the="true">
                 <singular>world</singular>
                 <plural>worlds</plural>
@@ -11,9 +11,17 @@
         </element>
         <element>
             <name>Exploration</name>
-            <firstHalf type="noun" preference="singular">Exploration</firstHalf>
+            <firstHalf type="verb">Exploring</firstHalf>
             <secondHalf the="false">
                 <singular>exploration</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Interconnected areas</name>
+            <firstHalf type="adjective">Interconnected</firstHalf>
+            <secondHalf the="false">
+                <singular>area</singular>
+                <plural>areas</plural>
             </secondHalf>
         </element>
         <element>
@@ -26,7 +34,7 @@
         </element>
         <element>
             <name>Day-night cycle</name>
-            <firstHalf type="adjective">Day-night</firstHalf>
+            <firstHalf type="noun">Day-night</firstHalf>
             <secondHalf the="false">
                 <singular>cycle</singular>
             </secondHalf>
@@ -55,7 +63,7 @@
         </element>
         <element>
             <name>Grid</name>
-            <firstHalf type="adjective">Grid</firstHalf>
+            <firstHalf type="noun">Grid</firstHalf>
             <secondHalf the="true">
                 <plural>grid</plural>
             </secondHalf>
@@ -753,6 +761,20 @@
             </secondHalf>
         </element>
         <element>
+            <name>Massively multiplayer online</name>
+            <firstHalf type="adjective">Online</firstHalf>
+            <secondHalf the="false">
+                <singular>online</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Ranked multiplayer</name>
+            <firstHalf type="adjective">Ranked</firstHalf>
+            <secondHalf the="false">
+                <singular>multiplayer</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Co-op/versus game</name>
             <firstHalf type="adjective">Co-op/versus</firstHalf>
             <secondHalf the="false">
@@ -958,6 +980,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Crew</name>
+            <firstHalf type="noun">Crew</firstHalf>
+            <secondHalf the="false">
+                <singular>crew</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Innocent civilians</name>
             <firstHalf type="adjective">Innocent</firstHalf>
             <secondHalf the="false">
@@ -985,6 +1014,13 @@
             <firstHalf type="adjective">Secret</firstHalf>
             <secondHalf the="false">
                 <singular>society</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Conspiracy</name>
+            <firstHalf type="noun">Conspiracy</firstHalf>
+            <secondHalf the="false">
+                <singular>conspiracy</singular>
             </secondHalf>
         </element>
         <element>
@@ -1202,6 +1238,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Ensuring systems run on time</name>
+            <firstHalf type="verb">Ensuring</firstHalf>
+            <secondHalf the="false">
+                <singular>in a hurry</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Rerouting power to different systems</name>
             <firstHalf type="verb">Rerouting power to</firstHalf>
             <secondHalf the="false">
@@ -1300,14 +1343,6 @@
                 <plural>remain as parts of the environment</plural>
             </secondHalf>
         </element>
-        <element>
-            <name>Remote-controlled objects</name>
-            <firstHalf type="adjective">Remote-controlled</firstHalf>
-            <secondHalf the="false">
-                <singular>object</singular>
-                <plural>objects</plural>
-            </secondHalf>
-        </element>
     </category>
     <category id="4" name="Interaction" shortName="IAct">
         <element>
@@ -1315,6 +1350,27 @@
             <firstHalf type="verb" preference="plural">Interacting with</firstHalf>
             <secondHalf the="false">
                 <singular>interaction</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Physics-based gameplay</name>
+            <firstHalf type="adjective">Physics-based</firstHalf>
+            <secondHalf the="false">
+                <singular>gameplay</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unusual gravity</name>
+            <firstHalf type="adjective">Unusual</firstHalf>
+            <secondHalf the="false">
+                <singular>gravity</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Fall damage</name>
+            <firstHalf type="verb">Falling</firstHalf>
+            <secondHalf the="false">
+                <singular>damage</singular>
             </secondHalf>
         </element>
         <element>
@@ -1455,40 +1511,19 @@
             </secondHalf>
         </element>
         <element>
-            <name>Physics-based gameplay</name>
-            <firstHalf type="adjective">Physics-based</firstHalf>
+            <name>Stacking objects</name>
+            <firstHalf type="verb">Stacking</firstHalf>
             <secondHalf the="false">
-                <singular>gameplay</singular>
+                <singular>stack</singular>
+                <plural>stacks</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Unusual gravity</name>
-            <firstHalf type="adjective">Unusual</firstHalf>
+            <name>Remote-controlled objects</name>
+            <firstHalf type="adjective">Remote-controlled</firstHalf>
             <secondHalf the="false">
-                <singular>gravity</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Fall damage</name>
-            <firstHalf type="verb">Falling</firstHalf>
-            <secondHalf the="false">
-                <singular>damage</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being hit by a falling object</name>
-            <firstHalf type="adjective" preference="plural">Dangerous</firstHalf>
-            <secondHalf the="false">
-                <singular>a  falling object</singular>
-                <plural>falling objects</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Objects bounce off surfaces</name>
-            <firstHalf type="verb">Objects bounce off</firstHalf>
-            <secondHalf the="false">
-                <singular>a surface</singular>
-                <plural>surfaces</plural>
+                <singular>object</singular>
+                <plural>objects</plural>
             </secondHalf>
         </element>
         <element>
@@ -1497,6 +1532,14 @@
             <secondHalf the="false">
                 <singular>tries to escape</singular>
                 <plural>try to escape</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Objects bounce off surfaces</name>
+            <firstHalf type="verb">Objects bounce off</firstHalf>
+            <secondHalf the="false">
+                <singular>a surface</singular>
+                <plural>surfaces</plural>
             </secondHalf>
         </element>
         <element>
@@ -1579,6 +1622,14 @@
             <firstHalf type="noun" preference="singular">Noise</firstHalf>
             <secondHalf the="false">
                 <singular>attention</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being hit by a falling object</name>
+            <firstHalf type="adjective" preference="plural">Dangerous</firstHalf>
+            <secondHalf the="false">
+                <singular>a  falling object</singular>
+                <plural>falling objects</plural>
             </secondHalf>
         </element>
         <element>
@@ -1897,10 +1948,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>A character/an object can go through walls</name>
-            <firstHalf type="noun" preference="singular">A character/an object</firstHalf>
+            <name>Going through walls</name>
+            <firstHalf type="noun" preference="singular">Going through</firstHalf>
             <secondHalf the="false">
-                <singular>can go through walls</singular>
+                <singular>through walls</singular>
             </secondHalf>
         </element>
         <element>
@@ -1959,8 +2010,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Characters/objects can fuse and form a single entity</name>
-            <firstHalf type="noun" preference="plural">Characters/objects</firstHalf>
+            <name>Characters or objects can fuse and form a single entity</name>
+            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
             <secondHalf the="false">
                 <singular>fusion</singular>
             </secondHalf>
@@ -1988,7 +2039,7 @@
         </element>
         <element>
             <name>Photography</name>
-            <firstHalf type="noun" preference="singular">Photography</firstHalf>
+            <firstHalf type="verb">Taking pictures of</firstHalf>
             <secondHalf the="false">
                 <singular>photography</singular>
             </secondHalf>
@@ -2296,6 +2347,13 @@
             <firstHalf type="verb">Diving</firstHalf>
             <secondHalf the="false">
                 <singular>diving</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Skydiving</name>
+            <firstHalf type="verb">Skydiving</firstHalf>
+            <secondHalf the="false">
+                <singular>skydiving</singular>
             </secondHalf>
         </element>
         <element>
@@ -2832,6 +2890,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Missing piece</name>
+            <firstHalf type="adjective">Missing</firstHalf>
+            <secondHalf the="false">
+                <singular>piece</singular>
+                <plural>pieces</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Deciphering clues</name>
             <firstHalf type="verb">Deciphering</firstHalf>
             <secondHalf the="false">
@@ -2840,10 +2906,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Hidden roles</name>
-            <firstHalf type="adjective">Hidden</firstHalf>
+            <name>Codes and encrypted messages</name>
+            <firstHalf type="noun" preference="plural">Code</firstHalf>
             <secondHalf the="false">
-                <plural>roles</plural>
+                <singular>an encrypted message</singular>
+                <plural>encrypted messages</plural>
             </secondHalf>
         </element>
         <element>
@@ -2855,11 +2922,24 @@
             </secondHalf>
         </element>
         <element>
-            <name>Codes and encrypted messages</name>
-            <firstHalf type="noun" preference="plural">Code</firstHalf>
+            <name>Hidden roles</name>
+            <firstHalf type="adjective">Hidden</firstHalf>
             <secondHalf the="false">
-                <singular>an encrypted message</singular>
-                <plural>encrypted messages</plural>
+                <plural>roles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Real-time with pause</name>
+            <firstHalf type="adjective">Real-time</firstHalf>
+            <secondHalf the="false">
+                <singular>pause</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Command and execution phases</name>
+            <firstHalf type="adjective">Different phases of</firstHalf>
+            <secondHalf the="false">
+                <plural>commands and execution</plural>
             </secondHalf>
         </element>
         <element>
@@ -2969,14 +3049,6 @@
             <firstHalf type="verb">Making</firstHalf>
             <secondHalf the="false">
                 <plural>connection</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Missing piece</name>
-            <firstHalf type="adjective">Missing</firstHalf>
-            <secondHalf the="false">
-                <singular>piece</singular>
-                <plural>pieces</plural>
             </secondHalf>
         </element>
         <element>
@@ -3189,17 +3261,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Phone/walkie-talkie</name>
-            <firstHalf type="noun" preference="singular">Phone/walkie-talkie</firstHalf>
+            <name>Blocks</name>
+            <firstHalf type="noun" preference="plural">Blocks</firstHalf>
             <secondHalf the="false">
-                <singular>phone/walkie-talkie</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Binoculars/spyglass</name>
-            <firstHalf type="noun" preference="singular">Binoculars/spyglass</firstHalf>
-            <secondHalf the="false">
-                <singular>binoculars/spyglass</singular>
+                <singular>block</singular>
+                <plural>blocks</plural>
             </secondHalf>
         </element>
         <element>
@@ -3231,6 +3297,20 @@
             <secondHalf the="false">
                 <singular>tool</singular>
                 <plural>tools</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Binoculars/spyglass</name>
+            <firstHalf type="noun" preference="singular">Binoculars/spyglass</firstHalf>
+            <secondHalf the="false">
+                <singular>binoculars/spyglass</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Phone/walkie-talkie</name>
+            <firstHalf type="noun" preference="singular">Phone/walkie-talkie</firstHalf>
+            <secondHalf the="false">
+                <singular>phone/walkie-talkie</singular>
             </secondHalf>
         </element>
         <element>
@@ -3370,7 +3450,7 @@
         </element>
         <element>
             <name>Combining items with different stats and features</name>
-            <firstHalf type="verb">Combining items</firstHalf>
+            <firstHalf type="verb">Combining</firstHalf>
             <secondHalf the="false">
                 <plural>with different stats and features</plural>
             </secondHalf>
@@ -4033,7 +4113,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Seeing characters/objects through walls</name>
+            <name>Seeing characters or objects through walls</name>
             <firstHalf type="verb">Seeing</firstHalf>
             <secondHalf the="false">
                 <plural>through walls</plural>
@@ -4055,7 +4135,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Illusions/hallucinations</name>
+            <name>Illusions or hallucinations</name>
             <firstHalf type="verb">Illusionary</firstHalf>
             <secondHalf the="false">
                 <singular>illusion</singular>
@@ -4414,6 +4494,13 @@
             <firstHalf type="adjective">Realistic</firstHalf>
             <secondHalf the="false">
                 <singular>realism</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Paranoia</name>
+            <firstHalf type="adjective">Paranoid</firstHalf>
+            <secondHalf the="false">
+                <singular>paranoia</singular>
             </secondHalf>
         </element>
         <element>
