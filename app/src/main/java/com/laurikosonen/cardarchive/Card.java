@@ -38,6 +38,8 @@ public class Card {
         if (first) {
             if (firstHalf != null)
                 result = firstHalf;
+            else
+                result = name.charAt(0) + name.substring(1).toLowerCase();
         }
         else if (secondHalfSingular != null || secondHalfPlural != null) {
             // Singular, no other option
@@ -56,6 +58,9 @@ public class Card {
             else {
                 result = secondHalfPlural;
             }
+        }
+        else {
+            result = name.toLowerCase();
         }
 
         return result;

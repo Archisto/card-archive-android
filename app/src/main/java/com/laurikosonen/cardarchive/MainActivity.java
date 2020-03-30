@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showCategoriesToggle;
     //private int mainTextColor;
+    private int spliceBenchColor;
     private boolean listModeJustStarted;
     private boolean spliceAltModeJustStarted;
     private boolean showCategories = true;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         drawCards(displayedCategory, false);
 
         //mainTextColor = ContextCompat.getColor(this, R.color.colorGray);
+        spliceBenchColor = ContextCompat.getColor(this, R.color.colorAccent);
 
         headerInfoText = (TextView) findViewById(R.id.headerInfo);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
@@ -485,6 +487,16 @@ public class MainActivity extends AppCompatActivity {
         cardSlot.setText(text.toString(), categoryTagLength);
     }
 
+    private void drawNewCard(CardSlot cardSlot) {
+        // Note: Skips one index (e.g. from 9 to 11) because
+        // it's set here and not after setCardSlotText()
+        nextCardInDeck++;
+        if (nextCardInDeck >= displayedCards.size())
+            nextCardInDeck = 0; // TODO: No card duplication
+
+        setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+    }
+
     private void showOrHideCategories(boolean showCategories) {
         if (spliceBenchEnabled)
             showOrHideCategory(spliceBench, showCategories);
@@ -727,16 +739,6 @@ public class MainActivity extends AppCompatActivity {
 
         //makeSnackbar(v, "Switched " + cardSlot.getText().toString());
         drawNewCard(cardSlot);
-    }
-
-    private void drawNewCard(CardSlot cardSlot) {
-        // Note: Skips one index (e.g. from 9 to 11) because
-        // it's set here and not after setCardSlotText()
-        nextCardInDeck++;
-        if (nextCardInDeck >= displayedCards.size())
-            nextCardInDeck = 0; // TODO: No card duplication
-
-        setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
     }
 
     private void removeCardOrEditLock(int cardSlotIndex) {
@@ -994,7 +996,7 @@ public class MainActivity extends AppCompatActivity {
             moveCardsDown();
             updateCardSlotText(spliceBench);
             cardSlots.get(0).lock(true);
-            spliceBench.lock(true);
+            spliceBench.setBackgroundColor(spliceBenchColor);
         }
         else {
             spliceBench.lock(false);
