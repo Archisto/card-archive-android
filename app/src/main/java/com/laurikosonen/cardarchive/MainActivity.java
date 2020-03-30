@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,23 +22,18 @@ public class MainActivity extends AppCompatActivity {
 
     private final int minDisplayedCards = 1;
     private final int maxDisplayedCards = 10;
-    private final int cardsToChooseFromAmount = 3;
     private int maxTouchDuration = 30;
 
     private View mainView;
     private Menu menu;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
-    private FloatingActionButton fab3;
-    private ProgressBar progressBar;
     private TextView headerInfoText;
 
     private List<List<Card>> decks;
     private List<Card> allCards;
     private List<Card> allCardsShuffled;
     private List<Card> displayedCards;
-    private List<Card> chooseOneCards;
-    private List<Card> chosenCards;
     private List<Card> fundamentals;
     private List<CardSlot> cardSlots;
     private int displayedCategory = -1;
@@ -58,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
     //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showCategoriesToggle;
-    private int[] textColors = new int[cardsToChooseFromAmount + 1];
+    //private int mainTextColor;
     private boolean listModeJustStarted;
     private boolean spliceAltModeJustStarted;
-    private boolean choosingActive;
     private boolean showCategories = true;
     private boolean spliceBenchEnabled;
     //private boolean keepResultCategories;
@@ -78,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         list,
         splice,
         spliceAlt,
-        chooseOne,
         fundamentals,
         fundamentalElem
     }
@@ -96,12 +88,7 @@ public class MainActivity extends AppCompatActivity {
         displayMode = DisplayMode.classic;
         drawCards(displayedCategory, false);
 
-        textColors[0] = ContextCompat.getColor(this, R.color.colorGray);
-        textColors[1] = ContextCompat.getColor(this, R.color.colorPrimary);
-        textColors[2] = ContextCompat.getColor(this, R.color.colorCyan);
-        textColors[3] = ContextCompat.getColor(this, R.color.colorGreen);
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        //mainTextColor = ContextCompat.getColor(this, R.color.colorGray);
 
         headerInfoText = (TextView) findViewById(R.id.headerInfo);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
@@ -139,12 +126,7 @@ public class MainActivity extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!choosingActive) {
-                    drawCards(displayedCategory, false);
-                }
-                else {
-                    chooseCard(0);
-                }
+                drawCards(displayedCategory, false);
             }
         });
 
@@ -159,24 +141,10 @@ public class MainActivity extends AppCompatActivity {
                     takeNewSpliceAltBeginning();
                     drawCards(displayedCategory, false);
                 }
-                else if (displayMode == DisplayMode.chooseOne && choosingActive) {
-                    chooseCard(1);
-                }
-            }
-        });
-
-        fab3 = (FloatingActionButton) findViewById(R.id.fab_tertiary);
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (displayMode == DisplayMode.chooseOne && choosingActive) {
-                    chooseCard(2);
-                }
             }
         });
 
         fab2.hide();
-        fab3.hide();
     }
 
     // Alternate way of checking touch. Not as powerful as OnTouchListener.
@@ -290,15 +258,6 @@ public class MainActivity extends AppCompatActivity {
         else if (displayMode == DisplayMode.list) {
             newString = getHeaderInfoListMode(usingAllCards, categoryName);
         }
-        else if (displayMode == DisplayMode.chooseOne) {
-            String currentSelection = "" + chosenCards.size();
-            String maxSelection = "" + cardCountCap;
-
-            if (usingAllCards)
-                newString = String.format(getString(R.string.allCatAndSelNum), currentSelection, maxSelection);
-            else
-                newString = String.format(getString(R.string.catAndSelNum), categoryName, currentSelection, maxSelection);
-        }
         else {
             String cardCount = "" + allCards.size();
             if (!usingAllCards)
@@ -356,9 +315,6 @@ public class MainActivity extends AppCompatActivity {
 
         allCardsShuffled = new ArrayList<>(allCards);
         shuffleDeck(allCardsShuffled);
-
-        chooseOneCards = new ArrayList<>(cardsToChooseFromAmount);
-        chosenCards = new ArrayList<>();
     }
 
     private void initCardSlots() {
@@ -446,9 +402,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case spliceAlt:
                 startOrUpdateSpliceAltMode(displayedCards);
-                break;
-            case chooseOne:
-                displayChooseOneCards(displayedCards);
                 break;
             default:
                 setAllCardSlotTexts(displayedCards);
@@ -597,17 +550,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleCardSlotTouch(int touchY) {
-        if (displayMode == DisplayMode.chooseOne) {
-            if (choosingActive) {
-                int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-                if (cardSlotIndex >= 0 && cardSlotIndex <= 2) {
-                    chooseCard(cardSlotIndex);
-                }
-            }
-        }
-        else {
-            addOrLockCard(touchY);
-        }
+        addOrLockCard(touchY);
     }
 
     private void handleCardSlotLongTouch(int touchY) {
@@ -615,7 +558,7 @@ public class MainActivity extends AppCompatActivity {
         if (spliceBenchEnabled && cardSlotIndex == 0) {
             enableSpliceBench(false);
         }
-        else if (displayMode != DisplayMode.list && displayMode != DisplayMode.chooseOne) {
+        else if (displayMode != DisplayMode.list) {
             if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size())
                 removeCard(cardSlotIndex);
         }
@@ -1045,75 +988,6 @@ public class MainActivity extends AppCompatActivity {
         setAllCardSlotTexts(displayedCards);
     }
 
-    private void displayChooseOneCards(List<Card> displayedCards) {
-        // TODO: Add possibility of more than 3 choices; remove unnecessary fabs
-
-        if (cardsToChooseFromAmount <= displayedCards.size()) {
-            if (chosenCards.size() == 0) {
-                updateProgressBar(true, false, 0);
-            }
-            else if (chosenCards.size() >= cardCountCap) {
-                finishChooseOneMode(0);
-            }
-
-            chooseOneCards.clear();
-            choosingActive = true;
-            fab2.show();
-            fab3.show();
-
-            setTextColor(0, textColors[1]);
-            setTextColor(1, textColors[2]);
-            setTextColor(2, textColors[3]);
-
-            // Sets up three cards from which the user can choose one
-            for (int i = 0; i < cardSlots.size(); i++) {
-                boolean emptySlot = i >= cardsToChooseFromAmount;
-                setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
-                chooseOneCards.add(displayedCards.get(i));
-            }
-        }
-    }
-
-    private void chooseCard(int choice) {
-        chosenCards.add(chooseOneCards.get(choice));
-        setTextColors(textColors[0]);
-
-        if (chosenCards.size() >= cardCountCap) {
-            finishChooseOneMode(cardCountCap);
-        }
-        else {
-            updateProgressBar(false, false, chosenCards.size());
-
-            // Choosing continues until all choices have been made
-            drawCards(displayedCategory, false);
-        }
-    }
-
-    private void finishChooseOneMode(int chosenCardCount) {
-        if (chosenCardCount > 0) {
-            // Shows the chosen cards
-            for (int i = 0; i < cardSlots.size(); i++) {
-                boolean emptySlot = i >= chosenCards.size();
-                setCardSlotText(cardSlots.get(i), chosenCards, i, emptySlot);
-            }
-        }
-
-        updateProgressBar(false, true, 0);
-        resetChooseOneMode(true);
-    }
-
-    private void resetChooseOneMode(boolean keepProgressBarVisible) {
-        choosingActive = false;
-        fab2.hide();
-        fab3.hide();
-        chooseOneCards.clear();
-        chosenCards.clear();
-        setTextColors(textColors[0]);
-
-        if (!keepProgressBarVisible)
-            setProgressBarActive(false);
-    }
-
     private void updateSpliceBench() {
         if (spliceBenchEnabled) {
             spliceBench.copyFrom(cardSlots.get(0));
@@ -1128,42 +1002,6 @@ public class MainActivity extends AppCompatActivity {
             cardSlots.get(0).copyFrom(spliceBench);
             updateCardSlotText(cardSlots.get(0));
         }
-    }
-
-    @TargetApi(26)
-    private void updateProgressBar(boolean initialize, boolean finish, int progress) {
-        //Log.d("CAGE", "Updating progress: " + progress);
-        if (initialize) {
-            progressBar.setMin(0);
-            progressBar.setMax(cardCountCap);
-
-            if (progress == -1)
-                progress = progressBar.getProgress();
-
-            if (progress > cardCountCap)
-                progress = cardCountCap;
-
-            progressBar.setProgress(progress);
-            setProgressBarActive(true);
-        } else {
-            if (finish) {
-                progressBar.setProgress(progressBar.getMax());
-            }
-            else {
-                progressBar.setProgress(progress);
-            }
-        }
-
-        updateHeaderInfoText();
-    }
-
-    @TargetApi(26)
-    private void setProgressBarActive(boolean active) {
-        int visibility = View.INVISIBLE;
-        if (active)
-            visibility = View.VISIBLE;
-
-        progressBar.setVisibility(visibility);
     }
 
     @Override
@@ -1280,20 +1118,10 @@ public class MainActivity extends AppCompatActivity {
                     setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
             }
 
-            if (displayMode == DisplayMode.chooseOne) {
-                if (choosingActive) {
-                    if (cardCountCap <= chosenCards.size())
-                        finishChooseOneMode(cardCountCap);
-                    else
-                        updateProgressBar(true, false, -1);
-                }
-            }
-            else {
-                updateHeaderInfoText();
+            updateHeaderInfoText();
 
-                if (autoUpdateSettingChanges || displayMode == DisplayMode.list)
-                    drawCards(displayedCategory, true);
-            }
+            if (autoUpdateSettingChanges || displayMode == DisplayMode.list)
+                drawCards(displayedCategory, true);
 
             return true;
         }
@@ -1366,7 +1194,6 @@ public class MainActivity extends AppCompatActivity {
             || id == R.id.action_setMode_list
             || id == R.id.action_setMode_splice
             || id == R.id.action_setMode_spliceAlt
-            || id == R.id.action_setMode_chooseOne
             || id == R.id.action_setMode_fundamentals
             || id == R.id.action_setMode_fundamentalElem;
     }
@@ -1385,10 +1212,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean handleSetDisplayModeOptions(int id, MenuItem item) {
-        if (displayMode == DisplayMode.chooseOne) {
-            resetChooseOneMode(false);
-        }
-
         switch (id) {
             case R.id.action_setMode_classic:
                 return setDisplayMode(item, DisplayMode.classic);
@@ -1398,8 +1221,6 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayMode(item, DisplayMode.splice);
             case R.id.action_setMode_spliceAlt:
                 return setDisplayMode(item, DisplayMode.spliceAlt);
-            case R.id.action_setMode_chooseOne:
-                return setDisplayMode(item, DisplayMode.chooseOne);
             case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
             case R.id.action_setMode_fundamentalElem:

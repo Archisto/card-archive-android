@@ -14,10 +14,8 @@
     <string name="cardSlotSplice">%s %s</string>
     <string name="cardSlotFundElem">(%s) %s</string>
     <string name="allCatAndCardCount">All Categories - %s Elements</string>
-    <string name="allCatAndSelNum">All Categories - %s/%s</string>
     <string name="allCatAndPageNum">All Categories - Page %s/%s</string>
     <string name="catAndCardCount">Category: %s - %s Elements</string>
-    <string name="catAndSelNum">Category: %s - %s/%s</string>
     <string name="catAndPageNum">Category: %s - Page %s/%s</string>
     <string name="fundamentalCount">Fundamentals - %s Elements</string>
     <string name="action_cardCount">Element Count Cap: %d</string>
@@ -27,7 +25,6 @@
     <string name="mode_list">List</string>
     <string name="mode_splice">Splice</string>
     <string name="mode_spliceAlt">Splice Alt</string>
-    <string name="mode_chooseOne">Choose One</string>
     <string name="mode_fundamentals">Fundamentals</string>
     <string name="mode_fundamentalElem">Fundamental + Element</string>
     <string name="modes">Modes</string>
