@@ -83,6 +83,9 @@ public class CardSlot {
     }
 
     public void lock(boolean enable) {
+        if (locked == enable)
+            return;
+
         locked = enable;
         if (locked) {
             //setTextColor(lockTextColor);
