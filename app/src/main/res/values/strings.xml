@@ -29,8 +29,12 @@
     <string name="mode_fundamentalElem">Fundamental + Element</string>
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
+    <string name="tip">Tip</string>
     <string name="listUnavailable_clearLocks">Clear locks to see list</string>
     <string name="listUnavailable_elemCountCap">Increase element count cap to see list</string>
+    <string name="spliceBenchTip_full">Swipe elements left or right to edit</string>
+    <string name="spliceBenchTip_left">Swipe elements left</string>
+    <string name="spliceBenchTip_right">or right to edit</string>
     <string name="spliceSelected_leftSide">Splice left side: \"%s\"</string>
     <string name="spliceSelected_rightSide">Splice right side: \"%s\"</string>
     <string name="help_text">

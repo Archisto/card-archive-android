@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         drawCards(displayedCategory, false);
 
         //mainTextColor = ContextCompat.getColor(this, R.color.colorGray);
-        spliceBenchColor = ContextCompat.getColor(this, R.color.colorAccent);
+        spliceBenchColor = ContextCompat.getColor(this, R.color.colorSpliceBench);
 
         headerInfoText = (TextView) findViewById(R.id.headerInfo);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
@@ -991,9 +991,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSpliceBench() {
+        // TODO: Get rid of spliceBench object and just use cardSlots.get(0)
+
         if (spliceBenchEnabled) {
             spliceBench.copyFrom(cardSlots.get(0));
+
+            Card tipCard = new Card(getString(R.string.spliceBenchTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
+            spliceBench.setCards(tipCard, null);
+
             moveCardsDown();
+            //spliceBench.setText(getString(R.string.spliceBenchTip_full), 0);
             updateCardSlotText(spliceBench);
             cardSlots.get(0).lock(true);
             spliceBench.setBackgroundColor(spliceBenchColor);
