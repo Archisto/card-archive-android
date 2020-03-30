@@ -656,18 +656,19 @@ public class MainActivity extends AppCompatActivity {
         else {
             // Takes the splice origin's card1 and gives it to all unlocked card slots
 
+            spliceBeginning = spliceOrigin.card1;
             Card card2;
 
             for (CardSlot slot : cardSlots) {
                 if (!slot.isEmpty() && !slot.isLocked()) {
                     card2 = slot.card2 == null ? slot.card1 : slot.card2;
-                    slot.setCards(spliceOrigin.card1, card2);
+                    slot.setCards(spliceBeginning, card2);
                     updateCardSlotText(slot);
                 }
             }
 
             Toast.makeText(this,
-                String.format(getString(R.string.spliceSelected_leftSide), spliceOrigin.card1.getNameHalf(true, null)),
+                String.format(getString(R.string.spliceSelected_leftSide), spliceBeginning.getNameHalf(true, null)),
                 Toast.LENGTH_SHORT)
                 .show();
         }
