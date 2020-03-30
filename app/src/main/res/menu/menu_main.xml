@@ -85,7 +85,7 @@
     <item
         android:id="@+id/action_clearCards"
         android:title="@string/action_clearCards"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_clearLocks"
         android:title="@string/action_clearLocks"

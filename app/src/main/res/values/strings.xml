@@ -3,7 +3,7 @@
     <string name="app_name_full">Card Archive: Game Elements</string>
     <string name="title_activity_help">Help</string>
     <string name="action_settings">Settings</string>
-    <string name="action_clearCards">Clear Unlocked Elements</string>
+    <string name="action_clearCards">Clear</string>
     <string name="action_clearLocks">Clear Locks</string>
     <string name="action_spliceBench">Enable Splice Bench</string>
     <string name="action_keepElementCategories">Keep Element Categories</string>
