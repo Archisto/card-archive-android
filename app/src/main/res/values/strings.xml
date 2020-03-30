@@ -3,10 +3,10 @@
     <string name="app_name_full">Card Archive: Game Elements</string>
     <string name="title_activity_help">Help</string>
     <string name="action_settings">Settings</string>
-    <string name="action_clearCards">Clear Unlocked Results</string>
+    <string name="action_clearCards">Clear Unlocked Elements</string>
     <string name="action_clearLocks">Clear Locks</string>
-    <string name="action_keepResultCategories">Keep Result Categories</string>
-    <string name="action_autoUpdateResults">Auto-Update Results</string>
+    <string name="action_keepElementCategories">Keep Element Categories</string>
+    <string name="action_autoUpdateSettingChanges">Auto-Update Setting Changes</string>
     <string name="action_showCategories">Show Category Tags</string>
     <string name="cardSlotCategory">[%s]</string>
     <string name="cardSlotSpliceCategory">[%s+%s]</string>
@@ -31,7 +31,6 @@
     <string name="mode_fundamentalElem">Fundamental + Element</string>
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
-    <string name="cardCountTip">There are %d cards in the currently selected category.</string>
     <string name="listUnavailable_clearLocks">Clear locks to see list</string>
     <string name="listUnavailable_elemCountCap">Increase element count cap to see list</string>
     <string name="spliceSelected_leftSide">Splice left side: \"%s\"</string>
@@ -56,6 +55,22 @@
         "\n- Audio &amp; Visuals: %s elements"
         "\n- Miscellaneous: %s elements"
         "\n\n- Fundamentals: %s"
+
+        "\n\n\nFEATURES"
+        "\n\n- Modes: Classic, List, Splice, Splice Alt, Choose One, Fundamentals,"
+        "Fundamentals+Element"
+        "\n- Tap to lock an element. Works in all modes. Locked results will stay on screen."
+        "\n- Tap again to change lock color. This can be used to separate results into two locked"
+        "and one unlocked group."
+        "\n- Tap a third time to remove lock"
+        "\n- Tap empty space to add an element"
+        "\n- Hold to remove an element"
+        "\n- Press the big blue button to replace all unlocked results and fill empty spaces"
+        "\n- In the two Splice modes, swipe left to copy that result's beginning to all results"
+        "\n- Similarly, swipe right to copy that result's end to all results"
+        "\n- In the drop-down menu, you'll find mode selection, clearing all elements,"
+        "clearing locks, category selection, and more."
+        "\n- Element count can be changed to suit your needs"
 
         <i>"\n\n\n[Exit the help screen with your device's back button.]"</i>
     </string>

@@ -930,7 +930,7 @@
             <name>Temporary alliance against a common threat</name>
             <firstHalf type="adjective">Temporary</firstHalf>
             <secondHalf the="false">
-                <singular>against a common threat</singular>
+                <singular>teamwork</singular>
             </secondHalf>
         </element>
         <element>
@@ -1071,7 +1071,7 @@
         <element>
             <name>Reshaping the environment</name>
             <firstHalf type="verb">Reshaping</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- the="true"? -->
                 <singular>the environment</singular>
             </secondHalf>
         </element>

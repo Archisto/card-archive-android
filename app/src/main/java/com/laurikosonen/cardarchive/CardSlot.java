@@ -15,6 +15,7 @@ public class CardSlot {
     private int lockBackgroundColor1;
     private int defaultBackgroundColor;
     private int lockBackgroundColor2;
+    private int categoryTagLength;
 
     public CardSlot( int id,
                      TextView textView,
@@ -60,8 +61,9 @@ public class CardSlot {
         return textView.getText().toString();
     }
 
-    public void setText(String text) {
+    public void setText(String text, int categoryTagLength) {
         textView.setText(text);
+        this.categoryTagLength = categoryTagLength;
     }
 
     public int getTextColor() {
@@ -74,6 +76,10 @@ public class CardSlot {
 
     public void setBackgroundColor(int color) {
         textView.setBackgroundColor(color);
+    }
+
+    public int getCategoryTagLength() {
+        return categoryTagLength;
     }
 
     public void lock(boolean enable) {
@@ -106,7 +112,7 @@ public class CardSlot {
         setCards(cardSlot.card1, cardSlot.card2);
         lock(cardSlot.locked);
         enableSecondaryLock(cardSlot.secondaryLock);
-        setText(cardSlot.getText());
+        setText(cardSlot.getText(), cardSlot.getCategoryTagLength());
         //setTextColor(cardSlot.getTextColor());
     }
 
@@ -114,7 +120,7 @@ public class CardSlot {
         setCards(cardSlot.card1, cardSlot.card2);
         locked = cardSlot.locked;
         secondaryLock = cardSlot.secondaryLock;
-        setText(cardSlot.getText());
+        setText(cardSlot.getText(), cardSlot.getCategoryTagLength());
     }
 
     public boolean clear(boolean obeyLock) {
@@ -123,7 +129,7 @@ public class CardSlot {
             card2 = null;
             locked = false;
             secondaryLock = false;
-            setText("");
+            setText("", 0);
             //setTextColor(defaultTextColor);
             setBackgroundColor(defaultBackgroundColor);
             return true;

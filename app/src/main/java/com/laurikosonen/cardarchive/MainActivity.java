@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
     //private MenuItem keepResultCategoriesToggle;
-    private MenuItem autoUpdateResultsToggle;
+    private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showCategoriesToggle;
     private int[] textColors = new int[cardsToChooseFromAmount + 1];
     private boolean listModeJustStarted;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean choosingActive;
     private boolean showCategories = true;
     private boolean keepResultCategories = false;
-    private boolean autoUpdateResults = true;
+    private boolean autoUpdateSettingChanges = true;
     private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
@@ -489,16 +489,11 @@ public class MainActivity extends AppCompatActivity {
             text.append(cardSlot.card1.name);
         }
 
-        if (showCategories) {
-            String categoryText = spliceModeActive ?
-                String.format(getString(R.string.cardSlotSpliceCategory),
-                    cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
-                : String.format(getString(R.string.cardSlotCategory),
-                    cardSlot.card1.categoryShortName);
-            text.insert(0, categoryText + " ");
-        }
+        int categoryTagLength = 0;
+        if (showCategories)
+            categoryTagLength = insertCategoryTag(text, cardSlot, spliceModeActive);
 
-        cardSlot.setText(text.toString());
+        cardSlot.setText(text.toString(), categoryTagLength);
     }
 
     private void updateCardSlotText(CardSlot cardSlot) {
@@ -521,53 +516,54 @@ public class MainActivity extends AppCompatActivity {
             text.append(cardSlot.card1.name);
         }
 
-        if (showCategories) {
-            String categoryText = splicedCards ?
-                String.format(getString(R.string.cardSlotSpliceCategory),
-                    cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
-                : String.format(getString(R.string.cardSlotCategory),
-                cardSlot.card1.categoryShortName);
-            text.insert(0, categoryText + " ");
-        }
+        int categoryTagLength = 0;
+        if (showCategories)
+            categoryTagLength = insertCategoryTag(text, cardSlot, splicedCards);
 
-        cardSlot.setText(text.toString());
+        cardSlot.setText(text.toString(), categoryTagLength);
     }
 
     private void showOrHideCategories(boolean showCategories) {
         if (cardSlots.get(0).isEmpty())
             return;
 
-        String categoryString = getString(R.string.cardSlotCategory);
-        boolean categoryShown =
-            cardSlots.get(0).getText().charAt(0) == categoryString.charAt(0);
+        boolean categoryShown = cardSlots.get(0).getCategoryTagLength() > 0;
 
         if (showCategories == categoryShown)
             return;
 
         for (CardSlot cardSlot : cardSlots) {
+            // This is the first empty slot and the ones after it are empty as well
             if (cardSlot.isEmpty())
                 return;
 
             StringBuilder text = new StringBuilder(cardSlot.getText());
-            boolean splicedCards = cardSlot.card2 != null;
 
-            String categoryText = splicedCards ?
+            int categoryTagLength = 0;
+            if (showCategories)
+                categoryTagLength = insertCategoryTag(text, cardSlot, cardSlot.card2 != null);
+            else
+                text.delete(0, cardSlot.getCategoryTagLength());
+
+            cardSlot.setText(text.toString(), categoryTagLength);
+        }
+    }
+
+    private int insertCategoryTag(StringBuilder sb, CardSlot cardSlot, boolean splicedCards) {
+        int categoryTagLength = 0;
+        if (showCategories) {
+            String categoryText = (splicedCards ?
                 String.format(getString(R.string.cardSlotSpliceCategory),
                     cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
                 : String.format(getString(R.string.cardSlotCategory),
-                    cardSlot.card1.categoryShortName);
+                    cardSlot.card1.categoryShortName))
+                + " ";
 
-            if (showCategories) {
-                text.insert(0, categoryText + " ");
-            }
-            else {
-                int categoryEndIndex =
-                    text.indexOf("" + categoryString.charAt(categoryString.length() - 1)) + 2;
-                text.delete(0, categoryEndIndex);
-            }
-
-            cardSlot.setText(text.toString());
+            sb.insert(0, categoryText);
+            categoryTagLength = categoryText.length();
         }
+
+        return categoryTagLength;
     }
 
     private String getSpliceCardDisplayText(CardSlot cardSlot,
@@ -625,53 +621,55 @@ public class MainActivity extends AppCompatActivity {
         boolean spliceModeActive =
             displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
 
-        if (right) {
-            //Log.d("CAGE", "Swiped right");
-
-            if (spliceModeActive) {
-                // Takes the card slot's card2 and gives it to all unlocked card slots
-
-                // If card2 is null, card1 is used instead
-                Card card2 = cardSlot.card2 == null ? cardSlot.card1 : cardSlot.card2;
-
-                for (CardSlot slot : cardSlots) {
-                    if (!slot.isEmpty() && !slot.isLocked()) {
-                        slot.setCards(slot.card1, card2);
-                        updateCardSlotText(slot);
-                    }
-
-                    Toast.makeText(this,
-                        String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
-                        Toast.LENGTH_SHORT)
-                        .show();
-                }
-
-                // Changes both the beginning and the end of the spliced result
-//                if (cardSlot != null) {
-//                    takeNewSpliceAltBeginning();
-//                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
-//                }
-            }
+        if (spliceModeActive) {
+            manualSplice(cardSlot, right);
         }
-        else {
-            if (spliceModeActive) {
-                // Takes the card slot's card1 and gives it to all unlocked card slots
 
-                Card card2;
+        //Log.d("CAGE", "Swiped " + right ? "right" : "left");
+    }
 
-                for (CardSlot slot : cardSlots) {
-                    if (!slot.isEmpty() && !slot.isLocked()) {
-                        card2 = slot.card2 == null ? slot.card1 : slot.card2;
-                        slot.setCards(cardSlot.card1, card2);
-                        updateCardSlotText(slot);
-                    }
+    private void manualSplice(CardSlot spliceOrigin, boolean right) {
+        if (right) {
+            // Takes the splice origin's card2 and gives it to all unlocked card slots
+
+            // If card2 is null, card1 is used instead
+            Card card2 = spliceOrigin.card2 == null ? spliceOrigin.card1 : spliceOrigin.card2;
+
+            for (CardSlot slot : cardSlots) {
+                if (!slot.isEmpty() && !slot.isLocked()) {
+                    slot.setCards(slot.card1, card2);
+                    updateCardSlotText(slot);
                 }
 
                 Toast.makeText(this,
-                    String.format(getString(R.string.spliceSelected_leftSide), cardSlot.card1.getNameHalf(true, null)),
+                    String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
                     Toast.LENGTH_SHORT)
                     .show();
             }
+
+            // Changes both the beginning and the end of the spliced result
+            //                if (cardSlot != null) {
+            //                    takeNewSpliceAltBeginning();
+            //                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
+            //                }
+        }
+        else {
+            // Takes the splice origin's card1 and gives it to all unlocked card slots
+
+            Card card2;
+
+            for (CardSlot slot : cardSlots) {
+                if (!slot.isEmpty() && !slot.isLocked()) {
+                    card2 = slot.card2 == null ? slot.card1 : slot.card2;
+                    slot.setCards(spliceOrigin.card1, card2);
+                    updateCardSlotText(slot);
+                }
+            }
+
+            Toast.makeText(this,
+                String.format(getString(R.string.spliceSelected_leftSide), spliceOrigin.card1.getNameHalf(true, null)),
+                Toast.LENGTH_SHORT)
+                .show();
         }
     }
 
@@ -1124,8 +1122,8 @@ public class MainActivity extends AppCompatActivity {
 //        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
 //        keepResultCategoriesToggle.setChecked(keepResultCategories);
 
-        autoUpdateResultsToggle = menu.findItem(R.id.action_autoUpdateResultsToggle);
-        autoUpdateResultsToggle.setChecked(autoUpdateResults);
+        autoUpdateSettingChangesToggle = menu.findItem(R.id.action_autoUpdateSettingChangesToggle);
+        autoUpdateSettingChangesToggle.setChecked(autoUpdateSettingChanges);
 
         showCategoriesToggle = menu.findItem(R.id.action_showCategoriesToggle);
         showCategoriesToggle.setChecked(showCategories);
@@ -1181,7 +1179,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 //        else if (handleKeepResultCategoriesActivation(id))
 //            return true;
-        else if (handleAutoUpdateResultsActivation(id))
+        else if (handleAutoUpdateSettingChangesActivation(id))
             return true;
         else if (handleShowCategoriesActivation(id))
             return true;
@@ -1227,7 +1225,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 updateHeaderInfoText();
 
-                if (autoUpdateResults || displayMode == DisplayMode.list)
+                if (autoUpdateSettingChanges || displayMode == DisplayMode.list)
                     drawCards(displayedCategory, true);
             }
 
@@ -1253,7 +1251,7 @@ public class MainActivity extends AppCompatActivity {
                 drawCards(displayedCategory, false);
             }
             else if (displayMode != DisplayMode.fundamentals) {
-                if (autoUpdateResults) {
+                if (autoUpdateSettingChanges) {
                     drawCards(displayedCategory, false);
                 }
                 else {
@@ -1448,10 +1446,10 @@ public class MainActivity extends AppCompatActivity {
 //        return false;
 //    }
 
-    private boolean handleAutoUpdateResultsActivation(int id) {
-        if (id == R.id.action_autoUpdateResultsToggle) {
-            autoUpdateResults = !autoUpdateResults;
-            autoUpdateResultsToggle.setChecked(autoUpdateResults);
+    private boolean handleAutoUpdateSettingChangesActivation(int id) {
+        if (id == R.id.action_autoUpdateSettingChangesToggle) {
+            autoUpdateSettingChanges = !autoUpdateSettingChanges;
+            autoUpdateSettingChangesToggle.setChecked(autoUpdateSettingChanges);
             return true;
         }
 
