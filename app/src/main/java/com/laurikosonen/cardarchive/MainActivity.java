@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private final int minDisplayedCards = 1;
     private final int maxDisplayedCards = 10;
     private final int cardsToChooseFromAmount = 3;
+    private int maxTouchDuration = 30;
 
     private View mainView;
     private Menu menu;
@@ -49,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
     private int touchStartX;
     private int touchStartY;
     private int touchDuration;
-    private int maxTouchDuration = 30;
     private int lockedCardCount;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
+    private MenuItem spliceBenchToggle;
     //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showCategoriesToggle;
@@ -62,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean spliceAltModeJustStarted;
     private boolean choosingActive;
     private boolean showCategories = true;
-    private boolean keepResultCategories = false;
+    private boolean spliceBenchEnabled;
+    //private boolean keepResultCategories;
     private boolean autoUpdateSettingChanges = true;
     private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
 
     private Card spliceBeginning;
+    private CardSlot spliceBench;
 
     private enum DisplayMode {
         classic,
@@ -206,13 +209,13 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean swipe(boolean right, int touchX) {
         if (touching && !touchHandled) {
-            int touchXRequiredDifference = 40;
+            int touchXRequiredDistance = 30;
             int difference = touchX - touchStartX;
-            if (right && difference > 0) {
+            if (right && difference > touchXRequiredDistance) {
                 touchHandled = true;
                 return true;
             }
-            else if (!right && difference < 0) {
+            else if (!right && difference < -1 * touchXRequiredDistance) {
                 touchHandled = true;
                 return true;
             }
@@ -381,6 +384,12 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.colorLockBackground2));
             cardSlots.add(cardSlot);
         }
+
+        spliceBench = new CardSlot(
+            0,
+            (TextView) findViewById(cardSlotTextViewIds[0]),
+            ContextCompat.getColor(this, R.color.colorAccent),
+            ContextCompat.getColor(this, R.color.colorGreen));
     }
 
     private void shuffleDeck(List<Card> deck) {
@@ -524,29 +533,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showOrHideCategories(boolean showCategories) {
-        if (cardSlots.get(0).isEmpty())
-            return;
-
-        boolean categoryShown = cardSlots.get(0).getCategoryTagLength() > 0;
-
-        if (showCategories == categoryShown)
-            return;
+        if (spliceBenchEnabled)
+            showOrHideCategory(spliceBench, showCategories);
 
         for (CardSlot cardSlot : cardSlots) {
-            // This is the first empty slot and the ones after it are empty as well
-            if (cardSlot.isEmpty())
-                return;
-
-            StringBuilder text = new StringBuilder(cardSlot.getText());
-
-            int categoryTagLength = 0;
-            if (showCategories)
-                categoryTagLength = insertCategoryTag(text, cardSlot, cardSlot.card2 != null);
-            else
-                text.delete(0, cardSlot.getCategoryTagLength());
-
-            cardSlot.setText(text.toString(), categoryTagLength);
+            showOrHideCategory(cardSlot, showCategories);
         }
+    }
+
+    private void showOrHideCategory(CardSlot cardSlot, boolean showCategories) {
+        if (cardSlot.isEmpty())
+            return;
+
+        StringBuilder text = new StringBuilder(cardSlot.getText());
+
+        int categoryTagLength = 0;
+        if (showCategories)
+            categoryTagLength = insertCategoryTag(text, cardSlot, cardSlot.card2 != null);
+        else
+            text.delete(0, cardSlot.getCategoryTagLength());
+
+        cardSlot.setText(text.toString(), categoryTagLength);
     }
 
     private int insertCategoryTag(StringBuilder sb, CardSlot cardSlot, boolean splicedCards) {
@@ -604,22 +611,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleCardSlotLongTouch(int touchY) {
-        if (displayMode != DisplayMode.list && displayMode != DisplayMode.chooseOne) {
-            int cardSlotIndex = getTouchedCardSlotIndex(touchY);
+        int cardSlotIndex = getTouchedCardSlotIndex(touchY);
+        if (spliceBenchEnabled && cardSlotIndex == 0) {
+            enableSpliceBench(false);
+        }
+        else if (displayMode != DisplayMode.list && displayMode != DisplayMode.chooseOne) {
             if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size())
                 removeCard(cardSlotIndex);
         }
     }
 
     private void handleCardSlotSwipe(boolean right, int touchY) {
-        // TODO: Fix swiping
-
         CardSlot cardSlot = getTouchedCardSlot(touchY, false);
         if (cardSlot == null)
             return;
 
         boolean spliceModeActive =
-            displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
+            spliceBenchEnabled
+            || displayMode == DisplayMode.splice
+            || displayMode == DisplayMode.spliceAlt;
 
         if (spliceModeActive) {
             manualSplice(cardSlot, right);
@@ -630,40 +640,52 @@ public class MainActivity extends AppCompatActivity {
 
     private void manualSplice(CardSlot spliceOrigin, boolean right) {
         if (right) {
-            // Takes the splice origin's card2 and gives it to all unlocked card slots
+            // Takes the splice origin's card2 and gives it to all unlocked card slots.
+            // If Splice Bench is enabled, only it is changed.
 
             // If card2 is null, card1 is used instead
             Card card2 = spliceOrigin.card2 == null ? spliceOrigin.card1 : spliceOrigin.card2;
 
-            for (CardSlot slot : cardSlots) {
-                if (!slot.isEmpty() && !slot.isLocked()) {
-                    slot.setCards(slot.card1, card2);
-                    updateCardSlotText(slot);
-                }
+//            Log.d("CAGE", "Origin card1: " + spliceOrigin.card1 +
+//                ", card2: " + spliceOrigin.card2);
 
-                Toast.makeText(this,
-                    String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
-                    Toast.LENGTH_SHORT)
-                    .show();
+            if (spliceBenchEnabled) {
+                spliceBench.setCards(spliceBench.card1, card2);
+                updateCardSlotText(spliceBench);
+            }
+            else {
+                for (CardSlot slot : cardSlots) {
+                    if (!slot.isEmpty() && !slot.isLocked()) {
+                        slot.setCards(slot.card1, card2);
+                        updateCardSlotText(slot);
+                    }
+                }
             }
 
-            // Changes both the beginning and the end of the spliced result
-            //                if (cardSlot != null) {
-            //                    takeNewSpliceAltBeginning();
-            //                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
-            //                }
+            Toast.makeText(this,
+                String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
+                Toast.LENGTH_SHORT)
+                .show();
         }
         else {
             // Takes the splice origin's card1 and gives it to all unlocked card slots
+            // If Splice Bench is enabled, only it is changed.
 
             spliceBeginning = spliceOrigin.card1;
             Card card2;
 
-            for (CardSlot slot : cardSlots) {
-                if (!slot.isEmpty() && !slot.isLocked()) {
-                    card2 = slot.card2 == null ? slot.card1 : slot.card2;
-                    slot.setCards(spliceBeginning, card2);
-                    updateCardSlotText(slot);
+            if (spliceBenchEnabled) {
+                card2 = spliceBench.card2 == null ? spliceBench.card1 : spliceBench.card2;
+                spliceBench.setCards(spliceBeginning, card2);
+                updateCardSlotText(spliceBench);
+            }
+            else {
+                for (CardSlot slot : cardSlots) {
+                    if (!slot.isEmpty() && !slot.isLocked()) {
+                        card2 = slot.card2 == null ? slot.card1 : slot.card2;
+                        slot.setCards(spliceBeginning, card2);
+                        updateCardSlotText(slot);
+                    }
                 }
             }
 
@@ -685,7 +707,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
         int index = getTouchedCardSlotIndex(touchY);
-        if (index < 0)
+        if (index < 0 || (index == 0 && spliceBenchEnabled))
             return null;
         else if (allowEmpty || !cardSlots.get(index).isEmpty())
             return cardSlots.get(index);
@@ -695,6 +717,9 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFirstEmptyCardSlotIndex() {
         for (int i = 0; i < cardSlots.size(); i++) {
+            if (i == 0 && spliceBenchEnabled)
+                continue;
+
             if (cardSlots.get(i).isEmpty())
                 return i;
         }
@@ -712,6 +737,10 @@ public class MainActivity extends AppCompatActivity {
 
     private CardSlot getAvailableCardSlot(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true);
+
+        if (spliceBenchEnabled && cardSlot != null && cardSlot.id == spliceBench.id)
+            return null;
+
         CardSlot firstEmptySlot = getFirstEmptyCardSlot();
 
         // Touched nothing and there's an available card slot
@@ -737,7 +766,7 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlot != null) {
             if (cardSlot.isEmpty() && displayMode != DisplayMode.list)
                 drawNewCard(cardSlot);
-            else
+            else if (!cardSlot.isEmpty())
                 toggleCardLock(cardSlot);
         }
     }
@@ -798,7 +827,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int clearCards() {
+    private void clearCards() {
         int clears = 0;
         for (int i = 0; i < cardSlots.size(); i++) {
             boolean cleared = cardSlots.get(i).clear(true);
@@ -810,8 +839,6 @@ public class MainActivity extends AppCompatActivity {
                 cardSlots.get(i).clear(false);
             }
         }
-
-        return clears;
     }
 
     private void sortCards() {
@@ -851,6 +878,23 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
+    }
+
+    private void moveCardsDown() {
+        //if (cardSlots.get(0).isEmpty() || lockedCardCount >= cardCountCap)
+        if (lockedCardCount >= cardCountCap)
+            return;
+
+        int lockedReached = 0;
+        for (int i = cardSlots.size() - 1; i > 0; i--) {
+            if (cardSlots.get(i).isLocked())
+                lockedReached++;
+
+            if (!cardSlots.get(i).isLocked() || i < cardSlots.size() - lockedReached)
+                cardSlots.get(i).copyFrom(cardSlots.get(i - 1));
+        }
+
+        cardSlots.get(0).clear(false);
     }
 
     private void toggleCardLock(CardSlot cardSlot) {
@@ -1070,6 +1114,22 @@ public class MainActivity extends AppCompatActivity {
             setProgressBarActive(false);
     }
 
+    private void updateSpliceBench() {
+        if (spliceBenchEnabled) {
+            spliceBench.copyFrom(cardSlots.get(0));
+            moveCardsDown();
+            updateCardSlotText(spliceBench);
+            cardSlots.get(0).lock(true);
+            spliceBench.lock(true);
+        }
+        else {
+            spliceBench.lock(false);
+            cardSlots.get(0).lock(false);
+            cardSlots.get(0).copyFrom(spliceBench);
+            updateCardSlotText(cardSlots.get(0));
+        }
+    }
+
     @TargetApi(26)
     private void updateProgressBar(boolean initialize, boolean finish, int progress) {
         //Log.d("CAGE", "Updating progress: " + progress);
@@ -1119,6 +1179,9 @@ public class MainActivity extends AppCompatActivity {
 
         currentDisplayedCatItem = menu.findItem(R.id.action_displayAll);
         currentDisplayedCatItem.setEnabled(false);
+
+        spliceBenchToggle = menu.findItem(R.id.action_spliceBenchToggle);
+        spliceBenchToggle.setChecked(spliceBenchEnabled);
 
 //        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
 //        keepResultCategoriesToggle.setChecked(keepResultCategories);
@@ -1177,6 +1240,8 @@ public class MainActivity extends AppCompatActivity {
         else if (handleClearCardsAction(id))
             return true;
         else if (handleClearLocksAction(id))
+            return true;
+        else if (handleSpliceBenchActivation(id))
             return true;
 //        else if (handleKeepResultCategoriesActivation(id))
 //            return true;
@@ -1408,10 +1473,19 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleClearCardsAction(int id) {
         if (id == R.id.action_clearCards) {
-            if (displayMode == DisplayMode.list)
-                return true;
+            if (displayMode == DisplayMode.list) {
+                updateCardList();
+                updateHeaderInfoText();
 
-            clearCards();
+                if (locksChanged) {
+                    sortCards();
+                    locksChanged = false;
+                }
+            }
+            else {
+                clearCards();
+            }
+
             return true;
         }
 
@@ -1421,20 +1495,30 @@ public class MainActivity extends AppCompatActivity {
     private boolean handleClearLocksAction(int id) {
         if (id == R.id.action_clearLocks) {
             for (int i = 0; i < cardSlots.size(); i++) {
-                cardSlots.get(i).lock(false);
+                if (i > 0 || !spliceBenchEnabled)
+                    cardSlots.get(i).lock(false);
             }
 
             lockedCardCount = 0;
-
-            if (displayMode == DisplayMode.list) {
-                updateCardList();
-                updateHeaderInfoText();
-            }
-
             return true;
         }
 
         return false;
+    }
+
+    private boolean handleSpliceBenchActivation(int id) {
+        if (id == R.id.action_spliceBenchToggle) {
+            enableSpliceBench(!spliceBenchEnabled);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void enableSpliceBench(boolean enable) {
+        spliceBenchEnabled = enable;
+        spliceBenchToggle.setChecked(spliceBenchEnabled);
+        updateSpliceBench();
     }
 
 //    private boolean handleKeepResultCategoriesActivation(int id) {

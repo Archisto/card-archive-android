@@ -93,6 +93,11 @@
         android:id="@+id/action_clearLocks"
         android:title="@string/action_clearLocks"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_spliceBenchToggle"
+        android:title="@string/action_spliceBench"
+        android:checkable="true"
+        app:showAsAction="never" />
 <!--    <item-->
 <!--        android:id="@+id/action_keepResultCategoriesToggle"-->
 <!--        android:title="@string/action_keepResultCategories"-->
