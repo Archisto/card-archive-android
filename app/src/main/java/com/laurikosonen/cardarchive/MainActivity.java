@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,13 +115,16 @@ public class MainActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_MOVE:
                         if (longTouch(x, y))
                             handleCardSlotLongTouch(touchStartY);
-                        //else if (swipe(true, x))
-                        //    handleCardSlotSwipe(true, touchStartY);
+                        else if (swipe(true, x))
+                            handleCardSlotSwipe(true, touchStartY);
+                        else if (swipe(false, x))
+                            handleCardSlotSwipe(false, touchStartY);
                         break;
                     case MotionEvent.ACTION_UP:
                         if (!touchHandled)
                             handleCardSlotTouch(y);
                         endTouch();
+                        mainView.performClick();
                         break;
                 }
 
@@ -470,11 +474,11 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
         if (displayMode == DisplayMode.splice) {
-            text.append(getSpliceCardDisplayText(cardSlot, cards, index, true));
+            text.append(getSpliceCardDisplayText(cardSlot, cards, index));
         }
         else if (displayMode == DisplayMode.spliceAlt) {
             cardSlot.setCards(spliceBeginning, cardSlot.card1);
-            text.append(getSpliceCardDisplayText(cardSlot, cards, index, false));
+            text.append(getSpliceCardDisplayText(cardSlot));
         }
         else if (displayMode == DisplayMode.fundamentalElem) {
             text.append(String.format(getString(R.string.cardSlotFundElem),
@@ -491,6 +495,38 @@ public class MainActivity extends AppCompatActivity {
                     cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
                 : String.format(getString(R.string.cardSlotCategory),
                     cardSlot.card1.categoryShortName);
+            text.insert(0, categoryText + " ");
+        }
+
+        cardSlot.setText(text.toString());
+    }
+
+    private void updateCardSlotText(CardSlot cardSlot) {
+        if (cardSlot == null)
+            return;
+
+        StringBuilder text = new StringBuilder();
+        boolean splicedCards = cardSlot.card2 != null;
+
+        if (splicedCards) {
+            text.append(getSpliceCardDisplayText(cardSlot));
+        }
+        else if (displayMode == DisplayMode.fundamentalElem) {
+            // TODO: Random fundamental, and only if the card slot had one before
+            text.append(String.format(getString(R.string.cardSlotFundElem),
+                fundamentals.get(0).name.toUpperCase(),
+                cardSlot.card1.name));
+        }
+        else {
+            text.append(cardSlot.card1.name);
+        }
+
+        if (showCategories) {
+            String categoryText = splicedCards ?
+                String.format(getString(R.string.cardSlotSpliceCategory),
+                    cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
+                : String.format(getString(R.string.cardSlotCategory),
+                cardSlot.card1.categoryShortName);
             text.insert(0, categoryText + " ");
         }
 
@@ -536,15 +572,16 @@ public class MainActivity extends AppCompatActivity {
 
     private String getSpliceCardDisplayText(CardSlot cardSlot,
                                             List<Card> cards,
-                                            int index,
-                                            boolean randomCard2) {
-        if (randomCard2) {
-            int index2 = index;
-            while (index2 == index)
-                index2 = (int) (Math.random() * cards.size());
-            cardSlot.setCards(null, cards.get(index2));
-        }
+                                            int index) {
+        int index2 = index;
+        while (index2 == index)
+            index2 = (int) (Math.random() * cards.size());
+        cardSlot.setCards(null, cards.get(index2));
 
+        return getSpliceCardDisplayText(cardSlot);
+    }
+
+    private String getSpliceCardDisplayText(CardSlot cardSlot) {
         return String.format(getString(R.string.cardSlotSplice),
             cardSlot.card1.getNameHalf(true, null),
             cardSlot.card2.getNameHalf(false, cardSlot.card1.getSecondHalfPreference()));
@@ -581,15 +618,59 @@ public class MainActivity extends AppCompatActivity {
     private void handleCardSlotSwipe(boolean right, int touchY) {
         // TODO: Fix swiping
 
+        CardSlot cardSlot = getTouchedCardSlot(touchY, false);
+        if (cardSlot == null)
+            return;
+
+        boolean spliceModeActive =
+            displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
+
         if (right) {
             //Log.d("CAGE", "Swiped right");
-            if (displayMode == DisplayMode.spliceAlt) {
+
+            if (spliceModeActive) {
+                // Takes the card slot's card2 and gives it to all unlocked card slots
+
+                // If card2 is null, card1 is used instead
+                Card card2 = cardSlot.card2 == null ? cardSlot.card1 : cardSlot.card2;
+
+                for (CardSlot slot : cardSlots) {
+                    if (!slot.isEmpty() && !slot.isLocked()) {
+                        slot.setCards(slot.card1, card2);
+                        updateCardSlotText(slot);
+                    }
+
+                    Toast.makeText(this,
+                        String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
+                        Toast.LENGTH_SHORT)
+                        .show();
+                }
+
                 // Changes both the beginning and the end of the spliced result
-//                CardSlot cardSlot = getTouchedCardSlot(touchY, false);
 //                if (cardSlot != null) {
 //                    takeNewSpliceAltBeginning();
 //                    cardSlot.setText(getSpliceAltCardDisplayText(nextCardInDeck, displayedCards));
 //                }
+            }
+        }
+        else {
+            if (spliceModeActive) {
+                // Takes the card slot's card1 and gives it to all unlocked card slots
+
+                Card card2;
+
+                for (CardSlot slot : cardSlots) {
+                    if (!slot.isEmpty() && !slot.isLocked()) {
+                        card2 = slot.card2 == null ? slot.card1 : slot.card2;
+                        slot.setCards(cardSlot.card1, card2);
+                        updateCardSlotText(slot);
+                    }
+                }
+
+                Toast.makeText(this,
+                    String.format(getString(R.string.spliceSelected_leftSide), cardSlot.card1.getNameHalf(true, null)),
+                    Toast.LENGTH_SHORT)
+                    .show();
             }
         }
     }

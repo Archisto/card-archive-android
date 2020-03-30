@@ -40,15 +40,19 @@ public class Card {
                 result = firstHalf;
         }
         else if (secondHalfSingular != null || secondHalfPlural != null) {
+            // Singular, no other option
             if (secondHalfPlural == null) {
                 result = secondHalfSingular;
             }
+            // Plural, no other option
             else if (secondHalfSingular == null) {
                 result = secondHalfPlural;
             }
+            // Singular, requested
             else if (secondHalfType == NameHalfType.singular) {
                 result = secondHalfSingular;
             }
+            // Plural, requested or default
             else {
                 result = secondHalfPlural;
             }

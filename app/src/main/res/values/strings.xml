@@ -34,6 +34,8 @@
     <string name="cardCountTip">There are %d cards in the currently selected category.</string>
     <string name="listUnavailable_clearLocks">Clear locks to see list</string>
     <string name="listUnavailable_elemCountCap">Increase element count cap to see list</string>
+    <string name="spliceSelected_leftSide">Splice left side: \"%s\"</string>
+    <string name="spliceSelected_rightSide">Splice right side: \"%s\"</string>
     <string name="help_text">
         "\nGame Elements was designed and developed by Lauri Kosonen."
 
