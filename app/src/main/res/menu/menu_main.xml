@@ -27,11 +27,11 @@
                 android:id="@+id/action_setMode_list"
                 android:title="@string/mode_list" />
             <item
-                android:id="@+id/action_setMode_splice"
-                android:title="@string/mode_splice" />
+                android:id="@+id/action_setMode_merge"
+                android:title="@string/mode_merge" />
             <item
-                android:id="@+id/action_setMode_spliceAlt"
-                android:title="@string/mode_spliceAlt" />
+                android:id="@+id/action_setMode_mergeAlt"
+                android:title="@string/mode_mergeAlt" />
             <item
                 android:id="@+id/action_setMode_fundamentals"
                 android:title="@string/mode_fundamentals" />
@@ -91,8 +91,8 @@
         android:title="@string/action_clearLocks"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_spliceBenchToggle"
-        android:title="@string/action_spliceBench"
+        android:id="@+id/action_mergeSlotToggle"
+        android:title="@string/action_mergeSlot"
         android:checkable="true"
         app:showAsAction="never" />
 <!--    <item-->

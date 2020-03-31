@@ -6,7 +6,7 @@
 <!--    <color name="colorLockText">#585858</color>-->
     <color name="colorLockBackground1">#CCDDFF</color>
     <color name="colorLockBackground2">#DBC8CC</color>
-    <color name="colorSpliceBench">#D8C3E6</color>
+    <color name="colorMergeSlot">#D8C3E6</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorCyan">#4CBAA8</color>
     <color name="colorGreen">#53D384</color>

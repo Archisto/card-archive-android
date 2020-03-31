@@ -1,6 +1,5 @@
 package com.laurikosonen.cardarchive;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -48,30 +47,32 @@ public class MainActivity extends AppCompatActivity {
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
-    private MenuItem spliceBenchToggle;
+    private MenuItem mergeSlotToggle;
     //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showCategoriesToggle;
     //private int mainTextColor;
-    private int spliceBenchColor;
+    private int mergeSlotColor;
     private boolean listModeJustStarted;
-    private boolean spliceAltModeJustStarted;
+    private boolean mergeAltModeJustStarted;
     private boolean showCategories = true;
-    private boolean spliceBenchEnabled;
+    private boolean mergeSlotEnabled;
     //private boolean keepResultCategories;
     private boolean autoUpdateSettingChanges = true;
     private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
 
-    private Card spliceBeginning;
-    private CardSlot spliceBench;
+    private Card mergeBeginning;
+    private Card tipCard;
+    private CardSlot mergeSlot;
+
 
     private enum DisplayMode {
         classic,
         list,
-        splice,
-        spliceAlt,
+        merge,
+        mergeAlt,
         fundamentals,
         fundamentalElem
     }
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         drawCards(displayedCategory, false);
 
         //mainTextColor = ContextCompat.getColor(this, R.color.colorGray);
-        spliceBenchColor = ContextCompat.getColor(this, R.color.colorSpliceBench);
+        mergeSlotColor = ContextCompat.getColor(this, R.color.colorMergeSlot);
 
         headerInfoText = (TextView) findViewById(R.id.headerInfo);
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
@@ -139,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 if (displayMode == DisplayMode.list) {
                     prevPageInCardList();
                 }
-                else if (displayMode == DisplayMode.spliceAlt) {
-                    takeNewSpliceAltBeginning();
+                else if (displayMode == DisplayMode.mergeAlt) {
+                    takeNewMergeAltBeginning();
                     drawCards(displayedCategory, false);
                 }
             }
@@ -343,11 +344,16 @@ public class MainActivity extends AppCompatActivity {
             cardSlots.add(cardSlot);
         }
 
-        spliceBench = new CardSlot(
+        mergeSlot = new CardSlot(
             0,
             (TextView) findViewById(cardSlotTextViewIds[0]),
             ContextCompat.getColor(this, R.color.colorAccent),
             ContextCompat.getColor(this, R.color.colorGreen));
+
+        // Tip card for the merge slot
+        tipCard = new Card(getString(R.string.mergeSlotTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
+        tipCard.setNameHalf(getString(R.string.mergeSlotTip_left), Card.NameHalfType.verb, Card.NameHalfType.singular);
+        tipCard.setNameHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.singular, null);
     }
 
     private void shuffleDeck(List<Card> deck) {
@@ -402,8 +408,8 @@ public class MainActivity extends AppCompatActivity {
             case list:
                 startOrNextPageInCardList(shownCardCountChanged);
                 break;
-            case spliceAlt:
-                startOrUpdateSpliceAltMode(displayedCards);
+            case mergeAlt:
+                startOrUpdateMergeAltMode(displayedCards);
                 break;
             default:
                 setAllCardSlotTexts(displayedCards);
@@ -433,16 +439,16 @@ public class MainActivity extends AppCompatActivity {
 
         cardSlot.setCards(cards.get(index), null);
         StringBuilder text = new StringBuilder();
-        boolean spliceModeActive =
-            displayMode == DisplayMode.splice || displayMode == DisplayMode.spliceAlt;
+        boolean mergeModeActive =
+            displayMode == DisplayMode.merge || displayMode == DisplayMode.mergeAlt;
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
-        if (displayMode == DisplayMode.splice) {
-            text.append(getSpliceCardDisplayText(cardSlot, cards, index));
+        if (displayMode == DisplayMode.merge) {
+            text.append(getMergeCardDisplayText(cardSlot, cards, index));
         }
-        else if (displayMode == DisplayMode.spliceAlt) {
-            cardSlot.setCards(spliceBeginning, cardSlot.card1);
-            text.append(getSpliceCardDisplayText(cardSlot));
+        else if (displayMode == DisplayMode.mergeAlt) {
+            cardSlot.setCards(mergeBeginning, cardSlot.card1);
+            text.append(getMergeCardDisplayText(cardSlot));
         }
         else if (displayMode == DisplayMode.fundamentalElem) {
             text.append(String.format(getString(R.string.cardSlotFundElem),
@@ -455,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
 
         int categoryTagLength = 0;
         if (showCategories)
-            categoryTagLength = insertCategoryTag(text, cardSlot, spliceModeActive);
+            categoryTagLength = insertCategoryTag(text, cardSlot, mergeModeActive);
 
         cardSlot.setText(text.toString(), categoryTagLength);
     }
@@ -465,10 +471,10 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         StringBuilder text = new StringBuilder();
-        boolean splicedCards = cardSlot.card2 != null;
+        boolean mergeElements = cardSlot.card2 != null;
 
-        if (splicedCards) {
-            text.append(getSpliceCardDisplayText(cardSlot));
+        if (mergeElements) {
+            text.append(getMergeCardDisplayText(cardSlot));
         }
         else if (displayMode == DisplayMode.fundamentalElem) {
             // TODO: Random fundamental, and only if the card slot had one before
@@ -482,7 +488,7 @@ public class MainActivity extends AppCompatActivity {
 
         int categoryTagLength = 0;
         if (showCategories)
-            categoryTagLength = insertCategoryTag(text, cardSlot, splicedCards);
+            categoryTagLength = insertCategoryTag(text, cardSlot, mergeElements);
 
         cardSlot.setText(text.toString(), categoryTagLength);
     }
@@ -498,8 +504,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showOrHideCategories(boolean showCategories) {
-        if (spliceBenchEnabled)
-            showOrHideCategory(spliceBench, showCategories);
+        if (mergeSlotEnabled)
+            showOrHideCategory(mergeSlot, showCategories);
 
         for (CardSlot cardSlot : cardSlots) {
             showOrHideCategory(cardSlot, showCategories);
@@ -521,11 +527,11 @@ public class MainActivity extends AppCompatActivity {
         cardSlot.setText(text.toString(), categoryTagLength);
     }
 
-    private int insertCategoryTag(StringBuilder sb, CardSlot cardSlot, boolean splicedCards) {
+    private int insertCategoryTag(StringBuilder sb, CardSlot cardSlot, boolean mergedElements) {
         int categoryTagLength = 0;
         if (showCategories) {
-            String categoryText = (splicedCards ?
-                String.format(getString(R.string.cardSlotSpliceCategory),
+            String categoryText = (mergedElements ?
+                String.format(getString(R.string.cardSlotMergeCategory),
                     cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
                 : String.format(getString(R.string.cardSlotCategory),
                     cardSlot.card1.categoryShortName))
@@ -538,19 +544,19 @@ public class MainActivity extends AppCompatActivity {
         return categoryTagLength;
     }
 
-    private String getSpliceCardDisplayText(CardSlot cardSlot,
-                                            List<Card> cards,
-                                            int index) {
+    private String getMergeCardDisplayText(CardSlot cardSlot,
+                                           List<Card> cards,
+                                           int index) {
         int index2 = index;
         while (index2 == index)
             index2 = (int) (Math.random() * cards.size());
         cardSlot.setCards(null, cards.get(index2));
 
-        return getSpliceCardDisplayText(cardSlot);
+        return getMergeCardDisplayText(cardSlot);
     }
 
-    private String getSpliceCardDisplayText(CardSlot cardSlot) {
-        return String.format(getString(R.string.cardSlotSplice),
+    private String getMergeCardDisplayText(CardSlot cardSlot) {
+        return String.format(getString(R.string.cardSlotMerge),
             cardSlot.card1.getNameHalf(true, null),
             cardSlot.card2.getNameHalf(false, cardSlot.card1.getSecondHalfPreference()));
     }
@@ -567,8 +573,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (spliceBenchEnabled && cardSlotIndex == 0) {
-            enableSpliceBench(false);
+        if (mergeSlotEnabled && cardSlotIndex == 0) {
+            enableMergeSlot(false);
         }
         else if (displayMode != DisplayMode.list) {
             if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size())
@@ -581,32 +587,32 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlot == null)
             return;
 
-        boolean spliceModeActive =
-            spliceBenchEnabled
-            || displayMode == DisplayMode.splice
-            || displayMode == DisplayMode.spliceAlt;
+        boolean mergeModeActive =
+            mergeSlotEnabled
+            || displayMode == DisplayMode.merge
+            || displayMode == DisplayMode.mergeAlt;
 
-        if (spliceModeActive) {
-            manualSplice(cardSlot, right);
+        if (mergeModeActive) {
+            manualMerge(cardSlot, right);
         }
 
         //Log.d("CAGE", "Swiped " + right ? "right" : "left");
     }
 
-    private void manualSplice(CardSlot spliceOrigin, boolean right) {
+    private void manualMerge(CardSlot mergeOrigin, boolean right) {
         if (right) {
-            // Takes the splice origin's card2 and gives it to all unlocked card slots.
-            // If Splice Bench is enabled, only it is changed.
+            // Takes the merge origin's card2 and gives it to all unlocked card slots.
+            // If merge slot is enabled, only it is changed.
 
             // If card2 is null, card1 is used instead
-            Card card2 = spliceOrigin.card2 == null ? spliceOrigin.card1 : spliceOrigin.card2;
+            Card card2 = mergeOrigin.card2 == null ? mergeOrigin.card1 : mergeOrigin.card2;
 
-//            Log.d("CAGE", "Origin card1: " + spliceOrigin.card1 +
-//                ", card2: " + spliceOrigin.card2);
+//            Log.d("CAGE", "Origin card1: " + mergeOrigin.card1 +
+//                ", card2: " + mergeOrigin.card2);
 
-            if (spliceBenchEnabled) {
-                spliceBench.setCards(spliceBench.card1, card2);
-                updateCardSlotText(spliceBench);
+            if (mergeSlotEnabled) {
+                mergeSlot.setCards(mergeSlot.card1, card2);
+                updateCardSlotText(mergeSlot);
             }
             else {
                 for (CardSlot slot : cardSlots) {
@@ -618,34 +624,34 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Toast.makeText(this,
-                String.format(getString(R.string.spliceSelected_rightSide), card2.getNameHalf(false, null)),
+                String.format(getString(R.string.mergeSelected_rightSide), card2.getNameHalf(false, null)),
                 Toast.LENGTH_SHORT)
                 .show();
         }
         else {
-            // Takes the splice origin's card1 and gives it to all unlocked card slots
-            // If Splice Bench is enabled, only it is changed.
+            // Takes the merge origin's card1 and gives it to all unlocked card slots
+            // If merge slot is enabled, only it is changed.
 
-            spliceBeginning = spliceOrigin.card1;
+            mergeBeginning = mergeOrigin.card1;
             Card card2;
 
-            if (spliceBenchEnabled) {
-                card2 = spliceBench.card2 == null ? spliceBench.card1 : spliceBench.card2;
-                spliceBench.setCards(spliceBeginning, card2);
-                updateCardSlotText(spliceBench);
+            if (mergeSlotEnabled) {
+                card2 = mergeSlot.card2 == null ? mergeSlot.card1 : mergeSlot.card2;
+                mergeSlot.setCards(mergeBeginning, card2);
+                updateCardSlotText(mergeSlot);
             }
             else {
                 for (CardSlot slot : cardSlots) {
                     if (!slot.isEmpty() && !slot.isLocked()) {
                         card2 = slot.card2 == null ? slot.card1 : slot.card2;
-                        slot.setCards(spliceBeginning, card2);
+                        slot.setCards(mergeBeginning, card2);
                         updateCardSlotText(slot);
                     }
                 }
             }
 
             Toast.makeText(this,
-                String.format(getString(R.string.spliceSelected_leftSide), spliceBeginning.getNameHalf(true, null)),
+                String.format(getString(R.string.mergeSelected_leftSide), mergeBeginning.getNameHalf(true, null)),
                 Toast.LENGTH_SHORT)
                 .show();
         }
@@ -662,7 +668,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
         int index = getTouchedCardSlotIndex(touchY);
-        if (index < 0 || (index == 0 && spliceBenchEnabled))
+        if (index < 0 || (index == 0 && mergeSlotEnabled))
             return null;
         else if (allowEmpty || !cardSlots.get(index).isEmpty())
             return cardSlots.get(index);
@@ -672,7 +678,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFirstEmptyCardSlotIndex() {
         for (int i = 0; i < cardSlots.size(); i++) {
-            if (i == 0 && spliceBenchEnabled)
+            if (i == 0 && mergeSlotEnabled)
                 continue;
 
             if (cardSlots.get(i).isEmpty())
@@ -693,7 +699,7 @@ public class MainActivity extends AppCompatActivity {
     private CardSlot getAvailableCardSlot(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true);
 
-        if (spliceBenchEnabled && cardSlot != null && cardSlot.id == spliceBench.id)
+        if (mergeSlotEnabled && cardSlot != null && cardSlot.id == mergeSlot.id)
             return null;
 
         CardSlot firstEmptySlot = getFirstEmptyCardSlot();
@@ -967,48 +973,44 @@ public class MainActivity extends AppCompatActivity {
             updateFab2Alpha();
     }
 
-    private void initSpliceAltMode() {
-        spliceAltModeJustStarted = true;
+    private void initMergeAltMode() {
+        mergeAltModeJustStarted = true;
     }
 
-    private void takeNewSpliceAltBeginning() {
-        int oldCardId = (spliceBeginning == null ? -1 : spliceBeginning.id);
+    private void takeNewMergeAltBeginning() {
+        int oldCardId = (mergeBeginning == null ? -1 : mergeBeginning.id);
 
-        while (spliceBeginning == null || spliceBeginning.id == oldCardId) {
+        while (mergeBeginning == null || mergeBeginning.id == oldCardId) {
             int index = (int) (Math.random() * displayedCards.size());
-            spliceBeginning = displayedCards.get(index);
+            mergeBeginning = displayedCards.get(index);
         }
     }
 
-    private void startOrUpdateSpliceAltMode(List<Card> displayedCards) {
-        if (spliceAltModeJustStarted) {
-            spliceAltModeJustStarted = false;
-            takeNewSpliceAltBeginning();
+    private void startOrUpdateMergeAltMode(List<Card> displayedCards) {
+        if (mergeAltModeJustStarted) {
+            mergeAltModeJustStarted = false;
+            takeNewMergeAltBeginning();
             fab2.show();
         }
 
         setAllCardSlotTexts(displayedCards);
     }
 
-    private void updateSpliceBench() {
-        // TODO: Get rid of spliceBench object and just use cardSlots.get(0)
+    private void updateMergeSlot() {
+        // TODO: Get rid of mergeSlot object and just use cardSlots.get(0)
 
-        if (spliceBenchEnabled) {
-            spliceBench.copyFrom(cardSlots.get(0));
-
-            Card tipCard = new Card(getString(R.string.spliceBenchTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
-            spliceBench.setCards(tipCard, null);
-
+        if (mergeSlotEnabled) {
+            mergeSlot.copyFrom(cardSlots.get(0));
+            mergeSlot.setCards(tipCard, null);
             moveCardsDown();
-            //spliceBench.setText(getString(R.string.spliceBenchTip_full), 0);
-            updateCardSlotText(spliceBench);
+            updateCardSlotText(mergeSlot);
             cardSlots.get(0).lock(true);
-            spliceBench.setBackgroundColor(spliceBenchColor);
+            mergeSlot.setBackgroundColor(mergeSlotColor);
         }
         else {
-            spliceBench.lock(false);
+            mergeSlot.lock(false);
             cardSlots.get(0).lock(false);
-            cardSlots.get(0).copyFrom(spliceBench);
+            cardSlots.get(0).copyFrom(mergeSlot);
             updateCardSlotText(cardSlots.get(0));
         }
     }
@@ -1027,8 +1029,8 @@ public class MainActivity extends AppCompatActivity {
         currentDisplayedCatItem = menu.findItem(R.id.action_displayAll);
         currentDisplayedCatItem.setEnabled(false);
 
-        spliceBenchToggle = menu.findItem(R.id.action_spliceBenchToggle);
-        spliceBenchToggle.setChecked(spliceBenchEnabled);
+        mergeSlotToggle = menu.findItem(R.id.action_mergeSlotToggle);
+        mergeSlotToggle.setChecked(mergeSlotEnabled);
 
 //        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
 //        keepResultCategoriesToggle.setChecked(keepResultCategories);
@@ -1088,7 +1090,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else if (handleClearLocksAction(id))
             return true;
-        else if (handleSpliceBenchActivation(id))
+        else if (handleMergeSlotActivation(id))
             return true;
 //        else if (handleKeepResultCategoriesActivation(id))
 //            return true;
@@ -1172,7 +1174,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Hides fab2 only if the mode it's used in is ending
         if ((displayMode == DisplayMode.list && mode != DisplayMode.list)
-            || (displayMode == DisplayMode.spliceAlt && mode != DisplayMode.spliceAlt))
+            || (displayMode == DisplayMode.mergeAlt && mode != DisplayMode.mergeAlt))
             hideFab2();
 
         displayMode = mode;
@@ -1189,8 +1191,8 @@ public class MainActivity extends AppCompatActivity {
             updateHeaderInfoText();
         }
 
-        if (displayMode == DisplayMode.spliceAlt) {
-            initSpliceAltMode();
+        if (displayMode == DisplayMode.mergeAlt) {
+            initMergeAltMode();
         }
 
         drawCards(displayedCategory, false);
@@ -1201,8 +1203,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean isSetModeId(int id) {
         return id == R.id.action_setMode_classic
             || id == R.id.action_setMode_list
-            || id == R.id.action_setMode_splice
-            || id == R.id.action_setMode_spliceAlt
+            || id == R.id.action_setMode_merge
+            || id == R.id.action_setMode_mergeAlt
             || id == R.id.action_setMode_fundamentals
             || id == R.id.action_setMode_fundamentalElem;
     }
@@ -1226,10 +1228,10 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayMode(item, DisplayMode.classic);
             case R.id.action_setMode_list:
                 return setDisplayMode(item, DisplayMode.list);
-            case R.id.action_setMode_splice:
-                return setDisplayMode(item, DisplayMode.splice);
-            case R.id.action_setMode_spliceAlt:
-                return setDisplayMode(item, DisplayMode.spliceAlt);
+            case R.id.action_setMode_merge:
+                return setDisplayMode(item, DisplayMode.merge);
+            case R.id.action_setMode_mergeAlt:
+                return setDisplayMode(item, DisplayMode.mergeAlt);
             case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
             case R.id.action_setMode_fundamentalElem:
@@ -1325,7 +1327,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean handleClearLocksAction(int id) {
         if (id == R.id.action_clearLocks) {
             for (int i = 0; i < cardSlots.size(); i++) {
-                if (i > 0 || !spliceBenchEnabled)
+                if (i > 0 || !mergeSlotEnabled)
                     cardSlots.get(i).lock(false);
             }
 
@@ -1336,19 +1338,19 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean handleSpliceBenchActivation(int id) {
-        if (id == R.id.action_spliceBenchToggle) {
-            enableSpliceBench(!spliceBenchEnabled);
+    private boolean handleMergeSlotActivation(int id) {
+        if (id == R.id.action_mergeSlotToggle) {
+            enableMergeSlot(!mergeSlotEnabled);
             return true;
         }
 
         return false;
     }
 
-    private void enableSpliceBench(boolean enable) {
-        spliceBenchEnabled = enable;
-        spliceBenchToggle.setChecked(spliceBenchEnabled);
-        updateSpliceBench();
+    private void enableMergeSlot(boolean enable) {
+        mergeSlotEnabled = enable;
+        mergeSlotToggle.setChecked(mergeSlotEnabled);
+        updateMergeSlot();
     }
 
 //    private boolean handleKeepResultCategoriesActivation(int id) {
