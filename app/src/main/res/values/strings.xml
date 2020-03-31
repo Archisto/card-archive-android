@@ -5,14 +5,16 @@
     <string name="action_settings">Settings</string>
     <string name="action_clearCards">Clear</string>
     <string name="action_clearLocks">Clear Locks</string>
+    <string name="action_changeFundamentals">Change Fundamentals</string>
     <string name="action_mergeSlot">Enable Merge Slot</string>
     <string name="action_keepElementCategories">Keep Element Categories</string>
     <string name="action_autoUpdateSettingChanges">Auto-Update Setting Changes</string>
+    <string name="action_showFundamentals">Show Fundamentals</string>
     <string name="action_showCategories">Show Category Tags</string>
     <string name="cardSlotCategory">[%s]</string>
     <string name="cardSlotMergeCategory">[%s+%s]</string>
     <string name="cardSlotMerge">%s %s</string>
-    <string name="cardSlotFundElem">(%s) %s</string>
+    <string name="cardSlotFundamental">(%s)</string>
     <string name="allCatAndCardCount">All Categories - %s Elements</string>
     <string name="allCatAndPageNum">All Categories - Page %s/%s</string>
     <string name="catAndCardCount">Category: %s - %s Elements</string>
@@ -26,7 +28,6 @@
     <string name="mode_merge">Merge</string>
     <string name="mode_mergeAlt">Merge Alt</string>
     <string name="mode_fundamentals">Fundamentals</string>
-    <string name="mode_fundamentalElem">Fundamental + Element</string>
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
     <string name="tip">Tip</string>

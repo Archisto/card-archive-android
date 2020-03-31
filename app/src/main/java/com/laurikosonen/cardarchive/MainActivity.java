@@ -50,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem mergeSlotToggle;
     //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoUpdateSettingChangesToggle;
-    private MenuItem showCategoriesToggle;
+    private MenuItem showFundamentalsToggle;
+    private MenuItem showCategoryTagsToggle;
     //private int mainTextColor;
     private int mergeSlotColor;
     private boolean listModeJustStarted;
     private boolean mergeAltModeJustStarted;
-    private boolean showCategories = true;
+    private boolean showFundamentals;
+    private boolean showCategoryTags = true;
     private boolean mergeSlotEnabled;
     //private boolean keepResultCategories;
     private boolean autoUpdateSettingChanges = true;
@@ -73,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
         list,
         merge,
         mergeAlt,
-        fundamentals,
-        fundamentalElem
+        fundamentals
     }
 
     @Override
@@ -412,10 +413,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (displayMode != DisplayMode.list && displayedCards != allCards) {
             shuffleDeck(displayedCards);
-
-            if (displayMode == DisplayMode.fundamentalElem) {
-                shuffleDeck(fundamentals);
-            }
         }
 
         switch (displayMode) {
@@ -448,8 +445,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
-        // TODO: Possibility of adding a fundamental in any mode
-
         if (cardSlot.isLocked()) {
             return;
         }
@@ -464,6 +459,11 @@ public class MainActivity extends AppCompatActivity {
             displayMode == DisplayMode.merge || displayMode == DisplayMode.mergeAlt;
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
+        if (showFundamentals) {
+            cardSlot.fundamental = getRandomFundamental();
+            appendFundamental(text, cardSlot);
+        }
+
         if (displayMode == DisplayMode.merge) {
             text.append(getMergeCardDisplayText(cardSlot, cards, index));
         }
@@ -471,17 +471,12 @@ public class MainActivity extends AppCompatActivity {
             cardSlot.setCards(mergeBeginning, cardSlot.card1);
             text.append(getMergeCardDisplayText(cardSlot));
         }
-        else if (displayMode == DisplayMode.fundamentalElem) {
-            text.append(String.format(getString(R.string.cardSlotFundElem),
-                fundamentals.get(index).name.toUpperCase(),
-                cardSlot.card1.name));
-        }
         else {
             text.append(cardSlot.card1.name);
         }
 
         int categoryTagLength = 0;
-        if (showCategories)
+        if (showCategoryTags)
             categoryTagLength = insertCategoryTag(text, cardSlot, mergeModeActive);
 
         cardSlot.setText(text.toString(), categoryTagLength);
@@ -494,21 +489,20 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder text = new StringBuilder();
         boolean mergeElements = cardSlot.card2 != null;
 
+        if (showFundamentals) {
+            //cardSlot.fundamental = getRandomFundamental();
+            appendFundamental(text, cardSlot);
+        }
+
         if (mergeElements) {
             text.append(getMergeCardDisplayText(cardSlot));
-        }
-        else if (displayMode == DisplayMode.fundamentalElem) {
-            // TODO: Random fundamental, and only if the card slot had one before
-            text.append(String.format(getString(R.string.cardSlotFundElem),
-                fundamentals.get(0).name.toUpperCase(),
-                cardSlot.card1.name));
         }
         else {
             text.append(cardSlot.card1.name);
         }
 
         int categoryTagLength = 0;
-        if (showCategories)
+        if (showCategoryTags)
             categoryTagLength = insertCategoryTag(text, cardSlot, mergeElements);
 
         cardSlot.setText(text.toString(), categoryTagLength);
@@ -524,16 +518,48 @@ public class MainActivity extends AppCompatActivity {
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
     }
 
-    private void showOrHideCategories(boolean showCategories) {
+    private void showOrHideFundamentals(boolean showFundamentals) {
         if (mergeSlotEnabled)
-            showOrHideCategory(mergeSlot, showCategories);
+            showOrHideFundamental(mergeSlot, showFundamentals);
 
         for (CardSlot cardSlot : cardSlots) {
-            showOrHideCategory(cardSlot, showCategories);
+            showOrHideFundamental(cardSlot, showFundamentals);
         }
     }
 
-    private void showOrHideCategory(CardSlot cardSlot, boolean showCategories) {
+    private void showOrHideFundamental(CardSlot cardSlot, boolean showFundamental) {
+        if (cardSlot.isEmpty() || (mergeSlotEnabled && cardSlot.id == 0))
+            return;
+
+        if (!cardSlot.isLocked() || cardSlot.fundamental == null) {
+            if (showFundamental)
+                cardSlot.fundamental = getRandomFundamental();
+            else
+                cardSlot.fundamental = null;
+        }
+
+        updateCardSlotText(cardSlot);
+    }
+
+    private Card getRandomFundamental() {
+        return fundamentals.get((int)(Math.random() * fundamentals.size()));
+    }
+
+    private void appendFundamental(StringBuilder sb, CardSlot cardSlot) {
+        if (cardSlot.fundamental != null)
+            sb.append(String.format(getString(R.string.cardSlotFundamental), cardSlot.fundamental.name.toUpperCase())).append(" ");
+    }
+
+    private void showOrHideCategoryTags(boolean showCategories) {
+        if (mergeSlotEnabled)
+            showOrHideCategoryTag(mergeSlot, showCategories);
+
+        for (CardSlot cardSlot : cardSlots) {
+            showOrHideCategoryTag(cardSlot, showCategories);
+        }
+    }
+
+    private void showOrHideCategoryTag(CardSlot cardSlot, boolean showCategories) {
         if (cardSlot.isEmpty())
             return;
 
@@ -550,7 +576,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int insertCategoryTag(StringBuilder sb, CardSlot cardSlot, boolean mergedElements) {
         int categoryTagLength = 0;
-        if (showCategories) {
+        if (showCategoryTags) {
             String categoryText = (mergedElements ?
                 String.format(getString(R.string.cardSlotMergeCategory),
                     cardSlot.card1.categoryShortName, cardSlot.card2.categoryShortName)
@@ -1063,14 +1089,17 @@ public class MainActivity extends AppCompatActivity {
         mergeSlotToggle = menu.findItem(R.id.action_mergeSlotToggle);
         mergeSlotToggle.setChecked(mergeSlotEnabled);
 
+        showFundamentalsToggle = menu.findItem(R.id.action_showFundamentalsToggle);
+        showFundamentalsToggle.setChecked(showFundamentals);
+
+        showCategoryTagsToggle = menu.findItem(R.id.action_showCategoryTagsToggle);
+        showCategoryTagsToggle.setChecked(showCategoryTags);
+
 //        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
 //        keepResultCategoriesToggle.setChecked(keepResultCategories);
 
         autoUpdateSettingChangesToggle = menu.findItem(R.id.action_autoUpdateSettingChangesToggle);
         autoUpdateSettingChangesToggle.setChecked(autoUpdateSettingChanges);
-
-        showCategoriesToggle = menu.findItem(R.id.action_showCategoriesToggle);
-        showCategoriesToggle.setChecked(showCategories);
 
         if (decks.size() > 0) {
             int[] displayCategories = new int[] {
@@ -1121,14 +1150,24 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else if (handleClearLocksAction(id))
             return true;
-        else if (handleMergeSlotActivation(id))
+        else if (id == R.id.action_changeFundamentals) {
+            enableFundamentals(true);
             return true;
-//        else if (handleKeepResultCategoriesActivation(id))
-//            return true;
+        }
+        else if (id == R.id.action_mergeSlotToggle) {
+            enableMergeSlot(!mergeSlotEnabled);
+            return true;
+        }
+        else if (id == R.id.action_showFundamentalsToggle) {
+            enableFundamentals(!showFundamentals);
+            return true;
+        }
+        else if (handleShowCategoryTagsActivation(id))
+            return true;
         else if (handleAutoUpdateSettingChangesActivation(id))
             return true;
-        else if (handleShowCategoriesActivation(id))
-            return true;
+        //else if (handleKeepResultCategoriesActivation(id))
+        //    return true;
 
         return super.onOptionsItemSelected(item);
     }
@@ -1236,8 +1275,7 @@ public class MainActivity extends AppCompatActivity {
             || id == R.id.action_setMode_list
             || id == R.id.action_setMode_merge
             || id == R.id.action_setMode_mergeAlt
-            || id == R.id.action_setMode_fundamentals
-            || id == R.id.action_setMode_fundamentalElem;
+            || id == R.id.action_setMode_fundamentals;
     }
 
     private boolean isSetCardCountId(int id) {
@@ -1265,8 +1303,6 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayMode(item, DisplayMode.mergeAlt);
             case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
-            case R.id.action_setMode_fundamentalElem:
-                return setDisplayMode(item, DisplayMode.fundamentalElem);
         }
 
         return false;
@@ -1369,30 +1405,28 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean handleMergeSlotActivation(int id) {
-        if (id == R.id.action_mergeSlotToggle) {
-            enableMergeSlot(!mergeSlotEnabled);
-            return true;
-        }
-
-        return false;
-    }
-
     private void enableMergeSlot(boolean enable) {
         mergeSlotEnabled = enable;
         mergeSlotToggle.setChecked(mergeSlotEnabled);
         updateMergeSlot();
     }
 
-//    private boolean handleKeepResultCategoriesActivation(int id) {
-//        if (id == R.id.action_keepResultCategoriesToggle) {
-//            keepResultCategories = !keepResultCategories;
-//            keepResultCategoriesToggle.setChecked(keepResultCategories);
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    private void enableFundamentals(boolean enable) {
+        showFundamentals = enable;
+        showFundamentalsToggle.setChecked(enable);
+        showOrHideFundamentals(enable);
+    }
+
+    private boolean handleShowCategoryTagsActivation(int id) {
+        if (id == R.id.action_showCategoryTagsToggle) {
+            showCategoryTags = !showCategoryTags;
+            showCategoryTagsToggle.setChecked(showCategoryTags);
+            showOrHideCategoryTags(showCategoryTags);
+            return true;
+        }
+
+        return false;
+    }
 
     private boolean handleAutoUpdateSettingChangesActivation(int id) {
         if (id == R.id.action_autoUpdateSettingChangesToggle) {
@@ -1404,14 +1438,13 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean handleShowCategoriesActivation(int id) {
-        if (id == R.id.action_showCategoriesToggle) {
-            showCategories = !showCategories;
-            showCategoriesToggle.setChecked(showCategories);
-            showOrHideCategories(showCategories);
-            return true;
-        }
-
-        return false;
-    }
+//    private boolean handleKeepResultCategoriesActivation(int id) {
+//        if (id == R.id.action_keepResultCategoriesToggle) {
+//            keepResultCategories = !keepResultCategories;
+//            keepResultCategoriesToggle.setChecked(keepResultCategories);
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }

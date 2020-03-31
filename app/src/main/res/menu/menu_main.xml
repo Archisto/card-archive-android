@@ -35,9 +35,6 @@
             <item
                 android:id="@+id/action_setMode_fundamentals"
                 android:title="@string/mode_fundamentals" />
-            <item
-                android:id="@+id/action_setMode_fundamentalElem"
-                android:title="@string/mode_fundamentalElem" />
         </menu>
     </item>
     <item
@@ -91,6 +88,10 @@
         android:title="@string/action_clearLocks"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_changeFundamentals"
+        android:title="@string/action_changeFundamentals"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_mergeSlotToggle"
         android:title="@string/action_mergeSlot"
         android:checkable="true"
@@ -101,13 +102,18 @@
 <!--        android:checkable="true"-->
 <!--        app:showAsAction="never" />-->
     <item
-        android:id="@+id/action_autoUpdateSettingChangesToggle"
-        android:title="@string/action_autoUpdateSettingChanges"
+        android:id="@+id/action_showFundamentalsToggle"
+        android:title="@string/action_showFundamentals"
         android:checkable="true"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_showCategoriesToggle"
+        android:id="@+id/action_showCategoryTagsToggle"
         android:title="@string/action_showCategories"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_autoUpdateSettingChangesToggle"
+        android:title="@string/action_autoUpdateSettingChanges"
         android:checkable="true"
         app:showAsAction="never" />
     <group android:id="@+id/group_displayCategories" >

@@ -6,6 +6,7 @@ public class CardSlot {
     public int id;
     public Card card1;
     public Card card2;
+    public Card fundamental;
 
     private TextView textView;
     private boolean locked;
@@ -113,6 +114,7 @@ public class CardSlot {
 
     public void copyFrom(CardSlot cardSlot) {
         setCards(cardSlot.card1, cardSlot.card2);
+        fundamental = cardSlot.fundamental;
         lock(cardSlot.locked);
         enableSecondaryLock(cardSlot.secondaryLock);
         setText(cardSlot.getText(), cardSlot.getCategoryTagLength());
@@ -130,6 +132,7 @@ public class CardSlot {
         if (!obeyLock || !locked) {
             card1 = null;
             card2 = null;
+            fundamental = null;
             locked = false;
             secondaryLock = false;
             setText("", 0);
