@@ -180,6 +180,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Doors and keys</name>
+            <firstHalf type="noun" preference="plural">Doors</firstHalf>
+            <secondHalf the="false">
+                <singular>key</singular>
+                <plural>keys</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Tubes</name>
             <firstHalf type="noun">Tube</firstHalf>
             <secondHalf the="true">
@@ -1395,12 +1403,19 @@
             </secondHalf>
         </element>
     </category>
-    <category id="4" name="Interaction" shortName="IAct">
+    <category id="4" name="Interaction" shortName="IAc">
         <element>
             <name>Interacting with characters or objects</name>
             <firstHalf type="verb" preference="plural">Interacting with</firstHalf>
             <secondHalf the="false">
                 <singular>interaction</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The AI learns from the player’s actions</name>
+            <firstHalf type="noun" preference="plural">AI</firstHalf>
+            <secondHalf the="true">
+                <plural>player’s actions</plural>
             </secondHalf>
         </element>
         <element>
@@ -1415,13 +1430,6 @@
             <firstHalf type="adjective">Unusual</firstHalf>
             <secondHalf the="false">
                 <singular>gravity</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Fall damage</name>
-            <firstHalf type="verb">Falling</firstHalf>
-            <secondHalf the="false">
-                <singular>damage</singular>
             </secondHalf>
         </element>
         <element>
@@ -1522,6 +1530,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Getting back lost items or power</name>
+            <firstHalf type="verb">Retrieving</firstHalf>
+            <secondHalf the="false">
+                <plural>lost items or power</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Being defeated makes the threat more difficult</name>
             <firstHalf type="verb">Being defeated causes</firstHalf>
             <secondHalf the="true">
@@ -1546,6 +1561,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Penalty for missing the target</name>
+            <firstHalf type="verb">Missing</firstHalf>
+            <secondHalf the="false">
+                <singular>penalty</singular>
+                <plural>penalties</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Failed attempts leave marks in the world</name>
             <firstHalf type="verb">Failing</firstHalf>
             <secondHalf the="false">
@@ -1559,6 +1582,14 @@
             <secondHalf the="false">
                 <singular>touched object</singular>
                 <plural>touched objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Lockpicking</name>
+            <firstHalf type="adjective">Locked</firstHalf>
+            <secondHalf the="false">
+                <singular>lock</singular>
+                <plural>locks</plural>
             </secondHalf>
         </element>
         <element>
@@ -1578,27 +1609,42 @@
             </secondHalf>
         </element>
         <element>
-            <name>Unsecured objects try to escape</name>
-            <firstHalf type="adjective" preference="plural">Unsecured</firstHalf>
+            <name>A machine needs an operator to function</name>
+            <firstHalf type="noun" preference="singular">Machine</firstHalf>
             <secondHalf the="false">
-                <singular>tries to escape</singular>
-                <plural>try to escape</plural>
+                <singular>operator</singular>
+                <plural>operators</plural>
             </secondHalf>
         </element>
         <element>
             <name>Objects bounce off surfaces</name>
-            <firstHalf type="verb">Objects bounce off</firstHalf>
+            <firstHalf type="verb">Bouncing</firstHalf>
             <secondHalf the="false">
                 <singular>surface</singular>
                 <plural>surfaces</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Helping a character reach places</name>
-            <firstHalf type="verb" preference="plural">Helping</firstHalf>
+            <name>Loose objects try to escape</name>
+            <firstHalf type="adjective">Loose</firstHalf>
             <secondHalf the="false">
-                <singular>reaching a place</singular>
-                <plural>reaching places</plural>
+                <singular>tries to escape</singular>
+                <plural>try to escape</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being hit by a falling object</name>
+            <firstHalf type="adjective">Dangerous</firstHalf>
+            <secondHalf the="false">
+                <singular>falling object</singular>
+                <plural>falling objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Fall damage</name>
+            <firstHalf type="verb">Falling</firstHalf>
+            <secondHalf the="false">
+                <singular>damage</singular>
             </secondHalf>
         </element>
         <element>
@@ -1610,10 +1656,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Getting back lost items or power</name>
-            <firstHalf type="verb">Retrieving</firstHalf>
+            <name>Helping a character reach places</name>
+            <firstHalf type="verb" preference="plural">Helping</firstHalf>
             <secondHalf the="false">
-                <plural>lost items or power</plural>
+                <singular>reaching a place</singular>
+                <plural>reaching places</plural>
             </secondHalf>
         </element>
         <element>
@@ -1628,6 +1675,13 @@
             <firstHalf type="verb">Sharing</firstHalf>
             <secondHalf the="false">
                 <plural>designs or strategies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Noise attracts attention</name>
+            <firstHalf type="noun">Noise</firstHalf>
+            <secondHalf the="false">
+                <singular>attention</singular>
             </secondHalf>
         </element>
         <element>
@@ -1666,21 +1720,6 @@
             <secondHalf the="false">
                 <singular>deal</singular>
                 <plural>deals</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Noise attracts attention</name>
-            <firstHalf type="noun" preference="singular">Noise</firstHalf>
-            <secondHalf the="false">
-                <singular>attention</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being hit by a falling object</name>
-            <firstHalf type="adjective" preference="plural">Dangerous</firstHalf>
-            <secondHalf the="false">
-                <singular>falling object</singular>
-                <plural>falling objects</plural>
             </secondHalf>
         </element>
         <element>
@@ -1742,13 +1781,6 @@
             <firstHalf type="verb">Something happens only to</firstHalf>
             <secondHalf the="true">
                 <singular>player movement</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The AI learns from the player’s actions</name>
-            <firstHalf type="noun" preference="plural">AI</firstHalf>
-            <secondHalf the="true">
-                <plural>player’s actions</plural>
             </secondHalf>
         </element>
     </category>
@@ -2137,6 +2169,13 @@
             <firstHalf type="verb">Power restoration</firstHalf>
             <secondHalf the="false">
                 <singular>power</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Using abilities alongside another character</name>
+            <firstHalf type="verb">Using abilities with</firstHalf>
+            <secondHalf the="false">
+                <singular>with another character</singular>
             </secondHalf>
         </element>
         <element>
@@ -2568,6 +2607,13 @@
             <secondHalf the="false">
                 <singular>combo</singular>
                 <plural>combos</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Attacks penetrate targets</name>
+            <firstHalf type="verb">Attacking</firstHalf>
+            <secondHalf the="false">
+                <singular>target penetration</singular>
             </secondHalf>
         </element>
         <element>
@@ -3025,14 +3071,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Doors and keys</name>
-            <firstHalf type="noun" preference="plural">Doors</firstHalf>
-            <secondHalf the="false">
-                <singular>key</singular>
-                <plural>keys</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>The four classical elements</name>
             <firstHalf type="adjective">Four</firstHalf>
             <secondHalf the="false">
@@ -3048,9 +3086,17 @@
             </secondHalf>
         </element>
         <element>
+            <name>Familiar mechanics used in novel ways</name>
+            <firstHalf type="adjective">Familiar</firstHalf>
+            <secondHalf the="false">
+                <plural>used in novel ways</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Revisiting places with new tools or abilities</name>
             <firstHalf type="verb">Revisiting places with new</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
+                <singular>tool or ability</singular>
                 <plural>tools or abilities</plural>
             </secondHalf>
         </element>
@@ -4003,17 +4049,19 @@
             </secondHalf>
         </element>
         <element>
-            <name>First-person view</name>
+            <name>First-person perspective</name>
             <firstHalf type="adjective">First-person</firstHalf>
             <secondHalf the="false">
-                <singular>view</singular>
+                <singular>perspective</singular>
+                <plural>perspectives</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Third-person view</name>
+            <name>Third-person perspective</name>
             <firstHalf type="adjective">Third-person</firstHalf>
             <secondHalf the="false">
-                <singular>view</singular>
+                <singular>perspective</singular>
+                <plural>perspectives</plural>
             </secondHalf>
         </element>
         <element>
@@ -4319,6 +4367,21 @@
             </secondHalf>
         </element>
         <element>
+            <name>Accuracy and precision</name>
+            <firstHalf type="adjective">Precise</firstHalf>
+            <secondHalf the="false">
+                <singular>accuracy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Chance and probability</name>
+            <firstHalf type="noun" preference="plural">Chance of</firstHalf>
+            <secondHalf the="false">
+                <singular>probability</singular>
+                <plural>probabilities</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Rhythm action</name>
             <firstHalf type="adjective">Rhythm</firstHalf>
             <secondHalf the="false">
@@ -4373,6 +4436,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Cooking</name>
+            <firstHalf type="verb">Cooking</firstHalf>
+            <secondHalf the="false">
+                <singular>cooking</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Farming</name>
             <firstHalf type="verb" preference="singular">Farming</firstHalf>
             <secondHalf the="false">
@@ -4387,25 +4457,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Cooking</name>
-            <firstHalf type="verb">Cooking</firstHalf>
+            <name>Heist</name>
+            <firstHalf type="noun">Heist</firstHalf>
             <secondHalf the="false">
-                <singular>cooking</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Accuracy and precision</name>
-            <firstHalf type="adjective">Precise</firstHalf>
-            <secondHalf the="false">
-                <singular>accuracy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Chance and probability</name>
-            <firstHalf type="noun" preference="plural">Chance</firstHalf>
-            <secondHalf the="false">
-                <singular>probability</singular>
-                <plural>probabilities</plural>
+                <singular>heist</singular>
+                <plural>heists</plural>
             </secondHalf>
         </element>
         <element>
@@ -4554,14 +4610,6 @@
             <firstHalf type="noun" preference="plural">Crime</firstHalf>
             <secondHalf the="true">
                 <singular>punishment</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Heist</name>
-            <firstHalf type="noun">Heist</firstHalf>
-            <secondHalf the="false">
-                <singular>heist</singular>
-                <plural>heists</plural>
             </secondHalf>
         </element>
         <element>
