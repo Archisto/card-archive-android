@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.TextView;
-import android.util.Log;
 import android.widget.Toast;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -237,6 +237,20 @@ public class MainActivity extends AppCompatActivity {
             return decks.get(categoryIndex).get(0).categoryName;
     }
 
+    private int getUnlockedCardCount() {
+        int result = 0;
+        for (CardSlot slot : cardSlots) {
+            if (!slot.isLocked() && !slot.isEmpty())
+                result++;
+        }
+
+        return  result;
+    }
+
+    private int getMaxUnlockedCardCount() {
+        return Math.min(cardCountCap, maxDisplayedCards - lockedCardCount);
+    }
+
     private void setTextColors(int color) {
         for (CardSlot slot : cardSlots) {
             slot.setTextColor(color);
@@ -280,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
         //  if shows the second page as the first. Fix this.
         //  (This happens because the faux-first page's first card would be on the real first page)
 
-        int displayedListCardCount = cardCountCap - lockedCardCount;
+        int displayedListCardCount = getMaxUnlockedCardCount();
         if (displayedListCardCount <= 0) {
             if (cardCountCap < maxDisplayedCards)
                 return getString(R.string.listUnavailable_elemCountCap);
@@ -418,8 +432,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAllCardSlotTexts(List<Card> displayedCards) {
+        int locksPassed = 0;
         for (int i = 0; i < cardSlots.size(); i++) {
-            boolean emptySlot = i >= cardCountCap || i >= displayedCards.size();
+            if (cardSlots.get(i).isLocked()) {
+                locksPassed++;
+                continue;
+            }
+
+            boolean emptySlot =
+                (i >= cardCountCap + locksPassed) || (i - locksPassed >= displayedCards.size());
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
@@ -699,7 +720,7 @@ public class MainActivity extends AppCompatActivity {
     private CardSlot getAvailableCardSlot(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true);
 
-        if (mergeSlotEnabled && cardSlot != null && cardSlot.id == mergeSlot.id)
+        if (mergeSlotEnabled && cardSlot != null && cardSlot.id == 0)
             return null;
 
         CardSlot firstEmptySlot = getFirstEmptyCardSlot();
@@ -714,12 +735,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Touched nothing and there aren't available card slots
-        // or card count cap is reached
-        if (cardSlot == null || (cardSlot.isEmpty() && cardSlot.id >= cardCountCap))
+        if (cardSlot == null) {
             return null;
-        else
-            // Otherwise touched an available (empty or non-empty) card slot
-            return cardSlot;
+        }
+        // There's a possibly available empty card slot
+        else if (cardSlot.isEmpty()) {
+            // Card count cap is reached
+            if (getUnlockedCardCount() >= cardCountCap)
+                return null;
+        }
+
+        // Returns an available (empty or non-empty) card slot
+        return cardSlot;
     }
 
     private void addOrLockCard(int touchY) {
@@ -793,6 +820,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sortCards() {
+        // TODO: Bug from including getFirstEmptyCardSlotIndex() >= lockedCardCount?
         if (lockedCardCount == 0
             || lockedCardCount == maxDisplayedCards
             || getFirstEmptyCardSlotIndex() >= lockedCardCount)
@@ -884,11 +912,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startOrNextPageInCardList(boolean shownCardCountChanged) {
-
         // Uses allCards deck with the start index and list size set in initListMode()
 
+        int shownListCardCount = getMaxUnlockedCardCount();
+
         boolean outOfCards =
-            nextCardInDeck + cardCountCap - lockedCardCount >= deckStartIndex + listSize;
+            nextCardInDeck + shownListCardCount >= deckStartIndex + listSize;
 
         if (listModeJustStarted) {
             //Log.d("CAGE", "LIST MODE. Just started");
@@ -904,7 +933,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (!shownCardCountChanged) {
             //Log.d("CAGE", "LIST MODE. Next page");
-            nextCardInDeck += cardCountCap - lockedCardCount;
+            nextCardInDeck += shownListCardCount;
         }
 
         //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
@@ -922,7 +951,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void prevPageInCardList() {
         boolean atListFirstElement = nextCardInDeck == deckStartIndex;
-        int shownListCardCount = cardCountCap - lockedCardCount;
+        int shownListCardCount = getMaxUnlockedCardCount();
 
         nextCardInDeck -= shownListCardCount;
         if (nextCardInDeck < deckStartIndex) {
@@ -948,6 +977,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCardList() {
+        int cardsOnPageSoFar = 0;
         int lockedCardsPassed = 0;
 
         for (int i = 0; i < cardSlots.size(); i++) {
@@ -956,7 +986,7 @@ public class MainActivity extends AppCompatActivity {
                 continue;
             }
 
-            boolean emptySlot = i >= cardCountCap;
+            boolean emptySlot = cardsOnPageSoFar >= cardCountCap;
             int deckIndex = nextCardInDeck + i - lockedCardsPassed;
 
             if (deckIndex - deckStartIndex >= listSize) {
@@ -965,6 +995,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             setCardSlotText(cardSlots.get(i), allCards, deckIndex, emptySlot);
+            cardsOnPageSoFar++;
         }
 
         // TODO: fab2 is not transparent before changing page if
@@ -1102,7 +1133,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean setDisplayedCardCount(boolean increase, int min, int max, MenuItem item) {
+    private boolean setElementCountCap(boolean increase, int min, int max, MenuItem item) {
         if (increase) {
             cardCountCap++;
             if (cardCountCap > max) {
@@ -1120,7 +1151,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean setDisplayedCardCount(int value, int min, int max) {
+    private boolean setElementCountCap(int value, int min, int max) {
         if (value >= min && value <= max) {
             cardCountCap = value;
 
@@ -1244,25 +1275,25 @@ public class MainActivity extends AppCompatActivity {
     private boolean handleSetCardCountOptions(int id) {
         switch (id) {
             case R.id.action_setCardCount_1:
-                return setDisplayedCardCount(1, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(1, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_2:
-                return setDisplayedCardCount(2, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(2, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_3:
-                return setDisplayedCardCount(3, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(3, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_4:
-                return setDisplayedCardCount(4, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(4, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_5:
-                return setDisplayedCardCount(5, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(5, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_6:
-                return setDisplayedCardCount(6, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(6, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_7:
-                return setDisplayedCardCount(7, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(7, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_8:
-                return setDisplayedCardCount(8, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(8, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_9:
-                return setDisplayedCardCount(9, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(9, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_10:
-                return setDisplayedCardCount(10, minDisplayedCards, maxDisplayedCards);
+                return setElementCountCap(10, minDisplayedCards, maxDisplayedCards);
         }
 
         return false;
