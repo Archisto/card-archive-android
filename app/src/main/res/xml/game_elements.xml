@@ -266,6 +266,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Dangerous nighttime</name>
+            <firstHalf type="adjective">Dangerous</firstHalf>
+            <secondHalf the="false">
+                <singular>nighttime</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Environmental hazards</name>
             <firstHalf type="adjective">Environmental</firstHalf>
             <secondHalf the="false">
@@ -343,8 +350,8 @@
             <name>Special floor plate which affects things on it</name>
             <firstHalf type="adjective">Special</firstHalf>
             <secondHalf the="true">
-                <singular>affects things on it</singular>
-                <plural>affect things on them</plural>
+                <singular>floor plate</singular>
+                <plural>floor plates</plural>
             </secondHalf>
         </element>
         <element>
@@ -480,10 +487,9 @@
         </element>
         <element>
             <name>Skill tree</name>
-            <firstHalf type="noun" preference="plural">Skills</firstHalf>
+            <firstHalf type="noun">Skill</firstHalf>
             <secondHalf the="false">
-                <singular>skill</singular>
-                <plural>skills</plural>
+                <plural>choices</plural>
             </secondHalf>
         </element>
         <element>
@@ -548,7 +554,7 @@
         </element>
         <element>
             <name>Diseases and cures</name>
-            <firstHalf type="adjective">Negative</firstHalf>
+            <firstHalf type="verb">Curing</firstHalf>
             <secondHalf the="false">
                 <singular>disease/cure</singular>
             </secondHalf>
@@ -2473,7 +2479,7 @@
             <firstHalf type="noun" preference="singular">Planet</firstHalf>
             <secondHalf the="false">
                 <singular>influences gameplay</singular>
-                <plural>influence gameplay</plural>
+                <!-- <plural>influence gameplay</plural> -->
             </secondHalf>
         </element>
     </category>
@@ -3531,6 +3537,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Refining materials</name>
+            <firstHalf type="verb">Refining</firstHalf>
+            <secondHalf the="false">
+                <plural>materials</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Upgrading storage space</name>
             <firstHalf type="verb">Upgrading</firstHalf>
             <secondHalf the="false">
@@ -3724,7 +3737,7 @@
         </element>
         <element>
             <name>God game</name>
-            <firstHalf type="verb">Controlling every bit of</firstHalf>
+            <firstHalf type="verb">Total control over</firstHalf>
             <secondHalf the="false">
                 <singular>game</singular>
                 <plural>games</plural>
@@ -3739,17 +3752,16 @@
         </element>
         <element>
             <name>Free-for-All</name>
-            <firstHalf type="adjective">Free</firstHalf>
+            <firstHalf type="adjective">Fighting</firstHalf>
             <secondHalf the="false">
-                <singular>alone</singular>
-                <plural>everyone</plural>
+                <plural>against everyone</plural>
             </secondHalf>
         </element>
         <element>
             <name>Last Man Standing</name>
             <firstHalf type="adjective" preference="singular">Last</firstHalf>
             <secondHalf the="false">
-                <singular>standing</singular>
+                <singular>elimination</singular>
             </secondHalf>
         </element>
         <element>

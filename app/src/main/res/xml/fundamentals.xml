@@ -50,6 +50,7 @@
         <element name="Rule" />
         <element name="Saving &amp; Loading" />
         <element name="Score" />
+        <element name="Searching" />
         <element name="Sight" />
         <element name="Skill" />
         <element name="Sky" />
