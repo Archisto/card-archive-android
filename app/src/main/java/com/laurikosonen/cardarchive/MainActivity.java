@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Card mergeBeginning;
     private Card tipCard;
-    private CardSlot mergeSlot;
-
 
     private enum DisplayMode {
         classic,
@@ -326,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
         allCards = new ArrayList<>();
         CustomXmlResourceParser.parseCards(getResources(), R.xml.game_elements, decks, allCards);
 
-        // Fundamentals
+        // Fundamentals TODO: List
         fundamentals = new ArrayList<>();
         XmlResourceParser_Fundamentals.
             parseFundamentals(getResources(), R.xml.fundamentals, fundamentals);
@@ -358,12 +356,6 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.colorLockBackground2));
             cardSlots.add(cardSlot);
         }
-
-        mergeSlot = new CardSlot(
-            0,
-            (TextView) findViewById(cardSlotTextViewIds[0]),
-            ContextCompat.getColor(this, R.color.colorAccent),
-            ContextCompat.getColor(this, R.color.colorGreen));
 
         // Tip card for the merge slot
         tipCard = new Card(getString(R.string.mergeSlotTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
@@ -519,16 +511,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showOrHideFundamentals(boolean showFundamentals) {
-        if (mergeSlotEnabled)
-            showOrHideFundamental(mergeSlot, showFundamentals);
-
         for (CardSlot cardSlot : cardSlots) {
             showOrHideFundamental(cardSlot, showFundamentals);
         }
     }
 
     private void showOrHideFundamental(CardSlot cardSlot, boolean showFundamental) {
-        if (cardSlot.isEmpty() || (mergeSlotEnabled && cardSlot.id == 0))
+        if (cardSlot.isEmpty())
             return;
 
         if (!cardSlot.isLocked() || cardSlot.fundamental == null) {
@@ -551,9 +540,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showOrHideCategoryTags(boolean showCategories) {
-        if (mergeSlotEnabled)
-            showOrHideCategoryTag(mergeSlot, showCategories);
-
         for (CardSlot cardSlot : cardSlots) {
             showOrHideCategoryTag(cardSlot, showCategories);
         }
@@ -658,8 +644,8 @@ public class MainActivity extends AppCompatActivity {
 //                ", card2: " + mergeOrigin.card2);
 
             if (mergeSlotEnabled) {
-                mergeSlot.setCards(mergeSlot.card1, card2);
-                updateCardSlotText(mergeSlot);
+                cardSlots.get(0).setCards(cardSlots.get(0).card1, card2);
+                updateCardSlotText(cardSlots.get(0));
             }
             else {
                 for (CardSlot slot : cardSlots) {
@@ -683,9 +669,10 @@ public class MainActivity extends AppCompatActivity {
             Card card2;
 
             if (mergeSlotEnabled) {
-                card2 = mergeSlot.card2 == null ? mergeSlot.card1 : mergeSlot.card2;
-                mergeSlot.setCards(mergeBeginning, card2);
-                updateCardSlotText(mergeSlot);
+                card2 = cardSlots.get(0).card2 == null ?
+                    cardSlots.get(0).card1 : cardSlots.get(0).card2;
+                cardSlots.get(0).setCards(mergeBeginning, card2);
+                updateCardSlotText(cardSlots.get(0));
             }
             else {
                 for (CardSlot slot : cardSlots) {
@@ -846,7 +833,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sortCards() {
-        // TODO: Bug from including getFirstEmptyCardSlotIndex() >= lockedCardCount?
+        // TODO: Fix List mode sorting
+        //  Bug from including getFirstEmptyCardSlotIndex() >= lockedCardCount?
         if (lockedCardCount == 0
             || lockedCardCount == maxDisplayedCards
             || getFirstEmptyCardSlotIndex() >= lockedCardCount)
@@ -1054,21 +1042,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateMergeSlot() {
-        // TODO: Get rid of mergeSlot object and just use cardSlots.get(0)
-
         if (mergeSlotEnabled) {
-            mergeSlot.copyFrom(cardSlots.get(0));
-            mergeSlot.setCards(tipCard, null);
             moveCardsDown();
-            updateCardSlotText(mergeSlot);
+            cardSlots.get(0).setCards(tipCard, null);
+
+            if (showFundamentals) {
+                cardSlots.get(0).fundamental = getRandomFundamental();
+            }
+
+            updateCardSlotText(cardSlots.get(0));
             cardSlots.get(0).lock(true);
-            mergeSlot.setBackgroundColor(mergeSlotColor);
+            cardSlots.get(0).setBackgroundColor(mergeSlotColor);
         }
         else {
-            mergeSlot.lock(false);
             cardSlots.get(0).lock(false);
-            cardSlots.get(0).copyFrom(mergeSlot);
-            updateCardSlotText(cardSlots.get(0));
         }
     }
 
@@ -1144,18 +1131,16 @@ public class MainActivity extends AppCompatActivity {
             return handleSetCardCountOptions(id);
         else if (handleDisplayedCategoryOptions(id, item))
             return true;
-        else if (isSetModeId(id))
-            return handleSetDisplayModeOptions(id, item);
+        else if (id == R.id.action_mergeSlotToggle) {
+            enableMergeSlot(!mergeSlotEnabled);
+            return true;
+        }
         else if (handleClearCardsAction(id))
             return true;
         else if (handleClearLocksAction(id))
             return true;
         else if (id == R.id.action_changeFundamentals) {
             enableFundamentals(true);
-            return true;
-        }
-        else if (id == R.id.action_mergeSlotToggle) {
-            enableMergeSlot(!mergeSlotEnabled);
             return true;
         }
         else if (id == R.id.action_showFundamentalsToggle) {
@@ -1370,6 +1355,12 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    private void enableMergeSlot(boolean enable) {
+        mergeSlotEnabled = enable;
+        mergeSlotToggle.setChecked(mergeSlotEnabled);
+        updateMergeSlot();
+    }
+
     private boolean handleClearCardsAction(int id) {
         if (id == R.id.action_clearCards) {
             if (displayMode == DisplayMode.list) {
@@ -1403,12 +1394,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
-    }
-
-    private void enableMergeSlot(boolean enable) {
-        mergeSlotEnabled = enable;
-        mergeSlotToggle.setChecked(mergeSlotEnabled);
-        updateMergeSlot();
     }
 
     private void enableFundamentals(boolean enable) {

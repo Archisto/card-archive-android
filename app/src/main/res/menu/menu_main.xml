@@ -80,6 +80,11 @@
         </menu>
     </item>
     <item
+        android:id="@+id/action_mergeSlotToggle"
+        android:title="@string/action_mergeSlot"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_clearCards"
         android:title="@string/action_clearCards"
         app:showAsAction="ifRoom" />
@@ -90,11 +95,6 @@
     <item
         android:id="@+id/action_changeFundamentals"
         android:title="@string/action_changeFundamentals"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_mergeSlotToggle"
-        android:title="@string/action_mergeSlot"
-        android:checkable="true"
         app:showAsAction="never" />
 <!--    <item-->
 <!--        android:id="@+id/action_keepResultCategoriesToggle"-->
