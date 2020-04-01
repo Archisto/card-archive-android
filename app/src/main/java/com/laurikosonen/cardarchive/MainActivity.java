@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ClipboardManager;
 import android.content.ClipData;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final int minDisplayedCards = 1;
     private final int maxDisplayedCards = 10;
-    private int maxTouchDuration = 30;
-    private float buttonAlpha = 0.6f;
+    private final float maxTouchDuration = 400;
+    private final float buttonAlpha = 0.6f;
 
     private View mainView;
     private Menu menu;
@@ -48,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private int listSize = 0;
     private int touchStartX;
     private int touchStartY;
-    private int touchDuration;
     private int lockedCardCount;
+    private float touchStartTime;
     private DisplayMode displayMode;
     private MenuItem currentDisplayedCatItem;
     private MenuItem currentDisplayedDisplayModeItem;
@@ -171,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
             touching = true;
             touchStartX = touchX;
             touchStartY = touchY;
+            touchStartTime = SystemClock.elapsedRealtime();
         }
         else {
-            touchDuration++;
-            if (touchDuration > maxTouchDuration) {
+            if (SystemClock.elapsedRealtime() - touchStartTime >= maxTouchDuration) {
                 touchHandled = true;
 
                 int touchPosMaxDifference = 10;
@@ -206,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
     private void endTouch() {
         touching = false;
         touchHandled = false;
-        touchDuration = 0;
     }
 
 //    private void makeSnackbar(View view, String text) {
