@@ -117,6 +117,11 @@
         android:checkable="true"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_autoSortWhenLocking"
+        android:title="@string/action_autoSortWhenLocking"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_autoUpdateSettingChangesToggle"
         android:title="@string/action_autoUpdateSettingChanges"
         android:checkable="true"

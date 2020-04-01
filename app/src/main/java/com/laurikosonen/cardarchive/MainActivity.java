@@ -56,17 +56,18 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem currentDisplayedDisplayModeItem;
     private MenuItem mergeSlotToggle;
     //private MenuItem keepResultCategoriesToggle;
+    private MenuItem autoSortWhenLockingToggle;
     private MenuItem autoUpdateSettingChangesToggle;
     private MenuItem showFundamentalsToggle;
     private MenuItem showCategoryTagsToggle;
     //private int mainTextColor;
     private int mergeSlotColor;
     private boolean listModeJustStarted;
-    private boolean mergeAltModeJustStarted;
+    private boolean mergeSlotEnabled;
     private boolean showFundamentals;
     private boolean showCategoryTags = true;
-    private boolean mergeSlotEnabled;
     //private boolean keepResultCategories;
+    private boolean autoSortWhenLocking;
     private boolean autoUpdateSettingChanges = true;
     private boolean locksChanged;
     private boolean touching;
@@ -841,7 +842,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void removeCard(int cardSlotIndex) {
         if (cardSlotIndex == cardSlots.size() - 1) {
-            cardSlots.get(cardSlotIndex).clear(true);
+            cardSlots.get(cardSlotIndex).clear(false);
         }
         else {
             for (int i = cardSlotIndex + 1; i < cardSlots.size(); i++) {
@@ -921,17 +922,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void moveCardsDown() {
-        //if (cardSlots.get(0).isEmpty() || lockedCardCount >= cardCountCap)
-        if (lockedCardCount >= cardCountCap)
-            return;
-
-        int lockedReached = 0;
-        for (int i = cardSlots.size() - 1; i > 0; i--) {
-            if (cardSlots.get(i).isLocked())
-                lockedReached++;
-
-            if (!cardSlots.get(i).isLocked() || i < cardSlots.size() - lockedReached)
+        // If all card slots have a locked card, the last one is lost
+        if (lockedCardCount == cardSlots.size()) {
+            for (int i = cardSlots.size() - 1; i > 0; i--) {
                 cardSlots.get(i).copyFrom(cardSlots.get(i - 1));
+            }
+
+            lockedCardCount--;
+        }
+        // Otherwise the first empty slot is filled or the last unlocked card is lost
+        else {
+            int lockedReached = 0;
+            for (int i = cardSlots.size() - 1; i > 0; i--) {
+                if (cardSlots.get(i).isLocked())
+                    lockedReached++;
+
+                if (!cardSlots.get(i).isLocked() || i < cardSlots.size() - lockedReached)
+                    cardSlots.get(i).copyFrom(cardSlots.get(i - 1));
+            }
         }
 
         cardSlots.get(0).clear(false);
@@ -950,6 +958,9 @@ public class MainActivity extends AppCompatActivity {
                     lockedCardCount--;
 
                 locksChanged = true;
+
+                if (autoSortWhenLocking)
+                    sortCards();
             }
         }
     }
@@ -1111,6 +1122,9 @@ public class MainActivity extends AppCompatActivity {
 //        keepResultCategoriesToggle = menu.findItem(R.id.action_keepResultCategoriesToggle);
 //        keepResultCategoriesToggle.setChecked(keepResultCategories);
 
+        autoSortWhenLockingToggle = menu.findItem(R.id.action_autoSortWhenLocking);
+        autoSortWhenLockingToggle.setChecked(autoSortWhenLocking);
+
         autoUpdateSettingChangesToggle = menu.findItem(R.id.action_autoUpdateSettingChangesToggle);
         autoUpdateSettingChangesToggle.setChecked(autoUpdateSettingChanges);
 
@@ -1184,6 +1198,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (handleShowCategoryTagsActivation(id))
+            return true;
+        else if (handleAutoSortWhenLockingActivation(id))
             return true;
         else if (handleAutoUpdateSettingChangesActivation(id))
             return true;
@@ -1445,6 +1461,16 @@ public class MainActivity extends AppCompatActivity {
             showCategoryTags = !showCategoryTags;
             showCategoryTagsToggle.setChecked(showCategoryTags);
             showOrHideCategoryTags(showCategoryTags);
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean handleAutoSortWhenLockingActivation(int id) {
+        if (id == R.id.action_autoSortWhenLocking) {
+            autoSortWhenLocking = !autoSortWhenLocking;
+            autoSortWhenLockingToggle.setChecked(autoSortWhenLocking);
             return true;
         }
 
