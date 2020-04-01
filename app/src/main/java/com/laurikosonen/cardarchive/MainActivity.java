@@ -1,6 +1,9 @@
 package com.laurikosonen.cardarchive;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.ClipboardManager;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
@@ -273,6 +276,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTextColor(int textIndex, int color) {
         cardSlots.get(textIndex).setTextColor(color);
+    }
+
+    private void copyElementsToClipboard() {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+        StringBuilder allElementsText = new StringBuilder();
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).isEmpty())
+                continue;
+            else if (i > 0)
+                allElementsText.append("\n");
+
+            if (cardSlots.get(i).secondaryLockEnabled())
+                allElementsText.append("- ");
+
+            allElementsText.append(cardSlots.get(i).getText());
+        }
+
+        ClipData clip = ClipData.newPlainText(getString(R.string.app_name), allElementsText.toString());
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(this, getString(R.string.copiedToClipboard), Toast.LENGTH_LONG).show();
     }
 
     private void updateHeaderInfoText() {
@@ -1101,6 +1126,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else if (id == R.id.action_mergeSlotToggle) {
             enableMergeSlot(!mergeSlotEnabled);
+            return true;
+        }
+        else if (id == R.id.action_copyToClipboard) {
+            copyElementsToClipboard();
             return true;
         }
         else if (handleClearCardsAction(id))

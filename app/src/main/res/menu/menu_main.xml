@@ -82,6 +82,10 @@
         android:checkable="true"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_copyToClipboard"
+        android:title="@string/action_copyToClipboard"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_clearCards"
         android:title="@string/action_clearCards"
         app:showAsAction="ifRoom" />
