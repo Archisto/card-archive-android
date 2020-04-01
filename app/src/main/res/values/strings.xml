@@ -6,6 +6,7 @@
     <string name="action_copyToClipboard">Copy to Clipboard</string>
     <string name="action_clearCards">Clear</string>
     <string name="action_clearLocks">Clear Locks</string>
+    <string name="action_sortCards">Sort</string>
     <string name="action_changeFundamentals">Change Fundamentals</string>
     <string name="action_mergeSlot">Enable Merge Slot</string>
     <string name="action_keepElementCategories">Keep Element Categories</string>

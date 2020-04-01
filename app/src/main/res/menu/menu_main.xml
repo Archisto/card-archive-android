@@ -94,6 +94,10 @@
         android:title="@string/action_clearLocks"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_sortCards"
+        android:title="@string/action_sortCards"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_changeFundamentals"
         android:title="@string/action_changeFundamentals"
         app:showAsAction="never" />

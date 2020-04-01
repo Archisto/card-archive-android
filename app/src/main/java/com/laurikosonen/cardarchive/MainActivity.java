@@ -866,41 +866,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sortCards() {
-        // TODO: Fix List/Fnd mode sorting
-        //  Bug from including getFirstEmptyCardSlotIndex() >= lockedCardCount?
         if (lockedCardCount == 0
-            || lockedCardCount == maxDisplayedCards
-            || getFirstEmptyCardSlotIndex() >= lockedCardCount)
+            || lockedCardCount == maxDisplayedCards)
             return;
 
-        int[] unlockedSlotIndexes = new int[10];
-        short unlockedCards = 0;
-        short unlockedCardsHandled = 0;
-
-        //Log.d("CAGE", "Not sorted");
-
+        int firstUnlockedCardIndex = 0;
         for (int i = 0; i < cardSlots.size(); i++) {
             if (!cardSlots.get(i).isLocked()) {
-                // Plus one because 0 means the index is unset
-                unlockedSlotIndexes[unlockedCards] = i + 1;
-                unlockedCards++;
+                firstUnlockedCardIndex = i;
+                break;
             }
         }
 
+        // Cards are already sorted
+        if (firstUnlockedCardIndex >= lockedCardCount)
+            return;
+
         CardSlot temp = new CardSlot(-1,  new TextView(this), 0, 0);
+        temp.copyFromLite(cardSlots.get(firstUnlockedCardIndex));
 
-        for (int i = 0; i < cardSlots.size(); i++) {
-            if (cardSlots.get(i).isLocked()
-                  && unlockedSlotIndexes[unlockedCardsHandled] > 0
-                  && unlockedSlotIndexes[unlockedCardsHandled] - 1 < i) {
-                int unlockedSlotIndex = unlockedSlotIndexes[unlockedCardsHandled] - 1;
+        int lockedCardsMoved = 0;
+        for (int i = firstUnlockedCardIndex + 1; i < cardSlots.size(); i++) {
+            if (cardSlots.get(i).isLocked()) {
+                // Moves a locked card to the position of the first unlocked card
+                cardSlots.get(firstUnlockedCardIndex).copyFrom(cardSlots.get(i));
+                lockedCardsMoved++;
+                //Log.d("CAGE", "Locked card got position " + firstUnlockedCardIndex);
 
-                temp.copyFromLite(cardSlots.get(unlockedSlotIndex));
-                cardSlots.get(unlockedSlotIndex).copyFrom(cardSlots.get(i));
-                cardSlots.get(i).copyFrom(temp);
+                // Moves down all unlocked cards in between
+                for (int j = i; j > firstUnlockedCardIndex; j--) {
+                    if (j == firstUnlockedCardIndex + 1) {
+                        cardSlots.get(j).copyFrom(temp);
+                        firstUnlockedCardIndex = j;
+                    }
+                    else {
+                        cardSlots.get(j).copyFrom(cardSlots.get(j - 1));
+                    }
+                    //Log.d("CAGE", "Unlocked card got position " + j);
+                }
 
-                unlockedCardsHandled++;
-                if (unlockedCardsHandled >= lockedCardCount)
+                if (lockedCardsMoved == lockedCardCount)
                     break;
             }
         }
@@ -1157,6 +1162,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else if (handleClearLocksAction(id))
             return true;
+        else if (id == R.id.action_sortCards) {
+            sortCards();
+            return true;
+        }
         else if (id == R.id.action_changeFundamentals) {
             enableFundamentals(true);
             return true;
