@@ -21,7 +21,7 @@
     <string name="catAndPageNum">Category: %s - Page %s/%s</string>
     <string name="fundamentalCount">Fundamentals - %s Elements</string>
     <string name="action_cardCount">Element Count Cap: %d</string>
-    <string name="action_useCategory">> %s</string>
+    <string name="action_useCategory">> [%s] %s</string>
     <string name="action_useAllCategories">Use All Categories</string>
     <string name="mode_classic">Classic</string>
     <string name="mode_list">List</string>
@@ -44,20 +44,20 @@
         "\n\n\nELEMENT COUNTS"
 
         "\n\n- Total: %s elements"
-        "\n\n- World: %s elements"
-        "\n- Character: %s elements"
-        "\n- Group: %s elements"
-        "\n- Influence: %s elements"
-        "\n- Interaction: %s elements"
-        "\n- Abilities: %s elements"
-        "\n- Navigation: %s elements"
-        "\n- Combat: %s elements"
-        "\n- Thinking: %s elements"
-        "\n- Items: %s elements"
-        "\n- Goal: %s elements"
-        "\n- Audio &amp; Visuals: %s elements"
-        "\n- Miscellaneous: %s elements"
-        "\n\n- Fundamentals: %s"
+        "\n\n- [Wld] World: %s elements"
+        "\n- [Cha] Character: %s elements"
+        "\n- [Grp] Group: %s elements"
+        "\n- [Inf] Influence: %s elements"
+        "\n- [IAc] Interaction: %s elements"
+        "\n- [Abi] Abilities: %s elements"
+        "\n- [Nav] Navigation: %s elements"
+        "\n- [Com] Combat: %s elements"
+        "\n- [Thi] Thinking: %s elements"
+        "\n- [Itm] Items: %s elements"
+        "\n- [Go] Goal: %s elements"
+        "\n- [AV] Audio &amp; Visuals: %s elements"
+        "\n- [Msc] Miscellaneous: %s elements"
+        "\n- [Fnd] Fundamentals: %s"
 
         "\n\n\nFEATURES"
         "\n\n- Modes: Classic, List, Merge, Merge Alt, Choose One, Fundamentals,"

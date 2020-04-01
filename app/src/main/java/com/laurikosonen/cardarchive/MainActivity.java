@@ -1107,7 +1107,9 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < displayCategories.length; i++) {
                 menu.findItem(displayCategories[i]).
-                    setTitle(String.format(getString(R.string.action_useCategory), getCategoryName(i, false)));
+                    setTitle(String.format(getString(R.string.action_useCategory),
+                        getCategoryName(i, true),
+                        getCategoryName(i, false)));
             }
         }
 
