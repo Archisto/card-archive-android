@@ -1042,6 +1042,7 @@
             <name>Innocent civilians</name>
             <firstHalf type="adjective">Innocent</firstHalf>
             <secondHalf the="false">
+                <singular>civilian</singular>
                 <plural>civilians</plural>
             </secondHalf>
         </element>
@@ -4473,10 +4474,9 @@
         </element>
         <element>
             <name>The core gameplay loop lasts only a minute or less</name>
-            <firstHalf type="noun" preference="singular">The core gameplay loop</firstHalf>
-            <secondHalf the="false">
-                <singular>lasts only a minute or less</singular>
-                <!--<plural>last only a minute or less</plural>-->
+            <firstHalf type="adjective">Short</firstHalf>
+            <secondHalf the="true">
+                <singular>core gameplay loop</singular>
             </secondHalf>
         </element>
         <element>
