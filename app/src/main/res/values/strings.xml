@@ -20,7 +20,7 @@
     <string name="allCatAndPageNum">All Categories - Page %s/%s</string>
     <string name="catAndCardCount">Category: %s - %s Elements</string>
     <string name="catAndPageNum">Category: %s - Page %s/%s</string>
-    <string name="fundamentalCount">Fundamentals - %s Elements</string>
+    <string name="fundamentalPageNum">Fundamentals - Page %s/%s</string>
     <string name="action_cardCount">Element Count Cap: %d</string>
     <string name="action_useCategory">> [%s] %s</string>
     <string name="action_useAllCategories">Use All Categories</string>

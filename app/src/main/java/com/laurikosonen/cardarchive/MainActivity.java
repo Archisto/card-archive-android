@@ -312,11 +312,11 @@ public class MainActivity extends AppCompatActivity {
         if (!usingAllCards)
             categoryName = getCategoryName(displayedCategory, false);
 
-        if (displayMode == DisplayMode.fundamentals) {
-            newString = String.format(getString(R.string.fundamentalCount), "" + fundamentals.size());
-        }
-        else if (displayMode == DisplayMode.list) {
+        if (displayMode == DisplayMode.list) {
             newString = getHeaderInfoListMode(usingAllCards, categoryName);
+        }
+        else if (displayMode == DisplayMode.fundamentals) {
+            newString = getHeaderInfoListMode(false, "");
         }
         else {
             String cardCount = "" + allCards.size();
@@ -358,6 +358,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (usingAllCards)
             return String.format(getString(R.string.allCatAndPageNum), currentPage, maxPage);
+        else if (displayMode == DisplayMode.fundamentals)
+            return String.format(getString(R.string.fundamentalPageNum), currentPage, maxPage);
         else
             return String.format(getString(R.string.catAndPageNum), categoryName, currentPage, maxPage);
     }
@@ -424,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean anyCategory = category < 0;
         if (displayMode != DisplayMode.list) {
-            // In List mode, uses allCards deck with the start and end indexes
+            // List mode uses allCards deck with the start and end indexes
             // according to the used category
 
             if (displayMode == DisplayMode.fundamentals) {
@@ -447,12 +449,15 @@ public class MainActivity extends AppCompatActivity {
 
         updateDisplayedDeck(category);
 
-        if (displayMode != DisplayMode.list && displayedCards != allCards) {
+        if (displayMode != DisplayMode.list
+            && displayMode != DisplayMode.fundamentals
+            && displayedCards != allCards) {
             shuffleDeck(displayedCards);
         }
 
         switch (displayMode) {
             case list:
+            case fundamentals:
                 startOrNextPageInCardList(shownCardCountChanged);
                 break;
             default:
@@ -647,7 +652,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (displayMode != DisplayMode.list) {
+        if (displayMode != DisplayMode.list && displayMode != DisplayMode.fundamentals) {
             if (cardSlotIndex >= 0
                 && cardSlotIndex < cardSlots.size()
                 && !isMergeSlot(cardSlotIndex))
@@ -861,7 +866,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sortCards() {
-        // TODO: Fix List mode sorting
+        // TODO: Fix List/Fnd mode sorting
         //  Bug from including getFirstEmptyCardSlotIndex() >= lockedCardCount?
         if (lockedCardCount == 0
             || lockedCardCount == maxDisplayedCards
@@ -953,31 +958,39 @@ public class MainActivity extends AppCompatActivity {
         listModeJustStarted = true;
     }
 
-    private void startOrNextPageInCardList(boolean shownCardCountChanged) {
-        // Uses allCards deck with the start index and list size set in initListMode()
+    private void initFundamentalListMode() {
+        clearCards();
+        deckStartIndex = 0;
+        listSize = fundamentals.size();
+        listModeJustStarted = true;
+    }
 
-        int shownListCardCount = getMaxUnlockedCardCount();
+    private void startOrNextPageInCardList(boolean shownCardCountChanged) {
+        // List: Uses allCards deck with the start index and list size set in initListMode()
+        // Fundamentals: Uses fundamentals deck with the start index and list size set in initFundamentalListMode()
+
+        int elementsOnPage = getMaxUnlockedCardCount();
 
         boolean outOfCards =
-            nextCardInDeck + shownListCardCount >= deckStartIndex + listSize;
+            nextCardInDeck + elementsOnPage >= deckStartIndex + listSize;
 
         if (listModeJustStarted) {
-            //Log.d("CAGE", "LIST MODE. Just started");
+            //Log.d("CAGE", "LIST/FND MODE. Just started");
             nextCardInDeck = deckStartIndex;
             listModeJustStarted = false;
             enableNextAndPrevButtons(true);
             locksChanged = false;
         }
         else if (outOfCards) {
-            //Log.d("CAGE", "LIST MODE. Out of cards");
+            //Log.d("CAGE", "LIST/FND MODE. Out of cards");
             nextCardInDeck = deckStartIndex;
         }
         else if (!shownCardCountChanged) {
-            //Log.d("CAGE", "LIST MODE. Next page");
-            nextCardInDeck += shownListCardCount;
+            nextCardInDeck += elementsOnPage;
+            //Log.d("CAGE", "LIST/FND MODE. Next page. Start card id: " + nextCardInDeck);
         }
 
-        //Log.d("CAGE", "LIST MODE. nextShownCardInList: " + nextShownCardInList +
+        //Log.d("CAGE", "LIST/FND MODE. nextShownCardInList: " + nextShownCardInList +
         //      ". listStartIndex: " + listStartIndex +
         //      ". listSize: " + listSize);
 
@@ -1035,7 +1048,7 @@ public class MainActivity extends AppCompatActivity {
                 emptySlot = true;
             }
 
-            setCardSlotText(cardSlots.get(i), allCards, deckIndex, emptySlot);
+            setCardSlotText(cardSlots.get(i), displayedCards, deckIndex, emptySlot);
             cardsOnPageSoFar++;
         }
     }
@@ -1215,7 +1228,11 @@ public class MainActivity extends AppCompatActivity {
                 initListMode();
                 drawCards(displayedCategory, false);
             }
-            else if (displayMode != DisplayMode.fundamentals) {
+            else if (displayMode == DisplayMode.fundamentals) {
+                initFundamentalListMode();
+                drawCards(displayedCategory, false);
+            }
+            else {
                 if (autoUpdateSettingChanges) {
                     drawCards(displayedCategory, false);
                 }
@@ -1232,8 +1249,9 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean setDisplayMode(MenuItem item, DisplayMode mode) {
 
-        // Hides Next and Prev buttons if List mode is ending
-        if (displayMode == DisplayMode.list && mode != DisplayMode.list) {
+        // Hides Next and Prev buttons if List or Fundamentals mode is ending
+        if ((displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals)
+            && mode != displayMode) {
             enableNextAndPrevButtons(false);
         }
 
@@ -1245,6 +1263,10 @@ public class MainActivity extends AppCompatActivity {
         if (displayMode == DisplayMode.list) {
             // List mode updates the header info text when the cards are drawn
             initListMode();
+        }
+        else if (displayMode == DisplayMode.fundamentals) {
+            // Fundamentals mode updates the header info text when the cards are drawn
+            initFundamentalListMode();
         }
         else {
             // All other modes do it here
@@ -1361,7 +1383,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleClearCardsAction(int id) {
         if (id == R.id.action_clearCards) {
-            if (displayMode == DisplayMode.list) {
+            if (displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals) {
                 updateCardList();
                 updateHeaderInfoText();
 
