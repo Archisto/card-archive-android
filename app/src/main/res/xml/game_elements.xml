@@ -387,7 +387,7 @@
         </element>
         <element>
             <name>The playable area changes in size</name>
-            <firstHalf type="noun" preference="singular">The playable area</firstHalf>
+            <firstHalf type="noun" preference="singular">Playable area</firstHalf>
             <secondHalf the="true">
                 <singular>changes in size</singular>
                 <plural>change in size</plural>
@@ -590,7 +590,7 @@
         </element>
         <element>
             <name>The character's feelings</name>
-            <firstHalf type="noun" preference="plural">The character's</firstHalf>
+            <firstHalf type="verb">Character has</firstHalf>
             <secondHalf the="false">
                 <plural>feelings</plural>
             </secondHalf>
@@ -768,7 +768,7 @@
         </element>
         <element>
             <name>The character's size is important</name>
-            <firstHalf type="noun" preference="singular">The character's size</firstHalf>
+            <firstHalf type="noun" preference="singular">Character's size</firstHalf>
             <secondHalf the="false">
                 <singular>size</singular>
             </secondHalf>
@@ -783,14 +783,14 @@
         </element>
         <element>
             <name>The character's appearance influences gameplay</name>
-            <firstHalf type="noun" preference="singular">The character's appearance</firstHalf>
+            <firstHalf type="noun" preference="singular">Character's appearance</firstHalf>
             <secondHalf the="false">
                 <singular>appearance</singular>
             </secondHalf>
         </element>
         <element>
             <name>The character's disability influences gameplay</name>
-            <firstHalf type="noun" preference="singular">The character's disability</firstHalf>
+            <firstHalf type="noun" preference="singular">Character's disability</firstHalf>
             <secondHalf the="false">
                 <singular>disability</singular>
             </secondHalf>
@@ -860,6 +860,14 @@
             <firstHalf type="noun" preference="plural">Other players</firstHalf>
             <secondHalf the="false">
                 <singular>can join and leave anytime</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Grouping up before a mission</name>
+            <firstHalf type="adjective">Grouping up</firstHalf>
+            <secondHalf the="false">
+                <singular>mission</singular>
+                <plural>missions</plural>
             </secondHalf>
         </element>
         <element>
@@ -2771,8 +2779,8 @@
             <name>Focusing attacks on certain parts of the target</name>
             <firstHalf type="verb">Focusing attacks on</firstHalf>
             <secondHalf the="false">
-                <singular>a certain part of the target</singular>
-                <plural>certain parts of the target</plural>
+                <singular>weak spot</singular>
+                <plural>weak spots</plural>
             </secondHalf>
         </element>
         <element>
@@ -2814,7 +2822,7 @@
         </element>
         <element>
             <name>The equipped weapon changes after getting a kill</name>
-            <firstHalf type="noun" preference="singular">The equipped weapon</firstHalf>
+            <firstHalf type="noun" preference="singular">Equipped weapon</firstHalf>
             <secondHalf the="false">
                 <singular>changes after getting a kill</singular>
                 <plural>change after getting some kills</plural>
@@ -3577,7 +3585,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Items can be enhanced by crafting/magic</name>
+            <name>Items can be enhanced by crafting or magic</name>
             <firstHalf type="verb">Items can be enhanced by</firstHalf>
             <secondHalf the="false">
                 <singular>crafting/magic</singular>
@@ -3642,7 +3650,7 @@
         </element>
         <element>
             <name>The player's starting equipment depends on the level</name>
-            <firstHalf type="noun">The player's starting equipment</firstHalf>
+            <firstHalf type="adjective">Starting</firstHalf>
             <secondHalf the="false">
                 <singular>depends on the level</singular>
                 <plural>depend on the level</plural>
@@ -3650,7 +3658,7 @@
         </element>
         <element>
             <name>The player's starting equipment is random</name>
-            <firstHalf type="noun">The player's starting equipment</firstHalf>
+            <firstHalf type="adjective">Starting</firstHalf>
             <secondHalf the="false">
                 <singular>is random</singular>
                 <plural>are random</plural>
@@ -3658,7 +3666,7 @@
         </element>
         <element>
             <name>The player's starting equipment can be customized</name>
-            <firstHalf type="noun">The player's starting equipment</firstHalf>
+            <firstHalf type="adjective">Starting</firstHalf>
             <secondHalf the="false">
                 <singular>can be customized</singular>
             </secondHalf>
@@ -3828,6 +3836,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Sudden Death</name>
+            <firstHalf type="noun">Leading player</firstHalf>
+            <secondHalf the="false">
+                <singular>wins the game</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Different game modes</name>
             <firstHalf type="adjective">Different</firstHalf>
             <secondHalf the="false">
@@ -3852,7 +3867,7 @@
         </element>
         <element>
             <name>The objective is not explicit</name>
-            <firstHalf type="noun" preference="singular">The objective</firstHalf>
+            <firstHalf type="noun" preference="singular">Objective</firstHalf>
             <secondHalf the="false">
                 <singular>is not explicit</singular>
                 <!--<plural>are not explicit</plural>-->
@@ -4110,7 +4125,7 @@
         </element>
         <element>
             <name>The game camera cannot be freely moved</name>
-            <firstHalf type="noun" preference="singular">The game camera</firstHalf>
+            <firstHalf type="noun" preference="singular">Game camera</firstHalf>
             <secondHalf the="false">
                 <singular>cannot be freely moved</singular>
             </secondHalf>
@@ -4470,6 +4485,13 @@
             <firstHalf type="noun" preference="plural">Problems</firstHalf>
             <secondHalf the="false">
                 <plural>emerge at regular intervals</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Sudden change in the middle of action</name>
+            <firstHalf type="noun">Sudden change in</firstHalf>
+            <secondHalf the="false">
+                <plural>in the middle of action</plural>
             </secondHalf>
         </element>
         <element>
