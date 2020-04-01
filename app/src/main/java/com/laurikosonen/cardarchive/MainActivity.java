@@ -1092,9 +1092,12 @@ public class MainActivity extends AppCompatActivity {
             updateCardSlotText(cardSlots.get(0));
             cardSlots.get(0).lock(true);
             cardSlots.get(0).setBackgroundColor(mergeSlotColor);
+
+            lockedCardCount++;
         }
         else {
             cardSlots.get(0).lock(false);
+            lockedCardCount--;
         }
     }
 
