@@ -2,6 +2,7 @@
 <resources>
     <fundamentals name="Fundamentals" shortName="Fnd">
         <element name="Ability" />
+        <element name="AI" keepCaps="true" />
         <element name="Ally" />
         <element name="Attack" />
         <element name="Audio" />
@@ -22,7 +23,6 @@
         <element name="Failure" />
         <element name="Feedback" />
         <element name="Future" />
-        <element name="Goal" />
         <element name="Ground" />
         <element name="Hazard" />
         <element name="Healing" />
@@ -35,6 +35,7 @@
         <element name="Map" />
         <element name="Mood" />
         <element name="Movement" />
+        <element name="Objective" />
         <element name="Obstacle" />
         <element name="Opportunity" />
         <element name="Past" />
@@ -48,7 +49,7 @@
         <element name="Resource" />
         <element name="Reward" />
         <element name="Rule" />
-        <element name="Saving &amp; Loading" />
+        <element name="Saving &amp; loading" />
         <element name="Score" />
         <element name="Searching" />
         <element name="Sight" />
@@ -64,6 +65,7 @@
         <element name="Time" />
         <element name="Tool" />
         <element name="Turn" />
+        <element name="Variety" />
         <element name="Vehicle" />
         <element name="Visuals" />
         <element name="Weakness" />
