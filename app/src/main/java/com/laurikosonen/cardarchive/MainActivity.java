@@ -745,6 +745,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < cardSlots.size(); i++) {
             if (cardSlots.get(i).touchHit(touchY))
                 return i;
+            else if (i > 0 && touchY < cardSlots.get(i).getTop())
+                return i - 1;
         }
 
         return -1;
