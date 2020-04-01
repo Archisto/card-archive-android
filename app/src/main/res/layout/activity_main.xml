@@ -41,29 +41,25 @@
         android:alpha="0.8"
         app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|end"
+        app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_media_play" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_secondary"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:alpha="0.8"
-        app:backgroundTint="@color/colorCyan"
+    <Button
+        android:id="@+id/button_next"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="114dp"
+        android:layout_height="66dp"
+        android:text="@string/next"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:layout_anchorGravity="end|bottom" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="261dp"
-        android:layout_height="96dp"
-        android:paddingBottom="86dp"
-        android:visibility="invisible"
+    <Button
+        android:id="@+id/button_prev"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="114dp"
+        android:layout_height="66dp"
+        android:text="@string/previous"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center"
-        tools:targetApi="26" />
+        app:layout_anchorGravity="start|bottom" />
 
 </android.support.design.widget.CoordinatorLayout>

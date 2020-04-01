@@ -31,6 +31,8 @@
     <string name="modes">Modes</string>
     <string name="mode">Mode</string>
     <string name="tip">Tip</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
     <string name="listUnavailable_clearLocks">Clear locks to see list</string>
     <string name="listUnavailable_elemCountCap">Increase element count cap to see list</string>
     <string name="mergeSlotTip_full">Swipe elements left and right to merge them</string>

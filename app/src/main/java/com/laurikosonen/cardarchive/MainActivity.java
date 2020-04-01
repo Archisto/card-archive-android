@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
@@ -22,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private final int minDisplayedCards = 1;
     private final int maxDisplayedCards = 10;
     private int maxTouchDuration = 30;
+    private float buttonAlpha = 0.6f;
 
     private View mainView;
     private Menu menu;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
+    private Button nextButton;
+    private Button prevButton;
     private TextView headerInfoText;
 
     private List<List<Card>> decks;
@@ -147,6 +151,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         fab2.hide();
+
+        nextButton = (Button) findViewById(R.id.button_next);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startOrNextPageInCardList(false);
+            }
+        });
+
+        prevButton = (Button) findViewById(R.id.button_prev);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                prevPageInCardList();
+            }
+        });
+
+        nextButton.setAlpha(buttonAlpha);
+        prevButton.setAlpha(buttonAlpha);
+        enableNextAndPrevButtons(false);
     }
 
     // Alternate way of checking touch. Not as powerful as OnTouchListener.
@@ -207,6 +231,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideFab2() {
         fab2.hide();
+    }
+
+    private void enableNextAndPrevButtons(boolean enable) {
+        if (enable) {
+            fab1.hide();
+            nextButton.setVisibility(View.VISIBLE);
+            prevButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            fab1.show();
+            nextButton.setVisibility(View.GONE);
+            prevButton.setVisibility(View.GONE);
+        }
     }
 
     private void goToHelp() {
@@ -594,12 +631,6 @@ public class MainActivity extends AppCompatActivity {
             cardSlot.card2.getNameHalf(false, cardSlot.card1.getSecondHalfPreference()));
     }
 
-    private void updateFab2Alpha() {
-        // This is needed because fab2 is really reluctant to keep its transparency if it's hidden
-        fab2.setAlpha(0.8f);
-        //Log.d("CAGE", "Fab2 transparency: " + fab2.getAlpha());
-    }
-
     private void handleCardSlotTouch(int touchY) {
         addOrLockCard(touchY);
     }
@@ -937,8 +968,9 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("CAGE", "LIST MODE. Just started");
             nextCardInDeck = deckStartIndex;
             listModeJustStarted = false;
-            fab2.show();
-            updateFab2Alpha();
+            enableNextAndPrevButtons(true);
+            //fab2.show();
+            //fab2.setAlpha(buttonAlpha);
             locksChanged = false;
         }
         else if (outOfCards) {
@@ -1014,8 +1046,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: fab2 is not transparent before changing page if
         //  it had previously been hidden (outside onCreate()) and afterwards unhidden
-        if (fab2.getAlpha() == 1f)
-            updateFab2Alpha();
+//        if (fab2.getAlpha() == 1f)
+//            updateFab2Alpha();
     }
 
     private void initMergeAltMode() {
@@ -1036,6 +1068,7 @@ public class MainActivity extends AppCompatActivity {
             mergeAltModeJustStarted = false;
             takeNewMergeAltBeginning();
             fab2.show();
+            fab2.setAlpha(buttonAlpha);
         }
 
         setAllCardSlotTexts(displayedCards);
@@ -1231,8 +1264,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Hides fab2 only if the mode it's used in is ending
         if ((displayMode == DisplayMode.list && mode != DisplayMode.list)
-            || (displayMode == DisplayMode.mergeAlt && mode != DisplayMode.mergeAlt))
+            || (displayMode == DisplayMode.mergeAlt && mode != DisplayMode.mergeAlt)) {
             hideFab2();
+            enableNextAndPrevButtons(false);
+        }
 
         displayMode = mode;
         item.setEnabled(false);
