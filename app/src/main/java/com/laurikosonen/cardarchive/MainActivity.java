@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private View mainView;
     private Menu menu;
-    private FloatingActionButton fab1;
-    private FloatingActionButton fab2;
+    private FloatingActionButton fab;
     private Button nextButton;
     private Button prevButton;
     private TextView headerInfoText;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         classic,
         list,
         merge,
-        mergeAlt,
         fundamentals
     }
 
@@ -128,29 +126,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fab1 = (FloatingActionButton) findViewById(R.id.fab_main);
-        fab1.setOnClickListener(new View.OnClickListener() {
+        fab = (FloatingActionButton) findViewById(R.id.fab_main);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawCards(displayedCategory, false);
             }
         });
-
-        fab2 = (FloatingActionButton) findViewById(R.id.fab_secondary);
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (displayMode == DisplayMode.list) {
-                    prevPageInCardList();
-                }
-                else if (displayMode == DisplayMode.mergeAlt) {
-                    takeNewMergeAltBeginning();
-                    drawCards(displayedCategory, false);
-                }
-            }
-        });
-
-        fab2.hide();
 
         nextButton = (Button) findViewById(R.id.button_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -229,18 +211,14 @@ public class MainActivity extends AppCompatActivity {
 //            .setAction("Action", null).show();
 //    }
 
-    private void hideFab2() {
-        fab2.hide();
-    }
-
     private void enableNextAndPrevButtons(boolean enable) {
         if (enable) {
-            fab1.hide();
+            fab.hide();
             nextButton.setVisibility(View.VISIBLE);
             prevButton.setVisibility(View.VISIBLE);
         }
         else {
-            fab1.show();
+            fab.show();
             nextButton.setVisibility(View.GONE);
             prevButton.setVisibility(View.GONE);
         }
@@ -448,9 +426,6 @@ public class MainActivity extends AppCompatActivity {
             case list:
                 startOrNextPageInCardList(shownCardCountChanged);
                 break;
-            case mergeAlt:
-                startOrUpdateMergeAltMode(displayedCards);
-                break;
             default:
                 setAllCardSlotTexts(displayedCards);
                 break;
@@ -484,8 +459,6 @@ public class MainActivity extends AppCompatActivity {
 
         cardSlot.setCards(cards.get(index), null);
         StringBuilder text = new StringBuilder();
-        boolean mergeModeActive =
-            displayMode == DisplayMode.merge || displayMode == DisplayMode.mergeAlt;
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
         if (showFundamentals) {
@@ -496,17 +469,13 @@ public class MainActivity extends AppCompatActivity {
         if (displayMode == DisplayMode.merge) {
             text.append(getMergeCardDisplayText(cardSlot, cards, index));
         }
-        else if (displayMode == DisplayMode.mergeAlt) {
-            cardSlot.setCards(mergeBeginning, cardSlot.card1);
-            text.append(getMergeCardDisplayText(cardSlot));
-        }
         else {
             text.append(cardSlot.card1.name);
         }
 
         int categoryTagLength = 0;
         if (showCategoryTags)
-            categoryTagLength = insertCategoryTag(text, cardSlot, mergeModeActive);
+            categoryTagLength = insertCategoryTag(text, cardSlot, displayMode == DisplayMode.merge);
 
         cardSlot.setText(text.toString(), categoryTagLength);
     }
@@ -651,12 +620,7 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlot == null)
             return;
 
-        boolean mergeModeActive =
-            mergeSlotEnabled
-            || displayMode == DisplayMode.merge
-            || displayMode == DisplayMode.mergeAlt;
-
-        if (mergeModeActive) {
+        if (mergeSlotEnabled || displayMode == DisplayMode.merge) {
             manualMerge(cardSlot, right);
         }
 
@@ -969,8 +933,6 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = deckStartIndex;
             listModeJustStarted = false;
             enableNextAndPrevButtons(true);
-            //fab2.show();
-            //fab2.setAlpha(buttonAlpha);
             locksChanged = false;
         }
         else if (outOfCards) {
@@ -1043,35 +1005,6 @@ public class MainActivity extends AppCompatActivity {
             setCardSlotText(cardSlots.get(i), allCards, deckIndex, emptySlot);
             cardsOnPageSoFar++;
         }
-
-        // TODO: fab2 is not transparent before changing page if
-        //  it had previously been hidden (outside onCreate()) and afterwards unhidden
-//        if (fab2.getAlpha() == 1f)
-//            updateFab2Alpha();
-    }
-
-    private void initMergeAltMode() {
-        mergeAltModeJustStarted = true;
-    }
-
-    private void takeNewMergeAltBeginning() {
-        int oldCardId = (mergeBeginning == null ? -1 : mergeBeginning.id);
-
-        while (mergeBeginning == null || mergeBeginning.id == oldCardId) {
-            int index = (int) (Math.random() * displayedCards.size());
-            mergeBeginning = displayedCards.get(index);
-        }
-    }
-
-    private void startOrUpdateMergeAltMode(List<Card> displayedCards) {
-        if (mergeAltModeJustStarted) {
-            mergeAltModeJustStarted = false;
-            takeNewMergeAltBeginning();
-            fab2.show();
-            fab2.setAlpha(buttonAlpha);
-        }
-
-        setAllCardSlotTexts(displayedCards);
     }
 
     private void updateMergeSlot() {
@@ -1262,10 +1195,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean setDisplayMode(MenuItem item, DisplayMode mode) {
 
-        // Hides fab2 only if the mode it's used in is ending
-        if ((displayMode == DisplayMode.list && mode != DisplayMode.list)
-            || (displayMode == DisplayMode.mergeAlt && mode != DisplayMode.mergeAlt)) {
-            hideFab2();
+        // Hides Next and Prev buttons if List mode is ending
+        if (displayMode == DisplayMode.list && mode != DisplayMode.list) {
             enableNextAndPrevButtons(false);
         }
 
@@ -1283,10 +1214,6 @@ public class MainActivity extends AppCompatActivity {
             updateHeaderInfoText();
         }
 
-        if (displayMode == DisplayMode.mergeAlt) {
-            initMergeAltMode();
-        }
-
         drawCards(displayedCategory, false);
 
         return true;
@@ -1296,7 +1223,6 @@ public class MainActivity extends AppCompatActivity {
         return id == R.id.action_setMode_classic
             || id == R.id.action_setMode_list
             || id == R.id.action_setMode_merge
-            || id == R.id.action_setMode_mergeAlt
             || id == R.id.action_setMode_fundamentals;
     }
 
@@ -1321,8 +1247,6 @@ public class MainActivity extends AppCompatActivity {
                 return setDisplayMode(item, DisplayMode.list);
             case R.id.action_setMode_merge:
                 return setDisplayMode(item, DisplayMode.merge);
-            case R.id.action_setMode_mergeAlt:
-                return setDisplayMode(item, DisplayMode.mergeAlt);
             case R.id.action_setMode_fundamentals:
                 return setDisplayMode(item, DisplayMode.fundamentals);
         }

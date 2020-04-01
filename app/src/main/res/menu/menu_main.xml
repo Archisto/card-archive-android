@@ -30,9 +30,6 @@
                 android:id="@+id/action_setMode_merge"
                 android:title="@string/mode_merge" />
             <item
-                android:id="@+id/action_setMode_mergeAlt"
-                android:title="@string/mode_mergeAlt" />
-            <item
                 android:id="@+id/action_setMode_fundamentals"
                 android:title="@string/mode_fundamentals" />
         </menu>
