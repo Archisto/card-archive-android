@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
     //private MenuItem keepResultCategoriesToggle;
     private MenuItem autoSortWhenLockingToggle;
     private MenuItem autoUpdateSettingChangesToggle;
-    private MenuItem showFundamentalsToggle;
+    private MenuItem addFundamentalsToggle;
     private MenuItem showCategoryTagsToggle;
     //private int mainTextColor;
     private int mergeSlotColor;
     private boolean listModeJustStarted;
     private boolean mergeSlotEnabled;
-    private boolean showFundamentals;
+    private boolean addFundamentalsEnabled;
     private boolean showCategoryTags = true;
     //private boolean keepResultCategories;
     private boolean autoSortWhenLocking;
@@ -505,7 +505,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder text = new StringBuilder();
         //Log.d("CAGE", "Card1: " + cardSlot.card1.name);
 
-        if (showFundamentals) {
+        if (addFundamentalsEnabled) {
             cardSlot.fundamental = getRandomFundamental();
             appendFundamental(text, cardSlot);
         }
@@ -531,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder text = new StringBuilder();
         boolean mergeElements = cardSlot.card2 != null;
 
-        if (showFundamentals) {
+        if (addFundamentalsEnabled) {
             //cardSlot.fundamental = getRandomFundamental();
             appendFundamental(text, cardSlot);
         }
@@ -1085,7 +1085,7 @@ public class MainActivity extends AppCompatActivity {
             moveCardsDown();
             cardSlots.get(0).setCards(tipCard, null);
 
-            if (showFundamentals) {
+            if (addFundamentalsEnabled) {
                 cardSlots.get(0).fundamental = getRandomFundamental();
             }
 
@@ -1115,8 +1115,8 @@ public class MainActivity extends AppCompatActivity {
         mergeSlotToggle = menu.findItem(R.id.action_mergeSlotToggle);
         mergeSlotToggle.setChecked(mergeSlotEnabled);
 
-        showFundamentalsToggle = menu.findItem(R.id.action_showFundamentalsToggle);
-        showFundamentalsToggle.setChecked(showFundamentals);
+        addFundamentalsToggle = menu.findItem(R.id.action_addFundamentalsToggle);
+        addFundamentalsToggle.setChecked(addFundamentalsEnabled);
 
         showCategoryTagsToggle = menu.findItem(R.id.action_showCategoryTagsToggle);
         showCategoryTagsToggle.setChecked(showCategoryTags);
@@ -1195,8 +1195,8 @@ public class MainActivity extends AppCompatActivity {
             enableFundamentals(true);
             return true;
         }
-        else if (id == R.id.action_showFundamentalsToggle) {
-            enableFundamentals(!showFundamentals);
+        else if (id == R.id.action_addFundamentalsToggle) {
+            enableFundamentals(!addFundamentalsEnabled);
             return true;
         }
         else if (handleShowCategoryTagsActivation(id))
@@ -1453,8 +1453,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enableFundamentals(boolean enable) {
-        showFundamentals = enable;
-        showFundamentalsToggle.setChecked(enable);
+        addFundamentalsEnabled = enable;
+        addFundamentalsToggle.setChecked(enable);
         showOrHideFundamentals(enable);
     }
 

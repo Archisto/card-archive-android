@@ -107,8 +107,8 @@
 <!--        android:checkable="true"-->
 <!--        app:showAsAction="never" />-->
     <item
-        android:id="@+id/action_showFundamentalsToggle"
-        android:title="@string/action_showFundamentals"
+        android:id="@+id/action_addFundamentalsToggle"
+        android:title="@string/action_addFundamentals"
         android:checkable="true"
         app:showAsAction="never" />
     <item

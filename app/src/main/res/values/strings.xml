@@ -12,7 +12,7 @@
     <string name="action_keepElementCategories">Keep Element Categories</string>
     <string name="action_autoUpdateSettingChanges">Auto-Update Setting Changes</string>
     <string name="action_autoSortWhenLocking">Auto-Sort When Locking</string>
-    <string name="action_showFundamentals">Show Fundamentals</string>
+    <string name="action_addFundamentals">Add Fundamentals</string>
     <string name="action_showCategories">Show Category Tags</string>
     <string name="cardSlotCategory">[%s]</string>
     <string name="cardSlotMergeCategory">[%s+%s]</string>
