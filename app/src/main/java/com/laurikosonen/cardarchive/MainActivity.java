@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int cardCountCap = 10;
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
+    private int lastCardOnPage = 0;
     private int listSize = 0;
     private int touchStartX;
     private int touchStartY;
@@ -349,10 +350,7 @@ public class MainActivity extends AppCompatActivity {
 
         int displayedListCardCount = getMaxUnlockedCardCount();
         if (displayedListCardCount <= 0) {
-            if (cardCountCap < maxDisplayedCards)
-                return getString(R.string.listUnavailable_elemCountCap);
-            else
-                return getString(R.string.listUnavailable_clearLocks);
+            return getString(R.string.listUnavailable_clearLocks);
         }
 
         String currentPage = "1";
@@ -380,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
         allCards = new ArrayList<>();
         CustomXmlResourceParser.parseCards(getResources(), R.xml.game_elements, decks, allCards);
 
-        // Fundamentals TODO: List
+        // Fundamentals
         fundamentals = new ArrayList<>();
         XmlResourceParser_Fundamentals.
             parseFundamentals(getResources(), R.xml.fundamentals, fundamentals);
@@ -653,21 +651,24 @@ public class MainActivity extends AppCompatActivity {
 
         cardSlot = getAvailableCardSlot(cardSlot, touchY);
         if (cardSlot != null) {
-            if (cardSlot.isEmpty() && displayMode != DisplayMode.list)
-                drawNewCard(cardSlot);
-            else if (!cardSlot.isEmpty())
+            if (cardSlot.isEmpty()) {
+                if (displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals)
+                    refreshList();
+                else
+                    drawNewCard(cardSlot);
+            }
+            else {
                 toggleCardLock(cardSlot);
+            }
         }
     }
 
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (displayMode != DisplayMode.list && displayMode != DisplayMode.fundamentals) {
-            if (cardSlotIndex >= 0
-                && cardSlotIndex < cardSlots.size()
-                && !isMergeSlot(cardSlotIndex))
-                removeCard(cardSlotIndex);
-        }
+        if (cardSlotIndex >= 0
+            && cardSlotIndex < cardSlots.size()
+            && !isMergeSlot(cardSlotIndex))
+            removeCard(cardSlotIndex);
     }
 
     private void handleCardSlotSwipe(boolean right, int touchY) {
@@ -843,6 +844,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void removeCard(int cardSlotIndex) {
+        if (cardSlots.get(cardSlotIndex).isLocked())
+            lockedCardCount--;
+
         if (cardSlotIndex == cardSlots.size() - 1) {
             cardSlots.get(cardSlotIndex).clear(false);
         }
@@ -1013,21 +1017,15 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = deckStartIndex;
         }
         else if (!shownCardCountChanged) {
-            nextCardInDeck += elementsOnPage;
-            //Log.d("CAGE", "LIST/FND MODE. Next page. Start card id: " + nextCardInDeck);
+            //Log.d("CAGE", "LIST/FND MODE. Next page. Moving forward " + (lastCardOnPage + 1 - nextCardInDeck));
+            nextCardInDeck = lastCardOnPage + 1;
         }
 
         //Log.d("CAGE", "LIST/FND MODE. nextShownCardInList: " + nextShownCardInList +
         //      ". listStartIndex: " + listStartIndex +
         //      ". listSize: " + listSize);
 
-        if (locksChanged) {
-            sortCards();
-            locksChanged = false;
-        }
-
-        updateHeaderInfoText();
-        updateCardList();
+        refreshList();
     }
 
     private void prevPageInCardList() {
@@ -1048,6 +1046,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //Log.d("CAGE", "LIST/FND MODE. Previous page. Moving back " + shownListCardCount);
+
+        refreshList();
+    }
+
+    private void refreshList() {
         if (locksChanged) {
             sortCards();
             locksChanged = false;
@@ -1058,7 +1062,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCardList() {
-        int cardsOnPageSoFar = 0;
         int lockedCardsPassed = 0;
 
         for (int i = 0; i < cardSlots.size(); i++) {
@@ -1067,16 +1070,20 @@ public class MainActivity extends AppCompatActivity {
                 continue;
             }
 
-            boolean emptySlot = cardsOnPageSoFar >= cardCountCap;
-            int deckIndex = nextCardInDeck + i - lockedCardsPassed;
+            int unlockedCardSlotIndex = i - lockedCardsPassed;
+            boolean emptySlot = unlockedCardSlotIndex >= getMaxUnlockedCardCount();
+            int deckIndex = nextCardInDeck + unlockedCardSlotIndex;
 
             if (deckIndex - deckStartIndex >= listSize) {
                 // Out of cards
                 emptySlot = true;
             }
+            else if (!emptySlot) {
+                lastCardOnPage = deckIndex;
+                //Log.d("CAGE", "LIST/FND MODE. nextCardInDeck: " + nextCardInDeck + ", deckIndex: " + deckIndex);
+            }
 
             setCardSlotText(cardSlots.get(i), displayedCards, deckIndex, emptySlot);
-            cardsOnPageSoFar++;
         }
     }
 
@@ -1243,7 +1250,9 @@ public class MainActivity extends AppCompatActivity {
 
             updateHeaderInfoText();
 
-            if (autoUpdateSettingChanges || displayMode == DisplayMode.list)
+            if (autoUpdateSettingChanges
+                || displayMode == DisplayMode.list
+                || displayMode == DisplayMode.fundamentals)
                 drawCards(displayedCategory, true);
 
             return true;
@@ -1422,18 +1431,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean handleClearCardsAction(int id) {
         if (id == R.id.action_clearCards) {
-            if (displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals) {
-                updateCardList();
-                updateHeaderInfoText();
+//            if (displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals) {
+//                refreshList();
+//            }
 
-                if (locksChanged) {
-                    sortCards();
-                    locksChanged = false;
-                }
-            }
-            else {
-                clearCards();
-            }
+            clearCards();
 
             return true;
         }
