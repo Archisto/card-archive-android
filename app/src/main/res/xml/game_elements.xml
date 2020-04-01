@@ -419,10 +419,17 @@
         </element>
         <element>
             <name>Checkpoints</name>
-            <firstHalf type="verb">Checkpoints</firstHalf>
+            <firstHalf type="noun" preference="plural">Checkpoint</firstHalf>
             <secondHalf the="true">
                 <singular>checkpoint</singular>
                 <plural>checkpoints</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Safe places where the player can restock resources</name>
+            <firstHalf type="adjective">Safe</firstHalf>
+            <secondHalf the="true">
+                <singular>restocks resources</singular>
             </secondHalf>
         </element>
         <element>
@@ -476,6 +483,14 @@
             <firstHalf type="noun" preference="singular">Character</firstHalf>
             <secondHalf the="false">
                 <singular>customization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Role-playing</name>
+            <firstHalf type="verb">Role-playing</firstHalf>
+            <secondHalf the="false">
+                <singular>role</singular>
+                <plural>roles</plural>
             </secondHalf>
         </element>
         <element>
@@ -718,6 +733,14 @@
             <secondHalf the="false">
                 <singular>monster</singular>
                 <plural>monsters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mimics</name>
+            <firstHalf type="verb">Mimicking</firstHalf>
+            <secondHalf the="false">
+                <singular>mimic</singular>
+                <plural>mimics</plural>
             </secondHalf>
         </element>
         <element>
@@ -1160,6 +1183,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Sabotage</name>
+            <firstHalf type="verb">Sabotaging</firstHalf>
+            <secondHalf the="false">
+                <singular>sabotage</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Duplication</name>
             <firstHalf type="verb">Duplicating</firstHalf>
             <secondHalf the="false">
@@ -1313,7 +1343,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Funneling liquid or a mass of things down a certain path</name>
+            <name>Funnelling liquid or a mass of things down a certain path</name>
             <firstHalf type="verb">Funneling</firstHalf>
             <secondHalf the="false">
                 <singular>path</singular>
@@ -1747,6 +1777,21 @@
             </secondHalf>
         </element>
         <element>
+            <name>Something happens only if the player moves</name>
+            <firstHalf type="verb">Something happens only to</firstHalf>
+            <secondHalf the="true">
+                <singular>player movement</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Standing still causes an effect</name>
+            <firstHalf type="adjective">Unmoving</firstHalf>
+            <secondHalf the="false">
+                <singular>stays still</singular>
+                <plural>stay still</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Being affected by staying close to certain things</name>
             <firstHalf type="verb">Being affected by</firstHalf>
             <secondHalf the="false">
@@ -1775,21 +1820,6 @@
             <secondHalf the="false">
                 <singular>grows stronger</singular>
                 <plural>grow stronger</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Standing still causes an effect</name>
-            <firstHalf type="adjective">Unmoving</firstHalf>
-            <secondHalf the="false">
-                <singular>stays still</singular>
-                <plural>stay still</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Something happens only if the player moves</name>
-            <firstHalf type="verb">Something happens only to</firstHalf>
-            <secondHalf the="true">
-                <singular>player movement</singular>
             </secondHalf>
         </element>
     </category>
@@ -1893,7 +1923,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Transformation</name>
+            <name>Transformation/shapeshifting</name>
             <firstHalf type="verb">Transforming</firstHalf>
             <secondHalf the="false">
                 <singular>transformation</singular>
@@ -2361,17 +2391,18 @@
         </element>
         <element>
             <name>Backtracking</name>
-            <firstHalf type="adjective">Back</firstHalf>
+            <firstHalf type="verb" preference="singular">Returning to</firstHalf>
             <secondHalf the="false">
-                <singular>tracking</singular>
+                <singular>previously visited area</singular>
+                <plural>previously visited areas</plural>
             </secondHalf>
         </element>
         <element>
             <name>Shortcuts</name>
-            <firstHalf type="adjective">Short</firstHalf>
+            <firstHalf type="noun">Shortcut</firstHalf>
             <secondHalf the="false">
-                <singular>previously visited area</singular>
-                <plural>previously visited areas</plural>
+                <singular>shortcut</singular>
+                <plural>shortcuts</plural>
             </secondHalf>
         </element>
         <element>
@@ -2406,11 +2437,18 @@
             </secondHalf>
         </element>
         <element>
-            <name>Boarding vehicles as a stowaway</name>
-            <firstHalf type="verb">Boarding</firstHalf>
+            <name>Boarding vehicles without permission</name>
+            <firstHalf type="verb">Boarding vehicles</firstHalf>
             <secondHalf the="false">
-                <singular>as a stowaway</singular>
-                <plural>as stowaways</plural>
+                <singular>without permission</singular>
+                <plural>without permission</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving a vehicle to do something</name>
+            <firstHalf type="adjective">Inside and outside</firstHalf>
+            <secondHalf the="false">
+                <singular>inside and outside</singular>
             </secondHalf>
         </element>
         <element>
@@ -2851,6 +2889,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Player character's death causes enemies to respawn</name>
+            <firstHalf type="verb">Death causes</firstHalf>
+            <secondHalf the="false">
+                <singular>enemy respawning</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Boss enemy</name>
             <firstHalf type="adjective">Boss</firstHalf>
             <secondHalf the="false">
@@ -3174,47 +3219,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Risk assessment</name>
-            <firstHalf type="adjective">Risky</firstHalf>
+            <name>Finding the right perspective</name>
+            <firstHalf type="verb">Finding</firstHalf>
             <secondHalf the="false">
-                <singular>risk</singular>
-                <singular>risks</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Having to prioritize something over another</name>
-            <firstHalf type="verb">Prioritizing</firstHalf>
-            <secondHalf the="false">
-                <singular>prioritization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Exchanging health for something</name>
-            <firstHalf type="verb">Exchanging health for</firstHalf>
-            <secondHalf the="false">
-                <singular>health</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Exchanging freedom for something</name>
-            <firstHalf type="verb">Exchanging freedom for</firstHalf>
-            <secondHalf the="false">
-                <singular>freedom</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Multiple things are fueled by the same resource</name>
-            <firstHalf type="verb">Things are fueled by</firstHalf>
-            <secondHalf the="false">
-                <plural>use the same resource</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Made choices are locked out of play</name>
-            <firstHalf type="noun" preference="plural">Made choices</firstHalf>
-            <secondHalf the="false">
-                <singular>is locked out of play</singular>
-                <plural>are locked out of play</plural>
+                <singular>perspective</singular>
             </secondHalf>
         </element>
         <element>
@@ -3279,10 +3287,47 @@
             </secondHalf>
         </element>
         <element>
-            <name>Finding the right perspective</name>
-            <firstHalf type="verb">Finding</firstHalf>
+            <name>Risk assessment</name>
+            <firstHalf type="adjective">Risky</firstHalf>
             <secondHalf the="false">
-                <singular>perspective</singular>
+                <singular>risk</singular>
+                <singular>risks</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Having to prioritize something over another</name>
+            <firstHalf type="verb">Prioritizing</firstHalf>
+            <secondHalf the="false">
+                <singular>prioritization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Exchanging health for something</name>
+            <firstHalf type="verb">Exchanging health for</firstHalf>
+            <secondHalf the="false">
+                <singular>health</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Exchanging freedom for something</name>
+            <firstHalf type="verb">Exchanging freedom for</firstHalf>
+            <secondHalf the="false">
+                <singular>freedom</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Multiple things are fueled by the same resource</name>
+            <firstHalf type="verb">Things are fueled by</firstHalf>
+            <secondHalf the="false">
+                <plural>use the same resource</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Made choices are locked out of play</name>
+            <firstHalf type="noun" preference="plural">Made choices</firstHalf>
+            <secondHalf the="false">
+                <singular>is locked out of play</singular>
+                <plural>are locked out of play</plural>
             </secondHalf>
         </element>
     </category>
@@ -3588,7 +3633,7 @@
             <name>Items can be enhanced by crafting or magic</name>
             <firstHalf type="verb">Items can be enhanced by</firstHalf>
             <secondHalf the="false">
-                <singular>crafting/magic</singular>
+                <singular>crafting or magic</singular>
             </secondHalf>
         </element>
         <element>
@@ -3606,25 +3651,33 @@
             </secondHalf>
         </element>
         <element>
-            <name>Renewable resources/items in the world</name>
-            <firstHalf type="adjective">Renewable</firstHalf>
-            <secondHalf the="false">
-                <plural>resources/items in the world</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Limited amount of a non-renewable resource</name>
-            <firstHalf type="noun" preference="plural">Limited amount of</firstHalf>
+            <name>Scarcity of resources</name>
+            <firstHalf type="adjective">Scarcity of</firstHalf>
             <secondHalf the="false">
                 <singular>resource</singular>
                 <plural>resources</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Scarcity of resources</name>
-            <firstHalf type="adjective">Scarcity of</firstHalf>
+            <name>It's impossible to get any more of a certain resource</name>
+            <firstHalf type="noun" preference="plural">Limited amount of</firstHalf>
             <secondHalf the="false">
-                <plural>resources</plural>
+                <singular>resource limit</singular>
+                <plural>resource limits</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Renewable resources/items in the world</name>
+            <firstHalf type="adjective">Renewable</firstHalf>
+            <secondHalf the="false">
+                <plural>resources/items</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Health, energy or power-up pickups</name>
+            <firstHalf type="noun" preference="plural">Health, energy or power-up</firstHalf>
+            <secondHalf the="false">
+                <plural>pickups</plural>
             </secondHalf>
         </element>
         <element>
@@ -3644,7 +3697,7 @@
         <element>
             <name>Non-player characters see the player's equipment and react to it</name>
             <firstHalf type="verb" preference="plural">Non-player characters react to</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- true? -->
                 <singular>the player's equipment</singular>
             </secondHalf>
         </element>
@@ -3672,10 +3725,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Defeated characters drop pickups</name>
-            <firstHalf type="verb">Defeated characters</firstHalf>
+            <name>Taking enemies' equipment</name>
+            <firstHalf type="verb">Taking enemies'</firstHalf>
             <secondHalf the="false">
-                <plural>pickups</plural>
+                <plural>equipment</plural>
             </secondHalf>
         </element>
         <element>
@@ -3686,10 +3739,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Taking enemies' equipment</name>
-            <firstHalf type="verb">Taking enemies'</firstHalf>
+            <name>Defeated characters drop resources</name>
+            <firstHalf type="verb">Defeated characters</firstHalf>
             <secondHalf the="false">
-                <plural>equipment</plural>
+                <singular>drops resources</singular>
             </secondHalf>
         </element>
         <element>
