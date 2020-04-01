@@ -268,6 +268,10 @@ public class MainActivity extends AppCompatActivity {
         return Math.min(cardCountCap, maxDisplayedCards - lockedCardCount);
     }
 
+    private boolean isMergeSlot(int cardSlotIndex) {
+        return mergeSlotEnabled && cardSlotIndex == 0;
+    }
+
     private void setTextColors(int color) {
         for (CardSlot slot : cardSlots) {
             slot.setTextColor(color);
@@ -626,22 +630,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleCardSlotTouch(int touchY) {
-        addOrLockCard(touchY);
+        CardSlot cardSlot = getTouchedCardSlot(touchY, true, true);
+        if (cardSlot != null && isMergeSlot(cardSlot.id)) {
+            enableMergeSlot(false);
+            return;
+        }
+
+        cardSlot = getAvailableCardSlot(cardSlot, touchY);
+        if (cardSlot != null) {
+            if (cardSlot.isEmpty() && displayMode != DisplayMode.list)
+                drawNewCard(cardSlot);
+            else if (!cardSlot.isEmpty())
+                toggleCardLock(cardSlot);
+        }
     }
 
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (mergeSlotEnabled && cardSlotIndex == 0) {
-            enableMergeSlot(false);
-        }
-        else if (displayMode != DisplayMode.list) {
-            if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size())
+        if (displayMode != DisplayMode.list) {
+            if (cardSlotIndex >= 0
+                && cardSlotIndex < cardSlots.size()
+                && !isMergeSlot(cardSlotIndex))
                 removeCard(cardSlotIndex);
         }
     }
 
     private void handleCardSlotSwipe(boolean right, int touchY) {
-        CardSlot cardSlot = getTouchedCardSlot(touchY, false);
+        CardSlot cardSlot = getTouchedCardSlot(touchY, false, false);
         if (cardSlot == null)
             return;
 
@@ -720,9 +735,9 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
-    private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty) {
+    private CardSlot getTouchedCardSlot(int touchY, boolean allowEmpty, boolean allowMergeSlot) {
         int index = getTouchedCardSlotIndex(touchY);
-        if (index < 0 || (index == 0 && mergeSlotEnabled))
+        if (index < 0 || (!allowMergeSlot && isMergeSlot(index)))
             return null;
         else if (allowEmpty || !cardSlots.get(index).isEmpty())
             return cardSlots.get(index);
@@ -732,7 +747,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int getFirstEmptyCardSlotIndex() {
         for (int i = 0; i < cardSlots.size(); i++) {
-            if (i == 0 && mergeSlotEnabled)
+            if (isMergeSlot(i))
                 continue;
 
             if (cardSlots.get(i).isEmpty())
@@ -751,9 +766,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private CardSlot getAvailableCardSlot(int touchY) {
-        CardSlot cardSlot = getTouchedCardSlot(touchY, true);
+        CardSlot cardSlot = getTouchedCardSlot(touchY, true, false);
+        return getAvailableCardSlot(cardSlot, touchY);
+    }
 
-        if (mergeSlotEnabled && cardSlot != null && cardSlot.id == 0)
+    private CardSlot getAvailableCardSlot(CardSlot cardSlot, int touchY) {
+        if (cardSlot != null && isMergeSlot(cardSlot.id))
             return null;
 
         CardSlot firstEmptySlot = getFirstEmptyCardSlot();
@@ -782,16 +800,6 @@ public class MainActivity extends AppCompatActivity {
         return cardSlot;
     }
 
-    private void addOrLockCard(int touchY) {
-        CardSlot cardSlot = getAvailableCardSlot(touchY);
-        if (cardSlot != null) {
-            if (cardSlot.isEmpty() && displayMode != DisplayMode.list)
-                drawNewCard(cardSlot);
-            else if (!cardSlot.isEmpty())
-                toggleCardLock(cardSlot);
-        }
-    }
-
     private void addOrSwitchCard(int touchY) {
         CardSlot cardSlot = getAvailableCardSlot(touchY);
         if (cardSlot != null)
@@ -799,7 +807,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchCard(int touchY) {
-        CardSlot cardSlot = getTouchedCardSlot(touchY, false);
+        CardSlot cardSlot = getTouchedCardSlot(touchY, false, false);
         if (cardSlot == null)
             return;
 
