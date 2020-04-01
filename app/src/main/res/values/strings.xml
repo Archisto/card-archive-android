@@ -42,6 +42,7 @@
     <string name="mergeSelected_leftSide">Merge left side: \"%s\"</string>
     <string name="mergeSelected_rightSide">Merge right side: \"%s\"</string>
     <string name="copiedToClipboard">Elements copied to clipboard</string>
+    <string name="notCopiedToClipboard">No elements to copy to clipboard!</string>
     <string name="help_text">
         "\nGame Elements was designed and developed by Lauri Kosonen."
 

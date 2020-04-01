@@ -286,6 +286,8 @@ public class MainActivity extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
         StringBuilder allElementsText = new StringBuilder();
+        int elementCount = 0;
+
         for (int i = 0; i < cardSlots.size(); i++) {
             if (cardSlots.get(i).isEmpty())
                 continue;
@@ -296,12 +298,19 @@ public class MainActivity extends AppCompatActivity {
                 allElementsText.append("- ");
 
             allElementsText.append(cardSlots.get(i).getText());
+            elementCount++;
         }
 
-        ClipData clip = ClipData.newPlainText(getString(R.string.app_name), allElementsText.toString());
-        clipboard.setPrimaryClip(clip);
+        if (elementCount > 0) {
+            ClipData clip = ClipData.newPlainText(getString(R.string.app_name), allElementsText.toString());
+            clipboard.setPrimaryClip(clip);
 
-        Toast.makeText(this, getString(R.string.copiedToClipboard), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.copiedToClipboard), Toast.LENGTH_LONG).show();
+            Log.d("CAGE", elementCount + " element(s) copied to clipboard");
+        }
+        else {
+            Toast.makeText(this, getString(R.string.notCopiedToClipboard), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void updateHeaderInfoText() {
