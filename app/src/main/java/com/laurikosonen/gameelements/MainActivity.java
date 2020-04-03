@@ -665,10 +665,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
-        if (cardSlotIndex >= 0
-            && cardSlotIndex < cardSlots.size()
-            && !isMergeSlot(cardSlotIndex))
-            removeCard(cardSlotIndex);
+        if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size()) {
+            if (!isMergeSlot(cardSlotIndex))
+                removeCard(cardSlotIndex);
+        }
+        else {
+            sortCardsFull();
+        }
     }
 
     private void handleCardSlotSwipe(boolean right, int touchY) {
@@ -843,6 +846,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean cardSlotIsLocked(CardSlot cardSlot, boolean allowSecondaryLock) {
+        return cardSlot.isLocked() && (allowSecondaryLock || !cardSlot.secondaryLockEnabled());
+    }
+
     private void removeCard(int cardSlotIndex) {
         if (cardSlots.get(cardSlotIndex).isLocked())
             lockedCardCount--;
@@ -881,39 +888,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void sortCards() {
-        if (lockedCardCount == 0
-            || lockedCardCount == maxDisplayedCards)
+    private void sortCardsFull() {
+        sortCards(true);
+        sortCards(false);
+    }
+
+    private void sortCards(boolean allowSecondaryLock) {
+        if (lockedCardCount == 0 || (allowSecondaryLock && lockedCardCount == maxDisplayedCards))
             return;
 
-        int firstUnlockedCardIndex = 0;
+        // Latter card can be an unlocked card in any case or
+        // a secondary locked card if secondary lock is not allowed
+        int firstLatterCardIndex = -1;
+        int lastFormerCardIndex = -1;
+
         for (int i = 0; i < cardSlots.size(); i++) {
-            if (!cardSlots.get(i).isLocked()) {
-                firstUnlockedCardIndex = i;
-                break;
+            if (cardSlotIsLocked(cardSlots.get(i), allowSecondaryLock)) {
+                lastFormerCardIndex = i;
+            }
+            else if (firstLatterCardIndex == -1) {
+                firstLatterCardIndex = i;
             }
         }
 
-        // Cards are already sorted
-        if (firstUnlockedCardIndex >= lockedCardCount)
+        // Cards are already sorted; returns
+        if (firstLatterCardIndex == -1
+            || lastFormerCardIndex == -1
+            || lastFormerCardIndex < firstLatterCardIndex)
             return;
 
         CardSlot temp = new CardSlot(-1,  new TextView(this), 0, 0);
-        temp.copyFromLite(cardSlots.get(firstUnlockedCardIndex));
+        temp.copyFromLite(cardSlots.get(firstLatterCardIndex));
 
         int lockedCardsMoved = 0;
-        for (int i = firstUnlockedCardIndex + 1; i < cardSlots.size(); i++) {
-            if (cardSlots.get(i).isLocked()) {
-                // Moves a locked card to the position of the first unlocked card
-                cardSlots.get(firstUnlockedCardIndex).copyFrom(cardSlots.get(i));
+        for (int i = firstLatterCardIndex + 1; i < cardSlots.size(); i++) {
+            if (cardSlotIsLocked(cardSlots.get(i), allowSecondaryLock)) {
+                // Moves a locked card to the position of the first latter card
+                cardSlots.get(firstLatterCardIndex).copyFrom(cardSlots.get(i));
                 lockedCardsMoved++;
-                //Log.d("CAGE", "Locked card got position " + firstUnlockedCardIndex);
+                //Log.d("CAGE", "Locked card got position " + firstLatterCardIndex);
 
-                // Moves down all unlocked cards in between
-                for (int j = i; j > firstUnlockedCardIndex; j--) {
-                    if (j == firstUnlockedCardIndex + 1) {
+                // Moves down all latter cards in between
+                for (int j = i; j > firstLatterCardIndex; j--) {
+                    if (j == firstLatterCardIndex + 1) {
                         cardSlots.get(j).copyFrom(temp);
-                        firstUnlockedCardIndex = j;
+                        firstLatterCardIndex = j;
                     }
                     else {
                         cardSlots.get(j).copyFrom(cardSlots.get(j - 1));
@@ -955,6 +974,8 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlot != null) {
             if (cardSlot.isLocked() && !cardSlot.secondaryLockEnabled()) {
                 cardSlot.enableSecondaryLock(true);
+                if (autoSortWhenLocking)
+                    sortCards(false);
             }
             else {
                 cardSlot.lock(!cardSlot.isLocked());
@@ -966,7 +987,7 @@ public class MainActivity extends AppCompatActivity {
                 locksChanged = true;
 
                 if (autoSortWhenLocking)
-                    sortCards();
+                    sortCardsFull();
             }
         }
     }
@@ -1053,7 +1074,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshList() {
         if (locksChanged) {
-            sortCards();
+            sortCardsFull();
             locksChanged = false;
         }
 
@@ -1198,7 +1219,7 @@ public class MainActivity extends AppCompatActivity {
         else if (handleClearLocksAction(id))
             return true;
         else if (id == R.id.action_sortCards) {
-            sortCards();
+            sortCardsFull();
             return true;
         }
         else if (id == R.id.action_changeFundamentals) {
