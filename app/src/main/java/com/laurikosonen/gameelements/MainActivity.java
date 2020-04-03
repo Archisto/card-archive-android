@@ -648,7 +648,10 @@ public class MainActivity extends AppCompatActivity {
     private void handleCardSlotTouch(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true, true);
         if (cardSlot != null && isMergeSlot(cardSlot.id)) {
-            enableMergeSlot(false);
+            // Tries to free the second card slot and then copies the Merge Slot's content to it
+            moveCardsDown(false);
+            cardSlots.get(1).copyFrom(cardSlots.get(0));
+            updateLockedCardCount();
             return;
         }
 
@@ -671,6 +674,8 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size()) {
             if (!isMergeSlot(cardSlotIndex))
                 removeCard(cardSlotIndex);
+            else
+                enableMergeSlot(false);
         }
         else {
             sortCardsFull();
@@ -951,14 +956,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void moveCardsDown() {
+    private void moveCardsDown(boolean updateLockedCardCount) {
         // If all card slots have a locked card, the last one is lost
         if (lockedCardCount == cardSlots.size()) {
             for (int i = cardSlots.size() - 1; i > 0; i--) {
                 cardSlots.get(i).copyFrom(cardSlots.get(i - 1));
             }
-
-            lockedCardCount--;
         }
         // Otherwise the first empty slot is filled or the last unlocked card is lost
         else {
@@ -972,7 +975,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        cardSlots.get(0).clear(false);
+        if (!mergeSlotEnabled)
+            cardSlots.get(0).clear(false);
+
+        if (updateLockedCardCount)
+            updateLockedCardCount();
     }
 
     private void toggleCardLock(CardSlot cardSlot) {
@@ -994,6 +1001,14 @@ public class MainActivity extends AppCompatActivity {
                 if (autoSortWhenLocking)
                     sortCardsFull();
             }
+        }
+    }
+
+    private void updateLockedCardCount() {
+        lockedCardCount = 0;
+        for (CardSlot cardSlot : cardSlots) {
+            if (cardSlot.isLocked())
+                lockedCardCount++;
         }
     }
 
@@ -1115,7 +1130,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateMergeSlot() {
         if (mergeSlotEnabled) {
-            moveCardsDown();
+            moveCardsDown(false);
             cardSlots.get(0).setCards(tipCard, null);
 
             if (addFundamentalsEnabled) {
@@ -1125,13 +1140,12 @@ public class MainActivity extends AppCompatActivity {
             updateCardSlotText(cardSlots.get(0));
             cardSlots.get(0).lock(true);
             cardSlots.get(0).setBackgroundColor(mergeSlotColor);
-
-            lockedCardCount++;
         }
         else {
             cardSlots.get(0).lock(false);
-            lockedCardCount--;
         }
+
+        updateLockedCardCount();
     }
 
     @Override
