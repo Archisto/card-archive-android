@@ -112,11 +112,6 @@
         android:checkable="true"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_showCategoryTagsToggle"
-        android:title="@string/action_showCategories"
-        android:checkable="true"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_autoSortWhenLocking"
         android:title="@string/action_autoSortWhenLocking"
         android:checkable="true"
@@ -124,6 +119,11 @@
     <item
         android:id="@+id/action_autoUpdateSettingChangesToggle"
         android:title="@string/action_autoUpdateSettingChanges"
+        android:checkable="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_showCategoryTagsToggle"
+        android:title="@string/action_showCategories"
         android:checkable="true"
         app:showAsAction="never" />
     <group android:id="@+id/group_displayCategories" >

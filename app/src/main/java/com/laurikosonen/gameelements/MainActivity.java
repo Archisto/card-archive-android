@@ -1266,11 +1266,11 @@ public class MainActivity extends AppCompatActivity {
             enableFundamentals(!addFundamentalsEnabled);
             return true;
         }
-        else if (handleShowCategoryTagsActivation(id))
-            return true;
         else if (handleAutoSortWhenLockingActivation(id))
             return true;
         else if (handleAutoUpdateSettingChangesActivation(id))
+            return true;
+        else if (handleShowCategoryTagsActivation(id))
             return true;
         //else if (handleKeepResultCategoriesActivation(id))
         //    return true;
@@ -1520,17 +1520,6 @@ public class MainActivity extends AppCompatActivity {
         showOrHideFundamentals(enable);
     }
 
-    private boolean handleShowCategoryTagsActivation(int id) {
-        if (id == R.id.action_showCategoryTagsToggle) {
-            showCategoryTags = !showCategoryTags;
-            showCategoryTagsToggle.setChecked(showCategoryTags);
-            showOrHideCategoryTags(showCategoryTags);
-            return true;
-        }
-
-        return false;
-    }
-
     private boolean handleAutoSortWhenLockingActivation(int id) {
         if (id == R.id.action_autoSortWhenLocking) {
             autoSortWhenLocking = !autoSortWhenLocking;
@@ -1560,4 +1549,15 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return false;
 //    }
+
+    private boolean handleShowCategoryTagsActivation(int id) {
+        if (id == R.id.action_showCategoryTagsToggle) {
+            showCategoryTags = !showCategoryTags;
+            showCategoryTagsToggle.setChecked(showCategoryTags);
+            showOrHideCategoryTags(showCategoryTags);
+            return true;
+        }
+
+        return false;
+    }
 }
