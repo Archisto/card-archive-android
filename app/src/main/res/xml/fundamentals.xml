@@ -49,7 +49,7 @@
         <element name="Resource" />
         <element name="Reward" />
         <element name="Rule" />
-        <element name="Saving &amp; loading" />
+        <element name="Save system" />
         <element name="Score" />
         <element name="Searching" />
         <element name="Sight" />

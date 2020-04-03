@@ -3914,8 +3914,8 @@
         <element>
             <name>Non-player characters see the player's equipment and react to it</name>
             <firstHalf type="verb" preference="plural">Non-player characters react to</firstHalf>
-            <secondHalf the="false"> <!-- true? -->
-                <singular>the player's equipment</singular>
+            <secondHalf the="false">
+                <singular>player equipment</singular>
             </secondHalf>
         </element>
         <element>

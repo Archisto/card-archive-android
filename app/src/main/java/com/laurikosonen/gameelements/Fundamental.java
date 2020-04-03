@@ -9,9 +9,6 @@ public class Fundamental extends Card {
     }
 
     public void parseAndSetKeepCaps(String keepCapsString) {
-        if (keepCapsString == null || keepCapsString.isEmpty())
-            keepCaps = false;
-        else
-            keepCaps = keepCapsString.equals("" + true);
+        keepCaps = Boolean.parseBoolean(keepCapsString);
     }
 }
