@@ -45,11 +45,12 @@
     <string name="notCopiedToClipboard">No elements to copy to clipboard!</string>
     <string name="help_text">
         "\nGame Elements was designed and developed by Lauri Kosonen."
+        "\n\nPlease let me know your opinion of the app by leaving a review on Google Play!"
 
         "\n\n\nELEMENT COUNTS"
 
         "\n\n- Total: %s elements"
-        "\n\n- [Wld] World: %s elements"
+        "\n- [Wld] World: %s elements"
         "\n- [Cha] Character: %s elements"
         "\n- [Grp] Group: %s elements"
         "\n- [Inf] Influence: %s elements"
@@ -62,11 +63,10 @@
         "\n- [Go] Goal: %s elements"
         "\n- [AV] Audio &amp; Visuals: %s elements"
         "\n- [Msc] Miscellaneous: %s elements"
-        "\n- [Fnd] Fundamentals: %s"
+        "\n\n- [Fnd] Fundamentals: %s"
 
         "\n\n\nFEATURES"
-        "\n\n- Modes: Classic, List, Merge, Merge Alt, Choose One, Fundamentals,"
-        "Fundamentals+Element"
+        "\n\n- Modes: Classic, List, Merge, Fundamentals"
         "\n- Tap to lock an element. Works in all modes. Locked results will stay on screen."
         "\n- Tap again to change lock color. This can be used to separate results into two locked"
         "and one unlocked group."
@@ -80,6 +80,8 @@
         "clearing locks, category selection, and more"
         "\n- Element count can be changed to suit your needs"
         "\n- Merge Slot can be used to merge elements anywhere"
+        "\n- You can save your work by pressing the Copy to Clipboard button and pasting to"
+        "your device's memo app"
 
         <i>"\n\n\n[Exit the help screen with your device's back button.]"</i>
     </string>
