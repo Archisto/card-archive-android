@@ -50,7 +50,7 @@ public class CustomXmlResourceParser {
             String startTagName = "_";
             String categoryName = "ERROR";
             String categoryShortName = "ERR";
-            String firstHalfTypeStr = null;
+            String typeStr = null;
             String secondHalfPreferenceStr = null;
             int categoryId = 0;
             Card card = null;
@@ -77,12 +77,13 @@ public class CustomXmlResourceParser {
                     }
                     // Gets first half type
                     else if (startTagName.equalsIgnoreCase(firstHalfStr)) {
-                        firstHalfTypeStr = parser.getAttributeValue(null, typeStr);
+                        typeStr = parser.getAttributeValue(null, CustomXmlResourceParser.typeStr);
                         secondHalfPreferenceStr =
                             parser.getAttributeValue(null, preferenceStr);
                     }
-                    // Sets second half mode on
+                    // Gets second half type and sets second half mode on
                     else if (startTagName.equalsIgnoreCase(secondHalfStr)) {
+                        typeStr = parser.getAttributeValue(null, CustomXmlResourceParser.typeStr);
                         secondHalf = true;
                     }
 
@@ -112,21 +113,22 @@ public class CustomXmlResourceParser {
                     }
                     // Adds name halves to the latest card
                     else if (card != null) {
+                        Card.NameHalfType type = Card.parseNameHalfType(typeStr);
 
                         // First half of the card's name
                         if (startTagName.equalsIgnoreCase(firstHalfStr)) {
-                            card.setNameHalf(
+                            card.setNameFirstHalf(
                                 text,
-                                Card.parseNameHalfType(firstHalfTypeStr),
+                                type,
                                 Card.parseNameHalfType(secondHalfPreferenceStr));
                         }
                         // Second half of the card's name
                         else if (secondHalf) {
                             if (startTagName.equalsIgnoreCase(singularStr)) {
-                                card.setNameHalf(text, Card.NameHalfType.singular, null);
+                                card.setNameSecondHalf(text, type, false);
                             }
                             else if (startTagName.equalsIgnoreCase(pluralStr)) {
-                                card.setNameHalf(text, Card.NameHalfType.plural, null);
+                                card.setNameSecondHalf(text, type, true);
                             }
                         }
                     }

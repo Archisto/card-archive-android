@@ -8,7 +8,8 @@ public class Card {
     public int categoryNum;
     private String firstHalf;
     public NameHalfType firstHalfType;
-    private NameHalfType secondHalfPreference;
+    public NameHalfType secondHalfType;
+    private boolean secondHalfPrefPlural;
     private String secondHalfSingular;
     private String secondHalfPlural;
     protected boolean keepCaps;
@@ -33,8 +34,10 @@ public class Card {
         this.categoryNum = categoryNum;
     }
 
-    public String getNameHalf(boolean first, NameHalfType secondHalfType) {
-        String result = null;
+    public String getNameHalf(boolean first,
+                              NameHalfType otherFirstHalfType,
+                              NameHalfType secondHalfTypePref) {
+        String result;
 
         if (first) {
             if (firstHalf != null)
@@ -53,8 +56,13 @@ public class Card {
             else if (secondHalfSingular == null) {
                 result = secondHalfPlural;
             }
+            // Singular, driven by both half types being verbs
+            else if (otherFirstHalfType == NameHalfType.verb
+                     && secondHalfType == NameHalfType.verb) {
+                result = secondHalfSingular;
+            }
             // Singular, requested
-            else if (secondHalfType == NameHalfType.singular) {
+            else if (secondHalfTypePref == NameHalfType.singular) {
                 result = secondHalfSingular;
             }
             // Plural, requested or default
@@ -72,18 +80,34 @@ public class Card {
         return result;
     }
 
-    public void setNameHalf(String nameHalf, NameHalfType type, NameHalfType secondHalfPreference) {
-        if (type == null || type == NameHalfType.singular) {
-            secondHalfSingular = nameHalf;
-        }
-        else if (type == NameHalfType.plural) {
-            secondHalfPlural = nameHalf;
-        }
-        else {
-            firstHalf = nameHalf;
+    public void setNameFirstHalf(String nameHalf, NameHalfType type, NameHalfType secondHalfPrefType) {
+        firstHalf = nameHalf;
+
+        if (type != null)
             firstHalfType = type;
-            this.secondHalfPreference = secondHalfPreference;
-        }
+        else
+            firstHalfType = NameHalfType.verb;
+
+        if (secondHalfPrefType == NameHalfType.singular || secondHalfPrefType == NameHalfType.plural)
+            secondHalfPrefPlural = secondHalfPrefType == NameHalfType.plural;
+        else if (firstHalfType == NameHalfType.verb || firstHalfType == NameHalfType.adjective)
+            secondHalfPrefPlural = true;
+    }
+
+    public void setNameSecondHalf(String nameHalf, NameHalfType type, boolean plural) {
+        if (type != null)
+            secondHalfType = type;
+        else
+            secondHalfType = NameHalfType.noun;
+
+        if (plural)
+            secondHalfPlural = nameHalf;
+        else
+            secondHalfSingular = nameHalf;
+    }
+
+    public NameHalfType getSecondHalfPreference() {
+        return secondHalfPrefPlural ? NameHalfType.plural : NameHalfType.singular;
     }
 
     public static NameHalfType parseNameHalfType(String typeString) {
@@ -102,25 +126,5 @@ public class Card {
             return NameHalfType.plural;
         else
             return null;
-    }
-
-    public NameHalfType getSecondHalfPreference() {
-        NameHalfType result = NameHalfType.singular;
-
-        if (secondHalfPreference != null) {
-            result = secondHalfPreference;
-        }
-        else if (firstHalfType != null) {
-            switch (firstHalfType) {
-                case verb:
-                case adjective:
-                    result = NameHalfType.plural;
-                    break;
-                case noun:
-                    break;
-            }
-        }
-
-        return result;
     }
 }

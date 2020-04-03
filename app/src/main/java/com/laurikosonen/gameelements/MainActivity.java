@@ -413,8 +413,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Tip card for the merge slot
         tipCard = new Card(getString(R.string.mergeSlotTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
-        tipCard.setNameHalf(getString(R.string.mergeSlotTip_left), Card.NameHalfType.verb, Card.NameHalfType.singular);
-        tipCard.setNameHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.singular, null);
+        tipCard.setNameFirstHalf(getString(R.string.mergeSlotTip_left), null, null);
+        tipCard.setNameSecondHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.verb, false);
     }
 
     private void shuffleDeck(List<Card> deck) {
@@ -638,8 +638,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String getMergeCardDisplayText(CardSlot cardSlot) {
         return String.format(getString(R.string.cardSlotMerge),
-            cardSlot.card1.getNameHalf(true, null),
-            cardSlot.card2.getNameHalf(false, cardSlot.card1.getSecondHalfPreference()));
+            cardSlot.card1.getNameHalf(true, null, null),
+            cardSlot.card2.getNameHalf(
+                false,
+                cardSlot.card1.firstHalfType,
+                cardSlot.card1.getSecondHalfPreference()));
     }
 
     private void handleCardSlotTouch(int touchY) {
@@ -711,8 +714,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Toast.makeText(this,
-                String.format(getString(R.string.mergeSelected_rightSide), card2.getNameHalf(false, null)),
-                Toast.LENGTH_SHORT)
+                String.format(getString(R.string.mergeSelected_rightSide),
+                    card2.getNameHalf(false, null, null)),
+                    Toast.LENGTH_SHORT)
                 .show();
         }
         else {
@@ -739,8 +743,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Toast.makeText(this,
-                String.format(getString(R.string.mergeSelected_leftSide), mergeBeginning.getNameHalf(true, null)),
-                Toast.LENGTH_SHORT)
+                String.format(getString(R.string.mergeSelected_leftSide),
+                    mergeBeginning.getNameHalf(true, null, null)),
+                    Toast.LENGTH_SHORT)
                 .show();
         }
     }
