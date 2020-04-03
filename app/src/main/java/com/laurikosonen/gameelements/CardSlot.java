@@ -18,10 +18,10 @@ public class CardSlot {
     private int lockBackgroundColor2;
     private int categoryTagLength;
 
-    public CardSlot( int id,
-                     TextView textView,
-                     int lockBackgroundColor1,
-                     int lockBackgroundColor2) {
+    public CardSlot(int id,
+                    TextView textView,
+                    int lockBackgroundColor1,
+                    int lockBackgroundColor2) {
         this.id = id;
         this.textView = textView;
         //defaultTextColor = getTextColor();

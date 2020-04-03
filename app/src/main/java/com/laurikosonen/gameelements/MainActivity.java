@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int cardCountCap = 10;
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
-    private int lastCardOnPage = 0;
+    //private int lastCardOnPage = 0;
     private int listSize = 0;
     private int touchStartX;
     private int touchStartY;
@@ -256,6 +256,14 @@ public class MainActivity extends AppCompatActivity {
             return decks.get(categoryIndex).get(0).categoryName;
     }
 
+    private void updateLockedCardCount() {
+        lockedCardCount = 0;
+        for (CardSlot cardSlot : cardSlots) {
+            if (cardSlot.isLocked())
+                lockedCardCount++;
+        }
+    }
+
     private int getUnlockedCardCount() {
         int result = 0;
         for (CardSlot slot : cardSlots) {
@@ -268,6 +276,21 @@ public class MainActivity extends AppCompatActivity {
 
     private int getMaxUnlockedCardCount() {
         return Math.min(cardCountCap, maxDisplayedCards - lockedCardCount);
+    }
+
+    private int getLastUnlockedListCardId() {
+        for (int i = cardSlots.size() - 1; i >= 0; i--) {
+            if (!cardSlots.get(i).isEmpty()
+                  && !cardSlots.get(i).isLocked()
+                  && cardSlots.get(i).card2 == null)
+                return cardSlots.get(i).card1.id;
+        }
+
+        return -1;
+    }
+
+    private boolean isLocked(CardSlot cardSlot, boolean allowSecondaryLock) {
+        return cardSlot.isLocked() && (allowSecondaryLock || !cardSlot.secondaryLockEnabled());
     }
 
     private boolean isMergeSlot(int cardSlotIndex) {
@@ -856,10 +879,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean cardSlotIsLocked(CardSlot cardSlot, boolean allowSecondaryLock) {
-        return cardSlot.isLocked() && (allowSecondaryLock || !cardSlot.secondaryLockEnabled());
-    }
-
     private void removeCard(int cardSlotIndex) {
         if (cardSlots.get(cardSlotIndex).isLocked())
             lockedCardCount--;
@@ -913,7 +932,7 @@ public class MainActivity extends AppCompatActivity {
         int lastFormerCardIndex = -1;
 
         for (int i = 0; i < cardSlots.size(); i++) {
-            if (cardSlotIsLocked(cardSlots.get(i), allowSecondaryLock)) {
+            if (isLocked(cardSlots.get(i), allowSecondaryLock)) {
                 lastFormerCardIndex = i;
             }
             else if (firstLatterCardIndex == -1) {
@@ -932,7 +951,7 @@ public class MainActivity extends AppCompatActivity {
 
         int lockedCardsMoved = 0;
         for (int i = firstLatterCardIndex + 1; i < cardSlots.size(); i++) {
-            if (cardSlotIsLocked(cardSlots.get(i), allowSecondaryLock)) {
+            if (isLocked(cardSlots.get(i), allowSecondaryLock)) {
                 // Moves a locked card to the position of the first latter card
                 cardSlots.get(firstLatterCardIndex).copyFrom(cardSlots.get(i));
                 lockedCardsMoved++;
@@ -1004,14 +1023,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateLockedCardCount() {
-        lockedCardCount = 0;
-        for (CardSlot cardSlot : cardSlots) {
-            if (cardSlot.isLocked())
-                lockedCardCount++;
-        }
-    }
-
     private void initListMode() {
         clearCards();
 
@@ -1041,10 +1052,13 @@ public class MainActivity extends AppCompatActivity {
         // List: Uses allCards deck with the start index and list size set in initListMode()
         // Fundamentals: Uses fundamentals deck with the start index and list size set in initFundamentalListMode()
 
-        int elementsOnPage = getMaxUnlockedCardCount();
+        int lastUnlockedCardId = getLastUnlockedListCardId();
+        if (lastUnlockedCardId < 0)
+            lastUnlockedCardId = nextCardInDeck;
 
-        boolean outOfCards =
-            nextCardInDeck + elementsOnPage >= deckStartIndex + listSize;
+        boolean restartFromCategoryFirstCard =
+            lastUnlockedCardId < deckStartIndex
+            || lastUnlockedCardId >= deckStartIndex + listSize - 1;
 
         if (listModeJustStarted) {
             //Log.d("CAGE", "LIST/FND MODE. Just started");
@@ -1053,13 +1067,13 @@ public class MainActivity extends AppCompatActivity {
             enableNextAndPrevButtons(true);
             locksChanged = false;
         }
-        else if (outOfCards) {
-            //Log.d("CAGE", "LIST/FND MODE. Out of cards");
+        else if (restartFromCategoryFirstCard) {
+            //Log.d("CAGE", "LIST/FND MODE. Restarting");
             nextCardInDeck = deckStartIndex;
         }
         else if (!shownCardCountChanged) {
-            //Log.d("CAGE", "LIST/FND MODE. Next page. Moving forward " + (lastCardOnPage + 1 - nextCardInDeck));
-            nextCardInDeck = lastCardOnPage + 1;
+            //Log.d("CAGE", "LIST/FND MODE. Next page. Moving forward " + (lastUnlockedCardId + 1 - nextCardInDeck));
+            nextCardInDeck = lastUnlockedCardId + 1;
         }
 
         //Log.d("CAGE", "LIST/FND MODE. nextShownCardInList: " + nextShownCardInList +
@@ -1118,10 +1132,6 @@ public class MainActivity extends AppCompatActivity {
             if (deckIndex - deckStartIndex >= listSize) {
                 // Out of cards
                 emptySlot = true;
-            }
-            else if (!emptySlot) {
-                lastCardOnPage = deckIndex;
-                //Log.d("CAGE", "LIST/FND MODE. nextCardInDeck: " + nextCardInDeck + ", deckIndex: " + deckIndex);
             }
 
             setCardSlotText(cardSlots.get(i), displayedCards, deckIndex, emptySlot);
