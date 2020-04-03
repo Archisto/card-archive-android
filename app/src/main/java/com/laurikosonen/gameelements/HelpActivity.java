@@ -1,4 +1,4 @@
-package com.laurikosonen.cardarchive;
+package com.laurikosonen.gameelements;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,15 +25,6 @@ public class HelpActivity extends AppCompatActivity {
         helpText = (TextView) findViewById(R.id.help_text);
 
         updateDeckStats();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            }
-        });
     }
 
     private void updateDeckStats() {

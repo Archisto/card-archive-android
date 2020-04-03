@@ -1,4 +1,4 @@
-package com.laurikosonen.cardarchive;
+package com.laurikosonen.gameelements;
 
 import org.junit.Test;
 

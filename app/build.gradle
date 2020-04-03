@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.laurikosonen.cardarchive"
+        applicationId "com.laurikosonen.gameelements"
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 1

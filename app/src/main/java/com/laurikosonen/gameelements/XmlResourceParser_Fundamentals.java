@@ -1,4 +1,4 @@
-package com.laurikosonen.cardarchive;
+package com.laurikosonen.gameelements;
 
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -8,7 +8,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class XmlResourceParser_Fundamentals {

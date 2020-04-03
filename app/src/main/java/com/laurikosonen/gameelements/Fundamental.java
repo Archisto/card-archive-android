@@ -1,4 +1,4 @@
-package com.laurikosonen.cardarchive;
+package com.laurikosonen.gameelements;
 
 public class Fundamental extends Card {
     private static final String categoryName = "Fundamentals";
