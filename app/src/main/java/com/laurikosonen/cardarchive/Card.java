@@ -11,6 +11,7 @@ public class Card {
     private NameHalfType secondHalfPreference;
     private String secondHalfSingular;
     private String secondHalfPlural;
+    protected boolean keepCaps;
 
     public enum NameHalfType {
         verb,
@@ -38,6 +39,8 @@ public class Card {
         if (first) {
             if (firstHalf != null)
                 result = firstHalf;
+            else if (keepCaps)
+                result = name;
             else
                 result = name.charAt(0) + name.substring(1).toLowerCase();
         }
@@ -60,7 +63,10 @@ public class Card {
             }
         }
         else {
-            result = name.toLowerCase();
+            if (keepCaps)
+                result = name;
+            else
+                result = name.toLowerCase();
         }
 
         return result;

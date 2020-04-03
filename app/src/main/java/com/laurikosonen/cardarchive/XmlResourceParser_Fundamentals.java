@@ -15,6 +15,7 @@ public class XmlResourceParser_Fundamentals {
 
     private static final String elementStr = "element";
     private static final String nameStr = "name";
+    private static final String keepCapsStr = "keepCaps";
 
     public static void parseFundamentals(Resources resources,
                                          int resourceID,
@@ -26,6 +27,7 @@ public class XmlResourceParser_Fundamentals {
             int eventType = parser.getEventType();
             String startTagName = "_";
             String name = "_";
+            String keepCapsString = "_";
             Fundamental fundamental = null;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -35,7 +37,9 @@ public class XmlResourceParser_Fundamentals {
 
                     if (startTagName.equalsIgnoreCase(elementStr)) {
                         name = parser.getAttributeValue(null, nameStr);
+                        keepCapsString = parser.getAttributeValue(null, keepCapsStr);
                         fundamental = new Fundamental(name, fundamentals.size());
+                        fundamental.parseAndSetKeepCaps(keepCapsString);
                         fundamentals.add(fundamental);
                     }
                 }
