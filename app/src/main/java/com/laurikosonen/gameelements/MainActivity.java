@@ -695,10 +695,17 @@ public class MainActivity extends AppCompatActivity {
     private void handleCardSlotLongTouch(int touchY) {
         int cardSlotIndex = getTouchedCardSlotIndex(touchY);
         if (cardSlotIndex >= 0 && cardSlotIndex < cardSlots.size()) {
-            if (!isMergeSlot(cardSlotIndex))
-                removeCard(cardSlotIndex);
-            else
+            if (!isMergeSlot(cardSlotIndex)) {
+                if (cardSlots.get(cardSlotIndex).isEmpty()) {
+                    sortCardsFull();
+                }
+                else {
+                    removeCard(cardSlotIndex);
+                }
+            }
+            else {
                 enableMergeSlot(false);
+            }
         }
         else {
             sortCardsFull();
