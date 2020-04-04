@@ -1569,7 +1569,7 @@
             <firstHalf type="adjective">Unreliable</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is unreliable</singular>
-                <singular>are unreliable</singular>
+                <plural>are unreliable</plural>
             </secondHalf>
         </element>
         <element>
@@ -3376,7 +3376,7 @@
             <firstHalf type="adjective">Predictable</firstHalf>
             <secondHalf the="false">
                 <singular>action or movement</singular>
-                <singular>actions or movement</singular>
+                <plural>actions or movement</plural>
             </secondHalf>
         </element>
         <element>
@@ -3501,7 +3501,7 @@
             <firstHalf type="adjective">Risky</firstHalf>
             <secondHalf the="false">
                 <singular>risk</singular>
-                <singular>risks</singular>
+                <plural>risks</plural>
             </secondHalf>
         </element>
         <element>
