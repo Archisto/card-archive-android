@@ -994,7 +994,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        cardSlot = getAvailableCardSlot(cardSlot, touchY);
+        cardSlot = getAvailableCardSlot(cardSlot, touchY, false);
         if (cardSlot != null) {
             if (cardSlot.isEmpty()) {
                 if (displayMode == DisplayMode.list || displayMode == DisplayMode.fundamentals)
@@ -1155,10 +1155,10 @@ public class MainActivity extends AppCompatActivity {
 
     private CardSlot getAvailableCardSlot(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true, false);
-        return getAvailableCardSlot(cardSlot, touchY);
+        return getAvailableCardSlot(cardSlot, touchY, true);
     }
 
-    private CardSlot getAvailableCardSlot(CardSlot cardSlot, int touchY) {
+    private CardSlot getAvailableCardSlot(CardSlot cardSlot, int touchY, boolean obeyCardCount) {
         if (cardSlot != null && isMergeSlot(cardSlot.id))
             return null;
 
@@ -1178,10 +1178,11 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
         // There's a possibly available empty card slot
-        else if (cardSlot.isEmpty()) {
+        else if (cardSlot.isEmpty()
+                 && obeyCardCount
+                 && getUnlockedCardCount() >= userSetCardCount) {
             // Card count cap is reached
-            if (getUnlockedCardCount() >= userSetCardCount)
-                return null;
+            return null;
         }
 
         // Returns an available (empty or non-empty) card slot
