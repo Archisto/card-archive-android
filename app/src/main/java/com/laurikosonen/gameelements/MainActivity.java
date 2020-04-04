@@ -712,7 +712,7 @@ public class MainActivity extends AppCompatActivity {
         // Tip card for the merge slot
         tipCard = new Card(getString(R.string.mergeSlotTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
         tipCard.setNameFirstHalf(getString(R.string.mergeSlotTip_left), null, null);
-        tipCard.setNameSecondHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.verb, false);
+        tipCard.setNameSecondHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.none, false);
 
         // Temporary slot for moving cards around
         tempSlot = new CardSlot(-1,  new TextView(this), 0, 0);
@@ -979,12 +979,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getMergeCardDisplayText(CardSlot cardSlot) {
-        return String.format(getString(R.string.cardSlotMerge),
-            cardSlot.card1.getNameHalf(true, null, null),
+        // Adds "things" to the result if the first half is an adjective and the second a verb
+        boolean adjAndVerb =
+            cardSlot.card1.firstHalfType == Card.NameHalfType.adjective
+            && cardSlot.card2.secondHalfType == Card.NameHalfType.verb;
+
+        String leftHalf = cardSlot.card1.getNameHalf(true, null, null);
+        String rightHalf =
             cardSlot.card2.getNameHalf(
                 false,
                 cardSlot.card1.firstHalfType,
-                cardSlot.card1.getSecondHalfPreference()));
+                cardSlot.card1.getSecondHalfPreference());
+
+        if (adjAndVerb) {
+            String thingStr =
+                cardSlot.card1.getSecondHalfPreference() == Card.NameHalfType.plural ? getString(R.string.things) : getString(R.string.thing);
+            return String.format(getString(R.string.cardSlotMergeAlt), leftHalf, thingStr, rightHalf);
+        }
+        else {
+            return String.format(getString(R.string.cardSlotMerge), leftHalf, rightHalf);
+        }
     }
 
     private void onCardSlotTouch(int touchY) {

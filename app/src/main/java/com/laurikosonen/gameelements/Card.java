@@ -15,6 +15,7 @@ public class Card {
     protected boolean keepCaps;
 
     public enum NameHalfType {
+        none,
         verb,
         adjective,
         noun,
