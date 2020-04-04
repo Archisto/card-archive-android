@@ -10,6 +10,7 @@
     <string name="action_createCopy">Create Copy</string>
     <string name="action_change">Change</string>
     <string name="action_remove">Remove</string>
+    <string name="action_undoMerge">Undo Merge</string>
     <string name="action_disableMergeSlot">Disable Merge Slot</string>
     <string name="action_lock">Lock</string>
     <string name="action_unlock">Unlock</string>

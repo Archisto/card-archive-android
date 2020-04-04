@@ -174,6 +174,10 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getString(R.string.action_lock));
         }
 
+        if (cardSlots.get(selectedCardSlotIndex).card2 == null) {
+            menu.findItem(R.id.action_undoMerge).setVisible(false);
+        }
+
         if (!addFundamentalsEnabled) {
             menu.findItem(R.id.action_randomFundamental).setVisible(false);
             menu.findItem(R.id.action_copyFundamental1).setVisible(false);
@@ -213,6 +217,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_remove:
                 removeCard(selectedCardSlotIndex);
+                return true;
+            case R.id.action_undoMerge:
+                if (selectedCardSlot.card2 != null) {
+                    selectedCardSlot.setCards(selectedCardSlot.card1, null);
+                    updateCardSlotText(selectedCardSlot);
+                }
                 return true;
             case R.id.action_randomFundamental:
                 selectedCardSlot.fundamental = getRandomFundamental();
@@ -735,7 +745,7 @@ public class MainActivity extends AppCompatActivity {
         cardSlot.setText(text.toString(), categoryTagLength);
     }
 
-    private void updateCardSlotText(CardSlot cardSlot) {
+    private void updateCardSlotText(CardSlot cardSlot) { //, boolean onlyFirstHalf) {
         if (cardSlot == null)
             return;
 
@@ -746,6 +756,9 @@ public class MainActivity extends AppCompatActivity {
             appendFundamental(text, cardSlot);
         }
 
+//        if (onlyFirstHalf) {
+//            appendCardHalf(text, cardSlot, true);
+//        }
         if (mergeElements) {
             text.append(getMergeCardDisplayText(cardSlot));
         }
@@ -768,17 +781,6 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = 0; // TODO: No card duplication
 
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
-    }
-
-    private void appendCardName(StringBuilder sb, CardSlot cardSlot) {
-        sb.append(cardSlot.card1.name);
-
-//        boolean useUpperCase =
-//            addFundamentalsEnabled
-//            && displayMode == DisplayMode.fundamentals
-//            && cardSlot.card1.isFundamental()
-//            && cardSlot.card2 == null;
-//        sb.append(useUpperCase ? cardSlot.card1.name.toUpperCase() : cardSlot.card1.name);
     }
 
     private void showOrHideFundamentals(boolean showFundamentals) {
@@ -855,6 +857,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return categoryTagLength;
+    }
+
+    private void appendCardName(StringBuilder sb, CardSlot cardSlot) {
+        sb.append(cardSlot.card1.name);
+
+        //        boolean useUpperCase =
+        //            addFundamentalsEnabled
+        //            && displayMode == DisplayMode.fundamentals
+        //            && cardSlot.card1.isFundamental()
+        //            && cardSlot.card2 == null;
+        //        sb.append(useUpperCase ? cardSlot.card1.name.toUpperCase() : cardSlot.card1.name);
+    }
+
+    private void appendCardHalf(StringBuilder sb, CardSlot cardSlot, boolean firstHalf) {
+        if (firstHalf) {
+            sb.append(cardSlot.card1.getNameHalf(true, null, null));
+        }
+        else {
+            if (cardSlot.card2 == null)
+                sb.append(cardSlot.card1.getNameHalf(false, cardSlot.card1.firstHalfType, cardSlot.card1.getSecondHalfPreference()));
+            else
+                sb.append(cardSlot.card2.getNameHalf(false, cardSlot.card1.firstHalfType, cardSlot.card1.getSecondHalfPreference()));
+        }
     }
 
     private String getMergeCardDisplayText(CardSlot cardSlot,

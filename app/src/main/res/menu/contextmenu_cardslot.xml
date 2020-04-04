@@ -26,6 +26,12 @@
         android:title="@string/action_remove"
         android:titleCondensed="@string/action_remove"
         android:visible="true" />
+    <item
+        android:id="@+id/action_undoMerge"
+        android:enabled="true"
+        android:title="@string/action_undoMerge"
+        android:titleCondensed="@string/action_undoMerge"
+        android:visible="true" />
 
     <group android:id="@+id/group_fundamentalManagement" >
     <item
