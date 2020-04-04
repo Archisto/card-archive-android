@@ -175,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (cardSlots.get(selectedCardSlotIndex).card2 == null) {
-            menu.findItem(R.id.action_undoMerge).setVisible(false);
+            menu.findItem(R.id.action_undoMergeLeft).setVisible(false);
+            menu.findItem(R.id.action_undoMergeRight).setVisible(false);
         }
 
         if (!addFundamentalsEnabled) {
@@ -218,9 +219,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_remove:
                 removeCard(selectedCardSlotIndex);
                 return true;
-            case R.id.action_undoMerge:
+            case R.id.action_undoMergeLeft:
                 if (selectedCardSlot.card2 != null) {
                     selectedCardSlot.setCards(selectedCardSlot.card1, null);
+                    updateCardSlotText(selectedCardSlot);
+                }
+                return true;
+            case R.id.action_undoMergeRight:
+                if (selectedCardSlot.card2 != null) {
+                    selectedCardSlot.setCards(selectedCardSlot.card2, null);
                     updateCardSlotText(selectedCardSlot);
                 }
                 return true;
