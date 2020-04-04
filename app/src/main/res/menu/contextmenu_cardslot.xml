@@ -4,86 +4,86 @@
     tools:context="com.laurikosonen.gameelements.MainActivity">
     <item
         android:id="@+id/action_createCopy"
-        android:enabled="true"
         android:title="@string/action_createCopy"
         android:titleCondensed="@string/action_createCopy"
+        android:enabled="true"
         android:visible="false" />
     <item
         android:id="@+id/action_disableMergeSlot"
-        android:enabled="true"
         android:title="@string/action_disableMergeSlot"
         android:titleCondensed="@string/action_disableMergeSlot"
+        android:enabled="true"
         android:visible="false" />
     <item
         android:id="@+id/action_lockOrUnlock"
-        android:enabled="true"
         android:title="@string/action_lock"
         android:titleCondensed="@string/action_lock"
+        android:enabled="true"
         android:visible="true" />
     <item
         android:id="@+id/action_remove"
-        android:enabled="true"
         android:title="@string/action_remove"
         android:titleCondensed="@string/action_remove"
+        android:enabled="true"
         android:visible="true" />
     <item
         android:id="@+id/action_undoMergeLeft"
-        android:enabled="true"
         android:title="@string/action_undoMergeLeft"
         android:titleCondensed="@string/action_undoMergeLeft"
+        android:enabled="true"
         android:visible="true" />
     <item
         android:id="@+id/action_undoMergeRight"
-        android:enabled="true"
         android:title="@string/action_undoMergeRight"
         android:titleCondensed="@string/action_undoMergeRight"
+        android:enabled="true"
         android:visible="true" />
 
     <group android:id="@+id/group_fundamentalManagement" >
-    <item
-        android:id="@+id/action_randomFundamental"
-        android:enabled="true"
-        android:title="@string/action_randomFundamental"
-        android:titleCondensed="@string/action_randomFundamental"
-        android:visible="true" />
-    <item
-        android:id="@+id/action_copyFundamental1"
-        android:enabled="true"
-        android:title="@string/action_copyFundamental"
-        android:titleCondensed="@string/action_copyFundamental"
-        android:visible="true" />
-    <item
-        android:id="@+id/action_copyFundamental2"
-        android:enabled="true"
-        android:title="@string/action_copyFundamental"
-        android:titleCondensed="@string/action_copyFundamental"
-        android:visible="false" />
-    <item
-        android:id="@+id/action_pasteFundamental"
-        android:enabled="true"
-        android:title="@string/action_pasteFundamental"
-        android:titleCondensed="@string/action_pasteFundamental"
-        android:visible="true" />
+        <item
+            android:id="@+id/action_randomFundamental"
+            android:title="@string/action_randomFundamental"
+            android:titleCondensed="@string/action_randomFundamental"
+            android:enabled="true"
+            android:visible="true" />
+        <item
+            android:id="@+id/action_copyFundamental1"
+            android:title="@string/action_copyFundamental"
+            android:titleCondensed="@string/action_copyFundamental"
+            android:enabled="true"
+            android:visible="true" />
+        <item
+            android:id="@+id/action_copyFundamental2"
+            android:title="@string/action_copyFundamental"
+            android:titleCondensed="@string/action_copyFundamental"
+            android:enabled="true"
+            android:visible="false" />
+        <item
+            android:id="@+id/action_pasteFundamental"
+            android:title="@string/action_pasteFundamental"
+            android:titleCondensed="@string/action_pasteFundamental"
+            android:enabled="true"
+            android:visible="true" />
     </group>
 
     <group android:id="@+id/group_moveElement">
         <item
             android:id="@+id/action_moveToTop"
-            android:enabled="true"
             android:title="@string/action_moveToTop"
             android:titleCondensed="@string/action_moveToTop"
+            android:enabled="true"
             android:visible="true" />
         <item
             android:id="@+id/action_moveUp"
-            android:enabled="true"
             android:title="@string/action_moveUp"
             android:titleCondensed="@string/action_moveUp"
+            android:enabled="true"
             android:visible="true" />
         <item
             android:id="@+id/action_moveDown"
-            android:enabled="true"
             android:title="@string/action_moveDown"
             android:titleCondensed="@string/action_moveDown"
+            android:enabled="true"
             android:visible="true" />
     </group>
 </menu>

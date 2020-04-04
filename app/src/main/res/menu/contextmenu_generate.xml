@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.laurikosonen.gameelements.MainActivity">
+    <item
+        android:id="@+id/action_replace"
+        android:title="@string/action_replace"
+        android:titleCondensed="@string/action_replace"
+        android:enabled="true"
+        android:visible="true" />
+    <item
+        android:id="@+id/action_add"
+        android:title="@string/action_add"
+        android:titleCondensed="@string/action_add"
+        android:enabled="true"
+        android:visible="true" />
+    <item
+        android:id="@+id/action_clearCardsFab"
+        android:title="@string/action_clearCards"
+        android:titleCondensed="@string/action_clearCards"
+        android:enabled="true"
+        android:visible="true" />
+    <item
+        android:id="@+id/action_sortCardsFab"
+        android:title="@string/action_sortCards"
+        android:titleCondensed="@string/action_sortCards"
+        android:enabled="true"
+        android:visible="true" />
+</menu>

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private View mainView;
     private Menu optionsMenu;
-    private Menu contextMenu;
+    private Menu cardSlotContextMenu;
     private FloatingActionButton fab;
     private Button nextButton;
     private Button prevButton;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Card> fundamentals;
     private List<CardSlot> cardSlots;
     private int displayedCategory = -1;
-    private int cardCount = 10;
+    private int userSetCardCount = 10;
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
     private int listSize = 0;
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
+    private boolean openingCardSlotContextMenu;
 
     CardSlot tempSlot;
     private Card mergeBeginning;
@@ -114,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
         headerInfoText.setText(String.format(getString(R.string.allCatAndCardCount), "" + allCards.size()));
 
         initTouch();
-        registerForContextMenu(mainView);
 
         fab = (FloatingActionButton) findViewById(R.id.fab_main);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -143,18 +143,34 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setAlpha(buttonAlpha);
         prevButton.setAlpha(buttonAlpha);
         enableNextAndPrevButtons(false);
+
+        registerForContextMenu(mainView);
+        registerForContextMenu(fab);
+    }
+
+    private void openCardSlotContextMenu(int cardSlotIndex) {
+        selectedCardSlotIndex = cardSlotIndex;
+        openingCardSlotContextMenu = true;
+        openContextMenu(mainView);
+        openingCardSlotContextMenu = false;
     }
 
     public void onCreateContextMenu(ContextMenu menu,
                                     View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle(cardSlots.get(selectedCardSlotIndex).getText());
-        getMenuInflater().inflate(R.menu.contextmenu_cardslot, menu);
         //MenuCompat.setGroupDividerEnabled(menu, true);
 
-        contextMenu = menu;
-        MenuItem menuItem;
+        if (openingCardSlotContextMenu)
+            createCardSlotContextMenu(menu);
+        else
+            createFabContextMenu(menu);
+    }
+
+    private void createCardSlotContextMenu(ContextMenu menu) {
+        menu.setHeaderTitle(cardSlots.get(selectedCardSlotIndex).getText());
+        getMenuInflater().inflate(R.menu.contextmenu_cardslot, menu);
+        cardSlotContextMenu = menu;
 
         if (isMergeSlot(selectedCardSlotIndex)) {
             menu.findItem(R.id.action_createCopy).setVisible(true);
@@ -179,14 +195,7 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.action_undoMergeRight).setVisible(false);
         }
 
-        if (!addFundamentalsEnabled) {
-            menu.findItem(R.id.action_randomFundamental).setVisible(false);
-            menu.findItem(R.id.action_copyFundamental1).setVisible(false);
-            menu.findItem(R.id.action_pasteFundamental).setVisible(false);
-        }
-        else {
-            initFundamentalCopyMenuItems(menu);
-        }
+        initFundamentalCopyMenuItems(menu);
 
         if (!canMoveUp(selectedCardSlotIndex)) {
             menu.findItem(R.id.action_moveToTop).setEnabled(false);
@@ -196,16 +205,61 @@ public class MainActivity extends AppCompatActivity {
         if (!canMoveDown(selectedCardSlotIndex))
             menu.findItem(R.id.action_moveDown).setEnabled(false);
 
-        //Log.d("CAGE", "Context menu created");
+        //Log.d("CAGE", "Card slot context menu created");
+    }
+
+    private void createFabContextMenu(ContextMenu menu) {
+        menu.setHeaderTitle(getString(R.string.generate));
+        getMenuInflater().inflate(R.menu.contextmenu_generate, menu);
+
+        int possibleCardIncrease = getEmptyCardSlotCount();
+        if (possibleCardIncrease > 0) {
+            menu.findItem(R.id.action_add).
+                setTitle(String.format(getString(R.string.action_add), Math.min(userSetCardCount, possibleCardIncrease)));
+        }
+        else {
+            menu.findItem(R.id.action_add).
+                setTitle(String.format(getString(R.string.action_add), userSetCardCount));
+            menu.findItem(R.id.action_add).setEnabled(false);
+        }
+
+        //Log.d("CAGE", "FAB context menu created");
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         //AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         //Log.d("CAGE", "Selected cardSlot at index " + selectedCardSlotIndex);
+        //Log.d("CAGE", "Item selected: " + item);
 
         CardSlot selectedCardSlot = cardSlots.get(selectedCardSlotIndex);
 
+        boolean done = onContextItemSelectedFab(item, selectedCardSlot);
+        if (!done) done = onContextItemSelectedCardSlot(item, selectedCardSlot);
+        return done || super.onContextItemSelected(item);
+    }
+
+    private boolean onContextItemSelectedFab(MenuItem item, CardSlot selectedCardSlot) {
+        switch (item.getItemId()) {
+            case R.id.action_replace:
+                drawCards(displayedCategory, false);
+                return true;
+            case R.id.action_add:
+                for (int i = 0; i < userSetCardCount; i++)
+                    addCard();
+                return true;
+            case R.id.action_clearCardsFab:
+                clearCards();
+                return true;
+            case R.id.action_sortCardsFab:
+                sortCardsFull();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private boolean onContextItemSelectedCardSlot(MenuItem item, CardSlot selectedCardSlot) {
         switch (item.getItemId()) {
             case R.id.action_createCopy:
                 createCopy(selectedCardSlotIndex);
@@ -255,11 +309,16 @@ public class MainActivity extends AppCompatActivity {
                 handleMoveElementDown(selectedCardSlotIndex);
                 return true;
             default:
-                return super.onContextItemSelected(item);
+                return false;
         }
     }
 
     private void initFundamentalCopyMenuItems(Menu menu) {
+        if (!addFundamentalsEnabled) {
+            menu.setGroupVisible(R.id.group_fundamentalManagement, false);
+            return;
+        }
+
         Card copyableFundamental1 = getCopyableFundamental(cardSlots.get(selectedCardSlotIndex), false);
         Card copyableFundamental2 = getCopyableFundamental(cardSlots.get(selectedCardSlotIndex), true);
 
@@ -297,12 +356,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Card getCopyableFundamental(CardSlot cardSlot, boolean onlyFundamentalCard) {
-        if (onlyFundamentalCard && cardSlot.card1.isFundamental() && cardSlot.card2 == null)
-            return cardSlot.card1;
-        else if (!onlyFundamentalCard && cardSlot.fundamental != null)
-            return cardSlot.fundamental;
+        Card result = null;
 
-        return null;
+        if (onlyFundamentalCard && cardSlot.card1.isFundamental() && cardSlot.card2 == null)
+            result = cardSlot.card1;
+        else if (!onlyFundamentalCard && cardSlot.fundamental != null)
+            result = cardSlot.fundamental;
+
+        return result;
     }
 
     private boolean canMoveUp(int cardSlotIndex) {
@@ -389,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
             if (SystemClock.elapsedRealtime() - touchStartTime >= maxTouchDuration) {
                 touchHandled = true;
 
-                int touchPosMaxDifference = 10;
+                int touchPosMaxDifference = 15;
                 return Math.abs(touchY - touchStartY) <= touchPosMaxDifference
                     && Math.abs(touchX - touchStartX) <= touchPosMaxDifference;
             }
@@ -479,7 +540,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getMaxUnlockedCardCount() {
-        return Math.min(cardCount, maxDisplayedCards - lockedCardCount);
+        return Math.min(userSetCardCount, maxDisplayedCards - lockedCardCount);
+    }
+
+    private int getEmptyCardSlotCount() {
+        int result = 0;
+        for (CardSlot slot : cardSlots) {
+            if (slot.isEmpty())
+                result++;
+        }
+
+        return  result;
     }
 
     private int getLastUnlockedListCardId() {
@@ -713,11 +784,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             boolean emptySlot =
-                (i >= cardCount + locksPassed) || (i - locksPassed >= displayedCards.size());
+                (i >= userSetCardCount + locksPassed) || (i - locksPassed >= displayedCards.size());
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
-        nextCardInDeck = cardCount;
+        nextCardInDeck = userSetCardCount;
     }
 
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
@@ -788,6 +859,13 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = 0; // TODO: No card duplication
 
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+    }
+
+    private void addCard() {
+        CardSlot cardSlot = getFirstEmptyCardSlot();
+        if (cardSlot != null) {
+            drawNewCard(cardSlot);
+        }
     }
 
     private void showOrHideFundamentals(boolean showFundamentals) {
@@ -938,13 +1016,11 @@ public class MainActivity extends AppCompatActivity {
                     sortCardsFull();
                 }
                 else {
-                    selectedCardSlotIndex = cardSlotIndex;
-                    openContextMenu(mainView);
+                    openCardSlotContextMenu(cardSlotIndex);
                 }
             }
             else {
-                selectedCardSlotIndex = cardSlotIndex;
-                openContextMenu(mainView);
+                openCardSlotContextMenu(cardSlotIndex);
             }
         }
         else {
@@ -1104,7 +1180,7 @@ public class MainActivity extends AppCompatActivity {
         // There's a possibly available empty card slot
         else if (cardSlot.isEmpty()) {
             // Card count cap is reached
-            if (getUnlockedCardCount() >= cardCount)
+            if (getUnlockedCardCount() >= userSetCardCount)
                 return null;
         }
 
@@ -1443,7 +1519,7 @@ public class MainActivity extends AppCompatActivity {
 
         optionsMenu = menu;
         MenuItem menuItem = menu.findItem(R.id.submenu_cardCount);
-        menuItem.setTitle(String.format(getString(R.string.action_cardCount), cardCount));
+        menuItem.setTitle(String.format(getString(R.string.action_cardCount), userSetCardCount));
 
         currentDisplayedDisplayModeItem = menu.findItem(R.id.action_setMode_classic);
         currentDisplayedDisplayModeItem.setEnabled(false);
@@ -1550,31 +1626,31 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean setElementCountCap(boolean increase, int min, int max, MenuItem item) {
+    private boolean setCardCount(boolean increase, int min, int max, MenuItem item) {
         if (increase) {
-            cardCount++;
-            if (cardCount > max) {
-                cardCount = min;
+            userSetCardCount++;
+            if (userSetCardCount > max) {
+                userSetCardCount = min;
             }
         }
         else {
-            cardCount--;
-            if (cardCount < min) {
-                cardCount = max;
+            userSetCardCount--;
+            if (userSetCardCount < min) {
+                userSetCardCount = max;
             }
         }
 
-        item.setTitle(String.format(getString(R.string.action_cardCount), cardCount));
+        item.setTitle(String.format(getString(R.string.action_cardCount), userSetCardCount));
         return true;
     }
 
-    private boolean setElementCountCap(int value, int min, int max) {
+    private boolean setCardCount(int value, int min, int max) {
         if (value >= min && value <= max) {
-            cardCount = value;
+            userSetCardCount = value;
 
             if (optionsMenu != null) {
                 optionsMenu.findItem(R.id.submenu_cardCount).
-                    setTitle(String.format(getString(R.string.action_cardCount), cardCount));
+                    setTitle(String.format(getString(R.string.action_cardCount), userSetCardCount));
             }
 
             updateHeaderInfoText();
@@ -1693,25 +1769,25 @@ public class MainActivity extends AppCompatActivity {
     private boolean handleSetCardCountOptions(int id) {
         switch (id) {
             case R.id.action_setCardCount_1:
-                return setElementCountCap(1, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(1, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_2:
-                return setElementCountCap(2, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(2, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_3:
-                return setElementCountCap(3, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(3, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_4:
-                return setElementCountCap(4, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(4, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_5:
-                return setElementCountCap(5, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(5, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_6:
-                return setElementCountCap(6, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(6, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_7:
-                return setElementCountCap(7, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(7, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_8:
-                return setElementCountCap(8, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(8, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_9:
-                return setElementCountCap(9, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(9, minDisplayedCards, maxDisplayedCards);
             case R.id.action_setCardCount_10:
-                return setElementCountCap(10, minDisplayedCards, maxDisplayedCards);
+                return setCardCount(10, minDisplayedCards, maxDisplayedCards);
         }
 
         return false;
@@ -1786,12 +1862,8 @@ public class MainActivity extends AppCompatActivity {
         addFundamentalsToggle.setChecked(enable);
         showOrHideFundamentals(enable);
 
-        if (contextMenu != null) {
-            contextMenu.findItem(R.id.action_randomFundamental).setEnabled(enable);
-            Log.d("CAGE", "changeFundamental enabled: " + enable);
-        }
-        else
-            Log.d("CAGE", "Context menu not created???");
+        if (cardSlotContextMenu != null)
+            cardSlotContextMenu.findItem(R.id.action_randomFundamental).setEnabled(enable);
     }
 
     private boolean handleAutoSortWhenLockingActivation(int id) {
