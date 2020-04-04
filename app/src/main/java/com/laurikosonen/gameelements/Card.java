@@ -18,6 +18,7 @@ public class Card {
         verb,
         adjective,
         noun,
+        modifier,
         singular,
         plural
     }
@@ -124,6 +125,8 @@ public class Card {
             return NameHalfType.adjective;
         else if (typeString.equalsIgnoreCase("noun"))
             return NameHalfType.noun;
+        else if (typeString.equalsIgnoreCase("modifier"))
+            return NameHalfType.modifier;
         else if (typeString.equalsIgnoreCase("singular"))
             return NameHalfType.singular;
         else if (typeString.equalsIgnoreCase("plural"))

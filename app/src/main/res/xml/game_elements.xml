@@ -489,7 +489,7 @@
         <element>
             <name>The world lives even if the player is away</name>
             <firstHalf type="noun">World</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>if the player is away</singular>
             </secondHalf>
         </element>
@@ -520,8 +520,9 @@
         </element>
         <element>
             <name>Leveling up</name>
-            <firstHalf type="verb">Leveling</firstHalf>
+            <firstHalf type="noun">Level</firstHalf>
             <secondHalf the="false">
+                <singular>level</singular>
                 <plural>levels</plural>
             </secondHalf>
         </element>
@@ -534,7 +535,7 @@
         </element>
         <element>
             <name>Reallocating spent points</name>
-            <firstHalf type="noun" preference="plural">Reallocating</firstHalf>
+            <firstHalf type="verb">Reallocating</firstHalf>
             <secondHalf the="false">
                 <plural>spent points</plural>
             </secondHalf>
@@ -587,9 +588,10 @@
         </element>
         <element>
             <name>Blessings and curses</name>
-            <firstHalf type="noun" preference="plural">Blessing</firstHalf>
+            <firstHalf type="adjective">Blessed or cursed</firstHalf>
             <secondHalf the="false">
                 <singular>curse</singular>
+                <plural>curses</plural>
             </secondHalf>
         </element>
         <element>
@@ -636,7 +638,7 @@
         </element>
         <element>
             <name>Parenthood</name>
-            <firstHalf type="noun" preference="plural">Parenthood</firstHalf>
+            <firstHalf type="noun">Parenthood</firstHalf>
             <secondHalf the="false">
                 <plural>parents</plural>
             </secondHalf>
@@ -664,7 +666,7 @@
         </element>
         <element>
             <name>Personality quirks</name>
-            <firstHalf type="noun" preference="plural">Personality</firstHalf>
+            <firstHalf type="noun">Personality</firstHalf>
             <secondHalf the="false">
                 <plural>quirks</plural>
             </secondHalf>
@@ -706,7 +708,7 @@
         </element>
         <element>
             <name>Ragdoll physics</name>
-            <firstHalf type="noun" preference="plural">Ragdoll</firstHalf>
+            <firstHalf type="noun">Ragdoll</firstHalf>
             <secondHalf the="false">
                 <plural>physics</plural>
             </secondHalf>
@@ -768,7 +770,7 @@
         </element>
         <element>
             <name>Monsters</name>
-            <firstHalf type="adjective">Monster</firstHalf>
+            <firstHalf type="noun" preference="plural">Monsters</firstHalf>
             <secondHalf the="false">
                 <singular>monster</singular>
                 <plural>monsters</plural>
@@ -980,7 +982,7 @@
         </element>
         <element>
             <name>Player guilds</name>
-            <firstHalf type="noun" preference="plural">Player</firstHalf>
+            <firstHalf type="noun">Player</firstHalf>
             <secondHalf the="false">
                 <singular>guild</singular>
                 <plural>guilds</plural>
@@ -1103,7 +1105,7 @@
         </element>
         <element>
             <name>Family</name>
-            <firstHalf type="noun" preference="plural">Family</firstHalf>
+            <firstHalf type="noun">Family</firstHalf>
             <secondHalf the="false">
                 <singular>family</singular>
                 <plural>families</plural>
@@ -1341,7 +1343,7 @@
         </element>
         <element>
             <name>Some rules can be broken, intentionally or not</name>
-            <firstHalf type="noun" preference="plural">Some rules can be</firstHalf>
+            <firstHalf type="noun" preference="plural">Rules</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be broken</singular>
             </secondHalf>
@@ -1373,7 +1375,7 @@
         <element>
             <name>Securing an advantage before the opponent can</name>
             <firstHalf type="verb">Securing</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>faster than the opponent</singular>
             </secondHalf>
         </element>
@@ -1416,7 +1418,7 @@
         <element>
             <name>Ensuring systems run on time</name>
             <firstHalf type="verb">Ensuring</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>in a hurry</singular>
             </secondHalf>
         </element>
@@ -1537,7 +1539,7 @@
         </element>
         <element>
             <name>The AI learns from the player’s actions</name>
-            <firstHalf type="noun" preference="plural">AI</firstHalf>
+            <firstHalf type="noun">AI</firstHalf>
             <secondHalf the="true">
                 <plural>player’s actions</plural>
             </secondHalf>
@@ -1651,7 +1653,7 @@
         <element>
             <name>Rewards disappear if not collected quickly enough</name>
             <firstHalf type="noun">Reward</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>for a limited time</singular>
             </secondHalf>
         </element>
@@ -1789,7 +1791,7 @@
         </element>
         <element>
             <name>Being taken to safety after suffering a grave injury</name>
-            <firstHalf type="noun" preference="plural">Saving</firstHalf>
+            <firstHalf type="verb">Saving</firstHalf>
             <secondHalf the="false">
                 <singular>injury</singular>
                 <plural>injuries</plural>
@@ -1959,7 +1961,7 @@
         <element>
             <name>Using abilities alongside another character</name>
             <firstHalf type="verb">Using abilities with</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>with another character</singular>
             </secondHalf>
         </element>
@@ -1980,7 +1982,7 @@
         </element>
         <element>
             <name>Mind control</name>
-            <firstHalf type="noun" preference="plural">Mind</firstHalf>
+            <firstHalf type="noun">Mind</firstHalf>
             <secondHalf the="false">
                 <singular>control</singular>
             </secondHalf>
@@ -2172,7 +2174,7 @@
         <element>
             <name>Taking over another character after dying</name>
             <firstHalf type="verb" preference="singular">Taking over</firstHalf>
-            <secondHalf the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>after dying</singular>
             </secondHalf>
         </element>
@@ -2562,14 +2564,14 @@
         <element>
             <name>Operating a vehicle as a team</name>
             <firstHalf type="verb">Operating</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as a team</singular>
             </secondHalf>
         </element>
         <element>
             <name>Being a passenger in a vehicle</name>
             <firstHalf type="verb">Travelling</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>in a vehicle</singular>
                 <plural>in vehicles</plural>
             </secondHalf>
@@ -2577,7 +2579,7 @@
         <element>
             <name>Boarding vehicles without permission</name>
             <firstHalf type="verb">Boarding vehicles</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>without permission</singular>
                 <plural>without permission</plural>
             </secondHalf>
@@ -2585,7 +2587,7 @@
         <element>
             <name>Leaving a vehicle to do something</name>
             <firstHalf type="adjective">Inside and outside</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>inside and outside</singular>
             </secondHalf>
         </element>
@@ -2708,7 +2710,7 @@
     <category id="7" name="Combat" shortName="Com">
         <element>
             <name>Combat</name>
-            <firstHalf type="noun" preference="plural">Combat</firstHalf>
+            <firstHalf type="noun">Combat</firstHalf>
             <secondHalf the="false">
                 <singular>combat</singular>
             </secondHalf>
@@ -2736,7 +2738,7 @@
         </element>
         <element>
             <name>Space combat</name>
-            <firstHalf type="noun" preference="plural">Space</firstHalf>
+            <firstHalf type="noun">Space</firstHalf>
             <secondHalf the="false">
                 <singular>combat</singular>
             </secondHalf>
@@ -2875,14 +2877,14 @@
         </element>
         <element>
             <name>Squad tactics</name>
-            <firstHalf type="noun" preference="plural">Squad</firstHalf>
+            <firstHalf type="noun">Squad</firstHalf>
             <secondHalf the="false">
                 <plural>tactics</plural>
             </secondHalf>
         </element>
         <element>
             <name>Battle formations</name>
-            <firstHalf type="noun" preference="plural">Battle</firstHalf>
+            <firstHalf type="noun">Battle</firstHalf>
             <secondHalf the="false">
                 <singular>formation</singular>
                 <plural>formations</plural>
@@ -3005,7 +3007,7 @@
         <element>
             <name>Using objects in the world as ammunition</name>
             <firstHalf type="verb">Using objects on</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <plural>as ammunition</plural>
             </secondHalf>
         </element>
@@ -3033,9 +3035,10 @@
         </element>
         <element>
             <name>Simultaneously being the hunter and the hunted</name>
-            <firstHalf type="verb">Chasing</firstHalf>
-            <secondHalf the="false"> <!-- true? -->
-                <singular>the hunter and the hunted</singular>
+            <firstHalf type="adjective">Simultaneous</firstHalf>
+            <secondHalf the="false">
+                <singular>combatant</singular>
+                <plural>combatants</plural>
             </secondHalf>
         </element>
         <element>
@@ -3049,7 +3052,7 @@
         <element>
             <name>No respawning until the round/wave ends</name>
             <firstHalf type="adjective">Non-respawning</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>until the round/wave ends</singular>
             </secondHalf>
         </element>
@@ -3062,7 +3065,7 @@
         </element>
         <element>
             <name>Boss enemy</name>
-            <firstHalf type="adjective">Boss</firstHalf>
+            <firstHalf type="noun">Boss</firstHalf>
             <secondHalf the="false">
                 <singular>boss enemy</singular>
                 <plural>boss enemies</plural>
@@ -3086,7 +3089,7 @@
         </element>
         <element>
             <name>Regenerating enemies</name>
-            <firstHalf type="noun" preference="plural">Regeneration</firstHalf>
+            <firstHalf type="verb">Regenerating</firstHalf>
             <secondHalf the="false">
                 <singular>enemy</singular>
                 <plural>enemies</plural>
@@ -3110,7 +3113,7 @@
         </element>
         <element>
             <name>Enemies which won't attack unless provoked</name>
-            <firstHalf type="adjective">Enemy</firstHalf>
+            <firstHalf type="noun">Enemy</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>won't attack unless provoked</singular>
             </secondHalf>
@@ -3125,7 +3128,7 @@
         </element>
         <element>
             <name>Enemy waves</name>
-            <firstHalf type="adjective">Enemy</firstHalf>
+            <firstHalf type="noun">Enemy</firstHalf>
             <secondHalf the="false">
                 <plural>waves</plural>
             </secondHalf>
@@ -3202,7 +3205,7 @@
         </element>
         <element>
             <name>Quiz</name>
-            <firstHalf type="verb">Quiz</firstHalf>
+            <firstHalf type="noun">Quiz</firstHalf>
             <secondHalf the="false">
                 <singular>quiz</singular>
                 <plural>quizzes</plural>
@@ -3248,7 +3251,7 @@
         </element>
         <element>
             <name>Codes and encrypted messages</name>
-            <firstHalf type="noun" preference="plural">Code</firstHalf>
+            <firstHalf type="noun">Code</firstHalf>
             <secondHalf the="false">
                 <singular>encrypted message</singular>
                 <plural>encrypted messages</plural>
@@ -3324,7 +3327,7 @@
         <element>
             <name>Letting the player figure out new mechanics without explaining much</name>
             <firstHalf type="verb">Letting the player figure out</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>without explanation</singular>
             </secondHalf>
         </element>
@@ -3367,7 +3370,7 @@
         <element>
             <name>Scouting an area before entering</name>
             <firstHalf type="verb">Scouting</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>before entering an area</singular>
             </secondHalf>
         </element>
@@ -3389,7 +3392,7 @@
         <element>
             <name>Figuring out the correct order</name>
             <firstHalf type="verb">Figuring out</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>in the correct order</singular>
             </secondHalf>
         </element>
@@ -3451,7 +3454,7 @@
         </element>
         <element>
             <name>Item descriptions</name>
-            <firstHalf type="noun" preference="plural">Descriptions of</firstHalf>
+            <firstHalf type="noun">Item</firstHalf>
             <secondHalf the="false">
                 <singular>description</singular>
                 <plural>descriptions</plural>
@@ -3738,7 +3741,7 @@
         <element>
             <name>Cash as an inventory item</name>
             <firstHalf type="noun">Cash</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as an inventory item</singular>
                 <plural>as inventory items</plural>
             </secondHalf>
@@ -3746,7 +3749,7 @@
         <element>
             <name>World map as an inventory item</name>
             <firstHalf type="noun">World map</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as an inventory item</singular>
                 <plural>as inventory items</plural>
             </secondHalf>
@@ -3761,7 +3764,7 @@
         <element>
             <name>Inventory as an in-world object</name>
             <firstHalf type="noun">Inventory</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as an in-world object</singular>
                 <plural>as in-world objects</plural>
             </secondHalf>
@@ -3769,14 +3772,14 @@
         <element>
             <name>Leaving items behind as bait</name>
             <firstHalf type="verb">Leaving</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as bait</singular>
             </secondHalf>
         </element>
         <element>
             <name>Storing items within the world</name>
             <firstHalf type="verb">Storing</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>within the world</singular>
             </secondHalf>
         </element>
@@ -3790,7 +3793,7 @@
         </element>
         <element>
             <name>Item rarity levels</name>
-            <firstHalf type="noun" preference="plural">Item</firstHalf>
+            <firstHalf type="noun">Item</firstHalf>
             <secondHalf the="false">
                 <plural>rarity levels</plural>
             </secondHalf>
@@ -3827,27 +3830,29 @@
         <element>
             <name>Combining items with different stats and features</name>
             <firstHalf type="verb">Combining</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <plural>with different stats and features</plural>
             </secondHalf>
         </element>
         <element>
             <name>Items can be enhanced by adding trinkets</name>
-            <firstHalf type="verb">Items can be enhanced by</firstHalf>
+            <firstHalf type="verb">Enhancing</firstHalf>
             <secondHalf the="false">
+                <singular>trinket</singular>
                 <plural>trinkets</plural>
             </secondHalf>
         </element>
         <element>
             <name>Items can be enhanced by using them</name>
-            <firstHalf type="verb">Items can be enhanced by</firstHalf>
+            <firstHalf type="verb">Enhancing</firstHalf>
             <secondHalf type="verb" the="false">
-                <singular>can be enhanced</singular>
+                <singular>improves by spending time with it</singular>
+                <plural>improve by spending time with them</plural>
             </secondHalf>
         </element>
         <element>
             <name>Items can be enhanced by crafting or magic</name>
-            <firstHalf type="verb">Items can be enhanced by</firstHalf>
+            <firstHalf type="verb">Enhancing</firstHalf>
             <secondHalf the="false">
                 <singular>crafting or magic</singular>
             </secondHalf>
@@ -3898,14 +3903,14 @@
         </element>
         <element>
             <name>Health, energy or power-up pickups</name>
-            <firstHalf type="noun" preference="plural">Health, energy or power-up</firstHalf>
+            <firstHalf type="noun">Health, energy or power-up</firstHalf>
             <secondHalf the="false">
                 <plural>pickups</plural>
             </secondHalf>
         </element>
         <element>
             <name>Equipment transmogrification</name>
-            <firstHalf type="noun" preference="plural">Equipment</firstHalf>
+            <firstHalf type="noun">Equipment</firstHalf>
             <secondHalf the="false">
                 <singular>transmogrification</singular>
             </secondHalf>
@@ -3972,7 +3977,7 @@
         <element>
             <name>Dropping items when taking a hit</name>
             <firstHalf type="verb">Dropping</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>when taking a hit</singular>
             </secondHalf>
         </element>
@@ -4010,22 +4015,22 @@
         </element>
         <element>
             <name>Score</name>
-            <firstHalf type="noun" preference="plural">Score</firstHalf>
+            <firstHalf type="noun">Score</firstHalf>
             <secondHalf the="false">
                 <singular>score</singular>
             </secondHalf>
         </element>
         <element>
             <name>Limited time to get the highest score</name>
-            <firstHalf type="noun" preference="plural">Limited time to</firstHalf>
+            <firstHalf type="noun">Limited time to</firstHalf>
             <secondHalf the="true">
                 <singular>highest score</singular>
             </secondHalf>
         </element>
         <element>
             <name>Tournament with multiple matches</name>
-            <firstHalf type="noun" preference="plural">Tournament</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <firstHalf type="noun">Tournament</firstHalf>
+            <secondHalf type="modifier" the="false">
                 <plural>against different opponents</plural>
             </secondHalf>
         </element>
@@ -4085,7 +4090,7 @@
         <element>
             <name>Free-for-All</name>
             <firstHalf type="adjective">Fighting</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <plural>against everyone</plural>
             </secondHalf>
         </element>
@@ -4131,7 +4136,7 @@
         <element>
             <name>Sandbox mode with unlimited resources</name>
             <firstHalf type="noun">Sandbox mode</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <plural>with unlimited resources</plural>
             </secondHalf>
         </element>
@@ -4193,7 +4198,7 @@
         <element>
             <name>Surviving as long as possible</name>
             <firstHalf type="verb">Surviving</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>as long as possible</singular>
             </secondHalf>
         </element>
@@ -4464,7 +4469,7 @@
         </element>
         <element>
             <name>Guiding arrow or line</name>
-            <firstHalf type="adjective">Guiding</firstHalf>
+            <firstHalf type="verb">Guiding</firstHalf>
             <secondHalf the="false">
                 <singular>line</singular>
                 <plural>lines</plural>
@@ -4542,7 +4547,7 @@
         </element>
         <element>
             <name>Black and white</name>
-            <firstHalf type="noun" preference="plural">Black and white</firstHalf>
+            <firstHalf type="adjective">Black and white</firstHalf>
             <secondHalf the="false">
                 <singular>in black and white</singular>
             </secondHalf>
@@ -4599,7 +4604,7 @@
         <element>
             <name>Seeing characters or objects through walls</name>
             <firstHalf type="verb">Seeing</firstHalf>
-            <secondHalf type="adjective" the="false">
+            <secondHalf type="modifier" the="false">
                 <plural>through walls</plural>
             </secondHalf>
         </element>
@@ -4753,7 +4758,7 @@
         </element>
         <element>
             <name>Rhythm action</name>
-            <firstHalf type="adjective">Rhythm</firstHalf>
+            <firstHalf type="noun">Rhythm</firstHalf>
             <secondHalf the="false">
                 <singular>action</singular>
             </secondHalf>
@@ -4792,7 +4797,7 @@
         </element>
         <element>
             <name>Cards</name>
-            <firstHalf type="noun" preference="plural">Card</firstHalf>
+            <firstHalf type="noun" preference="plural">Cards</firstHalf>
             <secondHalf the="true">
                 <singular>card</singular>
                 <plural>cards</plural>
@@ -4941,7 +4946,7 @@
         <element>
             <name>There's more to do after the game is over</name>
             <firstHalf type="adjective">More</firstHalf>
-            <secondHalf the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>after the game is over</singular>
             </secondHalf>
         </element>
@@ -4991,7 +4996,7 @@
         </element>
         <element>
             <name>Crime and punishment</name>
-            <firstHalf type="noun" preference="plural">Crime</firstHalf>
+            <firstHalf type="noun">Crime</firstHalf>
             <secondHalf the="true">
                 <singular>punishment</singular>
             </secondHalf>
@@ -5019,28 +5024,28 @@
         </element>
         <element>
             <name>Chaos</name>
-            <firstHalf type="adjective">Chaos</firstHalf>
+            <firstHalf type="noun">Chaos</firstHalf>
             <secondHalf the="false">
                 <singular>chaos</singular>
             </secondHalf>
         </element>
         <element>
             <name>Comedy</name>
-            <firstHalf type="adjective">Comedy</firstHalf>
+            <firstHalf type="noun">Comedy</firstHalf>
             <secondHalf the="false">
                 <singular>comedy</singular>
             </secondHalf>
         </element>
         <element>
             <name>Drama</name>
-            <firstHalf type="adjective">Drama</firstHalf>
+            <firstHalf type="noun">Drama</firstHalf>
             <secondHalf the="false">
                 <singular>drama</singular>
             </secondHalf>
         </element>
         <element>
             <name>Romance</name>
-            <firstHalf type="adjective">Romance</firstHalf>
+            <firstHalf type="noun">Romance</firstHalf>
             <secondHalf the="false">
                 <singular>romance</singular>
             </secondHalf>
@@ -5061,28 +5066,28 @@
         </element>
         <element>
             <name>Thriller</name>
-            <firstHalf type="adjective">Thriller</firstHalf>
+            <firstHalf type="noun">Thriller</firstHalf>
             <secondHalf the="false">
                 <singular>thriller</singular>
             </secondHalf>
         </element>
         <element>
             <name>Horror</name>
-            <firstHalf type="adjective">Horror</firstHalf>
+            <firstHalf type="noun">Horror</firstHalf>
             <secondHalf the="false">
                 <singular>horror</singular>
             </secondHalf>
         </element>
         <element>
             <name>Fantasy</name>
-            <firstHalf type="adjective">Fantasy</firstHalf>
+            <firstHalf type="noun">Fantasy</firstHalf>
             <secondHalf the="false">
                 <singular>fantasy</singular>
             </secondHalf>
         </element>
         <element>
             <name>Science fiction</name>
-            <firstHalf type="adjective">Science</firstHalf>
+            <firstHalf type="noun">Science</firstHalf>
             <secondHalf the="false">
                 <singular>fiction</singular>
             </secondHalf>
