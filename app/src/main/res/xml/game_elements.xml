@@ -404,7 +404,7 @@
         <element>
             <name>The playable area changes in size</name>
             <firstHalf type="noun">Playable area</firstHalf>
-            <secondHalf type="verb" the="true">
+            <secondHalf type="verb" the="false">
                 <singular>changes in size</singular>
                 <plural>change in size</plural>
             </secondHalf>
@@ -435,23 +435,24 @@
         </element>
         <element>
             <name>Checkpoints</name>
-            <firstHalf type="noun" preference="plural">Checkpoint</firstHalf>
-            <secondHalf the="true">
+            <firstHalf type="noun" preference="plural">Checkpoints</firstHalf>
+            <secondHalf the="false">
                 <singular>checkpoint</singular>
                 <plural>checkpoints</plural>
             </secondHalf>
         </element>
         <element>
             <name>Safe places where the player can restock resources</name>
-            <firstHalf type="adjective">Safe</firstHalf>
-            <secondHalf the="true">
+            <firstHalf type="noun" preference="plural">Safe places</firstHalf>
+            <secondHalf type="verb" the="false">
                 <singular>restocks resources</singular>
+                <plural>restock resources</plural>
             </secondHalf>
         </element>
         <element>
             <name>Hub area</name>
             <firstHalf type="noun">Hub</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>area</singular>
                 <plural>areas</plural>
             </secondHalf>
@@ -488,7 +489,7 @@
         <element>
             <name>The world lives even if the player is away</name>
             <firstHalf type="noun">World</firstHalf>
-            <secondHalf the="false">
+            <secondHalf type="adjective" the="false">
                 <singular>if the player is away</singular>
             </secondHalf>
         </element>
@@ -4976,9 +4977,9 @@
         </element>
         <element>
             <name>Happy, fun and cute things</name>
-            <firstHalf type="adjective">Fun</firstHalf>
+            <firstHalf type="adjective">Happy</firstHalf>
             <secondHalf the="false">
-                <plural>jokes</plural>
+                <singular>fun</singular>
             </secondHalf>
         </element>
         <element>
