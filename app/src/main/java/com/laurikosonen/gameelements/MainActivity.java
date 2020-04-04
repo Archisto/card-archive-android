@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Card> fundamentals;
     private List<CardSlot> cardSlots;
     private int displayedCategory = -1;
-    private int cardCountCap = 10;
+    private int cardCount = 10;
     private int deckStartIndex = 0;
     private int nextCardInDeck = 0;
     private int listSize = 0;
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle(cardSlots.get(selectedCardSlotIndex).getText());
         getMenuInflater().inflate(R.menu.contextmenu_cardslot, menu);
-        MenuCompat.setGroupDividerEnabled(menu, true);
+        //MenuCompat.setGroupDividerEnabled(menu, true);
 
         contextMenu = menu;
         MenuItem menuItem;
@@ -176,30 +176,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (!addFundamentalsEnabled) {
             menu.findItem(R.id.action_randomFundamental).setVisible(false);
-            menu.findItem(R.id.action_copyFundamental).setVisible(false);
+            menu.findItem(R.id.action_copyFundamental1).setVisible(false);
             menu.findItem(R.id.action_pasteFundamental).setVisible(false);
         }
         else {
-            menuItem = menu.findItem(R.id.action_copyFundamental);
-            Card copyableFundamental = getCopyableFundamental(cardSlots.get(selectedCardSlotIndex));
-            if (copyableFundamental != null) {
-                menuItem.
-                    setTitle(String.format(getString(R.string.action_copyFundamental), copyableFundamental.name.toUpperCase()));
-            }
-            else {
-                menuItem.setTitle(getString(R.string.action_copyFundamental_disabled));
-                menuItem.setEnabled(false);
-            }
-
-            menuItem = menu.findItem(R.id.action_pasteFundamental);
-            if (copiedFundamental != null) {
-                menuItem.
-                    setTitle(String.format(getString(R.string.action_pasteFundamental), copiedFundamental.name.toUpperCase()));
-            }
-            else {
-                menuItem.setTitle(getString(R.string.action_pasteFundamental_disabled));
-                menuItem.setEnabled(false);
-            }
+            initFundamentalCopyMenuItems(menu);
         }
 
         if (!canMoveUp(selectedCardSlotIndex)) {
@@ -237,8 +218,11 @@ public class MainActivity extends AppCompatActivity {
                 selectedCardSlot.fundamental = getRandomFundamental();
                 updateCardSlotText(selectedCardSlot);
                 return true;
-            case R.id.action_copyFundamental:
-                copiedFundamental = getCopyableFundamental(selectedCardSlot);
+            case R.id.action_copyFundamental1:
+                copiedFundamental = getCopyableFundamental(selectedCardSlot, false);
+                return true;
+            case R.id.action_copyFundamental2:
+                copiedFundamental = getCopyableFundamental(selectedCardSlot, true);
                 return true;
             case R.id.action_pasteFundamental:
                 selectedCardSlot.fundamental = copiedFundamental;
@@ -258,12 +242,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Card getCopyableFundamental(CardSlot cardSlot) {
-        if (displayMode == DisplayMode.fundamentals
-              && cardSlot.card2 == null
-              && cardSlot.card1.categoryName.toLowerCase().equals("fundamentals"))
+    private void initFundamentalCopyMenuItems(Menu menu) {
+        Card copyableFundamental1 = getCopyableFundamental(cardSlots.get(selectedCardSlotIndex), false);
+        Card copyableFundamental2 = getCopyableFundamental(cardSlots.get(selectedCardSlotIndex), true);
+
+        MenuItem menuItem = menu.findItem(R.id.action_copyFundamental1);
+        if (copyableFundamental1 != null) {
+            menuItem.
+                setTitle(String.format(getString(R.string.action_copyFundamental), copyableFundamental1.name.toUpperCase()));
+        }
+        else {
+            if (copyableFundamental2 != null) {
+                menuItem.setVisible(false);
+            }
+            else {
+                menuItem.setTitle(getString(R.string.action_copyFundamental_disabled));
+                menuItem.setEnabled(false);
+            }
+        }
+
+        if (copyableFundamental2 != null) {
+            menuItem = menu.findItem(R.id.action_copyFundamental2);
+            menuItem.setVisible(true);
+            menuItem.
+                setTitle(String.format(getString(R.string.action_copyFundamental), copyableFundamental2.name.toUpperCase()));
+        }
+
+        menuItem = menu.findItem(R.id.action_pasteFundamental);
+        if (copiedFundamental != null) {
+            menuItem.
+                setTitle(String.format(getString(R.string.action_pasteFundamental), copiedFundamental.name.toUpperCase()));
+        }
+        else {
+            menuItem.setTitle(getString(R.string.action_pasteFundamental_disabled));
+            menuItem.setEnabled(false);
+        }
+    }
+
+    private Card getCopyableFundamental(CardSlot cardSlot, boolean onlyFundamentalCard) {
+        if (onlyFundamentalCard && cardSlot.card1.isFundamental() && cardSlot.card2 == null)
             return cardSlot.card1;
-        else if (cardSlot.fundamental != null)
+        else if (!onlyFundamentalCard && cardSlot.fundamental != null)
             return cardSlot.fundamental;
 
         return null;
@@ -443,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getMaxUnlockedCardCount() {
-        return Math.min(cardCountCap, maxDisplayedCards - lockedCardCount);
+        return Math.min(cardCount, maxDisplayedCards - lockedCardCount);
     }
 
     private int getLastUnlockedListCardId() {
@@ -677,11 +696,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             boolean emptySlot =
-                (i >= cardCountCap + locksPassed) || (i - locksPassed >= displayedCards.size());
+                (i >= cardCount + locksPassed) || (i - locksPassed >= displayedCards.size());
             setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
         }
 
-        nextCardInDeck = cardCountCap;
+        nextCardInDeck = cardCount;
     }
 
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
@@ -706,7 +725,7 @@ public class MainActivity extends AppCompatActivity {
             text.append(getMergeCardDisplayText(cardSlot, cards, index));
         }
         else {
-            text.append(cardSlot.card1.name);
+            appendCardName(text, cardSlot);
         }
 
         int categoryTagLength = 0;
@@ -724,7 +743,6 @@ public class MainActivity extends AppCompatActivity {
         boolean mergeElements = cardSlot.card2 != null;
 
         if (addFundamentalsEnabled) {
-            //cardSlot.fundamental = getRandomFundamental();
             appendFundamental(text, cardSlot);
         }
 
@@ -732,7 +750,7 @@ public class MainActivity extends AppCompatActivity {
             text.append(getMergeCardDisplayText(cardSlot));
         }
         else {
-            text.append(cardSlot.card1.name);
+            appendCardName(text, cardSlot);
         }
 
         int categoryTagLength = 0;
@@ -750,6 +768,17 @@ public class MainActivity extends AppCompatActivity {
             nextCardInDeck = 0; // TODO: No card duplication
 
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+    }
+
+    private void appendCardName(StringBuilder sb, CardSlot cardSlot) {
+        sb.append(cardSlot.card1.name);
+
+//        boolean useUpperCase =
+//            addFundamentalsEnabled
+//            && displayMode == DisplayMode.fundamentals
+//            && cardSlot.card1.isFundamental()
+//            && cardSlot.card2 == null;
+//        sb.append(useUpperCase ? cardSlot.card1.name.toUpperCase() : cardSlot.card1.name);
     }
 
     private void showOrHideFundamentals(boolean showFundamentals) {
@@ -777,8 +806,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void appendFundamental(StringBuilder sb, CardSlot cardSlot) {
-        if (cardSlot.fundamental != null)
+        if (cardSlot.fundamental != null) {
             sb.append(String.format(getString(R.string.cardSlotFundamental), cardSlot.fundamental.name.toUpperCase())).append(" ");
+
+//            boolean useUpperCase =
+//                displayMode != DisplayMode.fundamentals
+//                || !cardSlot.card1.isFundamental()
+//                || cardSlot.card2 != null;
+//            sb.append(String.format(getString(R.string.cardSlotFundamental),
+//                useUpperCase ? cardSlot.fundamental.name.toUpperCase() : cardSlot.fundamental.name))
+//                .append(" ");
+        }
     }
 
     private void showOrHideCategoryTags(boolean showCategories) {
@@ -1034,7 +1072,7 @@ public class MainActivity extends AppCompatActivity {
         // There's a possibly available empty card slot
         else if (cardSlot.isEmpty()) {
             // Card count cap is reached
-            if (getUnlockedCardCount() >= cardCountCap)
+            if (getUnlockedCardCount() >= cardCount)
                 return null;
         }
 
@@ -1373,7 +1411,7 @@ public class MainActivity extends AppCompatActivity {
 
         optionsMenu = menu;
         MenuItem menuItem = menu.findItem(R.id.submenu_cardCount);
-        menuItem.setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
+        menuItem.setTitle(String.format(getString(R.string.action_cardCount), cardCount));
 
         currentDisplayedDisplayModeItem = menu.findItem(R.id.action_setMode_classic);
         currentDisplayedDisplayModeItem.setEnabled(false);
@@ -1482,29 +1520,29 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean setElementCountCap(boolean increase, int min, int max, MenuItem item) {
         if (increase) {
-            cardCountCap++;
-            if (cardCountCap > max) {
-                cardCountCap = min;
+            cardCount++;
+            if (cardCount > max) {
+                cardCount = min;
             }
         }
         else {
-            cardCountCap--;
-            if (cardCountCap < min) {
-                cardCountCap = max;
+            cardCount--;
+            if (cardCount < min) {
+                cardCount = max;
             }
         }
 
-        item.setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
+        item.setTitle(String.format(getString(R.string.action_cardCount), cardCount));
         return true;
     }
 
     private boolean setElementCountCap(int value, int min, int max) {
         if (value >= min && value <= max) {
-            cardCountCap = value;
+            cardCount = value;
 
             if (optionsMenu != null) {
                 optionsMenu.findItem(R.id.submenu_cardCount).
-                    setTitle(String.format(getString(R.string.action_cardCount), cardCountCap));
+                    setTitle(String.format(getString(R.string.action_cardCount), cardCount));
             }
 
             updateHeaderInfoText();

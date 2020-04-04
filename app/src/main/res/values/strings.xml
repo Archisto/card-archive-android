@@ -24,7 +24,7 @@
     <string name="action_changeFundamentals">Randomize Fundamentals</string>
     <string name="action_mergeSlot">Enable Merge Slot</string>
     <string name="action_keepElementCategories">Keep Element Categories</string>
-    <string name="action_autoUpdateSettingChanges">Auto-Update Setting Changes</string>
+    <string name="action_autoUpdateSettingChanges">Auto-Apply Cat. and Elem. Count</string>
     <string name="action_autoSortWhenLocking">Auto-Sort When Locking</string>
     <string name="action_addFundamentals">Add Fundamentals</string>
     <string name="action_showCategories">Show Category Tags</string>
@@ -37,7 +37,7 @@
     <string name="catAndCardCount">Category: %s - %s Elements</string>
     <string name="catAndPageNum">Category: %s - Page %s/%s</string>
     <string name="fundamentalPageNum">Fundamentals - Page %s/%s</string>
-    <string name="action_cardCount">Element Count Cap: %d</string>
+    <string name="action_cardCount">Element Count: %d</string>
     <string name="action_useCategory">> [%s] %s</string>
     <string name="action_useAllCategories">Use All Categories</string>
     <string name="mode_classic">Classic</string>

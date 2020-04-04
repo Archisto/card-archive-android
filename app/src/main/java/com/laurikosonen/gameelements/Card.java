@@ -34,6 +34,10 @@ public class Card {
         this.categoryNum = categoryNum;
     }
 
+    public boolean isFundamental() {
+        return false;
+    }
+
     public String getNameHalf(boolean first,
                               NameHalfType otherFirstHalfType,
                               NameHalfType secondHalfTypePref) {

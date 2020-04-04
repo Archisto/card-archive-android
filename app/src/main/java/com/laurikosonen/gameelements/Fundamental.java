@@ -8,6 +8,11 @@ public class Fundamental extends Card {
         super(name, id, categoryName, categoryShortName, -1);
     }
 
+    @Override
+    public boolean isFundamental() {
+        return true;
+    }
+
     public void parseAndSetKeepCaps(String keepCapsString) {
         keepCaps = Boolean.parseBoolean(keepCapsString);
     }

@@ -26,6 +26,8 @@
         android:title="@string/action_remove"
         android:titleCondensed="@string/action_remove"
         android:visible="true" />
+
+    <group android:id="@+id/group_fundamentalManagement" >
     <item
         android:id="@+id/action_randomFundamental"
         android:enabled="true"
@@ -33,17 +35,25 @@
         android:titleCondensed="@string/action_randomFundamental"
         android:visible="true" />
     <item
-        android:id="@+id/action_copyFundamental"
+        android:id="@+id/action_copyFundamental1"
         android:enabled="true"
         android:title="@string/action_copyFundamental"
         android:titleCondensed="@string/action_copyFundamental"
         android:visible="true" />
+    <item
+        android:id="@+id/action_copyFundamental2"
+        android:enabled="true"
+        android:title="@string/action_copyFundamental"
+        android:titleCondensed="@string/action_copyFundamental"
+        android:visible="false" />
     <item
         android:id="@+id/action_pasteFundamental"
         android:enabled="true"
         android:title="@string/action_pasteFundamental"
         android:titleCondensed="@string/action_pasteFundamental"
         android:visible="true" />
+    </group>
+
     <group android:id="@+id/group_moveElement">
         <item
             android:id="@+id/action_moveToTop"
