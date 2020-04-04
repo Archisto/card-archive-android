@@ -6,6 +6,7 @@
         <element name="Ally" />
         <element name="Attack" />
         <element name="Audio" />
+        <element name="Balance" />
         <element name="Building" />
         <element name="Change" />
         <element name="Character" />
@@ -22,6 +23,7 @@
         <element name="Enemy" />
         <element name="Failure" />
         <element name="Feedback" />
+        <element name="Focus" />
         <element name="Future" />
         <element name="Ground" />
         <element name="Hazard" />
@@ -35,6 +37,7 @@
         <element name="Map" />
         <element name="Mood" />
         <element name="Movement" />
+        <element name="Necessity" />
         <element name="Objective" />
         <element name="Obstacle" />
         <element name="Opportunity" />
@@ -43,6 +46,7 @@
         <element name="Place" />
         <element name="Player" />
         <element name="Problem" />
+        <element name="Progress" />
         <element name="Randomness" />
         <element name="Repetition" />
         <element name="Replayability" />
