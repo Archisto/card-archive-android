@@ -366,40 +366,6 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    private boolean canMoveUp(int cardSlotIndex) {
-        return cardSlotIndex > (mergeSlotEnabled ? 1 : 0);
-    }
-
-    private boolean canMoveDown(int cardSlotIndex) {
-        return cardSlotIndex < cardSlots.size() - 1;
-    }
-
-    private void handleMoveElementToTop(int cardSlotIndex) {
-        int firstAvailableSlotIndex = mergeSlotEnabled ? 1 : 0;
-        if (canMoveUp(cardSlotIndex)) {
-            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex));
-            cardSlots.get(cardSlotIndex).clear(false);
-            moveCardsDown(firstAvailableSlotIndex, true);
-            cardSlots.get(firstAvailableSlotIndex).copyFrom(tempSlot);
-        }
-    }
-
-    private void handleMoveElementUp(int cardSlotIndex) {
-        if (canMoveUp(cardSlotIndex)) {
-            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex - 1));
-            cardSlots.get(cardSlotIndex - 1).copyFrom(cardSlots.get(cardSlotIndex));
-            cardSlots.get(cardSlotIndex).copyFrom(tempSlot);
-        }
-    }
-
-    private void handleMoveElementDown(int cardSlotIndex) {
-        if (canMoveDown(cardSlotIndex)) {
-            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex + 1));
-            cardSlots.get(cardSlotIndex + 1).copyFrom(cardSlots.get(cardSlotIndex));
-            cardSlots.get(cardSlotIndex).copyFrom(tempSlot);
-        }
-    }
-
     // Alternate way of checking touch. Not as powerful as OnTouchListener.
     // The other necessary part is in content_main: android:onClick="onTouch
     //public void onTouch(View view) {
@@ -1523,6 +1489,40 @@ public class MainActivity extends AppCompatActivity {
             moveCardsDown(copySlotIndex, false);
             cardSlots.get(copySlotIndex).copyFrom(cardSlots.get(cardSlotIndex));
             updateLockedCardCount();
+        }
+    }
+
+    private boolean canMoveUp(int cardSlotIndex) {
+        return cardSlotIndex > (mergeSlotEnabled ? 1 : 0);
+    }
+
+    private boolean canMoveDown(int cardSlotIndex) {
+        return cardSlotIndex < cardSlots.size() - 1;
+    }
+
+    private void handleMoveElementToTop(int cardSlotIndex) {
+        int firstAvailableSlotIndex = mergeSlotEnabled ? 1 : 0;
+        if (canMoveUp(cardSlotIndex)) {
+            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex));
+            cardSlots.get(cardSlotIndex).clear(false);
+            moveCardsDown(firstAvailableSlotIndex, true);
+            cardSlots.get(firstAvailableSlotIndex).copyFrom(tempSlot);
+        }
+    }
+
+    private void handleMoveElementUp(int cardSlotIndex) {
+        if (canMoveUp(cardSlotIndex)) {
+            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex - 1));
+            cardSlots.get(cardSlotIndex - 1).copyFrom(cardSlots.get(cardSlotIndex));
+            cardSlots.get(cardSlotIndex).copyFrom(tempSlot);
+        }
+    }
+
+    private void handleMoveElementDown(int cardSlotIndex) {
+        if (canMoveDown(cardSlotIndex)) {
+            tempSlot.copyFromLite(cardSlots.get(cardSlotIndex + 1));
+            cardSlots.get(cardSlotIndex + 1).copyFrom(cardSlots.get(cardSlotIndex));
+            cardSlots.get(cardSlotIndex).copyFrom(tempSlot);
         }
     }
 
