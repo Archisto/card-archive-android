@@ -1700,6 +1700,22 @@
             </secondHalf>
         </element>
         <element>
+            <name>An event doesn't wait for the player before starting or ending</name>
+            <firstHalf type="noun">Event</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>doesn't wait for the player</singular>
+                <plural>don't wait for the player</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>An event keeps repeating until the player does something</name>
+            <firstHalf type="noun">Event</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>repeats</singular>
+                <plural>repeat</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Refraining from doing or using something is preferable</name>
             <firstHalf type="verb">Refraining from</firstHalf>
             <secondHalf the="false">
@@ -2494,6 +2510,165 @@
             </secondHalf>
         </element>
         <element>
+            <name>Riding</name>
+            <firstHalf type="verb">Riding</firstHalf>
+            <secondHalf the="false">
+                <singular>riding</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Swimming</name>
+            <firstHalf type="verb">Swimming</firstHalf>
+            <secondHalf the="false">
+                <singular>swimming</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Diving</name>
+            <firstHalf type="verb">Diving</firstHalf>
+            <secondHalf the="false">
+                <singular>diving</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Skydiving</name>
+            <firstHalf type="verb">Skydiving</firstHalf>
+            <secondHalf the="false">
+                <singular>skydiving</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Gliding</name>
+            <firstHalf type="verb">Gliding</firstHalf>
+            <secondHalf the="false">
+                <singular>gliding</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Flying</name>
+            <firstHalf type="verb">Flying</firstHalf>
+            <secondHalf the="false">
+                <singular>flying</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Dashing</name>
+            <firstHalf type="verb">Dashing through</firstHalf>
+            <secondHalf the="false">
+                <singular>dash</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Pole vaulting</name>
+            <firstHalf type="noun">Pole</firstHalf>
+            <secondHalf the="false">
+                <singular>vaulting</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Wall running</name>
+            <firstHalf type="noun">Wall</firstHalf>
+            <secondHalf the="false">
+                <singular>running</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Sliding</name>
+            <firstHalf type="verb">Sliding</firstHalf>
+            <secondHalf the="false">
+                <singular>sliding</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Crawling</name>
+            <firstHalf type="verb">Crawling</firstHalf>
+            <secondHalf the="false">
+                <singular>crawling</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Burrowing through the ground</name>
+            <firstHalf type="verb">Burrowing through</firstHalf>
+            <secondHalf the="true">
+                <singular>ground</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rolling or spinning</name>
+            <firstHalf type="verb">Rolling or spinning</firstHalf>
+            <secondHalf the="false">
+                <singular>roll or spin</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rotating around an object</name>
+            <firstHalf type="verb">Rotating around</firstHalf>
+            <secondHalf the="false">
+                <singular>object</singular>
+                <plural>objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Moving in a straight line with a steady speed</name>
+            <firstHalf type="verb">Moving</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>with a steady speed</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>On-rails action</name>
+            <firstHalf type="adjective">On-rails</firstHalf>
+            <secondHalf the="false">
+                <singular>action</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rail transport</name>
+            <firstHalf type="noun">Rail</firstHalf>
+            <secondHalf the="false">
+                <singular>transport</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Grinding on rails</name>
+            <firstHalf type="verb">Grinding on</firstHalf>
+            <secondHalf the="false">
+                <singular>rail</singular>
+                <plural>rails</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Zip lines</name>
+            <firstHalf type="noun" preference="plural">Zip lines</firstHalf>
+            <secondHalf the="false">
+                <singular>line</singular>
+                <plural>lines</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Swinging on ropes or such</name>
+            <firstHalf type="verb">Swinging on</firstHalf>
+            <secondHalf the="false">
+                <singular>rope</singular>
+                <plural>ropes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Shimmying on a ledge</name>
+            <firstHalf type="verb">Shimmying on</firstHalf>
+            <secondHalf the="false">
+                <singular>ledge</singular>
+                <plural>ledges</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Grabbing onto walls and ceiling</name>
+            <firstHalf type="verb">Grabbing onto</firstHalf>
+            <secondHalf the="false">
+                <plural>walls and ceiling</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Fast travel or teleportation</name>
             <firstHalf type="adjective">Fast</firstHalf>
             <secondHalf the="false">
@@ -2533,88 +2708,6 @@
             <firstHalf type="adjective">Quick</firstHalf>
             <secondHalf the="false">
                 <singular>downhill movement</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Moving in a straight line with a steady speed</name>
-            <firstHalf type="verb">Moving</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>with a steady speed</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>On-rails action</name>
-            <firstHalf type="adjective">On-rails</firstHalf>
-            <secondHalf the="false">
-                <singular>action</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Grinding on rails</name>
-            <firstHalf type="verb">Grinding on</firstHalf>
-            <secondHalf the="false">
-                <singular>rail</singular>
-                <plural>rails</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Zip lines</name>
-            <firstHalf type="noun" preference="plural">Zip lines</firstHalf>
-            <secondHalf the="false">
-                <singular>line</singular>
-                <plural>lines</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Swinging on ropes or such</name>
-            <firstHalf type="verb">Swinging on</firstHalf>
-            <secondHalf the="false">
-                <singular>rope</singular>
-                <plural>ropes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Pole vaulting</name>
-            <firstHalf type="noun">Pole</firstHalf>
-            <secondHalf the="false">
-                <singular>vaulting</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Wall running</name>
-            <firstHalf type="noun">Wall</firstHalf>
-            <secondHalf the="false">
-                <singular>running</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Shimmying on a ledge</name>
-            <firstHalf type="verb">Shimmying on</firstHalf>
-            <secondHalf the="false">
-                <singular>ledge</singular>
-                <plural>ledges</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Grabbing onto walls and ceiling</name>
-            <firstHalf type="verb">Grabbing onto</firstHalf>
-            <secondHalf the="false">
-                <plural>walls and ceiling</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rolling/spinning/orbiting</name>
-            <firstHalf type="verb">Rolling/spinning/orbiting</firstHalf>
-            <secondHalf the="false">
-                <singular>rolling/spinning/orbiting</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rotating around an object</name>
-            <firstHalf type="verb">Rotating around</firstHalf>
-            <secondHalf the="false">
-                <singular>object</singular>
-                <plural>objects</plural>
             </secondHalf>
         </element>
         <element>
@@ -2734,76 +2827,6 @@
             <firstHalf type="noun">Ship</firstHalf>
             <secondHalf the="false">
                 <singular>wreck</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Swimming</name>
-            <firstHalf type="verb">Swimming</firstHalf>
-            <secondHalf the="false">
-                <singular>swimming</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Diving</name>
-            <firstHalf type="verb">Diving</firstHalf>
-            <secondHalf the="false">
-                <singular>diving</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Skydiving</name>
-            <firstHalf type="verb">Skydiving</firstHalf>
-            <secondHalf the="false">
-                <singular>skydiving</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Gliding</name>
-            <firstHalf type="verb">Gliding</firstHalf>
-            <secondHalf the="false">
-                <singular>gliding</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Flying</name>
-            <firstHalf type="verb">Flying</firstHalf>
-            <secondHalf the="false">
-                <singular>flying</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Riding</name>
-            <firstHalf type="verb">Riding</firstHalf>
-            <secondHalf the="false">
-                <singular>riding</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Sliding</name>
-            <firstHalf type="verb">Sliding</firstHalf>
-            <secondHalf the="false">
-                <singular>sliding</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Crawling</name>
-            <firstHalf type="verb">Crawling</firstHalf>
-            <secondHalf the="false">
-                <singular>crawling</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Burrowing through the ground</name>
-            <firstHalf type="verb">Burrowing through</firstHalf>
-            <secondHalf the="true">
-                <singular>ground</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Rail transport</name>
-            <firstHalf type="noun">Rail</firstHalf>
-            <secondHalf the="false">
-                <singular>transport</singular>
             </secondHalf>
         </element>
         <element>
@@ -3040,19 +3063,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Dodging attacks</name>
+            <name>Dodging</name>
             <firstHalf type="verb">Dodging</firstHalf>
             <secondHalf the="false">
-                <singular>attack</singular>
-                <plural>attacks</plural>
+                <singular>dodge</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Deflecting attacks</name>
+            <name>Deflecting</name>
             <firstHalf type="verb">Deflecting</firstHalf>
             <secondHalf the="false">
-                <singular>attack</singular>
-                <plural>attacks</plural>
+                <singular>deflect</singular>
             </secondHalf>
         </element>
         <element>
@@ -3375,6 +3396,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Optimizing downtime</name>
+            <firstHalf type="verb">Optimizing</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>during downtime</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Missing piece</name>
             <firstHalf type="verb">Missing</firstHalf>
             <secondHalf the="false">
@@ -3451,18 +3479,19 @@
             </secondHalf>
         </element>
         <element>
-            <name>The four classical elements</name>
-            <firstHalf type="adjective">Four</firstHalf>
-            <secondHalf the="false">
-                <plural>elements</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Using certain tools or abilities on certain objects</name>
             <firstHalf type="verb">Using certain tools or abilities on</firstHalf>
             <secondHalf the="false">
                 <singular>a certain object</singular>
                 <plural>certain objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Multiple ways to solve a problem</name>
+            <firstHalf type="noun" preference="plural">Multiple ways to use</firstHalf>
+            <secondHalf the="false">
+                <singular>problem</singular>
+                <plural>problems</plural>
             </secondHalf>
         </element>
         <element>
@@ -4118,8 +4147,8 @@
         <element>
             <name>The player's starting equipment can be customized</name>
             <firstHalf type="adjective">Starter</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>can be customized</singular>
+            <secondHalf type="noun" the="false">
+                <singular>customization</singular>
             </secondHalf>
         </element>
         <element>
@@ -4647,6 +4676,21 @@
             </secondHalf>
         </element>
         <element>
+            <name>Procedural animation</name>
+            <firstHalf type="adjective">Procedural</firstHalf>
+            <secondHalf the="false">
+                <singular>animation</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Minimal or no animation between key poses</name>
+            <firstHalf type="adjective">Minimal or no</firstHalf>
+            <secondHalf the="false">
+                <singular>pose</singular>
+                <plural>poses</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Minimal or no HUD</name>
             <firstHalf type="adjective">Minimal or no</firstHalf>
             <secondHalf the="true">
@@ -5155,6 +5199,7 @@
             <name>Multiple games are going on at the same time</name>
             <firstHalf type="adjective">Multiple</firstHalf>
             <secondHalf type="verb" the="false">
+                <singular>is active along with something else</singular>
                 <plural>are active at the same time</plural>
             </secondHalf>
         </element>
@@ -5186,6 +5231,13 @@
             <firstHalf type="adjective">Multiple</firstHalf>
             <secondHalf the="false">
                 <singular>screen</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The four classical elements</name>
+            <firstHalf type="adjective">Four</firstHalf>
+            <secondHalf the="false">
+                <plural>elements</plural>
             </secondHalf>
         </element>
         <element>

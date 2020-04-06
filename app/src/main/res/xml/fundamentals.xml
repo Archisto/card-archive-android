@@ -4,6 +4,7 @@
         <element name="Ability" />
         <element name="AI" keepCaps="true" />
         <element name="Ally" />
+        <element name="Animation" />
         <element name="Attack" />
         <element name="Audio" />
         <element name="Balance" />
