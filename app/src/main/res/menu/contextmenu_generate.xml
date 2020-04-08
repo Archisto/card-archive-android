@@ -9,6 +9,12 @@
         android:enabled="true"
         android:visible="true" />
     <item
+        android:id="@+id/action_add1"
+        android:title="@string/action_add"
+        android:titleCondensed="@string/action_add"
+        android:enabled="true"
+        android:visible="true" />
+    <item
         android:id="@+id/action_add"
         android:title="@string/action_add"
         android:titleCondensed="@string/action_add"

@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean locksChanged;
     private boolean touching;
     private boolean touchHandled;
-    private boolean openingCardSlotContextMenu;
+    private boolean openGenerateButtonContextMenu;
 
     CardSlot tempSlot;
     private Card mergeBeginning;
@@ -146,13 +146,96 @@ public class MainActivity extends AppCompatActivity {
 
         registerForContextMenu(mainView);
         registerForContextMenu(fab);
+        //registerForContextMenu((TextView) findViewById(R.id.cardSlot01));
+    }
+
+    // Alternate way of checking touch. Not as powerful as OnTouchListener.
+    // The other necessary part is in content_main: android:onClick="onTouch
+    //public void onTouch(View view) {
+    //}
+
+    private void initTouch() {
+        mainView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startTouch(x, y);
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        // TODO: Fix for Android 10 (works very inconsistently)
+                        if (longTouchDetected(x, y))
+                            onLongTouch(touchStartY);
+                        else if (swipeDetected(true, x))
+                            onSwipe(true, touchStartY);
+                        else if (swipeDetected(false, x))
+                            onSwipe(false, touchStartY);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (!touchHandled)
+                            onCardSlotTouch(y);
+                        endTouch();
+                        mainView.performClick();
+                        break;
+                }
+
+                return true;
+            }
+        });
+    }
+
+    private void startTouch(int touchX, int touchY) {
+        if (!touching) {
+            touching = true;
+            touchStartX = touchX;
+            touchStartY = touchY;
+            touchStartTime = SystemClock.elapsedRealtime();
+        }
+    }
+
+    private boolean longTouchDetected(int touchX, int touchY) {
+        if (touchHandled)
+            return false;
+
+        if (SystemClock.elapsedRealtime() - touchStartTime >= maxTouchDuration) {
+            touchHandled = true;
+
+            int touchPosMaxDifference = 15;
+            return Math.abs(touchY - touchStartY) <= touchPosMaxDifference
+                && Math.abs(touchX - touchStartX) <= touchPosMaxDifference;
+        }
+
+        return false;
+    }
+
+    private boolean swipeDetected(boolean right, int touchX) {
+        if (touching && !touchHandled) {
+            int touchXRequiredDistance = 30;
+            int difference = touchX - touchStartX;
+            if (right && difference > touchXRequiredDistance) {
+                touchHandled = true;
+                return true;
+            }
+            else if (!right && difference < -1 * touchXRequiredDistance) {
+                touchHandled = true;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void endTouch() {
+        touching = false;
+        touchHandled = false;
     }
 
     private void openCardSlotContextMenu(int cardSlotIndex) {
         selectedCardSlotIndex = cardSlotIndex;
-        openingCardSlotContextMenu = true;
         openContextMenu(mainView);
-        openingCardSlotContextMenu = false;
     }
 
     public void onCreateContextMenu(ContextMenu menu,
@@ -161,10 +244,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         //MenuCompat.setGroupDividerEnabled(menu, true);
 
-        if (openingCardSlotContextMenu)
-            createCardSlotContextMenu(menu);
+        openGenerateButtonContextMenu = v == fab;
+//        Log.d("CAGE", "Creating context menu: "
+//            + (generateButtonContextMenuOpen ? "Generate button" : "card slot"));
+
+        if (openGenerateButtonContextMenu)
+            createGenerateButtonContextMenu(menu);
         else
-            createFabContextMenu(menu);
+            createCardSlotContextMenu(menu);
     }
 
     private void createCardSlotContextMenu(ContextMenu menu) {
@@ -204,23 +291,39 @@ public class MainActivity extends AppCompatActivity {
 
         if (!canMoveDown(selectedCardSlotIndex))
             menu.findItem(R.id.action_moveDown).setEnabled(false);
-
-        //Log.d("CAGE", "Card slot context menu created");
     }
 
-    private void createFabContextMenu(ContextMenu menu) {
+    private void createGenerateButtonContextMenu(ContextMenu menu) {
         menu.setHeaderTitle(getString(R.string.generate));
         getMenuInflater().inflate(R.menu.contextmenu_generate, menu);
 
         int possibleCardIncrease = getEmptyCardSlotCount();
-        if (possibleCardIncrease > 0) {
+        int addCount = Math.min(userSetCardCount, possibleCardIncrease);
+
+        menu.findItem(R.id.action_add1).
+            setTitle(String.format(getString(R.string.action_add), 1));
+
+        // Can add 1 or X
+        if (addCount > 1) {
             menu.findItem(R.id.action_add).
-                setTitle(String.format(getString(R.string.action_add), Math.min(userSetCardCount, possibleCardIncrease)));
+                setTitle(String.format(getString(R.string.action_add), addCount));
         }
+        // Can add 1
+        else if (addCount == 1) {
+            menu.findItem(R.id.action_add).setVisible(false);
+        }
+        // Can't add any more
         else {
-            menu.findItem(R.id.action_add).
-                setTitle(String.format(getString(R.string.action_add), userSetCardCount));
-            menu.findItem(R.id.action_add).setEnabled(false);
+            menu.findItem(R.id.action_add1).setEnabled(false);
+
+            if (userSetCardCount > 1) {
+                menu.findItem(R.id.action_add).
+                    setTitle(String.format(getString(R.string.action_add), userSetCardCount));
+                menu.findItem(R.id.action_add).setEnabled(false);
+            }
+            else {
+                menu.findItem(R.id.action_add).setVisible(false);
+            }
         }
 
         //Log.d("CAGE", "FAB context menu created");
@@ -234,15 +337,19 @@ public class MainActivity extends AppCompatActivity {
 
         CardSlot selectedCardSlot = cardSlots.get(selectedCardSlotIndex);
 
-        boolean done = onContextItemSelectedFab(item, selectedCardSlot);
-        if (!done) done = onContextItemSelectedCardSlot(item, selectedCardSlot);
-        return done || super.onContextItemSelected(item);
+        if (openGenerateButtonContextMenu)
+            return onContextItemSelectedGenerateButton(item);
+        else
+            return onContextItemSelectedCardSlot(item, selectedCardSlot);
     }
 
-    private boolean onContextItemSelectedFab(MenuItem item, CardSlot selectedCardSlot) {
+    private boolean onContextItemSelectedGenerateButton(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_replace:
                 drawCards(displayedCategory, false);
+                return true;
+            case R.id.action_add1:
+                addCard();
                 return true;
             case R.id.action_add:
                 for (int i = 0; i < userSetCardCount; i++)
@@ -255,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
                 sortCardsFull();
                 return true;
             default:
-                return false;
+                return super.onContextItemSelected(item);
         }
     }
 
@@ -309,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
                 handleMoveElementDown(selectedCardSlotIndex);
                 return true;
             default:
-                return false;
+                return super.onContextItemSelected(item);
         }
     }
 
@@ -364,87 +471,6 @@ public class MainActivity extends AppCompatActivity {
             result = cardSlot.fundamental;
 
         return result;
-    }
-
-    // Alternate way of checking touch. Not as powerful as OnTouchListener.
-    // The other necessary part is in content_main: android:onClick="onTouch
-    //public void onTouch(View view) {
-    //}
-
-    private void initTouch() {
-        mainView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        if (longTouchDetected(x, y))
-                            onLongTouch(touchStartY);
-                        else if (swipeDetected(true, x))
-                            onSwipe(true, touchStartY);
-                        else if (swipeDetected(false, x))
-                            onSwipe(false, touchStartY);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (!touchHandled)
-                            onCardSlotTouch(y);
-                        endTouch();
-                        mainView.performClick();
-                        break;
-                }
-
-                return true;
-            }
-        });
-    }
-
-    private boolean longTouchDetected(int touchX, int touchY) {
-        if (touchHandled)
-            return false;
-
-        if (!touching) {
-            touching = true;
-            touchStartX = touchX;
-            touchStartY = touchY;
-            touchStartTime = SystemClock.elapsedRealtime();
-        }
-        else {
-            if (SystemClock.elapsedRealtime() - touchStartTime >= maxTouchDuration) {
-                touchHandled = true;
-
-                int touchPosMaxDifference = 15;
-                return Math.abs(touchY - touchStartY) <= touchPosMaxDifference
-                    && Math.abs(touchX - touchStartX) <= touchPosMaxDifference;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean swipeDetected(boolean right, int touchX) {
-        if (touching && !touchHandled) {
-            int touchXRequiredDistance = 30;
-            int difference = touchX - touchStartX;
-            if (right && difference > touchXRequiredDistance) {
-                touchHandled = true;
-                return true;
-            }
-            else if (!right && difference < -1 * touchXRequiredDistance) {
-                touchHandled = true;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private void endTouch() {
-        touching = false;
-        touchHandled = false;
     }
 
     private void enableNextAndPrevButtons(boolean enable) {
