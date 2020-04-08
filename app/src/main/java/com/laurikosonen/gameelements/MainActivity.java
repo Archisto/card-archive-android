@@ -163,28 +163,47 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        startTouch(x, y);
+                        //startTouch(x, y);
                         break;
                     case MotionEvent.ACTION_MOVE:
                         // TODO: Fix for Android 10 (works very inconsistently)
-                        if (longTouchDetected(x, y))
-                            onLongTouch(touchStartY);
-                        else if (swipeDetected(true, x))
-                            onSwipe(true, touchStartY);
-                        else if (swipeDetected(false, x))
-                            onSwipe(false, touchStartY);
-                        break;
+                        flashCards();
+
+//                        if (longTouchDetected(x, y))
+//                            onLongTouch(touchStartY);
+//                        else if (swipeDetected(true, x))
+//                            onSwipe(true, touchStartY);
+//                        else if (swipeDetected(false, x))
+//                            onSwipe(false, touchStartY);
+//                        break;
                     case MotionEvent.ACTION_UP:
-                        if (!touchHandled)
-                            onCardSlotTouch(y);
-                        endTouch();
-                        mainView.performClick();
+//                        if (!touchHandled)
+//                            onCardSlotTouch(y);
+//                        endTouch();
+//                        mainView.performClick();
                         break;
                 }
 
                 return true;
             }
         });
+    }
+
+    private void flashCards() {
+        int firstEmptyIndex = getFirstEmptyCardSlotIndex(0);
+        int emptyCardSlotCount = getEmptyCardSlotCount();
+
+        if (emptyCardSlotCount < 10 && (firstEmptyIndex == 0 || emptyCardSlotCount == 0)) {
+            for (CardSlot cs : cardSlots) {
+                if (!cs.isEmpty()) {
+                    cs.clear(false);
+                    return;
+                }
+            }
+        }
+        else if (firstEmptyIndex > 0 || emptyCardSlotCount == 10) {
+            drawNewCard(cardSlots.get(firstEmptyIndex));
+        }
     }
 
     private void startTouch(int touchX, int touchY) {
