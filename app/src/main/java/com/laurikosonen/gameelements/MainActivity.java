@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final int minDisplayedCards = 1;
     private final int maxDisplayedCards = 10;
-    private final float maxTouchDuration = 350;
+    private final float maxTouchDuration = 280;
     private final float buttonAlpha = 0.6f;
 
     private View mainView;
@@ -163,25 +163,28 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        //startTouch(x, y);
+                        //Log.d("CAGE", "touching");
+                        startTouch(x, y);
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        // TODO: Fix for Android 10 (works very inconsistently)
-                        flashCards();
-
-//                        if (longTouchDetected(x, y))
-//                            onLongTouch(touchStartY);
-//                        else if (swipeDetected(true, x))
-//                            onSwipe(true, touchStartY);
-//                        else if (swipeDetected(false, x))
-//                            onSwipe(false, touchStartY);
-//                        break;
-                    case MotionEvent.ACTION_UP:
-//                        if (!touchHandled)
-//                            onCardSlotTouch(y);
-//                        endTouch();
-//                        mainView.performClick();
+                        if (swipeDetected(true, x))
+                            onSwipe(true, touchStartY);
+                        else if (swipeDetected(false, x))
+                            onSwipe(false, touchStartY);
                         break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        touching = false;
+                        if (!touchHandled)
+                            onCardSlotTouch(y);
+                        endTouch();
+                        mainView.performClick();
+                        break;
+                }
+
+                if (touching) {
+                    if (longTouchDetected(x, y))
+                        onLongTouch(touchStartY);
                 }
 
                 return true;
@@ -189,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Helps visualize if touch input works by flashing cards on and off.
+     */
     private void flashCards() {
         int firstEmptyIndex = getFirstEmptyCardSlotIndex(0);
         int emptyCardSlotCount = getEmptyCardSlotCount();
@@ -220,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
         if (SystemClock.elapsedRealtime() - touchStartTime >= maxTouchDuration) {
+            //Log.d("CAGE", "Long touch detected");
             touchHandled = true;
-
             int touchPosMaxDifference = 15;
             return Math.abs(touchY - touchStartY) <= touchPosMaxDifference
                 && Math.abs(touchX - touchStartX) <= touchPosMaxDifference;
@@ -1014,6 +1020,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void onCardSlotTouch(int touchY) {
         CardSlot cardSlot = getTouchedCardSlot(touchY, true, true);
+
+//        if (cardSlot != null)
+//            openCardSlotContextMenu(cardSlot.id);
+
         if (cardSlot != null && isMergeSlot(cardSlot.id)) {
             createCopy(0);
             return;
