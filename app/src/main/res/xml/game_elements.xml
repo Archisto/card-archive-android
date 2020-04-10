@@ -549,13 +549,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Reallocating spent points</name>
-            <firstHalf type="verb">Reallocating</firstHalf>
-            <secondHalf the="false">
-                <plural>spent points</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Buying levels/abilities/power</name>
             <firstHalf type="verb">Buying</firstHalf>
             <secondHalf the="false">
@@ -1628,14 +1621,6 @@
             <secondHalf the="false">
                 <singular>reaction</singular>
                 <plural>reactions</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Unreliability</name>
-            <firstHalf type="adjective">Unreliable</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is unreliable</singular>
-                <plural>are unreliable</plural>
             </secondHalf>
         </element>
         <element>
@@ -3396,6 +3381,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Strategy</name>
+            <firstHalf type="noun">Strategy</firstHalf>
+            <secondHalf the="false">
+                <singular>strategy</singular>
+                <plural>strategies</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Optimizing downtime</name>
             <firstHalf type="verb">Optimizing</firstHalf>
             <secondHalf type="modifier" the="false">
@@ -4264,14 +4257,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Strategy game</name>
-            <firstHalf type="adjective">Strategy</firstHalf>
-            <secondHalf the="false">
-                <singular>game</singular>
-                <plural>games</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Tycoon game</name>
             <firstHalf type="adjective">Tycoon</firstHalf>
             <secondHalf the="false">
@@ -4987,6 +4972,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Unreliability</name>
+            <firstHalf type="adjective">Unreliable</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is unreliable</singular>
+                <plural>are unreliable</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Chance and probability</name>
             <firstHalf type="noun" preference="plural">Chance of</firstHalf>
             <secondHalf the="false">
@@ -5111,6 +5104,13 @@
             <firstHalf type="adjective">Short</firstHalf>
             <secondHalf the="true">
                 <singular>core gameplay loop</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reallocating spent points</name>
+            <firstHalf type="verb">Reallocating</firstHalf>
+            <secondHalf the="false">
+                <plural>spent points</plural>
             </secondHalf>
         </element>
         <element>
