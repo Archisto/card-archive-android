@@ -2262,7 +2262,7 @@
         <element>
             <name>Respawning next to a teammate</name>
             <firstHalf type="verb">Respawning</firstHalf>
-            <secondHalf the="false">
+            <secondHalf type="modifier" the="false">
                 <singular>next to a teammate</singular>
                 <plural>next to teammates</plural>
             </secondHalf>
@@ -2379,6 +2379,13 @@
             <firstHalf type="verb">Absorbing</firstHalf>
             <secondHalf the="false">
                 <plural>everything</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Gaining or losing something after the action is over</name>
+            <firstHalf type="verb">Gaining or losing</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>after the action is over</singular>
             </secondHalf>
         </element>
         <element>
