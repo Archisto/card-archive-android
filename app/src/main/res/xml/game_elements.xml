@@ -638,6 +638,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>The character's backstory</name>
+            <firstHalf type="adjective">Past</firstHalf>
+            <secondHalf the="false">
+                <singular>story</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Growing up</name>
             <firstHalf type="verb">Growing</firstHalf>
             <secondHalf the="false">
@@ -761,7 +768,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Selfless helpers</name>
+            <name>Selfless helper</name>
             <firstHalf type="verb">Helping</firstHalf>
             <secondHalf the="false">
                 <singular>helper</singular>
@@ -793,7 +800,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Mimics</name>
+            <name>Mimic</name>
             <firstHalf type="verb">Mimicking</firstHalf>
             <secondHalf the="false">
                 <singular>mimic</singular>
@@ -960,10 +967,18 @@
         </element>
         <element>
             <name>Grouping up before a mission</name>
-            <firstHalf type="adjective">Grouping up</firstHalf>
+            <firstHalf type="verb">Grouping up</firstHalf>
             <secondHalf the="false">
                 <singular>mission</singular>
                 <plural>missions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Separating a character/unit from its group</name>
+            <firstHalf type="verb">Separating</firstHalf>
+            <secondHalf the="false">
+                <singular>group</singular>
+                <plural>groups</plural>
             </secondHalf>
         </element>
         <element>
@@ -972,6 +987,14 @@
             <secondHalf type="verb" the="false">
                 <singular>controls an entity</singular>
                 <plural>control an entity</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Using multiple players' abilities in tandem</name>
+            <firstHalf type="verb">Working together</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>needs another player's abilities</singular>
+                <plural>need another player's abilities</plural>
             </secondHalf>
         </element>
         <element>
@@ -1091,11 +1114,25 @@
             </secondHalf>
         </element>
         <element>
-            <name>Fighting with teammates over who gets the rewards</name>
+            <name>Fighting with teammates over a reward</name>
             <firstHalf type="verb">Fighting with teammates over</firstHalf>
             <secondHalf the="false">
                 <singular>reward</singular>
                 <plural>rewards</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>An object is biased towards or against a certain team</name>
+            <firstHalf type="adjective">Biased</firstHalf>
+            <secondHalf the="false">
+                <singular>bias</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Progress is prevented if members of multiple teams are present</name>
+            <firstHalf type="verb">Preventing</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>if members of multiple teams are present</singular>
             </secondHalf>
         </element>
         <element>
@@ -1685,6 +1722,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Good timing is rewarded</name>
+            <firstHalf type="noun">Good timing</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is rewarded</singular>
+                <plural>are rewarded</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>An event doesn't wait for the player before starting or ending</name>
             <firstHalf type="noun">Event</firstHalf>
             <secondHalf type="verb" the="false">
@@ -1702,7 +1747,7 @@
         </element>
         <element>
             <name>Refraining from doing or using something is preferable</name>
-            <firstHalf type="verb">Refraining from</firstHalf>
+            <firstHalf type="verb">Declining</firstHalf>
             <secondHalf the="false">
                 <singular>doing or using something</singular>
             </secondHalf>
@@ -1716,13 +1761,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Rewards disappear if not collected quickly enough</name>
-            <firstHalf type="noun">Reward</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>for a limited time</singular>
-            </secondHalf>
-        </element>
-        <element>
             <name>Getting back lost items or power</name>
             <firstHalf type="verb">Retrieving</firstHalf>
             <secondHalf the="false">
@@ -1730,10 +1768,41 @@
             </secondHalf>
         </element>
         <element>
-            <name>Mistakes pile up</name>
-            <firstHalf type="noun">Mistake</firstHalf>
+            <name>Rewards disappear if not collected quickly enough</name>
+            <firstHalf type="adjective">Disappearing</firstHalf>
             <secondHalf the="false">
-                <singular>debt</singular>
+                <singular>time limit</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving characters or objects undisturbed lets them recover</name>
+            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>replenishes health or energy</singular>
+                <plural>replenish health or energy</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving threats undisturbed lets them grow stronger</name>
+            <firstHalf type="noun" preference="plural">Threats</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>grows stronger</singular>
+                <plural>grow stronger</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Interrupting an enemy's attack or ability</name>
+            <firstHalf type="verb">Interrupting</firstHalf>
+            <secondHalf the="false">
+                <singular>an enemy's attack or ability</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mistakes pile up</name>
+            <firstHalf type="verb">Making mistakes causes</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is increased each time</singular>
+                <plural>are increased each time</plural>
             </secondHalf>
         </element>
         <element>
@@ -1893,10 +1962,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Sharing money or points with other players</name>
+            <name>Sharing money, resources or points with other players</name>
             <firstHalf type="verb">Sharing</firstHalf>
             <secondHalf the="false">
-                <plural>money or points</plural>
+                <plural>money, resources or points</plural>
             </secondHalf>
         </element>
         <element>
@@ -1911,6 +1980,14 @@
             <firstHalf type="verb">Marking</firstHalf>
             <secondHalf the="false">
                 <singular>focus</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Calling out threats to others</name>
+            <firstHalf type="verb">Calling out</firstHalf>
+            <secondHalf the="false">
+                <singular>another player</singular>
+                <singular>other players</singular>
             </secondHalf>
         </element>
         <element>
@@ -1967,6 +2044,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>An object gives feedback when getting closer to another</name>
+            <firstHalf type="verb">Getting feedback from</firstHalf>
+            <secondHalf the="false">
+                <singular>reducing distance</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>It's impossible to go beyond a maximum distance of something</name>
             <firstHalf type="adjective">Impossible</firstHalf>
             <secondHalf the="false">
@@ -1997,26 +2081,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>An object gives feedback when getting closer to another</name>
-            <firstHalf type="verb">Giving feedback when getting closer to</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>close to a relevant object</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving characters or objects undisturbed lets them recover</name>
-            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>replenishes health or energy</singular>
-                <plural>replenish health or energy</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving threats undisturbed lets them grow stronger</name>
-            <firstHalf type="noun" preference="plural">Threats</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>grows stronger</singular>
-                <plural>grow stronger</plural>
+            <name>Being affected by certain events happening nearby</name>
+            <firstHalf type="verb">Being affected by</firstHalf>
+            <secondHalf the="false">
+                <singular>nearby event</singular>
+                <plural>nearby events</plural>
             </secondHalf>
         </element>
     </category>
@@ -3136,10 +3205,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Armour which must be destroyed before damaging the wearer</name>
-            <firstHalf type="adjective">Armoured</firstHalf>
+            <name>Armor which must be destroyed before damaging the wearer</name>
+            <firstHalf type="adjective">Armored</firstHalf>
             <secondHalf the="false">
-                <singular>destruction</singular>
+                <singular>armor</singular>
             </secondHalf>
         </element>
         <element>
@@ -3495,6 +3564,21 @@
             </secondHalf>
         </element>
         <element>
+            <name>Tutorial</name>
+            <firstHalf type="noun">Tutorial</firstHalf>
+            <secondHalf the="false">
+                <singular>tutorial</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tutorials can always be read, viewed or played again</name>
+            <firstHalf type="noun">Tutorial</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is always accessible</singular>
+                <plural>are always accessible</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Letting the player figure out new mechanics without explaining much</name>
             <firstHalf type="verb">Letting the player figure out</firstHalf>
             <secondHalf type="modifier" the="false">
@@ -3706,16 +3790,16 @@
             </secondHalf>
         </element>
         <element>
-            <name>Made choices are locked out of play</name>
-            <firstHalf type="noun" preference="plural">Made choices</firstHalf>
+            <name>Used options are locked out of play</name>
+            <firstHalf type="noun" preference="plural">Used options</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is locked out of play</singular>
                 <plural>are locked out of play</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Made choices affect the story or gameplay opportunities</name>
-            <firstHalf type="noun" preference="plural">Made choices</firstHalf>
+            <name>The player's choices affect the story or gameplay opportunities</name>
+            <firstHalf type="noun" preference="plural">The player's choices</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>affects gameplay opportunities</singular>
                 <plural>affect gameplay opportunities</plural>
@@ -4041,6 +4125,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Assembling an item from parts with different stats and features</name>
+            <firstHalf type="verb">Assembling</firstHalf>
+            <secondHalf the="false">
+                <plural>item parts</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Items can be enhanced by adding trinkets</name>
             <firstHalf type="verb">Enhancing</firstHalf>
             <secondHalf the="false">
@@ -4079,7 +4170,7 @@
         </element>
         <element>
             <name>Scarcity of resources</name>
-            <firstHalf type="adjective">Scarcity of</firstHalf>
+            <firstHalf type="noun" preference="plural">Scarcity of</firstHalf>
             <secondHalf the="false">
                 <singular>resource</singular>
                 <plural>resources</plural>
@@ -4094,6 +4185,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Once discovered or unlocked, an item starts appearing all around the world</name>
+            <firstHalf type="adjective">Discovered or unlocked</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>all around the world</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Renewable resources/items in the world</name>
             <firstHalf type="adjective">Renewable</firstHalf>
             <secondHalf the="false">
@@ -4102,7 +4200,7 @@
         </element>
         <element>
             <name>Health, energy or power-up pickups</name>
-            <firstHalf type="noun">Health, energy or power-up</firstHalf>
+            <firstHalf type="noun" preference="plural">Health, energy or power-ups</firstHalf>
             <secondHalf the="false">
                 <plural>pickups</plural>
             </secondHalf>
@@ -4524,10 +4622,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>One player chooses who earns a point</name>
-            <firstHalf type="verb">One player chooses who gets</firstHalf>
+            <name>A player chooses who earns a reward</name>
+            <firstHalf type="verb">A player chooses</firstHalf>
             <secondHalf type="verb" the="false">
-                <plural>gives points</plural>
+                <singular>can be given to someone</singular>
             </secondHalf>
         </element>
         <element>
@@ -4653,6 +4751,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Full-motion video</name>
+            <firstHalf type="adjective">Pre-recorded</firstHalf>
+            <secondHalf the="false">
+                <singular>video</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>The game camera cannot be freely moved</name>
             <firstHalf type="noun">Game camera</firstHalf>
             <secondHalf type="verb" the="false">
@@ -4760,11 +4865,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Colours are important</name>
-            <firstHalf type="noun">Colour</firstHalf>
+            <name>Colors are important</name>
+            <firstHalf type="noun">Color</firstHalf>
             <secondHalf the="false">
-                <singular>colour</singular>
-                <plural>colours</plural>
+                <singular>color</singular>
+                <plural>colors</plural>
             </secondHalf>
         </element>
         <element>
@@ -4966,9 +5071,9 @@
         <element>
             <name>Temporarily changed limit</name>
             <firstHalf type="adjective">Temporary</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>changes a limit</singular>
-                <plural>change limits</plural>
+            <secondHalf the="false">
+                <singular>limit</singular>
+                <plural>limits</plural>
             </secondHalf>
         </element>
         <element>
@@ -5078,11 +5183,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>New problems emerge at regular intervals</name>
-            <firstHalf type="noun" preference="plural">Problems</firstHalf>
+            <name>Information about an object is only shown when focusing on it</name>
+            <firstHalf type="noun">Information</firstHalf>
             <secondHalf type="verb" the="false">
-                <singular>emerges at regular intervals</singular>
-                <plural>emerge at regular intervals</plural>
+                <singular>requires focus</singular>
+                <plural>require focus</plural>
             </secondHalf>
         </element>
         <element>
@@ -5093,10 +5198,18 @@
             </secondHalf>
         </element>
         <element>
+            <name>New problems emerge at regular intervals</name>
+            <firstHalf type="noun" preference="plural">Problems</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>emerges at regular intervals</singular>
+                <plural>emerge at regular intervals</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Sudden change in the middle of action</name>
             <firstHalf type="noun">Sudden change in</firstHalf>
             <secondHalf type="modifier" the="false">
-                <plural>in the middle of action</plural>
+                <singular>in the middle of action</singular>
             </secondHalf>
         </element>
         <element>
@@ -5203,11 +5316,18 @@
             </secondHalf>
         </element>
         <element>
+            <name>Multiple possible endings for the game</name>
+            <firstHalf type="adjective">Multiple possible</firstHalf>
+            <secondHalf the="false">
+                <singular>ending</singular>
+                <plural>endings</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Multiple games are going on at the same time</name>
-            <firstHalf type="adjective">Multiple</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is active along with something else</singular>
-                <plural>are active at the same time</plural>
+            <firstHalf type="adjective">Simultaneous</firstHalf>
+            <secondHalf the="false">
+                <plural>multiple things at the same time</plural>
             </secondHalf>
         </element>
         <element>
@@ -5238,6 +5358,13 @@
             <firstHalf type="adjective">Multiple</firstHalf>
             <secondHalf the="false">
                 <singular>screen</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Support/API for external software</name>
+            <firstHalf type="adjective">Support for</firstHalf>
+            <secondHalf the="false">
+                <plural>external software</plural>
             </secondHalf>
         </element>
         <element>
