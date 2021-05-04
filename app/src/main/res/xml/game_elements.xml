@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Regex: (?<=<name>).+(?=<POISTA/name>) -->
+
 <resources>
     <category id="0" name="World" shortName="Wld">
         <element>
@@ -233,8 +236,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>An alternate version of a familiar location</name>
-            <firstHalf type="noun" preference="plural">Alternate versions of</firstHalf>
+            <name>An alternative version of a familiar location</name>
+            <firstHalf type="noun" preference="plural">Alternative versions of</firstHalf>
             <secondHalf the="false">
                 <singular>familiar location</singular>
                 <plural>familiar locations</plural>
@@ -414,14 +417,6 @@
             <secondHalf type="verb" the="false">
                 <singular>changes in size</singular>
                 <plural>change in size</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Randomly generated area</name>
-            <firstHalf type="adjective">Randomly generated</firstHalf>
-            <secondHalf the="false">
-                <singular>area</singular>
-                <plural>areas</plural>
             </secondHalf>
         </element>
         <element>
@@ -760,11 +755,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Supernatural beings</name>
-            <firstHalf type="adjective">Supernatural</firstHalf>
+            <name>Relentless pursuer</name>
+            <firstHalf type="adjective">Relentless</firstHalf>
             <secondHalf the="false">
-                <singular>being</singular>
-                <plural>beings</plural>
+                <singular>pursuer</singular>
+                <plural>pursuers</plural>
             </secondHalf>
         </element>
         <element>
@@ -776,31 +771,47 @@
             </secondHalf>
         </element>
         <element>
-            <name>Relentless pursuer</name>
-            <firstHalf type="adjective">Relentless</firstHalf>
-            <secondHalf the="false">
-                <singular>pursuer</singular>
-                <plural>pursuers</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Soldiers</name>
-            <firstHalf type="noun" preference="plural">Soldiers</firstHalf>
+            <firstHalf type="noun" preference="plural">Soldier</firstHalf>
             <secondHalf the="false">
                 <singular>soldier</singular>
                 <plural>soldiers</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Monsters</name>
-            <firstHalf type="noun" preference="plural">Monsters</firstHalf>
+            <name>Robots</name>
+            <firstHalf type="noun" preference="plural">Robot</firstHalf>
             <secondHalf the="false">
                 <singular>monster</singular>
                 <plural>monsters</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Mimic</name>
+            <name>Monsters</name>
+            <firstHalf type="noun" preference="plural">Monster</firstHalf>
+            <secondHalf the="false">
+                <singular>monster</singular>
+                <plural>monsters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Undead beings</name>
+            <firstHalf type="adjective">Undead</firstHalf>
+            <secondHalf the="false">
+                <singular>being</singular>
+                <plural>beings</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Supernatural beings</name>
+            <firstHalf type="adjective">Supernatural</firstHalf>
+            <secondHalf the="false">
+                <singular>being</singular>
+                <plural>beings</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mimics</name>
             <firstHalf type="verb">Mimicking</firstHalf>
             <secondHalf the="false">
                 <singular>mimic</singular>
@@ -862,14 +873,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Non-player characters look identical to the player character</name>
-            <firstHalf type="noun" preference="plural">Non-player characters</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>has identical copies</singular>
-                <plural>look identical</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>The character's appearance influences gameplay</name>
             <firstHalf type="noun">Character's appearance</firstHalf>
             <secondHalf the="false">
@@ -909,13 +912,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Massively multiplayer online</name>
-            <firstHalf type="adjective">Online</firstHalf>
-            <secondHalf the="false">
-                <singular>online</singular>
-            </secondHalf>
-        </element>
-        <element>
             <name>Ranked multiplayer</name>
             <firstHalf type="adjective">Ranked</firstHalf>
             <secondHalf the="false">
@@ -942,6 +938,13 @@
             <firstHalf type="adjective">Asynchronous</firstHalf>
             <secondHalf the="false">
                 <singular>multiplayer</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Massively multiplayer online game</name>
+            <firstHalf type="adjective">Online</firstHalf>
+            <secondHalf the="false">
+                <singular>online</singular>
             </secondHalf>
         </element>
         <element>
@@ -995,6 +998,14 @@
             <secondHalf type="verb" the="false">
                 <singular>needs another player's abilities</singular>
                 <plural>need another player's abilities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Non-player characters look identical to the player character</name>
+            <firstHalf type="noun" preference="plural">Non-player characters</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>has identical copies</singular>
+                <plural>look identical</plural>
             </secondHalf>
         </element>
         <element>
@@ -1302,6 +1313,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Randomly generated area</name>
+            <firstHalf type="adjective">Randomly generated</firstHalf>
+            <secondHalf the="false">
+                <singular>area</singular>
+                <plural>areas</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Moving a part of the environment</name>
             <firstHalf type="verb">Moving</firstHalf>
             <secondHalf the="false">
@@ -1331,6 +1350,13 @@
             <secondHalf the="false">
                 <singular>opponent's thing</singular>
                 <plural>opponent's things</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Securing an advantage before the opponent can</name>
+            <firstHalf type="verb">Securing</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>faster than the opponent</singular>
             </secondHalf>
         </element>
         <element>
@@ -1451,18 +1477,19 @@
             </secondHalf>
         </element>
         <element>
+            <name>Naming a character, place or an object</name>
+            <firstHalf type="verb">Naming</firstHalf>
+            <secondHalf the="false">
+                <singular>character, place or an object</singular>
+                <plural>characters, places or objects</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>One player's decision affects other players</name>
             <firstHalf type="verb">The player's decision affects</firstHalf>
             <secondHalf the="false">
                 <singular>player</singular>
                 <plural>players</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Securing an advantage before the opponent can</name>
-            <firstHalf type="verb">Securing</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>faster than the opponent</singular>
             </secondHalf>
         </element>
         <element>
@@ -1516,7 +1543,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Funnelling liquid or a mass of things down a certain path</name>
+            <name>Funneling liquid or a mass of things down a certain path</name>
             <firstHalf type="verb">Funneling</firstHalf>
             <secondHalf the="false">
                 <singular>path</singular>
@@ -1620,6 +1647,13 @@
             <secondHalf type="verb" the="false">
                 <singular>appears randomly</singular>
                 <plural>appear randomly</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Many things to unlock</name>
+            <firstHalf type="adjective">Unlockable</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>can be unlocked</singular>
             </secondHalf>
         </element>
     </category>
@@ -1862,7 +1896,7 @@
         </element>
         <element>
             <name>Two things cancel each other when coming into contact</name>
-            <firstHalf type="verb">Cancelling</firstHalf>
+            <firstHalf type="verb">Canceling</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>when coming into contact with something</singular>
             </secondHalf>
@@ -1962,6 +1996,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Previewing things which haven't been unlocked yet</name>
+            <firstHalf type="verb">Previewing</firstHalf>
+            <secondHalf the="false">
+                <singular>locked thing</singular>
+                <plural>locked things</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Sharing money, resources or points with other players</name>
             <firstHalf type="verb">Sharing</firstHalf>
             <secondHalf the="false">
@@ -1973,6 +2015,14 @@
             <firstHalf type="verb">Sharing</firstHalf>
             <secondHalf the="false">
                 <plural>designs or strategies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Marking targets</name>
+            <firstHalf type="verb">Marking</firstHalf>
+            <secondHalf the="false">
+                <singular>target</singular>
+                <plural>targets</plural>
             </secondHalf>
         </element>
         <element>
@@ -2122,8 +2172,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Cancelling activated abilities</name>
-            <firstHalf type="verb">Cancelling</firstHalf>
+            <name>Canceling activated abilities</name>
+            <firstHalf type="verb">Canceling</firstHalf>
             <secondHalf the="false">
                 <singular>activated ability</singular>
                 <plural>activated abilities</plural>
@@ -2479,14 +2529,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Marking targets</name>
-            <firstHalf type="verb">Marking</firstHalf>
-            <secondHalf the="false">
-                <singular>target</singular>
-                <plural>targets</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Special sight ability</name>
             <firstHalf type="adjective">Special</firstHalf>
             <secondHalf the="false">
@@ -2779,10 +2821,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Jumping in midair</name>
+            <name>Jumping in mid-air</name>
             <firstHalf type="verb">Jumping</firstHalf>
             <secondHalf type="modifier" the="false">
-                <singular>in midair</singular>
+                <singular>in mid-air</singular>
             </secondHalf>
         </element>
         <element>
@@ -2848,7 +2890,7 @@
         </element>
         <element>
             <name>Being a passenger in a vehicle</name>
-            <firstHalf type="verb">Travelling</firstHalf>
+            <firstHalf type="verb">Traveling</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>in a vehicle</singular>
                 <plural>in vehicles</plural>
@@ -3496,6 +3538,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Learning new words</name>
+            <firstHalf type="verb">Learning</firstHalf>
+            <secondHalf the="false">
+                <singular>word</singular>
+                <plural>words</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Truth and lies</name>
             <firstHalf type="noun">Truth</firstHalf>
             <secondHalf the="false">
@@ -3700,6 +3750,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Imaginary things</name>
+            <firstHalf type="adjective">Imaginary</firstHalf>
+            <secondHalf the="false">
+                <singular>imagination</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Learning from discovered things</name>
             <firstHalf type="verb">Learning from</firstHalf>
             <secondHalf the="false">
@@ -3852,9 +3909,10 @@
         </element>
         <element>
             <name>Buying and selling</name>
-            <firstHalf type="verb">Buying</firstHalf>
+            <firstHalf type="verb">Buying and selling</firstHalf>
             <secondHalf the="false">
-                <singular>sale</singular>
+                <singular>purchase or sale</singular>
+                <plural>purchases or sales</plural>
             </secondHalf>
         </element>
         <element>
@@ -3869,6 +3927,13 @@
             <firstHalf type="verb">Renting</firstHalf>
             <secondHalf the="false">
                 <singular>renting</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Borrowing</name>
+            <firstHalf type="verb">Borrowing</firstHalf>
+            <secondHalf the="false">
+                <singular>borrowing</singular>
             </secondHalf>
         </element>
         <element>
@@ -4323,6 +4388,14 @@
             <firstHalf type="noun">Score</firstHalf>
             <secondHalf the="false">
                 <singular>score</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Time limit</name>
+            <firstHalf type="noun">Time</firstHalf>
+            <secondHalf the="false">
+                <singular>limit</singular>
+                <plural>limits</plural>
             </secondHalf>
         </element>
         <element>
@@ -4857,6 +4930,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Geometric shapes</name>
+            <firstHalf type="adjective">Geometric</firstHalf>
+            <secondHalf the="false">
+                <singular>shape</singular>
+                <plural>shapes</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Sounds/voices are important</name>
             <firstHalf type="noun" preference="plural">Sounds/voices</firstHalf>
             <secondHalf type="verb" the="false">
@@ -4880,8 +4961,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Clever use of negative space</name>
-            <firstHalf type="verb">Clever use of</firstHalf>
+            <name>Using negative space</name>
+            <firstHalf type="verb">Using</firstHalf>
             <secondHalf the="false">
                 <singular>space</singular>
             </secondHalf>
@@ -4889,35 +4970,63 @@
         <element>
             <name>Light and darkness</name>
             <firstHalf type="noun">Light</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>darkness</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Glow visual effects</name>
+            <name>Glow</name>
             <firstHalf type="verb">Glowing</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>glow</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Wave or flow visual effects</name>
-            <firstHalf type="noun">Wave</firstHalf>
-            <secondHalf the="true">
-                <singular>flow</singular>
+            <name>Sparkling</name>
+            <firstHalf type="verb">Sparkling</firstHalf>
+            <secondHalf the="false">
+                <plural>sparkles</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Smoke visual effects</name>
+            <name>Sparks</name>
+            <firstHalf type="noun">Sparks</firstHalf>
+            <secondHalf the="false">
+                <plural>sparks</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Flame</name>
+            <firstHalf type="noun">Flame</firstHalf>
+            <secondHalf the="false">
+                <singular>flame</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Smoke</name>
             <firstHalf type="noun">Smoke</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>smoke</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Explosion or implosion visual effects</name>
+            <name>Fog</name>
+            <firstHalf type="noun">Fog</firstHalf>
+            <secondHalf the="false">
+                <singular>fog</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Waving or flowing</name>
+            <firstHalf type="verb">Waving or flowing</firstHalf>
+            <secondHalf the="false">
+                <plural>waves or flow</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Explosion or implosion</name>
             <firstHalf type="verb">Exploding</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>explosion</singular>
             </secondHalf>
         </element>
@@ -4956,6 +5065,14 @@
             <secondHalf the="false">
                 <singular>illusion</singular>
                 <plural>illusions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Filtering out certain images or sounds</name>
+            <firstHalf type="verb">Filtering</firstHalf>
+            <secondHalf the="false">
+                <singular>certain image or sound</singular>
+                <plural>certain images or sounds</plural>
             </secondHalf>
         </element>
         <element>
@@ -5022,11 +5139,40 @@
             </secondHalf>
         </element>
         <element>
-            <name>Alternate cosmetic items for the player character or UI</name>
+            <name>Alternative cosmetic items for the player character or UI</name>
             <firstHalf type="adjective">Cosmetic</firstHalf>
             <secondHalf the="false">
                 <singular>cosmetic item</singular>
                 <plural>cosmetic items</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Alternative game and UI colors</name>
+            <firstHalf type="adjective">Alternative</firstHalf>
+            <secondHalf the="false">
+                <singular>color</singular>
+                <plural>colors</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Subtitles</name>
+            <firstHalf type="adjective">Subtitled</firstHalf>
+            <secondHalf the="false">
+                <plural>subtitles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Closed captions</name>
+            <firstHalf type="adjective">Subtitled</firstHalf>
+            <secondHalf the="false">
+                <plural>closed captions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Audio description</name>
+            <firstHalf type="noun">Audio</firstHalf>
+            <secondHalf the="false">
+                <singular>description</singular>
             </secondHalf>
         </element>
     </category>
@@ -5058,14 +5204,6 @@
             <firstHalf type="adjective">Fast-paced</firstHalf>
             <secondHalf the="false">
                 <singular>gameplay</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Time limit</name>
-            <firstHalf type="noun">Time</firstHalf>
-            <secondHalf the="false">
-                <singular>limit</singular>
-                <plural>limits</plural>
             </secondHalf>
         </element>
         <element>
@@ -5213,6 +5351,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>There is only a short time to get familiarized with something</name>
+            <firstHalf type="adjective">Short-term</firstHalf>
+            <secondHalf the="false">
+                <singular>familiar thing</singular>
+                <plural>familiar things</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>The game speeds up as it progresses</name>
             <firstHalf type="adjective">Faster and faster</firstHalf>
             <secondHalf the="false">
@@ -5234,8 +5380,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Alternate playstyles</name>
-            <firstHalf type="adjective">Alternate</firstHalf>
+            <name>Alternative playstyles</name>
+            <firstHalf type="adjective">Alternative</firstHalf>
             <secondHalf the="false">
                 <singular>playstyle</singular>
                 <plural>playstyles</plural>
@@ -5253,13 +5399,6 @@
             <firstHalf type="adjective">Freedom of choice in</firstHalf>
             <secondHalf type="modifier" the="false">
                 <plural>in any order</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Many things to unlock</name>
-            <firstHalf type="adjective">Unlockable</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>can be unlocked</singular>
             </secondHalf>
         </element>
         <element>
@@ -5336,14 +5475,6 @@
             <secondHalf the="false">
                 <singular>language</singular>
                 <plural>languages</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Naming a character, place or an object</name>
-            <firstHalf type="verb">Naming</firstHalf>
-            <secondHalf the="false">
-                <singular>character, place or an object</singular>
-                <plural>characters, places or objects</plural>
             </secondHalf>
         </element>
         <element>

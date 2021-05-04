@@ -14,7 +14,7 @@
         <element name="Benefit" />
         <element name="Bonus" />
         <element name="Building" />
-        <element name="Certainty" />
+        <element name="Certain" />
         <element name="Change" />
         <element name="Character" />
         <element name="Choice" />
@@ -46,7 +46,7 @@
         <element name="Hazard" />
         <element name="Health" />
         <element name="Help" />
-        <element name="Importance" />
+        <element name="Important" />
         <element name="Improvement" />
         <element name="Information" />
         <element name="Input" />
@@ -74,7 +74,7 @@
         <element name="Problem" />
         <element name="Progress" />
         <element name="Quality" />
-        <element name="Randomness" />
+        <element name="Random" />
         <element name="Reaction" />
         <element name="Repetition" />
         <element name="Replayability" />
