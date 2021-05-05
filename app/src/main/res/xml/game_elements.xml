@@ -782,8 +782,8 @@
             <name>Robots</name>
             <firstHalf type="noun" preference="plural">Robot</firstHalf>
             <secondHalf the="false">
-                <singular>monster</singular>
-                <plural>monsters</plural>
+                <singular>robot</singular>
+                <plural>robots</plural>
             </secondHalf>
         </element>
         <element>
@@ -850,6 +850,30 @@
             </secondHalf>
         </element>
         <element>
+            <name>Benefitting from things another character did</name>
+            <firstHalf type="verb">Benefitting from</firstHalf>
+            <secondHalf the="false">
+                <singular>another character</singular>
+                <plural>other characters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Meeting a previous player character</name>
+            <firstHalf type="verb">Meeting</firstHalf>
+            <secondHalf the="false">
+                <singular>previous player character</singular>
+                <plural>previous player characters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Choosing the right character for a certain task</name>
+            <firstHalf type="noun">Chosen character</firstHalf>
+            <secondHalf the="false">
+                <singular>certain task</singular>
+                <plural>certain tasks</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Certain actions require that the character's hands are empty</name>
             <firstHalf type="verb">Certain actions require</firstHalf>
             <secondHalf the="true">
@@ -862,14 +886,6 @@
             <secondHalf type="verb" the="false">
                 <singular>is required to survive</singular>
                 <plural>are required to survive</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Meeting a previous player character</name>
-            <firstHalf type="verb">Meeting</firstHalf>
-            <secondHalf the="false">
-                <singular>previous player character</singular>
-                <plural>previous player characters</plural>
             </secondHalf>
         </element>
         <element>
@@ -1795,8 +1811,16 @@
             </secondHalf>
         </element>
         <element>
+            <name>Choosing a perk or reward</name>
+            <firstHalf type="verb">Choosing</firstHalf>
+            <secondHalf the="false">
+                <singular>perk or reward</singular>
+                <plural>perks or rewards</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Getting back lost items or power</name>
-            <firstHalf type="verb">Retrieving</firstHalf>
+            <firstHalf type="verb">Getting back</firstHalf>
             <secondHalf the="false">
                 <plural>lost items or power</plural>
             </secondHalf>
@@ -2123,6 +2147,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Area of effect</name>
+            <firstHalf type="noun">Area</firstHalf>
+            <secondHalf the="false">
+                <singular>area</singular>
+                <plural>areas</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Being affected by staying close to certain things</name>
             <firstHalf type="verb">Being affected by</firstHalf>
             <secondHalf the="false">
@@ -2240,8 +2272,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Taking things apart</name>
-            <firstHalf type="verb">Removing pieces off</firstHalf>
+            <name>Dismantling objects</name>
+            <firstHalf type="verb">Dismantling</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be dismantled</singular>
             </secondHalf>
@@ -2501,10 +2533,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Gaining or losing something after the action is over</name>
+            <name>Gaining or losing something after an event ends</name>
             <firstHalf type="verb">Gaining or losing</firstHalf>
             <secondHalf type="modifier" the="false">
-                <singular>after the action is over</singular>
+                <singular>after an event ends</singular>
             </secondHalf>
         </element>
         <element>
@@ -3072,7 +3104,7 @@
         <element>
             <name>Throwing weapons and picking them up again</name>
             <firstHalf type="verb">Throwing</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>gathering</singular>
             </secondHalf>
         </element>
@@ -3262,10 +3294,17 @@
             </secondHalf>
         </element>
         <element>
+            <name>Weapon or ammunition gets stuck in the target and can be retrieved</name>
+            <firstHalf type="noun">Weapon or ammunition</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>can be retrieved</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Using objects in the world as ammunition</name>
             <firstHalf type="verb">Using objects on</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <plural>as ammunition</plural>
+            <secondHalf the="false">
+                <singular>ammunition</singular>
             </secondHalf>
         </element>
         <element>
@@ -4013,13 +4052,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Compass</name>
-            <firstHalf type="noun">Compass</firstHalf>
-            <secondHalf the="false">
-                <singular>compass</singular>
-            </secondHalf>
-        </element>
-        <element>
             <name>Binoculars/spyglass</name>
             <firstHalf type="noun">Binoculars/spyglass</firstHalf>
             <secondHalf the="false">
@@ -4066,17 +4098,32 @@
             </secondHalf>
         </element>
         <element>
-            <name>Multipurpose resource</name>
-            <firstHalf type="adjective">Multipurpose</firstHalf>
+            <name>Compass</name>
+            <firstHalf type="noun">Compass</firstHalf>
             <secondHalf the="false">
-                <singular>multipurpose resource</singular>
+                <singular>compass</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Unconventional currency, fuel or ammunition</name>
-            <firstHalf type="adjective">Unconventional</firstHalf>
+            <name>Map</name>
+            <firstHalf type="noun">Map</firstHalf>
             <secondHalf the="false">
-                <singular>currency, fuel or ammunition</singular>
+                <singular>map</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Maps show special information</name>
+            <firstHalf type="verb">Maps show</firstHalf>
+            <secondHalf the="false">
+                <singular>special information</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Map as an inventory item</name>
+            <firstHalf type="noun">Map</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>as an inventory item</singular>
+                <plural>as inventory items</plural>
             </secondHalf>
         </element>
         <element>
@@ -4088,26 +4135,25 @@
             </secondHalf>
         </element>
         <element>
-            <name>World map as an inventory item</name>
-            <firstHalf type="noun">World map</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>as an inventory item</singular>
-                <plural>as inventory items</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Maps show special information</name>
-            <firstHalf type="verb">Maps show</firstHalf>
-            <secondHalf the="false">
-                <singular>special information</singular>
-            </secondHalf>
-        </element>
-        <element>
             <name>Inventory as an in-world object</name>
             <firstHalf type="noun">Inventory</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>as an in-world object</singular>
                 <plural>as in-world objects</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Multipurpose resource</name>
+            <firstHalf type="adjective">Multipurpose</firstHalf>
+            <secondHalf the="false">
+                <singular>multipurpose resource</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Unconventional currency, fuel or ammunition</name>
+            <firstHalf type="adjective">Unconventional</firstHalf>
+            <secondHalf the="false">
+                <singular>currency, fuel or ammunition</singular>
             </secondHalf>
         </element>
         <element>
@@ -4268,6 +4314,13 @@
             <firstHalf type="noun" preference="plural">Health, energy or power-ups</firstHalf>
             <secondHalf the="false">
                 <plural>pickups</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Resource, ammo or time refunds</name>
+            <firstHalf type="noun">Resource, ammo or time</firstHalf>
+            <secondHalf the="false">
+                <plural>refunds</plural>
             </secondHalf>
         </element>
         <element>
@@ -4695,8 +4748,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>A player chooses who earns a reward</name>
-            <firstHalf type="verb">A player chooses</firstHalf>
+            <name>One of the players chooses who earns a reward</name>
+            <firstHalf type="verb" preference="singular">One of the players chooses</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be given to someone</singular>
             </secondHalf>
@@ -5028,6 +5081,7 @@
             <firstHalf type="verb">Exploding</firstHalf>
             <secondHalf the="false">
                 <singular>explosion</singular>
+                <plural>explosions</plural>
             </secondHalf>
         </element>
         <element>
@@ -5038,8 +5092,15 @@
             </secondHalf>
         </element>
         <element>
+            <name>Someone or something makes noise somewhere out of sight</name>
+            <firstHalf type="verb">Hearing</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <plural>out of sight</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Seeing characters or objects through walls</name>
-            <firstHalf type="verb">Seeing</firstHalf>
+            <firstHalf type="adjective">Unimpeded</firstHalf>
             <secondHalf type="modifier" the="false">
                 <plural>through walls</plural>
             </secondHalf>
@@ -5204,6 +5265,14 @@
             <firstHalf type="adjective">Fast-paced</firstHalf>
             <secondHalf the="false">
                 <singular>gameplay</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Breaks or safe moments</name>
+            <firstHalf type="adjective">Safe</firstHalf>
+            <secondHalf the="false">
+                <singular>moment</singular>
+                <plural>moments</plural>
             </secondHalf>
         </element>
         <element>
@@ -5470,11 +5539,18 @@
             </secondHalf>
         </element>
         <element>
-            <name>Made-up language</name>
+            <name>A made-up language</name>
             <firstHalf type="adjective">Made-up</firstHalf>
             <secondHalf the="false">
                 <singular>language</singular>
                 <plural>languages</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Saving things as favorites to access them more quickly</name>
+            <firstHalf type="adjective">Preferred</firstHalf>
+            <secondHalf the="false">
+                <singular>quick access</singular>
             </secondHalf>
         </element>
         <element>
