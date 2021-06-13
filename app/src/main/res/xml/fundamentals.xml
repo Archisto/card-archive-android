@@ -21,6 +21,7 @@
         <element name="Communication" />
         <element name="Competition" />
         <element name="Completion" />
+        <element name="Consumable" />
         <element name="Cooperation" />
         <element name="Creation" />
         <element name="Customization" />
@@ -69,10 +70,12 @@
         <element name="Opportunity" />
         <element name="Past" />
         <element name="Penalty" />
+        <element name="Permanent" />
         <element name="Place" />
         <element name="Player" />
         <element name="Problem" />
         <element name="Progress" />
+        <element name="Projectile" />
         <element name="Quality" />
         <element name="Random" />
         <element name="Reaction" />
@@ -86,7 +89,6 @@
         <element name="Score" />
         <element name="Searching" />
         <element name="Settings" />
-        <element name="Short-term" />
         <element name="Sight" />
         <element name="Similarity" />
         <element name="Skill" />
@@ -99,6 +101,7 @@
         <element name="Surprise" />
         <element name="System" />
         <element name="Team" />
+        <element name="Temporary" />
         <element name="Terrain" />
         <element name="Territory" />
         <element name="Theme" />
