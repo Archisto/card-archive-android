@@ -1864,10 +1864,18 @@
         </element>
         <element>
             <name>Leaving characters or objects undisturbed lets them recover</name>
-            <firstHalf type="noun" preference="plural">Characters or objects</firstHalf>
+            <firstHalf type="adjective">Undisturbed</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>replenishes health or energy</singular>
                 <plural>replenish health or energy</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving inflicted characters or objects unattended causes further harm to them</name>
+            <firstHalf type="adjective">Inflicted</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>causes harm</singular>
+                <plural>cause harm</plural>
             </secondHalf>
         </element>
         <element>
@@ -3603,6 +3611,14 @@
             <secondHalf the="false">
                 <singular>strategy</singular>
                 <plural>strategies</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tactical decisions</name>
+            <firstHalf type="adjective">Tactical</firstHalf>
+            <secondHalf the="false">
+                <singular>decision</singular>
+                <plural>decisions</plural>
             </secondHalf>
         </element>
         <element>
