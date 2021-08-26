@@ -268,7 +268,7 @@
         </element>
         <element>
             <name>An alternative version of a familiar location</name>
-            <firstHalf type="noun" preference="plural">Alternative versions of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Alternative versions of</firstHalf>
             <secondHalf the="false">
                 <singular>familiar location</singular>
                 <plural>familiar locations</plural>
@@ -284,7 +284,7 @@
         </element>
         <element>
             <name>Areas of high difficulty</name>
-            <firstHalf type="noun" preference="plural">Areas full of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Areas full of</firstHalf>
             <secondHalf the="false">
                 <singular>high difficulty</singular>
             </secondHalf>
@@ -599,7 +599,7 @@
         </element>
         <element>
             <name>A roster of unique characters</name>
-            <firstHalf type="noun" preference="plural">A roster of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">A roster of</firstHalf>
             <secondHalf the="false">
                 <singular>unique character</singular>
                 <plural>unique characters</plural>
@@ -898,7 +898,7 @@
         </element>
         <element>
             <name>Benefitting from things another character did</name>
-            <firstHalf type="verb">Benefitting from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Benefitting from</firstHalf>
             <secondHalf the="false">
                 <singular>another character</singular>
                 <plural>other characters</plural>
@@ -1180,7 +1180,7 @@
         </element>
         <element>
             <name>Converting enemies to the player's team</name>
-            <firstHalf type="verb">Converting enemies to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Converting enemies to</firstHalf>
             <secondHalf the="true">
                 <singular>player's team</singular>
             </secondHalf>
@@ -1270,7 +1270,7 @@
         </element>
         <element>
             <name>Speaking to a crowd</name>
-            <firstHalf type="verb">Speaking to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Speaking to</firstHalf>
             <secondHalf the="false">
                 <singular>crowd</singular>
             </secondHalf>
@@ -1541,7 +1541,7 @@
         </element>
         <element>
             <name>A source of power or resources needs maintenance</name>
-            <firstHalf type="noun">A source of</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">A source of</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>needs maintenance</singular>
                 <plural>need maintenance</plural>
@@ -1645,7 +1645,7 @@
         </element>
         <element>
             <name>Rerouting power to different systems</name>
-            <firstHalf type="verb">Rerouting power to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Rerouting power to</firstHalf>
             <secondHalf the="false">
                 <plural>systems</plural>
             </secondHalf>
@@ -1660,7 +1660,7 @@
         </element>
         <element>
             <name>Getting feedback from advisors/citizens/customers</name>
-            <firstHalf type="verb">Getting feedback from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Getting feedback from</firstHalf>
             <secondHalf the="false">
                 <plural>advisors/citizens/customers</plural>
             </secondHalf>
@@ -1675,14 +1675,14 @@
         </element>
         <element>
             <name>Participating in politics</name>
-            <firstHalf type="verb">Participating in</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Participating in</firstHalf>
             <secondHalf the="false">
                 <plural>politics</plural>
             </secondHalf>
         </element>
         <element>
             <name>Voting</name>
-            <firstHalf type="verb">Voting on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Voting on</firstHalf>
             <secondHalf the="false">
                 <singular>election</singular>
                 <plural>elections</plural>
@@ -1735,7 +1735,7 @@
         </element>
         <element>
             <name>Attaching things to the floor or walls</name>
-            <firstHalf type="verb">Attaching things to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Attaching things to</firstHalf>
             <secondHalf the="true">
                 <singular>floor or wall</singular>
                 <plural>floor or walls</plural>
@@ -1768,7 +1768,7 @@
     <category id="4" name="Interaction" shortName="Iac">
         <element>
             <name>Interacting with characters or objects</name>
-            <firstHalf type="verb">Interacting with</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Interacting with</firstHalf>
             <secondHalf the="false">
                 <singular>interaction</singular>
             </secondHalf>
@@ -1835,7 +1835,7 @@
         </element>
         <element>
             <name>The gameplay relies on the mouse cursor</name>
-            <firstHalf type="verb">The gameplay relies on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">The gameplay relies on</firstHalf>
             <secondHalf the="true">
                 <singular>mouse cursor</singular>
                 <plural>mouse cursors</plural>
@@ -1843,7 +1843,7 @@
         </element>
         <element>
             <name>The controls consist of only one or two buttons</name>
-            <firstHalf type="verb">The controls consist of</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">The controls consist of</firstHalf>
             <secondHalf the="false">
                 <plural>one or two buttons</plural>
             </secondHalf>
@@ -1857,14 +1857,14 @@
         </element>
         <element>
             <name>An action's or item's effectiveness depends on the surroundings</name>
-            <firstHalf type="verb">Effectiveness depends on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Effectiveness depends on</firstHalf>
             <secondHalf the="true">
                 <plural>surroundings</plural>
             </secondHalf>
         </element>
         <element>
             <name>An action's or item's effectiveness depends on its type</name>
-            <firstHalf type="verb">Effectiveness depends on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Effectiveness depends on</firstHalf>
             <secondHalf the="false">
                 <singular>type</singular>
                 <plural>types</plural>
@@ -1872,7 +1872,7 @@
         </element>
         <element>
             <name>An action's or item's effectiveness depends on the target's state</name>
-            <firstHalf type="verb">Effectiveness depends on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Effectiveness depends on</firstHalf>
             <secondHalf the="true">
                 <singular>target's state</singular>
             </secondHalf>
@@ -1887,7 +1887,7 @@
         </element>
         <element>
             <name>Spending more time on something yields better results</name>
-            <firstHalf type="verb">Maximizing time spent on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Maximizing time spent on</firstHalf>
             <secondHalf the="false">
                 <singular>better result</singular>
                 <plural>better results</plural>
@@ -2048,7 +2048,7 @@
         </element>
         <element>
             <name>Leaving a mark on anything that is touched</name>
-            <firstHalf type="verb">Leaving a mark on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Leaving a mark on</firstHalf>
             <secondHalf the="false">
                 <singular>touched object</singular>
                 <plural>touched objects</plural>
@@ -2126,7 +2126,7 @@
         </element>
         <element>
             <name>Being hit by a falling object</name>
-            <firstHalf type="adjective">Being hit by</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Being hit by</firstHalf>
             <secondHalf the="false">
                 <singular>falling object</singular>
                 <plural>falling objects</plural>
@@ -2202,7 +2202,7 @@
         </element>
         <element>
             <name>Unusual form of communication</name>
-            <firstHalf type="adjective" preference="singular">Unusual form of</firstHalf>
+            <firstHalf type="adjective" preference="singular" endsInPreposition="true">Unusual form of</firstHalf>
             <secondHalf the="false">
                 <singular>communication</singular>
             </secondHalf>
@@ -2264,7 +2264,7 @@
         </element>
         <element>
             <name>Being affected by staying close to certain things</name>
-            <firstHalf type="verb">Being affected by</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Being affected by</firstHalf>
             <secondHalf the="false">
                 <singular>nearby thing</singular>
                 <plural>nearby things</plural>
@@ -2272,7 +2272,7 @@
         </element>
         <element>
             <name>Being affected by certain events happening nearby</name>
-            <firstHalf type="verb">Being affected by</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Being affected by</firstHalf>
             <secondHalf the="false">
                 <singular>nearby event</singular>
                 <plural>nearby events</plural>
@@ -2280,7 +2280,7 @@
         </element>
         <element>
             <name>Looking at/away from something causes an effect</name>
-            <firstHalf type="verb">Looking at/away from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Looking at/away from</firstHalf>
             <secondHalf the="false">
                 <singular>effect</singular>
                 <plural>effects</plural>
@@ -2296,14 +2296,14 @@
         </element>
         <element>
             <name>Something happens only if the player moves</name>
-            <firstHalf type="verb">Something happens only to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Something happens only to</firstHalf>
             <secondHalf the="true">
                 <singular>player movement</singular>
             </secondHalf>
         </element>
         <element>
             <name>An object gives feedback when getting closer to another</name>
-            <firstHalf type="verb">Getting feedback from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Getting feedback from</firstHalf>
             <secondHalf the="false">
                 <singular>reducing distance</singular>
             </secondHalf>
@@ -2343,7 +2343,7 @@
         </element>
         <element>
             <name>Using abilities alongside another character</name>
-            <firstHalf type="verb">Using abilities with</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Using abilities with</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>with another character</singular>
             </secondHalf>
@@ -2498,7 +2498,7 @@
         </element>
         <element>
             <name>Blending into the environment</name>
-            <firstHalf type="verb" preference="singular">Looking like</firstHalf>
+            <firstHalf type="verb" preference="singular" endsInPreposition="true">Looking like</firstHalf>
             <secondHalf the="true">
                 <singular>environment</singular>
             </secondHalf>
@@ -2565,7 +2565,7 @@
         </element>
         <element>
             <name>Reviving after being knocked down</name>
-            <firstHalf type="verb" preference="singular">Reviving with the help of</firstHalf>
+            <firstHalf type="verb" preference="singular">Reviving by using</firstHalf>
             <secondHalf the="false">
                 <singular>revival</singular>
             </secondHalf>
@@ -2579,7 +2579,7 @@
         </element>
         <element>
             <name>Transferring one's mind into a different body</name>
-            <firstHalf type="verb">Transferring one's mind into</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Transferring one's mind into</firstHalf>
             <secondHalf the="false">
                 <singular>different body</singular>
                 <plural>different bodies</plural>
@@ -2587,7 +2587,7 @@
         </element>
         <element>
             <name>Reincarnating as a different being</name>
-            <firstHalf type="verb">Reincarnating as</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Reincarnating as</firstHalf>
             <secondHalf the="false">
                 <singular>different being</singular>
                 <plural>different beings</plural>
@@ -2700,7 +2700,7 @@
         </element>
         <element>
             <name>Photography</name>
-            <firstHalf type="verb">Taking pictures of</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Taking pictures of</firstHalf>
             <secondHalf the="false">
                 <singular>photography</singular>
             </secondHalf>
@@ -2737,14 +2737,14 @@
         </element>
         <element>
             <name>Drawing energy/power from the environment</name>
-            <firstHalf type="verb">Drawing energy/power from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Drawing energy/power from</firstHalf>
             <secondHalf the="true">
                 <singular>environment</singular>
             </secondHalf>
         </element>
         <element>
             <name>Drawing energy/power from characters</name>
-            <firstHalf type="verb">Drawing energy/power from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Drawing energy/power from</firstHalf>
             <secondHalf the="false">
                 <singular>character</singular>
                 <plural>characters</plural>
@@ -2932,7 +2932,7 @@
         </element>
         <element>
             <name>Grinding on rails</name>
-            <firstHalf type="verb">Grinding on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Grinding on</firstHalf>
             <secondHalf the="false">
                 <singular>rail</singular>
                 <plural>rails</plural>
@@ -2948,7 +2948,7 @@
         </element>
         <element>
             <name>Swinging on ropes or such</name>
-            <firstHalf type="verb">Swinging on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Swinging on</firstHalf>
             <secondHalf the="false">
                 <singular>rope</singular>
                 <plural>ropes</plural>
@@ -2956,7 +2956,7 @@
         </element>
         <element>
             <name>Shimmying on a ledge</name>
-            <firstHalf type="verb">Shimmying on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Shimmying on</firstHalf>
             <secondHalf the="false">
                 <singular>ledge</singular>
                 <plural>ledges</plural>
@@ -2964,7 +2964,7 @@
         </element>
         <element>
             <name>Grabbing onto walls and ceiling</name>
-            <firstHalf type="verb">Grabbing onto</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Grabbing onto</firstHalf>
             <secondHalf the="false">
                 <plural>walls and ceiling</plural>
             </secondHalf>
@@ -3034,7 +3034,7 @@
         </element>
         <element>
             <name>Jumping on falling objects</name>
-            <firstHalf type="verb">Jumping on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Jumping on</firstHalf>
             <secondHalf the="false">
                 <singular>falling object</singular>
                 <plural>falling objects</plural>
@@ -3042,7 +3042,7 @@
         </element>
         <element>
             <name>Jumping on projectiles</name>
-            <firstHalf type="verb">Jumping on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Jumping on</firstHalf>
             <secondHalf the="false">
                 <singular>projectile</singular>
                 <plural>projectiles</plural>
@@ -3050,21 +3050,21 @@
         </element>
         <element>
             <name>Being carried by a creature or force</name>
-            <firstHalf type="verb" preference="singular">Being moved by</firstHalf>
+            <firstHalf type="verb" preference="singular" endsInPreposition="true">Being moved by</firstHalf>
             <secondHalf the="false">
                 <singular>creature or force</singular>
             </secondHalf>
         </element>
         <element>
             <name>Returning to where the player failed</name>
-            <firstHalf type="verb" preference="singular">Returning to</firstHalf>
+            <firstHalf type="verb" preference="singular" endsInPreposition="true">Returning to</firstHalf>
             <secondHalf the="false">
                 <singular>where the player failed</singular>
             </secondHalf>
         </element>
         <element>
             <name>Backtracking</name>
-            <firstHalf type="verb" preference="singular">Returning to</firstHalf>
+            <firstHalf type="verb" preference="singular" endsInPreposition="true">Returning to</firstHalf>
             <secondHalf the="false">
                 <singular>previously visited area</singular>
                 <plural>previously visited areas</plural>
@@ -3349,7 +3349,7 @@
         </element>
         <element>
             <name>Focusing attacks on certain parts of the target</name>
-            <firstHalf type="verb">Focusing attacks on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Focusing attacks on</firstHalf>
             <secondHalf the="false">
                 <singular>weak spot</singular>
                 <plural>weak spots</plural>
@@ -3455,7 +3455,7 @@
         </element>
         <element>
             <name>Jumping on an enemy</name>
-            <firstHalf type="verb">Jumping on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Jumping on</firstHalf>
             <secondHalf the="false">
                 <singular>enemy</singular>
                 <plural>enemies</plural>
@@ -3471,7 +3471,7 @@
         </element>
         <element>
             <name>Different damage types</name>
-            <firstHalf type="adjective">Different types of</firstHalf>
+            <firstHalf type="adjective" endsInPreposition="true">Different types of</firstHalf>
             <secondHalf the="false">
                 <singular>damage</singular>
             </secondHalf>
@@ -3507,7 +3507,7 @@
         </element>
         <element>
             <name>Taking cover</name>
-            <firstHalf type="verb">Taking cover from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Taking cover from</firstHalf>
             <secondHalf the="false">
                 <singular>cover</singular>
             </secondHalf>
@@ -3544,7 +3544,7 @@
         </element>
         <element>
             <name>Using objects in the world as ammunition</name>
-            <firstHalf type="verb">Using objects on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Using objects as</firstHalf>
             <secondHalf the="false">
                 <singular>ammunition</singular>
             </secondHalf>
@@ -3820,7 +3820,7 @@
         </element>
         <element>
             <name>Command and execution phases</name>
-            <firstHalf type="adjective">Different phases of</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Different phases of</firstHalf>
             <secondHalf the="false">
                 <plural>commands and execution</plural>
             </secondHalf>
@@ -3903,7 +3903,7 @@
         </element>
         <element>
             <name>Using certain tools or abilities on certain objects</name>
-            <firstHalf type="verb">Using certain tools or abilities on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Using certain tools or abilities on</firstHalf>
             <secondHalf the="false"> <!-- indefinite article -->
                 <singular>a certain object</singular>
                 <plural>certain objects</plural>
@@ -4090,14 +4090,14 @@
         </element>
         <element>
             <name>Learning from discovered things</name>
-            <firstHalf type="verb">Learning from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Learning from</firstHalf>
             <secondHalf the="false">
                 <plural>discovered things</plural>
             </secondHalf>
         </element>
         <element>
             <name>Database/journal/bestiary</name>
-            <firstHalf type="verb">Keeping record of</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Keeping a record of</firstHalf>
             <secondHalf the="false">
                 <singular>database</singular>
             </secondHalf>
@@ -4167,14 +4167,14 @@
         </element>
         <element>
             <name>Exchanging health for something</name>
-            <firstHalf type="verb">Exchanging health for</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Exchanging health for</firstHalf>
             <secondHalf the="false">
                 <singular>health</singular>
             </secondHalf>
         </element>
         <element>
             <name>Exchanging freedom for something</name>
-            <firstHalf type="verb">Exchanging freedom for</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Exchanging freedom for</firstHalf>
             <secondHalf the="false">
                 <singular>freedom</singular>
             </secondHalf>
@@ -4430,7 +4430,7 @@
         </element>
         <element>
             <name>Making custom markings on a map</name>
-            <firstHalf type="verb">Making custom markings on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Making custom markings on</firstHalf>
             <secondHalf the="false">
                 <singular>map</singular>
                 <plural>maps</plural>
@@ -4542,7 +4542,7 @@
         </element>
         <element>
             <name>Breaking items down to materials</name>
-            <firstHalf type="verb">Breaking items down to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Breaking items down to</firstHalf>
             <secondHalf the="false">
                 <plural>materials</plural>
             </secondHalf>
@@ -4600,7 +4600,7 @@
         </element>
         <element>
             <name>Scarcity of resources</name>
-            <firstHalf type="noun" preference="plural">Scarcity of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Scarcity of</firstHalf>
             <secondHalf the="false">
                 <singular>resource</singular>
                 <plural>resources</plural>
@@ -4608,7 +4608,7 @@
         </element>
         <element>
             <name>It's impossible to get any more of a certain resource</name>
-            <firstHalf type="noun" preference="plural">Limited amount of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Limited amount of</firstHalf>
             <secondHalf the="false">
                 <singular>resource limit</singular>
                 <plural>resource limits</plural>
@@ -4658,7 +4658,7 @@
         </element>
         <element>
             <name>Non-player characters see the player's equipment and react to it</name>
-            <firstHalf type="verb">Non-player characters react to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Non-player characters react to</firstHalf>
             <secondHalf the="false">
                 <singular>player equipment</singular>
             </secondHalf>
@@ -4725,7 +4725,7 @@
         </element>
         <element>
             <name>Having too many items is a problem</name>
-            <firstHalf type="adjective">Overabundance of</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Overabundance of</firstHalf>
             <secondHalf the="false">
                 <singular>problem</singular>
                 <plural>problems</plural>
@@ -4808,7 +4808,7 @@
         </element>
         <element>
             <name>Escaping from something/somewhere</name>
-            <firstHalf type="verb">Escaping from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Escaping from</firstHalf>
             <secondHalf the="false">
                 <singular>something/somewhere</singular>
             </secondHalf>
@@ -4951,7 +4951,7 @@
         </element>
         <element>
             <name>Objectives are decided by the player</name>
-            <firstHalf type="verb">Objectives are decided by</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Objectives are decided by</firstHalf>
             <secondHalf the="true">
                 <singular>player</singular>
                 <plural>players</plural>
@@ -4983,7 +4983,7 @@
         </element>
         <element>
             <name>The objective may unexpectedly change because of story reasons</name>
-            <firstHalf type="verb">Unexpected change of</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Unexpected change of</firstHalf>
             <secondHalf the="false">
                 <singular>story</singular>
             </secondHalf>
@@ -5005,7 +5005,7 @@
         </element>
         <element>
             <name>Failure ends the game</name>
-            <firstHalf type="verb">The game ends in</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">The game ends in</firstHalf>
             <secondHalf the="true">
                 <singular>player's failure</singular>
             </secondHalf>
@@ -5020,7 +5020,7 @@
         </element>
         <element>
             <name>Clearing the way to the destination</name>
-            <firstHalf type="verb">Clearing the way to</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Clearing the way to</firstHalf>
             <secondHalf the="true">
                 <singular>destination</singular>
                 <plural>destinations</plural>
@@ -5126,7 +5126,7 @@
         </element>
         <element>
             <name>Getting rid of things until there's nothing left</name>
-            <firstHalf type="verb">Getting rid of</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Getting rid of</firstHalf>
             <secondHalf the="false">
                 <singular>nothing</singular>
             </secondHalf>
@@ -5632,7 +5632,7 @@
     <category id="12" name="Miscellaneous" shortName="Msc">
         <element>
             <name>Gameplay modifiers</name>
-            <firstHalf type="verb">Gameplay changes depending on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Gameplay changes depending on</firstHalf>
             <secondHalf the="false">
                 <singular>modifier</singular>
                 <plural>modifiers</plural>
@@ -5669,7 +5669,7 @@
         </element>
         <element>
             <name>Chances to be saved from tough situations</name>
-            <firstHalf type="verb">Being saved from</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Being saved from</firstHalf>
             <secondHalf the="false">
                 <singular>tough situation</singular>
                 <plural>tough situations</plural>
@@ -5708,7 +5708,7 @@
         </element>
         <element>
             <name>Chance and probability</name>
-            <firstHalf type="noun" preference="plural">Chance of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Chance of</firstHalf>
             <secondHalf the="false">
                 <singular>probability</singular>
                 <plural>probabilities</plural>
@@ -5822,7 +5822,7 @@
         </element>
         <element>
             <name>Sudden change in the middle of action</name>
-            <firstHalf type="noun">Sudden change in</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Sudden change in</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>in the middle of action</singular>
             </secondHalf>
@@ -5888,14 +5888,14 @@
         </element>
         <element>
             <name>Levels can be played in any order</name>
-            <firstHalf type="adjective">Freedom of choice in</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Freedom of choice in</firstHalf>
             <secondHalf type="modifier" the="false">
                 <plural>in any order</plural>
             </secondHalf>
         </element>
         <element>
             <name>Different quality tiers of objects or abilities</name>
-            <firstHalf type="noun" preference="plural">Different quality tiers of</firstHalf>
+            <firstHalf type="noun" preference="plural" endsInPreposition="true">Different quality tiers of</firstHalf>
             <secondHalf the="false">
                 <singular>object or ability</singular>
                 <plural>objects or abilities</plural>
@@ -5991,7 +5991,7 @@
         </element>
         <element>
             <name>Support/API for external software</name>
-            <firstHalf type="adjective">Support for</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Support for</firstHalf>
             <secondHalf the="false">
                 <plural>external software</plural>
             </secondHalf>
