@@ -1986,19 +1986,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Mistakes pile up</name>
-            <firstHalf type="verb">Making mistakes causes</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is increased each time</singular>
-                <plural>are increased each time</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Being defeated makes the threat more difficult</name>
-            <firstHalf type="verb">Being defeated causes</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is difficult</singular>
-                <plural>are difficult</plural>
+            <name>Undo or reset</name>
+            <firstHalf type="verb">Undoing</firstHalf>
+            <secondHalf the="false">
+                <singular>reset</singular>
             </secondHalf>
         </element>
         <element>
@@ -2014,6 +2005,21 @@
             <secondHalf the="false">
                 <singular>consequence</singular>
                 <plural>consequences</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Being defeated makes the threat more difficult</name>
+            <firstHalf type="verb">Being defeated causes</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>increases difficulty</singular>
+                <plural>increase difficulty</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mistakes pile up</name>
+            <firstHalf type="noun" preference="plural">Mistakes</firstHalf>
+            <secondHalf type="verb" the="false">
+                <plural>pile up</plural>
             </secondHalf>
         </element>
         <element>
@@ -2484,8 +2490,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Stealth/hiding</name>
-            <firstHalf type="verb">Hiding from</firstHalf>
+            <name>Stealth or hiding</name>
+            <firstHalf type="adjective">Stealth</firstHalf>
             <secondHalf the="false">
                 <singular>stealth</singular>
             </secondHalf>
@@ -2505,7 +2511,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Invulnerability/shield</name>
+            <name>Invulnerability or shield</name>
             <firstHalf type="adjective">Invulnerable</firstHalf>
             <secondHalf the="false">
                 <singular>shield</singular>
@@ -2513,7 +2519,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Invulnerability unless exposed to a certain object or material</name>
+            <name>A certain object or material takes away invulnerability</name>
             <firstHalf type="verb">A certain object or material takes away</firstHalf>
             <secondHalf the="false">
                 <singular>invulnerability</singular>
@@ -3073,6 +3079,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Waypoints</name>
+            <firstHalf type="noun" preference="plural">Waypoints</firstHalf>
+            <secondHalf the="false">
+                <plural>waypoints</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Vehicles</name>
             <firstHalf type="noun" preference="plural">Vehicles</firstHalf>
             <secondHalf the="false">
@@ -3228,11 +3241,46 @@
             </secondHalf>
         </element>
         <element>
-            <name>Damage-over-time attacks</name>
-            <firstHalf type="adjective">Damage-over-time</firstHalf>
+            <name>Diverse arsenal</name>
+            <firstHalf type="adjective">Diverse</firstHalf>
             <secondHalf the="false">
-                <singular>attack</singular>
-                <plural>attacks</plural>
+                <singular>arsenal</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Weapon customization</name>
+            <firstHalf type="noun">Weapon</firstHalf>
+            <secondHalf the="false">
+                <singular>customization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Ranged weapons and ammunition</name>
+            <firstHalf type="adjective">Ranged</firstHalf>
+            <secondHalf the="false">
+                <plural>ammunition</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Throwing weapons</name>
+            <firstHalf type="verb">Throwing</firstHalf>
+            <secondHalf the="false">
+                <singular>weapon</singular>
+                <plural>weapons</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Laser beams</name>
+            <firstHalf type="noun">Laser</firstHalf>
+            <secondHalf the="false">
+                <singular>laser</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mines</name>
+            <firstHalf type="noun" preference="plural">Mines</firstHalf>
+            <secondHalf the="false">
+                <plural>mines</plural>
             </secondHalf>
         </element>
         <element>
@@ -3244,19 +3292,27 @@
             </secondHalf>
         </element>
         <element>
+            <name>Damage-over-time attacks</name>
+            <firstHalf type="adjective">Damage-over-time</firstHalf>
+            <secondHalf the="false">
+                <singular>attack</singular>
+                <plural>attacks</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Charged attacks</name>
+            <firstHalf type="adjective">Charged</firstHalf>
+            <secondHalf the="false">
+                <singular>attack</singular>
+                <plural>attacks</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Combo attacks</name>
             <firstHalf type="adjective">Combo</firstHalf>
             <secondHalf the="false">
                 <singular>combo</singular>
                 <plural>combos</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Critical hits</name>
-            <firstHalf type="adjective">Critical</firstHalf>
-            <secondHalf the="false">
-                <singular>hit</singular>
-                <plural>hits</plural>
             </secondHalf>
         </element>
         <element>
@@ -3276,32 +3332,29 @@
             </secondHalf>
         </element>
         <element>
-            <name>Throwing weapons and picking them up again</name>
-            <firstHalf type="verb">Throwing</firstHalf>
-            <secondHalf the="false"> <!-- type="verb" -->
-                <singular>gathering</singular>
+            <name>Attacking leaves the character vulnerable to opponents' attacks</name>
+            <firstHalf type="verb">Attacking</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>leaves the character vulnerable</singular>
+                <plural>leave the character vulnerable</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Ranged weapons and ammunition</name>
-            <firstHalf type="adjective">Ranged</firstHalf>
+            <name>Critical hits</name>
+            <firstHalf type="adjective">Critical</firstHalf>
             <secondHalf the="false">
-                <plural>ammunition</plural>
+                <singular>hit</singular>
+                <plural>hits</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Laser beams</name>
-            <firstHalf type="noun">Laser</firstHalf>
+            <name>Focusing attacks on certain parts of the target</name>
+            <firstHalf type="verb">Focusing attacks on</firstHalf>
             <secondHalf the="false">
-                <singular>laser</singular>
+                <singular>weak spot</singular>
+                <plural>weak spots</plural>
             </secondHalf>
-        </element>
-        <element>
-            <name>Mines</name>
-            <firstHalf type="noun" preference="plural">Mines</firstHalf>
-            <secondHalf the="false">
-                <plural>mines</plural>
-            </secondHalf>
+            <!-- Example: Head shots -->
         </element>
         <element>
             <name>Locking onto targets</name>
@@ -3309,6 +3362,36 @@
             <secondHalf the="false">
                 <singular>target</singular>
                 <plural>targets</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Weapon or ammunition can get stuck in the target</name>
+            <firstHalf type="noun">Weapon or ammunition</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>can get stuck</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Retrieving launched projectiles</name>
+            <firstHalf type="verb">Retrieving</firstHalf>
+            <secondHalf the="false">
+                <singular>launched projectile</singular>
+                <plural>launched projectiles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Destroying projectiles before they cause damage</name>
+            <firstHalf type="verb">Destroying</firstHalf>
+            <secondHalf the="false">
+                <singular>projectile</singular>
+                <plural>projectiles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Destroying the target's armor before it can be damaged</name>
+            <firstHalf type="adjective">Armored</firstHalf>
+            <secondHalf the="false">
+                <singular>armor</singular>
             </secondHalf>
         </element>
         <element>
@@ -3341,10 +3424,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Squad tactics</name>
-            <firstHalf type="noun">Squad</firstHalf>
+            <name>Large-scale battle</name>
+            <firstHalf type="adjective">Large-scale</firstHalf>
             <secondHalf the="false">
-                <plural>tactics</plural>
+                <singular>battle</singular>
+                <plural>battles</plural>
             </secondHalf>
         </element>
         <element>
@@ -3353,6 +3437,13 @@
             <secondHalf the="false">
                 <singular>formation</singular>
                 <plural>formations</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Squad tactics</name>
+            <firstHalf type="noun">Squad</firstHalf>
+            <secondHalf the="false">
+                <plural>tactics</plural>
             </secondHalf>
         </element>
         <element>
@@ -3379,6 +3470,28 @@
             </secondHalf>
         </element>
         <element>
+            <name>Different damage types</name>
+            <firstHalf type="adjective">Different types of</firstHalf>
+            <secondHalf the="false">
+                <singular>damage</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Weaknesses and resistances</name>
+            <firstHalf type="noun" preference="plural">Weakness or resistance</firstHalf>
+            <secondHalf the="false">
+                <singular>weakness or resistance</singular>
+                <plural>weaknesses and resistances</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Injuries affect stats or abilities</name>
+            <firstHalf type="verb">Injuries affect</firstHalf>
+            <secondHalf>
+                <plural>stats</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Dodging</name>
             <firstHalf type="verb">Dodging</firstHalf>
             <secondHalf the="false">
@@ -3400,63 +3513,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Destroying projectiles before they hit</name>
-            <firstHalf type="verb">Destroying</firstHalf>
-            <secondHalf the="false">
-                <singular>projectile</singular>
-                <plural>projectiles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Friendly fire</name>
-            <firstHalf type="adjective">Friendly</firstHalf>
-            <secondHalf the="false">
-                <singular>fire</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Weapon customization</name>
-            <firstHalf type="noun">Weapon</firstHalf>
-            <secondHalf the="false">
-                <singular>customization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Different damage types</name>
-            <firstHalf type="adjective">Different types of</firstHalf>
-            <secondHalf the="false">
-                <singular>damage</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Weaknesses and resistances</name>
-            <firstHalf type="noun" preference="plural">Weakness or resistance to</firstHalf>
-            <secondHalf the="false">
-                <singular>weakness or resistance</singular>
-                <plural>weaknesses and resistances</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Injuries affect stats or abilities</name>
-            <firstHalf type="verb">Injuries affect</firstHalf>
-            <secondHalf>
-                <plural>stats</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Surviving a normally fatal strike</name>
             <firstHalf type="verb">Surviving</firstHalf>
             <secondHalf the="false">
                 <singular>fatal strike</singular>
                 <plural>fatal strikes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Attacking leaves the character vulnerable to opponents' attacks</name>
-            <firstHalf type="verb">Attacking</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>leaves the character vulnerable</singular>
-                <plural>leave the character vulnerable</plural>
             </secondHalf>
         </element>
         <element>
@@ -3468,25 +3529,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Armor which must be destroyed before damaging the wearer</name>
-            <firstHalf type="adjective">Armored</firstHalf>
-            <secondHalf the="false">
-                <singular>armor</singular>
+            <name>Taking damage can be beneficial</name>
+            <firstHalf type="noun">Damage</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>can be beneficial</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Focusing attacks on certain parts of the target</name>
-            <firstHalf type="verb">Focusing attacks on</firstHalf>
-            <secondHalf the="false">
-                <singular>weak spot</singular>
-                <plural>weak spots</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Weapon or ammunition gets stuck in the target and can be retrieved</name>
-            <firstHalf type="noun">Weapon or ammunition</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>can be retrieved</singular>
+            <name>Active reload</name>
+            <firstHalf type="adjective">Active</firstHalf>
+            <secondHalf the="false"> <!-- type="verb" -->
+                <singular>reloading</singular>
             </secondHalf>
         </element>
         <element>
@@ -3558,6 +3611,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Unfairly powerful combatants</name>
+            <firstHalf type="adjective">Unfair</firstHalf>
+            <secondHalf the="false">
+                <singular>combatant</singular>
+                <plural>combatants</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Stealthy enemies</name>
             <firstHalf type="adjective">Stealthy</firstHalf>
             <secondHalf the="false">
@@ -3590,18 +3651,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Enemies which give power-ups to others</name>
+            <name>Enemies which boost or heal others</name>
             <firstHalf type="noun" preference="plural">Enemies</firstHalf>
             <secondHalf type="verb" the="false">
-                <singular>gives power-ups to others</singular>
-                <plural>give power-ups to others</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Enemies which won't attack unless provoked</name>
-            <firstHalf type="noun">Enemy</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>won't attack unless provoked</singular>
+                <singular>boosts or heals</singular>
+                <plural>boost or heal</plural>
             </secondHalf>
         </element>
         <element>
@@ -3610,6 +3664,13 @@
             <secondHalf the="false">
                 <singular>enemy with good loot</singular>
                 <plural>enemies with good loot</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Random enemy encounters</name>
+            <firstHalf type="adjective">Random</firstHalf>
+            <secondHalf the="false">
+                <plural>enemy encounters</plural>
             </secondHalf>
         </element>
         <element>
@@ -3665,18 +3726,25 @@
             </secondHalf>
         </element>
         <element>
-            <name>Random enemy encounters</name>
-            <firstHalf type="adjective">Random</firstHalf>
-            <secondHalf the="false">
-                <plural>enemy encounters</plural>
+            <name>Enemies which pretend to not be hostile</name>
+            <firstHalf type="verb">Pretending</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>not hostile</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Unfairly powerful combatants</name>
-            <firstHalf type="adjective">Unfair</firstHalf>
+            <name>Enemies or neutral characters attack when provoked</name>
+            <firstHalf type="noun" preference="plural">Enemies or neutral characters</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>attacks when provoked</singular>
+                <plural>attack when provoked</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Friendly fire</name>
+            <firstHalf type="adjective">Friendly</firstHalf>
             <secondHalf the="false">
-                <singular>combatant</singular>
-                <plural>combatants</plural>
+                <singular>fire</singular>
             </secondHalf>
         </element>
     </category>
@@ -4350,6 +4418,7 @@
             <firstHalf type="noun">Map</firstHalf>
             <secondHalf the="false">
                 <singular>map</singular>
+                <plural>maps</plural>
             </secondHalf>
         </element>
         <element>
@@ -4360,19 +4429,27 @@
             </secondHalf>
         </element>
         <element>
-            <name>Map as an inventory item</name>
-            <firstHalf type="noun">Map</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>as an inventory item</singular>
-                <plural>as inventory items</plural>
+            <name>Making custom markings on a map</name>
+            <firstHalf type="verb">Making custom markings on</firstHalf>
+            <secondHalf the="false">
+                <singular>map</singular>
+                <plural>maps</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Cash as an inventory item</name>
-            <firstHalf type="noun">Cash</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>as an inventory item</singular>
-                <plural>as inventory items</plural>
+            <name>Maps are stored in the inventory</name>
+            <firstHalf type="noun" preference="plural">Maps</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is stored in the inventory</singular>
+                <plural>are stored in the inventory</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Money takes inventory space</name>
+            <firstHalf type="noun">Money</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>takes inventory space</singular>
+                <plural>take inventory space</plural>
             </secondHalf>
         </element>
         <element>
@@ -4388,6 +4465,7 @@
             <firstHalf type="adjective">Multipurpose</firstHalf>
             <secondHalf the="false">
                 <singular>multipurpose resource</singular>
+                <plural>multipurpose resources</plural>
             </secondHalf>
         </element>
         <element>
@@ -4666,15 +4744,22 @@
         <element>
             <name>Competition</name>
             <firstHalf type="adjective">Competitive</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false">
                 <singular>competition</singular>
             </secondHalf>
         </element>
         <element>
             <name>Leaderboard</name>
-            <firstHalf type="noun" preference="plural">Leaderboard for</firstHalf>
+            <firstHalf type="noun">Leaderboard</firstHalf>
             <secondHalf the="false">
                 <singular>leaderboard</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tournament</name>
+            <firstHalf type="noun">Tournament</firstHalf>
+            <secondHalf the="false">
+                <singular>tournament</singular>
             </secondHalf>
         </element>
         <element>
@@ -4693,32 +4778,70 @@
             </secondHalf>
         </element>
         <element>
+            <name>Reaching a certain score before the opponent</name>
+            <firstHalf type="verb">Reaching</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>before the opponent</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reaching a point in the world</name>
+            <firstHalf type="verb">Reaching</firstHalf>
+            <secondHalf the="false">
+                <singular>point in the world</singular>
+                <plural>points in the world</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Limited time to get the highest score</name>
-            <firstHalf type="noun">Limited time to</firstHalf>
+            <firstHalf type="noun">Time limit</firstHalf>
             <secondHalf the="true">
                 <singular>highest score</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Tournament with multiple matches</name>
-            <firstHalf type="noun">Tournament</firstHalf>
+            <name>Limited time to reach a location</name>
+            <firstHalf type="noun">Time limit</firstHalf>
+            <secondHalf the="false">
+                <singular>location</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Escaping from something/somewhere</name>
+            <firstHalf type="verb">Escaping from</firstHalf>
+            <secondHalf the="false">
+                <singular>something/somewhere</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Surviving as long as possible</name>
+            <firstHalf type="verb">Surviving</firstHalf>
             <secondHalf type="modifier" the="false">
-                <plural>against different opponents</plural>
+                <singular>as long as possible</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Outlasting the opponent</name>
+            <firstHalf type="verb">Outlasting</firstHalf>
+            <secondHalf the="true">
+                <singular>opponent</singular>
+                <plural>opponents</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Stopping a threat</name>
+            <firstHalf type="verb">Stopping</firstHalf>
+            <secondHalf the="false">
+                <singular>threat</singular>
+                <plural>threats</plural>
             </secondHalf>
         </element>
         <element>
             <name>Quests</name>
-            <firstHalf type="noun" preference="plural">Quests</firstHalf>
+            <firstHalf type="noun" preference="plural">Quest</firstHalf>
             <secondHalf the="false">
                 <singular>quest</singular>
                 <plural>quests</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Education</name>
-            <firstHalf type="adjective">Educational</firstHalf>
-            <secondHalf the="false">
-                <singular>education</singular>
             </secondHalf>
         </element>
         <element>
@@ -4729,8 +4852,30 @@
             </secondHalf>
         </element>
         <element>
+            <name>Sport</name>
+            <firstHalf type="noun">Sport</firstHalf>
+            <secondHalf the="false">
+                <singular>sport</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Education</name>
+            <firstHalf type="adjective">Educational</firstHalf>
+            <secondHalf the="false">
+                <singular>education</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hide and Seek</name>
+            <firstHalf type="adjective">Hidden</firstHalf>
+            <secondHalf the="false">
+                <singular>seeker</singular>
+                <plural>seekers</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Tycoon game</name>
-            <firstHalf type="adjective">Tycoon</firstHalf>
+            <firstHalf type="noun">Tycoon</firstHalf>
             <secondHalf the="false">
                 <singular>game</singular>
                 <plural>games</plural>
@@ -4866,49 +5011,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Stopping a threat</name>
-            <firstHalf type="verb">Stopping</firstHalf>
-            <secondHalf the="false">
-                <singular>threat</singular>
-                <plural>threats</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Surviving as long as possible</name>
-            <firstHalf type="verb">Surviving</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>as long as possible</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Outlasting the opponent</name>
-            <firstHalf type="verb">Outlasting</firstHalf>
-            <secondHalf the="true">
-                <singular>opponent</singular>
-                <plural>opponents</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Evading obstacles</name>
             <firstHalf type="verb">Evading</firstHalf>
             <secondHalf the="false">
                 <singular>obstacle</singular>
                 <plural>obstacles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Escaping from something/somewhere</name>
-            <firstHalf type="verb">Escaping from</firstHalf>
-            <secondHalf the="false">
-                <singular>something/somewhere</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Reaching a point in the world</name>
-            <firstHalf type="verb">Reaching</firstHalf>
-            <secondHalf the="false">
-                <singular>point in the world</singular>
-                <plural>points in the world</plural>
             </secondHalf>
         </element>
         <element>
@@ -5049,6 +5156,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Proving the player's skills or knowledge</name>
+            <firstHalf type="verb">Proving</firstHalf>
+            <secondHalf the="false">
+                <plural>skills or knowledge</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Special challenges</name>
             <firstHalf type="adjective">Special</firstHalf>
             <secondHalf the="false">
@@ -5162,6 +5276,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Simple visuals</name>
+            <firstHalf type="adjective">Simple</firstHalf>
+            <secondHalf the="false">
+                <plural>visuals</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Procedural animation</name>
             <firstHalf type="adjective">Procedural</firstHalf>
             <secondHalf the="false">
@@ -5181,6 +5302,14 @@
             <firstHalf type="adjective">Minimal or no</firstHalf>
             <secondHalf the="true">
                 <singular>HUD</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>UI icons</name>
+            <firstHalf type="noun">UI</firstHalf>
+            <secondHalf the="false">
+                <singular>icon</singular>
+                <plural>icons</plural>
             </secondHalf>
         </element>
         <element>
@@ -5215,11 +5344,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Visible damage values</name>
-            <firstHalf type="adjective">Visible</firstHalf>
+            <name>Damage values are displayed</name>
+            <firstHalf type="noun">Damage</firstHalf>
             <secondHalf the="false">
-                <singular>value</singular>
-                <plural>values</plural>
+                <singular>value is displayed</singular>
+                <plural>values are displayed</plural>
             </secondHalf>
         </element>
         <element>
