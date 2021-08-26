@@ -1535,7 +1535,8 @@
             <name>Restoring old buildings or systems</name>
             <firstHalf type="verb">Restoring</firstHalf>
             <secondHalf the="false">
-                <singular>restoration</singular>
+                <singular>building or system</singular>
+                <plural>buildings or systems</plural>
             </secondHalf>
         </element>
         <element>
@@ -1764,7 +1765,7 @@
             </secondHalf>
         </element>
     </category>
-    <category id="4" name="Interaction" shortName="IAc">
+    <category id="4" name="Interaction" shortName="Iac">
         <element>
             <name>Interacting with characters or objects</name>
             <firstHalf type="verb">Interacting with</firstHalf>
@@ -3864,8 +3865,15 @@
             </secondHalf>
         </element>
         <element>
+            <name>In-game manual</name>
+            <firstHalf type="noun">In-game</firstHalf>
+            <secondHalf the="false">
+                <singular>manual</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>The more the player knows, the more efficient they become</name>
-            <firstHalf type="verb">Knowledge improves</firstHalf>
+            <firstHalf type="noun">Knowledge</firstHalf>
             <secondHalf the="false">
                 <singular>efficiency</singular>
             </secondHalf>
@@ -5868,10 +5876,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>The four classical elements</name>
-            <firstHalf type="adjective">Four</firstHalf>
+            <name>Multiple real world languages</name>
+            <firstHalf type="adjective">Multiple</firstHalf>
             <secondHalf the="false">
-                <plural>elements</plural>
+                <singular>real world language</singular>
+                <plural>real world languages</plural>
             </secondHalf>
         </element>
         <element>
@@ -5880,6 +5889,13 @@
             <secondHalf the="false">
                 <singular>language</singular>
                 <plural>languages</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The four classical elements</name>
+            <firstHalf type="adjective">Four</firstHalf>
+            <secondHalf the="false">
+                <plural>elements</plural>
             </secondHalf>
         </element>
         <element>
@@ -5965,6 +5981,13 @@
             <firstHalf type="adjective">Musical</firstHalf>
             <secondHalf the="false">
                 <singular>music</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Western</name>
+            <firstHalf type="adjective">Western</firstHalf>
+            <secondHalf the="false">
+                <singular>western</singular>
             </secondHalf>
         </element>
         <element>

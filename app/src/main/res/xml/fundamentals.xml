@@ -68,6 +68,7 @@
         <element name="Objective" />
         <element name="Obstacle" />
         <element name="Opportunity" />
+        <element name="Pacing" />
         <element name="Past" />
         <element name="Penalty" />
         <element name="Permanent" />
@@ -88,6 +89,7 @@
         <element name="Save system" />
         <element name="Score" />
         <element name="Searching" />
+        <element name="Secret" />
         <element name="Settings" />
         <element name="Sight" />
         <element name="Similarity" />
@@ -104,6 +106,7 @@
         <element name="Temporary" />
         <element name="Terrain" />
         <element name="Territory" />
+        <element name="Text" />
         <element name="Theme" />
         <element name="Time" />
         <element name="Tool" />
