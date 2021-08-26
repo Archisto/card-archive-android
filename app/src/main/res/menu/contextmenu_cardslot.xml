@@ -27,15 +27,15 @@
         android:enabled="true"
         android:visible="true" />
     <item
-        android:id="@+id/action_undoMergeLeft"
-        android:title="@string/action_undoMergeLeft"
-        android:titleCondensed="@string/action_undoMergeLeft"
+        android:id="@+id/action_breakMergeLeft"
+        android:title="@string/action_breakMergeLeft"
+        android:titleCondensed="@string/action_breakMergeLeft"
         android:enabled="true"
         android:visible="true" />
     <item
-        android:id="@+id/action_undoMergeRight"
-        android:title="@string/action_undoMergeRight"
-        android:titleCondensed="@string/action_undoMergeRight"
+        android:id="@+id/action_breakMergeRight"
+        android:title="@string/action_breakMergeRight"
+        android:titleCondensed="@string/action_breakMergeRight"
         android:enabled="true"
         android:visible="true" />
 

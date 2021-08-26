@@ -303,8 +303,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (cardSlots.get(selectedCardSlotIndex).card2 == null) {
-            menu.findItem(R.id.action_undoMergeLeft).setVisible(false);
-            menu.findItem(R.id.action_undoMergeRight).setVisible(false);
+            menu.findItem(R.id.action_breakMergeLeft).setVisible(false);
+            menu.findItem(R.id.action_breakMergeRight).setVisible(false);
         }
 
         initFundamentalCopyMenuItems(menu);
@@ -383,6 +383,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_clearCardsFab:
                 clearCards();
                 return true;
+            case R.id.action_clearLocksFab:
+                clearLocks();
+                return true;
             case R.id.action_sortCardsFab:
                 sortCardsFull();
                 return true;
@@ -405,13 +408,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_remove:
                 removeCard(selectedCardSlotIndex);
                 return true;
-            case R.id.action_undoMergeLeft:
+            case R.id.action_breakMergeLeft:
                 if (selectedCardSlot.card2 != null) {
                     selectedCardSlot.setCards(selectedCardSlot.card1, null);
                     updateCardSlotText(selectedCardSlot);
                 }
                 return true;
-            case R.id.action_undoMergeRight:
+            case R.id.action_breakMergeRight:
                 if (selectedCardSlot.card2 != null) {
                     selectedCardSlot.setCards(selectedCardSlot.card2, null);
                     updateCardSlotText(selectedCardSlot);
@@ -1025,7 +1028,8 @@ public class MainActivity extends AppCompatActivity {
 //            openCardSlotContextMenu(cardSlot.id);
 
         if (cardSlot != null && isMergeSlot(cardSlot.id)) {
-            createCopy(0);
+            openCardSlotContextMenu(cardSlot.id);
+            //createCopy(0);
             return;
         }
 
@@ -1285,6 +1289,15 @@ public class MainActivity extends AppCompatActivity {
                 cardSlots.get(i).clear(false);
             }
         }
+    }
+
+    private void clearLocks() {
+        for (int i = 0; i < cardSlots.size(); i++) {
+            if (!mergeSlotEnabled || i > 0)
+                cardSlots.get(i).lock(false);
+        }
+
+        lockedCardCount = 0;
     }
 
     private void sortCardsFull() {
@@ -1668,10 +1681,14 @@ public class MainActivity extends AppCompatActivity {
             copyElementsToClipboard();
             return true;
         }
-        else if (handleClearCardsAction(id))
+        else if (id == R.id.action_clearCards) {
+            clearCards();
             return true;
-        else if (handleClearLocksAction(id))
+        }
+        else if (id == R.id.action_clearLocks) {
+            clearLocks();
             return true;
+        }
         else if (id == R.id.action_sortCards) {
             sortCardsFull();
             return true;
@@ -1902,29 +1919,6 @@ public class MainActivity extends AppCompatActivity {
         mergeSlotEnabled = enable;
         mergeSlotToggle.setChecked(mergeSlotEnabled);
         updateMergeSlot();
-    }
-
-    private boolean handleClearCardsAction(int id) {
-        if (id == R.id.action_clearCards) {
-            clearCards();
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean handleClearLocksAction(int id) {
-        if (id == R.id.action_clearLocks) {
-            for (int i = 0; i < cardSlots.size(); i++) {
-                if (i > 0 || !mergeSlotEnabled)
-                    cardSlots.get(i).lock(false);
-            }
-
-            lockedCardCount = 0;
-            return true;
-        }
-
-        return false;
     }
 
     private void enableFundamentals(boolean enable) {

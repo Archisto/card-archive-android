@@ -27,6 +27,12 @@
         android:enabled="true"
         android:visible="true" />
     <item
+        android:id="@+id/action_clearLocksFab"
+        android:title="@string/action_clearLocks"
+        android:titleCondensed="@string/action_clearLocks"
+        android:enabled="true"
+        android:visible="true" />
+    <item
         android:id="@+id/action_sortCardsFab"
         android:title="@string/action_sortCards"
         android:titleCondensed="@string/action_sortCards"
