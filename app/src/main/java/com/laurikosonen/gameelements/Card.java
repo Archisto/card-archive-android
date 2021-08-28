@@ -20,6 +20,7 @@ public class Card {
         verb,
         adjective,
         noun,
+        nounPlural,
         modifier,
         singular,
         plural
@@ -76,16 +77,21 @@ public class Card {
             else if (secondHalfSingular == null) {
                 result = secondHalfPlural;
             }
-            // Singular because both halves' type is verb
+            // Singular because both half's type is verb
             else if (otherFirstHalfType == NameHalfType.verb
                      && secondHalfType == NameHalfType.verb) {
                 result = secondHalfSingular;
             }
-            // Plural, requested
+            // Singular because the first half is a singular noun and the second a verb
+            else if (otherFirstHalfType == NameHalfType.noun
+                     && secondHalfType == NameHalfType.verb) {
+                result = secondHalfSingular;
+            }
+            // Plural, preference
             else if (secondHalfTypePref == NameHalfType.plural) {
                 result = secondHalfPlural;
             }
-            // Singular, requested or default
+            // Singular, preference or default
             else {
                 result = secondHalfSingular;
             }
@@ -145,6 +151,8 @@ public class Card {
             return NameHalfType.adjective;
         else if (typeString.equalsIgnoreCase("noun"))
             return NameHalfType.noun;
+        else if (typeString.equalsIgnoreCase("noun pl"))
+            return NameHalfType.nounPlural;
         else if (typeString.equalsIgnoreCase("modifier"))
             return NameHalfType.modifier;
         else if (typeString.equalsIgnoreCase("singular"))

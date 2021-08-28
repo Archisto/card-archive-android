@@ -39,6 +39,11 @@ public class CustomXmlResourceParser {
         return result;
     }
 
+    private static boolean parseBoolean(XmlResourceParser parser, String str) {
+        str = parser.getAttributeValue(null, str);
+        return str != null && str.equals("true");
+    }
+
     public static void parseCards(Resources resources,
                                   int resourceID,
                                   List<List<Card>> pools,
@@ -77,20 +82,20 @@ public class CustomXmlResourceParser {
                             //Log.d("CAGE", "Created pool; name: " + categoryName);
                         }
                     }
+
+                    // Parses card half attributes
                     // Gets first half type and attributes
                     else if (startTagName.equalsIgnoreCase(firstHalfStr)) {
                         typeStr = parser.getAttributeValue(null, CustomXmlResourceParser.typeStr);
                         secondHalfPreferenceStr =
                             parser.getAttributeValue(null, preferenceStr);
-                        firstHalfEndsInPreposition =
-                            parser.getAttributeValue(null, endsInPrepositionStr) != null;
+                        firstHalfEndsInPreposition = parseBoolean(parser, endsInPrepositionStr);
                     }
                     // Gets second half type and sets second half mode on
                     else if (startTagName.equalsIgnoreCase(secondHalfStr)) {
                         typeStr = parser.getAttributeValue(null, CustomXmlResourceParser.typeStr);
                         secondHalf = true;
                     }
-
                 }
                 else if (eventType == XmlPullParser.END_TAG) {
 
@@ -103,8 +108,7 @@ public class CustomXmlResourceParser {
                     String text = parser.getText();
 
                     // Creates a new card
-                    if (startTagName.equalsIgnoreCase(nameStr)
-                          || startTagName.equalsIgnoreCase(elementStr)) {
+                    if (startTagName.equalsIgnoreCase(nameStr)) {
 
                         // The card's id is determined by poolAll.size(): if the pool is empty,
                         // the id is 0, and so on
@@ -113,6 +117,7 @@ public class CustomXmlResourceParser {
                         if (card != null) {
                             pools.get(categoryId).add(card);
                             poolAll.add(card);
+                            //Log.d("CAGE", "New card: " + text);
                         }
                     }
                     // Adds name halves to the latest card
