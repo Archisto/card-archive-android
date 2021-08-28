@@ -731,7 +731,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Tip card for the merge slot
         tipCard = new Card(getString(R.string.mergeSlotTip_full), -1, getString(R.string.tip), getString(R.string.tip), -2);
-        tipCard.setNameFirstHalf(getString(R.string.mergeSlotTip_left), null, null);
+        tipCard.setNameFirstHalf(getString(R.string.mergeSlotTip_left), null, null, false);
         tipCard.setNameSecondHalf(getString(R.string.mergeSlotTip_right), Card.NameHalfType.none, false);
 
         // Temporary slot for moving cards around
@@ -975,18 +975,6 @@ public class MainActivity extends AppCompatActivity {
         //        sb.append(useUpperCase ? cardSlot.card1.name.toUpperCase() : cardSlot.card1.name);
     }
 
-    private void appendCardHalf(StringBuilder sb, CardSlot cardSlot, boolean firstHalf) {
-        if (firstHalf) {
-            sb.append(cardSlot.card1.getNameHalf(true, null, null));
-        }
-        else {
-            if (cardSlot.card2 == null)
-                sb.append(cardSlot.card1.getNameHalf(false, cardSlot.card1.firstHalfType, cardSlot.card1.getSecondHalfPreference()));
-            else
-                sb.append(cardSlot.card2.getNameHalf(false, cardSlot.card1.firstHalfType, cardSlot.card1.getSecondHalfPreference()));
-        }
-    }
-
     private String getMergeCardDisplayText(CardSlot cardSlot,
                                            List<Card> cards,
                                            int index) {
@@ -1004,12 +992,18 @@ public class MainActivity extends AppCompatActivity {
             cardSlot.card1.firstHalfType == Card.NameHalfType.adjective
             && cardSlot.card2.secondHalfType == Card.NameHalfType.verb;
 
-        String leftHalf = cardSlot.card1.getNameHalf(true, null, null);
+        String leftHalf =
+            cardSlot.card1.getNameHalf(
+                true,
+                null,
+                null,
+                cardSlot.card2.secondHalfType);
         String rightHalf =
             cardSlot.card2.getNameHalf(
                 false,
                 cardSlot.card1.firstHalfType,
-                cardSlot.card1.getSecondHalfPreference());
+                cardSlot.card1.getSecondHalfPreference(),
+                null);
 
         if (adjAndVerb) {
             String thingStr =
@@ -1018,6 +1012,17 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             return String.format(getString(R.string.cardSlotMerge), leftHalf, rightHalf);
+        }
+    }
+
+    private void appendCardHalf(StringBuilder sb, CardSlot cardSlot, boolean firstHalf) {
+        Card secondHalfCard = cardSlot.card2 == null ? cardSlot.card1 : cardSlot.card2;
+
+        if (firstHalf) {
+            sb.append(cardSlot.card1.getNameHalf(true, null, null, secondHalfCard.secondHalfType));
+        }
+        else {
+            sb.append(secondHalfCard.getNameHalf(false, cardSlot.card1.firstHalfType, cardSlot.card1.getSecondHalfPreference(), null));
         }
     }
 
@@ -1104,7 +1109,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this,
                 String.format(getString(R.string.mergeSelected_rightSide),
-                    card2.getNameHalf(false, null, null)),
+                    card2.getNameHalf(false, null, null, null)),
                     Toast.LENGTH_SHORT)
                 .show();
         }
@@ -1133,7 +1138,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this,
                 String.format(getString(R.string.mergeSelected_leftSide),
-                    mergeBeginning.getNameHalf(true, null, null)),
+                    mergeBeginning.getNameHalf(true, null, null, null)),
                     Toast.LENGTH_SHORT)
                 .show();
         }

@@ -7,12 +7,13 @@ public class Card {
     public String categoryShortName;
     public int categoryNum;
     private String firstHalf;
-    public NameHalfType firstHalfType;
-    public NameHalfType secondHalfType;
-    private boolean secondHalfPrefPlural;
     private String secondHalfSingular;
     private String secondHalfPlural;
-    protected boolean keepCaps;
+    public NameHalfType firstHalfType;
+    public NameHalfType secondHalfType;
+    private boolean firstHalfEndsInPreposition;
+    private boolean secondHalfPrefPlural;
+    protected boolean keepCaps; // unused?
 
     public enum NameHalfType {
         none,
@@ -42,16 +43,29 @@ public class Card {
 
     public String getNameHalf(boolean first,
                               NameHalfType otherFirstHalfType,
-                              NameHalfType secondHalfTypePref) {
+                              NameHalfType secondHalfTypePref,
+                              NameHalfType secondHalfCardType) {
         String result;
 
         if (first) {
-            if (firstHalf != null)
+            if (firstHalf != null) {
+                // Default
                 result = firstHalf;
-            else if (keepCaps)
+
+                // Remove ending preposition if the second half's type is verb or modifier
+                if (firstHalfEndsInPreposition
+                    && (secondHalfCardType == NameHalfType.verb
+                        || secondHalfCardType == NameHalfType.modifier)) {
+                    result = result.substring(0, result.lastIndexOf(" "));
+                }
+            }
+            else if (keepCaps) {
                 result = name;
-            else
+            }
+            else {
+                // Only the first letter can remain capitalized
                 result = name.charAt(0) + name.substring(1).toLowerCase();
+            }
         }
         else if (secondHalfSingular != null || secondHalfPlural != null) {
             // Singular, no other option
@@ -62,18 +76,18 @@ public class Card {
             else if (secondHalfSingular == null) {
                 result = secondHalfPlural;
             }
-            // Singular, driven by both half types being verbs
+            // Singular because both halves' type is verb
             else if (otherFirstHalfType == NameHalfType.verb
                      && secondHalfType == NameHalfType.verb) {
                 result = secondHalfSingular;
             }
-            // Singular, requested
-            else if (secondHalfTypePref == NameHalfType.singular) {
-                result = secondHalfSingular;
-            }
-            // Plural, requested or default
-            else {
+            // Plural, requested
+            else if (secondHalfTypePref == NameHalfType.plural) {
                 result = secondHalfPlural;
+            }
+            // Singular, requested or default
+            else {
+                result = secondHalfSingular;
             }
         }
         else {
@@ -86,7 +100,10 @@ public class Card {
         return result;
     }
 
-    public void setNameFirstHalf(String nameHalf, NameHalfType type, NameHalfType secondHalfPrefType) {
+    public void setNameFirstHalf(String nameHalf,
+                                 NameHalfType type,
+                                 NameHalfType secondHalfPrefType,
+                                 boolean endsInPreposition) {
         firstHalf = nameHalf;
 
         if (type != null)
@@ -94,10 +111,12 @@ public class Card {
         else
             firstHalfType = NameHalfType.verb;
 
-        if (secondHalfPrefType == NameHalfType.singular || secondHalfPrefType == NameHalfType.plural)
+        if (secondHalfPrefType != null && secondHalfPrefType != NameHalfType.none)
             secondHalfPrefPlural = secondHalfPrefType == NameHalfType.plural;
         else if (firstHalfType == NameHalfType.verb || firstHalfType == NameHalfType.adjective)
             secondHalfPrefPlural = true;
+
+        this.firstHalfEndsInPreposition = endsInPreposition;
     }
 
     public void setNameSecondHalf(String nameHalf, NameHalfType type, boolean plural) {
@@ -133,6 +152,6 @@ public class Card {
         else if (typeString.equalsIgnoreCase("plural"))
             return NameHalfType.plural;
         else
-            return null;
+            return NameHalfType.none;
     }
 }

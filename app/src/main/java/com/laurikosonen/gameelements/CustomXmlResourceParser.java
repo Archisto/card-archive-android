@@ -18,6 +18,7 @@ public class CustomXmlResourceParser {
     private static final String idStr = "id";
     private static final String typeStr = "type";
     private static final String preferenceStr = "preference";
+    private static final String endsInPrepositionStr = "endsInPreposition";
     private static final String theStr = "the";
     private static final String firstHalfStr = "firstHalf";
     private static final String secondHalfStr = "secondHalf";
@@ -55,6 +56,7 @@ public class CustomXmlResourceParser {
             int categoryId = 0;
             Card card = null;
             boolean secondHalf = false;
+            boolean firstHalfEndsInPreposition = false;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
@@ -75,11 +77,13 @@ public class CustomXmlResourceParser {
                             //Log.d("CAGE", "Created pool; name: " + categoryName);
                         }
                     }
-                    // Gets first half type
+                    // Gets first half type and attributes
                     else if (startTagName.equalsIgnoreCase(firstHalfStr)) {
                         typeStr = parser.getAttributeValue(null, CustomXmlResourceParser.typeStr);
                         secondHalfPreferenceStr =
                             parser.getAttributeValue(null, preferenceStr);
+                        firstHalfEndsInPreposition =
+                            parser.getAttributeValue(null, endsInPrepositionStr) != null;
                     }
                     // Gets second half type and sets second half mode on
                     else if (startTagName.equalsIgnoreCase(secondHalfStr)) {
@@ -120,7 +124,8 @@ public class CustomXmlResourceParser {
                             card.setNameFirstHalf(
                                 text,
                                 type,
-                                Card.parseNameHalfType(secondHalfPreferenceStr));
+                                Card.parseNameHalfType(secondHalfPreferenceStr),
+                                firstHalfEndsInPreposition);
                         }
                         // Second half of the card's name
                         else if (secondHalf) {
