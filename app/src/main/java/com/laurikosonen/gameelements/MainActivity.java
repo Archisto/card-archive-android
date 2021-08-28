@@ -751,12 +751,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplayedDeck(int category) {
-        displayedCards = allCards;
 
-        boolean anyCategory = category < 0;
-        if (displayMode != DisplayMode.list) {
-            // List mode uses allCards deck with the start and end indexes
-            // according to the used category
+        // List mode uses allCards deck with the start and end indexes
+        // according to the used category
+        if (displayMode == DisplayMode.list) {
+            displayedCards = allCards;
+        }
+        else {
+            boolean anyCategory = category < 0;
 
             if (displayMode == DisplayMode.fundamentals) {
                 displayedCards = fundamentals;
@@ -796,7 +798,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAllCardSlotTexts(List<Card> displayedCards) {
+        int slotsUsed = 0;
         int locksPassed = 0;
+
         for (int i = 0; i < cardSlots.size(); i++) {
             if (cardSlots.get(i).isLocked()) {
                 locksPassed++;
@@ -805,10 +809,14 @@ public class MainActivity extends AppCompatActivity {
 
             boolean emptySlot =
                 (i >= userSetCardCount + locksPassed) || (i - locksPassed >= displayedCards.size());
-            setCardSlotText(cardSlots.get(i), displayedCards, i, emptySlot);
+            setCardSlotText(cardSlots.get(i), displayedCards, slotsUsed, emptySlot);
+
+            if (!emptySlot)
+                slotsUsed++;
         }
 
-        nextCardInDeck = userSetCardCount;
+        nextCardInDeck = slotsUsed;
+        resetNextCardInDeckIndexIfNecessary();
     }
 
     private void setCardSlotText(CardSlot cardSlot, List<Card> cards, int index, boolean empty) {
@@ -841,6 +849,7 @@ public class MainActivity extends AppCompatActivity {
             categoryTagLength = insertCategoryTag(text, cardSlot, displayMode == DisplayMode.merge);
 
         cardSlot.setText(text.toString(), categoryTagLength);
+        // Show card index: cardSlot.setText(index + ") " +
     }
 
     private void updateCardSlotText(CardSlot cardSlot) { //, boolean onlyFirstHalf) {
@@ -872,13 +881,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void drawNewCard(CardSlot cardSlot) {
-        // Note: Skips one index (e.g. from 9 to 11) because
-        // it's set here and not after setCardSlotText()
-        nextCardInDeck++;
-        if (nextCardInDeck >= displayedCards.size())
-            nextCardInDeck = 0; // TODO: No card duplication
-
         setCardSlotText(cardSlot, displayedCards, nextCardInDeck, false);
+        nextCardInDeck++;
+        resetNextCardInDeckIndexIfNecessary();
     }
 
     private void addCard() {
@@ -886,6 +891,11 @@ public class MainActivity extends AppCompatActivity {
         if (cardSlot != null) {
             drawNewCard(cardSlot);
         }
+    }
+
+    private void resetNextCardInDeckIndexIfNecessary() {
+        if (nextCardInDeck >= displayedCards.size())
+            nextCardInDeck = 0;
     }
 
     private void showOrHideFundamentals(boolean showFundamentals) {
@@ -1449,10 +1459,12 @@ public class MainActivity extends AppCompatActivity {
         // List: Uses allCards deck with the start index and list size set in initListMode()
         // Fundamentals: Uses fundamentals deck with the start index and list size set in initFundamentalListMode()
 
+        // Finds the card ID from which the list could be browsed to either direction
         int lastUnlockedCardId = getLastUnlockedListCardId();
         if (lastUnlockedCardId < 0)
             lastUnlockedCardId = nextCardInDeck;
 
+        // Checks if the card ID is valid for the current deck
         boolean restartFromCategoryFirstCard =
             lastUnlockedCardId < deckStartIndex
             || lastUnlockedCardId >= deckStartIndex + listSize - 1;
