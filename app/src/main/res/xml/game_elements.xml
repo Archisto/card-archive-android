@@ -477,7 +477,7 @@
             <name>Barriers which only let through specific things</name>
             <firstHalf type="noun pl" preference="plural">Barriers which only let through</firstHalf> <!-- endsInPreposition="true"? -->
             <secondHalf the="false">
-                <singular>specific thing</singular> <!-- indefinite article! -->
+                <singular>specific thing</singular> <!-- indefinite article -->
                 <plural>specific things</plural>
             </secondHalf>
         </element>
@@ -906,6 +906,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Divine/unholy enhancements</name>
+            <firstHalf type="adjective">Divine/unholy</firstHalf>
+            <secondHalf the="false">
+                <singular>enhancement</singular>
+                <plural>enhancements</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Mechanical/cybernetic enhancements</name>
             <firstHalf type="adjective">Mechanical/cybernetic</firstHalf>
             <secondHalf the="false">
@@ -914,11 +922,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Divine/unholy enhancements</name>
-            <firstHalf type="adjective">Divine/unholy</firstHalf>
-            <secondHalf the="false">
-                <singular>enhancement</singular>
-                <plural>enhancements</plural>
+            <name>A protective suit is required to survive</name>
+            <firstHalf type="noun" endsInPreposition="true">Protection against</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is required to survive</singular>
+                <plural>are required to survive</plural>
             </secondHalf>
         </element>
         <element>
@@ -953,14 +961,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Meeting a previous player character</name>
-            <firstHalf type="verb">Meeting</firstHalf>
-            <secondHalf the="false">
-                <singular>previous player character</singular>
-                <plural>previous player characters</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Choosing the right character for a certain task</name>
             <firstHalf type="noun">Chosen character</firstHalf>
             <secondHalf the="false">
@@ -969,11 +969,27 @@
             </secondHalf>
         </element>
         <element>
-            <name>A protective suit is required to survive</name>
-            <firstHalf type="noun" endsInPreposition="true">Protection against</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is required to survive</singular>
-                <plural>are required to survive</plural>
+            <name>Meeting a previous player character</name>
+            <firstHalf type="verb">Meeting</firstHalf>
+            <secondHalf the="false">
+                <singular>previous player character</singular>
+                <plural>previous player characters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Speaking with non-player characters</name>
+            <firstHalf type="verb" endsInPreposition="true">Speaking with</firstHalf>
+            <secondHalf the="false">
+                <singular>non-player character</singular>
+                <plural>non-player characters</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Wandering non-player characters</name>
+            <firstHalf type="verb">Wandering</firstHalf>
+            <secondHalf the="false">
+                <singular>non-player character</singular>
+                <plural>non-player characters</plural>
             </secondHalf>
         </element>
         <element>
@@ -1868,13 +1884,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>The AI learns from the player’s actions</name>
-            <firstHalf type="noun">AI</firstHalf>
-            <secondHalf the="true">
-                <plural>player’s actions</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Physics-based gameplay</name>
             <firstHalf type="adjective">Physics-based</firstHalf>
             <secondHalf the="false">
@@ -1943,10 +1952,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>360-degree aiming</name>
-            <firstHalf type="adjective">360-degree</firstHalf>
+            <name>Cards</name>
+            <firstHalf type="noun pl" preference="plural">Cards</firstHalf>
             <secondHalf the="false">
-                <singular>aiming</singular>
+                <singular>card</singular>
+                <plural>cards</plural>
             </secondHalf>
         </element>
         <element>
@@ -1990,7 +2000,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>An event doesn't wait for the player before starting or ending</name>
+            <name>Event doesn't wait for the player before starting or ending</name>
             <firstHalf type="noun">Event</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>doesn't wait for the player</singular>
@@ -1998,7 +2008,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>An event keeps repeating until the player does something</name>
+            <name>Event keeps repeating until the player does something</name>
             <firstHalf type="noun">Event</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>repeats</singular>
@@ -2250,19 +2260,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Helping a character reach places</name>
-            <firstHalf type="verb">Helping</firstHalf>
+            <name>Aiming</name>
+            <firstHalf type="verb" endsInPreposition="true">Aiming at</firstHalf>
             <secondHalf the="false">
-                <singular>reaching a place</singular>
-                <plural>reaching places</plural>
+                <singular>aiming</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Previewing things which haven't been unlocked yet</name>
-            <firstHalf type="verb">Previewing</firstHalf>
-            <secondHalf the="false">
-                <singular>locked thing</singular>
-                <plural>locked things</plural>
+            <name>Auto-aim</name>
+            <firstHalf type="verb" endsInPreposition="true">Automatically aiming at</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>automatically</singular>
             </secondHalf>
         </element>
         <element>
@@ -2349,11 +2357,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>A normally positive thing causes a negative effect under certain conditions</name>
-            <firstHalf type="adjective">Positive</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>is bad under certain conditions</singular>
-                <plural>are bad under certain conditions</plural>
+            <name>The AI learns from the player’s actions</name>
+            <firstHalf type="noun">AI</firstHalf>
+            <secondHalf the="true">
+                <plural>player’s actions</plural>
             </secondHalf>
         </element>
         <element>
@@ -2439,6 +2446,14 @@
                 <singular>target's state</singular>
             </secondHalf>
         </element>
+        <element>
+            <name>A normally positive thing causes a negative effect under certain conditions</name>
+            <firstHalf type="adjective">Positive</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>is bad under certain conditions</singular>
+                <plural>are bad under certain conditions</plural>
+            </secondHalf>
+        </element>
     </category>
     <category id="5" name="Abilities" shortName="Abi">
         <element>
@@ -2513,6 +2528,13 @@
             <firstHalf type="verb" endsInPreposition="true">Using abilities with</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>with another character</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Special abilities can be used after gaining enough energy</name>
+            <firstHalf type="noun pl" preference="plural">Special abilities</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>after gaining enough energy</singular>
             </secondHalf>
         </element>
         <element>
@@ -3158,10 +3180,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Free movement in any axis</name>
-            <firstHalf type="adjective">Free</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>on an axis</singular>
+            <name>Six degrees of freedom</name>
+            <firstHalf type="adjective">Unlimited</firstHalf>
+            <secondHalf the="false">
+                <singular>freedom</singular>
             </secondHalf>
         </element>
         <element>
@@ -3498,6 +3520,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Super attacks</name>
+            <firstHalf type="adjective">Super</firstHalf>
+            <secondHalf the="false">
+                <singular>attack</singular>
+                <plural>attacks</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Attacks penetrate targets</name>
             <firstHalf type="verb">Attacking</firstHalf>
             <secondHalf type="verb" the="false">
@@ -3630,17 +3660,16 @@
         </element>
         <element>
             <name>Taking advantage of an enemy's positioning</name>
-            <firstHalf type="verb">Taking advantage of an enemy's</firstHalf>
+            <firstHalf type="verb">Taking advantage of an enemy's</firstHalf> <!-- abnormal verb -->
             <secondHalf the="false">
                 <singular>positioning</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Jumping on an enemy</name>
-            <firstHalf type="verb" endsInPreposition="true">Jumping on</firstHalf>
-            <secondHalf the="false">
-                <singular>enemy</singular>
-                <plural>enemies</plural>
+            <name>Taking advantage of the environment in combat</name>
+            <firstHalf type="verb" endsInPreposition="true">Taking advantage of</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>in combat</singular>
             </secondHalf>
         </element>
         <element>
@@ -3649,6 +3678,14 @@
             <secondHalf the="false">
                 <singular>ledge</singular>
                 <plural>ledges</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Jumping on an enemy</name>
+            <firstHalf type="verb" endsInPreposition="true">Jumping on</firstHalf>
+            <secondHalf the="false">
+                <singular>enemy</singular>
+                <plural>enemies</plural>
             </secondHalf>
         </element>
         <element>
@@ -3715,6 +3752,13 @@
             <firstHalf type="noun">Damage</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be beneficial</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reloading</name>
+            <firstHalf type="verb">Reloading</firstHalf>
+            <secondHalf the="false"> <!-- type="verb" -->
+                <singular>reloading</singular>
             </secondHalf>
         </element>
         <element>
@@ -3910,8 +3954,9 @@
         <element>
             <name>Enemies which pretend to not be hostile</name>
             <firstHalf type="verb">Pretending</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>not hostile</singular>
+            <secondHalf type="verb" the="false">
+                <singular>pretends to not be hostile</singular>
+                <plural>pretend to not be hostile</plural>
             </secondHalf>
         </element>
         <element>
@@ -4095,8 +4140,15 @@
             <name>Multiple ways to solve a problem</name>
             <firstHalf type="noun pl" preference="plural">Multiple ways to use</firstHalf>
             <secondHalf the="false">
-                <singular>problem</singular>
-                <plural>problems</plural>
+                <singular>solution</singular>
+                <plural>solutions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The more the player knows, the more efficient they become</name>
+            <firstHalf type="noun">Knowledge</firstHalf>
+            <secondHalf the="false">
+                <singular>efficiency</singular>
             </secondHalf>
         </element>
         <element>
@@ -4119,13 +4171,6 @@
             <firstHalf type="noun">In-game</firstHalf>
             <secondHalf the="false">
                 <singular>manual</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The more the player knows, the more efficient they become</name>
-            <firstHalf type="noun">Knowledge</firstHalf>
-            <secondHalf the="false">
-                <singular>efficiency</singular>
             </secondHalf>
         </element>
         <element>
@@ -4190,6 +4235,14 @@
             <firstHalf type="verb">Testing</firstHalf>
             <secondHalf the="false">
                 <singular>commitment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Previewing things which haven't been unlocked yet</name>
+            <firstHalf type="verb">Previewing</firstHalf>
+            <secondHalf the="false">
+                <singular>locked thing</singular>
+                <plural>locked things</plural>
             </secondHalf>
         </element>
         <element>
@@ -4275,6 +4328,21 @@
             <firstHalf type="verb">Distracting</firstHalf>
             <secondHalf the="false">
                 <singular>distraction</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Notifications or characters will tell if something is wrong</name>
+            <firstHalf type="noun pl" preference="plural">Sources of information</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>will tell if something is wrong</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Information about an object is only shown when focusing on it</name>
+            <firstHalf type="noun">Information</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>requires focus</singular>
+                <plural>require focus</plural>
             </secondHalf>
         </element>
         <element>
@@ -4890,7 +4958,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Non-player characters see the player's equipment and react to it</name>
+            <name>Non-player characters react to the player's equipment</name>
             <firstHalf type="verb" endsInPreposition="true">Non-player characters react to</firstHalf>
             <secondHalf the="false">
                 <singular>player equipment</singular>
@@ -5026,6 +5094,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Heist</name>
+            <firstHalf type="noun">Heist</firstHalf>
+            <secondHalf the="false">
+                <singular>heist</singular>
+                <plural>heists</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Racing</name>
             <firstHalf type="verb">Racing</firstHalf>
             <secondHalf the="false">
@@ -5052,6 +5128,22 @@
             <secondHalf the="false">
                 <singular>seeker</singular>
                 <plural>seekers</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Simon Says</name>
+            <firstHalf type="verb">Replicating</firstHalf>
+            <secondHalf the="false">
+                <singular>action</singular>
+                <plural>actions</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Rhythm action</name>
+            <firstHalf type="noun">Rhythm</firstHalf>
+            <secondHalf the="false">
+                <singular>action</singular>
+                <plural>actions</plural>
             </secondHalf>
         </element>
         <element>
@@ -5148,7 +5240,7 @@
         </element>
         <element>
             <name>Objectives are decided by the player</name>
-            <firstHalf type="verb" endsInPreposition="true">Objectives are decided by</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Objectives are decided by</firstHalf> <!-- abnormal verb -->
             <secondHalf the="true">
                 <singular>player</singular>
                 <plural>players</plural>
@@ -5156,7 +5248,7 @@
         </element>
         <element>
             <name>Players have different objectives</name>
-            <firstHalf type="verb">Players have different</firstHalf>
+            <firstHalf type="verb">Players have different</firstHalf> <!-- abnormal verb -->
             <secondHalf the="false">
                 <singular>objective</singular>
                 <plural>objectives</plural>
@@ -5172,7 +5264,7 @@
         </element>
         <element>
             <name>The objective's position is random</name>
-            <firstHalf type="noun">Randomly placed</firstHalf>
+            <firstHalf type="adjective">Randomly placed</firstHalf>
             <secondHalf the="false">
                 <singular>position is random</singular>
                 <plural>positions are random</plural>
@@ -5234,6 +5326,28 @@
             <secondHalf the="false">
                 <singular>point in the world</singular>
                 <plural>points in the world</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reaching an exit after completing the objective</name>
+            <firstHalf type="verb">Reaching an exit</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>after completing the objective</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Helping a character reach a place</name>
+            <firstHalf type="verb">Helping</firstHalf>
+            <secondHalf the="true">
+                <singular>destination</singular>
+                <plural>destinations</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Preventing the opponent from reaching a place</name>
+            <firstHalf type="verb">Preventing</firstHalf>
+            <secondHalf the="true">
+                <singular>opponent's destination</singular>
             </secondHalf>
         </element>
         <element>
@@ -5388,14 +5502,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Replicating an action or illustration</name>
-            <firstHalf type="verb">Replicating</firstHalf>
-            <secondHalf the="false">
-                <singular>action or illustration</singular>
-                <plural>actions or illustrations</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Completing a set</name>
             <firstHalf type="verb">Completing</firstHalf>
             <secondHalf the="false">
@@ -5412,10 +5518,33 @@
             </secondHalf>
         </element>
         <element>
+            <name>New targets emerge at regular intervals</name>
+            <firstHalf type="noun pl" preference="plural">New targets</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>emerges at regular intervals</singular>
+                <plural>emerge at regular intervals</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>New problems emerge at regular intervals</name>
+            <firstHalf type="noun">Problem</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>emerges at regular intervals</singular>
+                <plural>emerge at regular intervals</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Proving the player's skills or knowledge</name>
             <firstHalf type="verb">Proving</firstHalf>
             <secondHalf the="false">
                 <plural>skills or knowledge</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Optional feats of skill</name>
+            <firstHalf type="adjective">Optional</firstHalf>
+            <secondHalf the="false">
+                <plural>feats of skill</plural>
             </secondHalf>
         </element>
         <element>
@@ -5939,7 +6068,7 @@
     <category id="12" name="Miscellaneous" shortName="Msc">
         <element>
             <name>Gameplay modifiers</name>
-            <firstHalf type="verb" endsInPreposition="true">Gameplay changes depending on</firstHalf>
+            <firstHalf type="verb" endsInPreposition="true">Modifiers for</firstHalf>
             <secondHalf the="false">
                 <singular>modifier</singular>
                 <plural>modifiers</plural>
@@ -5975,26 +6104,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Chances to be saved from tough situations</name>
-            <firstHalf type="verb" endsInPreposition="true">Being saved from</firstHalf>
+            <name>Waiting</name>
+            <firstHalf type="verb" endsInPreposition="true">Waiting for</firstHalf>
             <secondHalf the="false">
-                <singular>tough situation</singular>
-                <plural>tough situations</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Chances to fix the player's mistakes</name>
-            <firstHalf type="verb">Fixing</firstHalf>
-            <secondHalf the="false">
-                <singular>mistake</singular>
-                <plural>mistakes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Random stats</name>
-            <firstHalf type="adjective">Random</firstHalf>
-            <secondHalf the="false">
-                <plural>stats</plural>
+                <singular>waiting</singular> <!-- type="verb" -->
             </secondHalf>
         </element>
         <element>
@@ -6006,10 +6119,17 @@
             </secondHalf>
         </element>
         <element>
-            <name>Accuracy and precision</name>
-            <firstHalf type="adjective">Precise</firstHalf>
+            <name>Random stats</name>
+            <firstHalf type="adjective">Random</firstHalf>
             <secondHalf the="false">
-                <singular>accuracy</singular>
+                <plural>stats</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Accuracy and precision</name>
+            <firstHalf type="noun">Accuracy</firstHalf>
+            <secondHalf the="false">
+                <singular>precision</singular>
             </secondHalf>
         </element>
         <element>
@@ -6021,10 +6141,49 @@
             </secondHalf>
         </element>
         <element>
-            <name>Rhythm action</name>
-            <firstHalf type="noun">Rhythm</firstHalf>
+            <name>High skill ceiling</name>
+            <firstHalf type="noun">High skill</firstHalf>
             <secondHalf the="false">
-                <singular>action</singular>
+                <singular>ceiling</singular>
+                <plural>ceilings</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Alternative playstyles</name>
+            <firstHalf type="adjective">Alternative</firstHalf>
+            <secondHalf the="false">
+                <singular>playstyle</singular>
+                <plural>playstyles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Reallocating spent points</name>
+            <firstHalf type="verb">Reallocating</firstHalf>
+            <secondHalf the="false">
+                <plural>spent points</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Levels can be played in any order</name>
+            <firstHalf type="noun" endsInPreposition="true">Freedom of choice in</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <plural>in any order</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Cheat codes</name>
+            <firstHalf type="noun" preference="plural">Cheat</firstHalf>
+            <secondHalf the="false">
+                <singular>code</singular>
+                <plural>codes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Modding</name>
+            <firstHalf type="verb">Modding</firstHalf>
+            <secondHalf the="false">
+                <singular>mod</singular>
+                <plural>mods</plural>
             </secondHalf>
         </element>
         <element>
@@ -6100,73 +6259,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Cards</name>
-            <firstHalf type="noun pl" preference="plural">Cards</firstHalf>
-            <secondHalf the="false">
-                <singular>card</singular>
-                <plural>cards</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Gambling</name>
-            <firstHalf type="verb">Gambling</firstHalf>
-            <secondHalf the="false">
-                <singular>gambling</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Cooking</name>
-            <firstHalf type="verb">Cooking</firstHalf>
-            <secondHalf the="false">
-                <singular>cooking</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Farming</name>
-            <firstHalf type="verb" preference="singular">Farming</firstHalf>
-            <secondHalf the="false">
-                <singular>farming</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hunting</name>
-            <firstHalf type="verb">Hunting</firstHalf>
-            <secondHalf the="false">
-                <singular>hunting</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Heist</name>
-            <firstHalf type="noun">Heist</firstHalf>
-            <secondHalf the="false">
-                <singular>heist</singular>
-                <plural>heists</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Information about an object is only shown when focusing on it</name>
-            <firstHalf type="noun">Information</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>requires focus</singular>
-                <plural>require focus</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Notifications or characters will tell if something is wrong</name>
-            <firstHalf type="noun pl" preference="plural">Sources of information</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>will tell if something is wrong</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>New problems emerge at regular intervals</name>
-            <firstHalf type="noun">Problem</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>emerges at regular intervals</singular>
-                <plural>emerge at regular intervals</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Sudden change in the middle of action</name>
             <firstHalf type="noun" endsInPreposition="true">Sudden change in</firstHalf>
             <secondHalf type="modifier" the="false">
@@ -6210,48 +6302,18 @@
             </secondHalf>
         </element>
         <element>
-            <name>Reallocating spent points</name>
-            <firstHalf type="verb">Reallocating</firstHalf>
+            <name>Chances to fix the player's mistakes</name>
+            <firstHalf type="verb">Fixing</firstHalf>
             <secondHalf the="false">
-                <plural>spent points</plural>
+                <singular>mistake</singular>
+                <plural>mistakes</plural>
             </secondHalf>
         </element>
         <element>
-            <name>Alternative playstyles</name>
-            <firstHalf type="adjective">Alternative</firstHalf>
+            <name>Chances to be saved from tough situations</name>
+            <firstHalf type="verb" endsInPreposition="true">Being saved from</firstHalf>
             <secondHalf the="false">
-                <singular>playstyle</singular>
-                <plural>playstyles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Optional feats of skill</name>
-            <firstHalf type="adjective">Optional</firstHalf>
-            <secondHalf the="false">
-                <plural>feats of skill</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>High skill ceiling</name>
-            <firstHalf type="noun">High skill</firstHalf>
-            <secondHalf the="false">
-                <singular>ceiling</singular>
-                <plural>ceilings</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Cheat codes</name>
-            <firstHalf type="noun" preference="plural">Cheat</firstHalf>
-            <secondHalf the="false">
-                <singular>code</singular>
-                <plural>codes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Levels can be played in any order</name>
-            <firstHalf type="noun" endsInPreposition="true">Freedom of choice in</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <plural>in any order</plural>
+                <singular>rescue</singular>
             </secondHalf>
         </element>
         <element>
@@ -6426,7 +6488,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Dark and moody atmosphere</name>
+            <name>Dark and gloomy atmosphere</name>
             <firstHalf type="adjective">Dark</firstHalf>
             <secondHalf the="false">
                 <singular>atmosphere</singular>
@@ -6437,6 +6499,34 @@
             <firstHalf type="noun">Crime</firstHalf>
             <secondHalf the="false">
                 <singular>punishment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Gambling</name>
+            <firstHalf type="verb">Gambling</firstHalf>
+            <secondHalf the="false">
+                <singular>gambling</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hunting</name>
+            <firstHalf type="verb">Hunting</firstHalf>
+            <secondHalf the="false">
+                <singular>hunting</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Farming</name>
+            <firstHalf type="verb" preference="singular">Farming</firstHalf>
+            <secondHalf the="false">
+                <singular>farming</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Cooking</name>
+            <firstHalf type="verb">Cooking</firstHalf>
+            <secondHalf the="false">
+                <singular>cooking</singular>
             </secondHalf>
         </element>
         <element>
