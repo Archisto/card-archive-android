@@ -312,10 +312,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Areas of high difficulty</name>
-            <firstHalf type="adjective">Areas full of</firstHalf> <!-- endsInPreposition="true"? -->
+            <name>Seeing the inside and the outside of a location</name>
+            <firstHalf type="noun">Inside and outside</firstHalf> <!-- abnormal type -->
             <secondHalf the="false">
-                <singular>high difficulty</singular>
+                <singular>location</singular>
+                <plural>locations</plural>
             </secondHalf>
         </element>
         <element>
@@ -324,6 +325,13 @@
             <secondHalf type="verb" the="false">
                 <singular>is dangerous</singular>
                 <plural>are dangerous</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Areas of high difficulty</name>
+            <firstHalf type="adjective">Areas full of</firstHalf> <!-- endsInPreposition="true"? -->
+            <secondHalf the="false">
+                <singular>high difficulty</singular>
             </secondHalf>
         </element>
         <element>
@@ -1334,7 +1342,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>An object is biased towards or against a certain team</name>
+            <name>Bias towards or against a certain team</name>
             <firstHalf type="adjective">Biased</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>against a certain team</singular>
@@ -2108,15 +2116,32 @@
         <element>
             <name>Rewards disappear if not collected quickly enough</name>
             <firstHalf type="adjective">Disappearing</firstHalf>
-            <secondHalf the="false">
-                <singular>time limit</singular>
+            <secondHalf type="modifier" the="false">
+                <singular>quickly</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Abandoning a helpful thing as a last resort</name>
+            <name>Abandoning a useful thing</name>
             <firstHalf type="verb">Abandoning</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>as a last resort</singular>
+            <secondHalf the="false">
+                <singular>useful thing</singular>
+                <plural>useful things</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Interrupting an enemy's attack or ability</name>
+            <firstHalf type="verb">Interrupting</firstHalf>
+            <secondHalf the="false">
+                <singular>enemy's attack or ability</singular>
+                <plural>enemies' attacks or abilities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Leaving threats undisturbed lets them grow stronger</name>
+            <firstHalf type="noun pl">Threats</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>grows stronger</singular>
+                <plural>grow stronger</plural>
             </secondHalf>
         </element>
         <element>
@@ -2133,21 +2158,6 @@
             <secondHalf type="verb" the="false">
                 <singular>causes harm</singular>
                 <plural>cause harm</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Leaving threats undisturbed lets them grow stronger</name>
-            <firstHalf type="noun pl">Threats</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>grows stronger</singular>
-                <plural>grow stronger</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Interrupting an enemy's attack or ability</name>
-            <firstHalf type="verb">Interrupting</firstHalf>
-            <secondHalf the="false">
-                <singular>an enemy's attack or ability</singular>
             </secondHalf>
         </element>
         <element>
@@ -3382,9 +3392,10 @@
         </element>
         <element>
             <name>Leaving a vehicle to do something</name>
-            <firstHalf type="adjective">Inside and outside</firstHalf>
-            <secondHalf type="modifier" the="false">
-                <singular>inside and outside</singular>
+            <firstHalf type="verb">Leaving</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>waits for the player's return</singular>
+                <plural>wait for the player's return</plural>
             </secondHalf>
         </element>
         <element>
@@ -3392,6 +3403,7 @@
             <firstHalf type="adjective">Automatic</firstHalf>
             <secondHalf the="false">
                 <singular>pilot</singular>
+                <plural>pilots</plural>
             </secondHalf>
         </element>
         <element>
@@ -5007,7 +5019,7 @@
         <element>
             <name>Health pick-ups are rare</name>
             <firstHalf type="noun pl">Health pick-ups</firstHalf>
-            <secondHalf the="false">
+            <secondHalf type="verb" the="false">
                 <singular>is rare</singular>
                 <plural>are rare</plural>
             </secondHalf>
@@ -5028,7 +5040,7 @@
         </element>
         <element>
             <name>Factions use different gear or vehicles</name>
-            <firstHalf type="verb">Factions use different</firstHalf>
+            <firstHalf type="verb">Factions use different</firstHalf> <!-- abnormal verb -->
             <secondHalf the="false">
                 <plural>gear or vehicles</plural>
             </secondHalf>
@@ -5364,8 +5376,9 @@
         <element>
             <name>Failure changes the player character</name>
             <firstHalf type="verb" preference="singular">Failure changes</firstHalf>
-            <secondHalf the="true">
+            <secondHalf the="false"> <!-- true? -->
                 <singular>player character</singular>
+                <plural>player characters</plural>
             </secondHalf>
         </element>
         <element>
