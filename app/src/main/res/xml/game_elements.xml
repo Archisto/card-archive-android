@@ -451,7 +451,7 @@
         </element>
         <element>
             <name>Doors</name>
-            <firstHalf type="noun pl" preference="plural">Doors</firstHalf>
+            <firstHalf type="noun pl">Doors</firstHalf>
             <secondHalf the="false">
                 <singular>door</singular>
                 <plural>doors</plural>
@@ -459,7 +459,7 @@
         </element>
         <element>
             <name>Ladders</name>
-            <firstHalf type="noun pl" preference="plural">Ladders</firstHalf>
+            <firstHalf type="noun pl">Ladders</firstHalf>
             <secondHalf the="false">
                 <singular>ladder</singular>
                 <plural>ladders</plural>
@@ -491,7 +491,7 @@
         </element>
         <element>
             <name>Barriers which only let through specific things</name>
-            <firstHalf type="noun pl" preference="plural">Barriers which only let through</firstHalf> <!-- endsInPreposition="true"? -->
+            <firstHalf type="noun pl">Barriers which only let through</firstHalf> <!-- endsInPreposition="true"? -->
             <secondHalf the="false">
                 <singular>specific thing</singular> <!-- indefinite article -->
                 <plural>specific things</plural>
@@ -514,7 +514,7 @@
         </element>
         <element>
             <name>Vantage points</name>
-            <firstHalf type="noun pl" preference="plural">Vantage points</firstHalf>
+            <firstHalf type="noun pl">Vantage points</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>offers a good view of the area</singular>
                 <plural>offer a good view of the area</plural>
@@ -522,7 +522,7 @@
         </element>
         <element>
             <name>Checkpoints</name>
-            <firstHalf type="noun pl" preference="plural">Checkpoints</firstHalf>
+            <firstHalf type="noun pl">Checkpoints</firstHalf>
             <secondHalf the="false">
                 <singular>checkpoint</singular>
                 <plural>checkpoints</plural>
@@ -530,7 +530,7 @@
         </element>
         <element>
             <name>Safe places where the player can restock resources</name>
-            <firstHalf type="noun pl" preference="plural">Safe places</firstHalf>
+            <firstHalf type="noun pl">Safe places</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>restocks resources</singular>
                 <plural>restock resources</plural>
@@ -691,7 +691,7 @@
         </element>
         <element>
             <name>Feelings</name>
-            <firstHalf type="noun pl" preference="plural">Feelings</firstHalf>
+            <firstHalf type="noun pl">Feelings</firstHalf>
             <secondHalf the="false">
                 <plural>feelings</plural>
             </secondHalf>
@@ -857,7 +857,7 @@
         </element>
         <element>
             <name>Spirit form</name>
-            <firstHalf type="noun pl" preference="plural">Spirits</firstHalf>
+            <firstHalf type="noun pl">Spirits</firstHalf>
             <secondHalf the="false">
                 <singular>spirit</singular>
                 <plural>spirits</plural>
@@ -865,7 +865,7 @@
         </element>
         <element>
             <name>Beast form</name>
-            <firstHalf type="noun pl" preference="plural">Beasts</firstHalf>
+            <firstHalf type="noun pl">Beasts</firstHalf>
             <secondHalf the="false">
                 <singular>beast</singular>
                 <plural>beasts</plural>
@@ -1031,7 +1031,7 @@
         </element>
         <element>
             <name>Non-player characters look identical to the player character</name>
-            <firstHalf type="noun pl" preference="plural">Non-player characters</firstHalf>
+            <firstHalf type="noun pl">Non-player characters</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>has identical copies</singular>
                 <plural>look identical</plural>
@@ -1144,7 +1144,7 @@
         </element>
         <element>
             <name>Other players can join and leave anytime</name>
-            <firstHalf type="noun pl" preference="plural">Other players</firstHalf>
+            <firstHalf type="noun pl">Other players</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can join and leave anytime</singular>
             </secondHalf>
@@ -1174,7 +1174,7 @@
         </element>
         <element>
             <name>Multiple players control the same entity</name>
-            <firstHalf type="noun pl" preference="plural">Multiple players</firstHalf>
+            <firstHalf type="noun pl">Multiple players</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>controls an entity</singular>
                 <plural>control an entity</plural>
@@ -1297,7 +1297,7 @@
         </element>
         <element>
             <name>Dead players change teams</name>
-            <firstHalf type="noun pl" preference="plural">Dead players</firstHalf>
+            <firstHalf type="noun pl">Dead players</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>changes team</singular>
                 <plural>change teams</plural>
@@ -1418,7 +1418,7 @@
         </element>
         <element>
             <name>Reinforcements</name>
-            <firstHalf type="noun pl" preference="plural">Reinforcements</firstHalf>
+            <firstHalf type="noun pl">Reinforcements</firstHalf>
             <secondHalf the="false">
                 <plural>reinforcements</plural>
             </secondHalf>
@@ -1673,7 +1673,7 @@
         </element>
         <element>
             <name>Vehicle customization</name>
-            <firstHalf type="noun pl" preference="plural">Vehicles</firstHalf>
+            <firstHalf type="noun pl">Vehicles</firstHalf>
             <secondHalf the="false">
                 <singular>customization</singular>
             </secondHalf>
@@ -1727,7 +1727,7 @@
         </element>
         <element>
             <name>Making an area safe</name>
-            <firstHalf type="noun pl" preference="plural">Areas</firstHalf>
+            <firstHalf type="noun pl">Areas</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be made safe</singular>
             </secondHalf>
@@ -1741,7 +1741,7 @@
         </element>
         <element>
             <name>Some rules can be broken, intentionally or not</name>
-            <firstHalf type="noun pl" preference="plural">Rules</firstHalf>
+            <firstHalf type="noun pl">Rules</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be broken</singular>
             </secondHalf>
@@ -1786,7 +1786,7 @@
         </element>
         <element>
             <name>Factions and reputation</name>
-            <firstHalf type="noun pl" preference="plural">Factions</firstHalf>
+            <firstHalf type="noun pl">Factions</firstHalf>
             <secondHalf the="false">
                 <singular>reputation</singular>
             </secondHalf>
@@ -1913,7 +1913,7 @@
         </element>
         <element>
             <name>Dead/frozen characters remain as parts of the environment</name>
-            <firstHalf type="noun pl" preference="plural">Dead/frozen characters</firstHalf>
+            <firstHalf type="noun pl">Dead/frozen characters</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is a part of the environment</singular>
                 <plural>are parts of the environment</plural>
@@ -2006,14 +2006,14 @@
         </element>
         <element>
             <name>The controls consist of only one or two buttons</name>
-            <firstHalf type="noun pl" preference="plural">Simple controls</firstHalf>
+            <firstHalf type="noun pl">Simple controls</firstHalf>
             <secondHalf type="modifier" the="false">
                 <plural>with only one or two buttons</plural>
             </secondHalf>
         </element>
         <element>
             <name>Cards</name>
-            <firstHalf type="noun pl" preference="plural">Cards</firstHalf>
+            <firstHalf type="noun pl">Cards</firstHalf>
             <secondHalf the="false">
                 <singular>card</singular>
                 <plural>cards</plural>
@@ -2137,7 +2137,7 @@
         </element>
         <element>
             <name>Leaving threats undisturbed lets them grow stronger</name>
-            <firstHalf type="noun pl" preference="plural">Threats</firstHalf>
+            <firstHalf type="noun pl">Threats</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>grows stronger</singular>
                 <plural>grow stronger</plural>
@@ -2189,7 +2189,7 @@
         </element>
         <element>
             <name>Mistakes pile up</name>
-            <firstHalf type="noun pl" preference="plural">Mistakes</firstHalf>
+            <firstHalf type="noun pl">Mistakes</firstHalf>
             <secondHalf type="verb" the="false">
                 <plural>pile up</plural>
             </secondHalf>
@@ -2235,7 +2235,7 @@
         </element>
         <element>
             <name>Things of the same family enhance each other</name>
-            <firstHalf type="noun pl" preference="plural">Things of the same family</firstHalf>
+            <firstHalf type="noun pl">Things of the same family</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>enhances something</singular>
                 <plural>enhance each other</plural>
@@ -2243,7 +2243,7 @@
         </element>
         <element>
             <name>An object and parts separated from it are linked</name>
-            <firstHalf type="noun pl" preference="plural">An object and parts separated from it</firstHalf>
+            <firstHalf type="noun pl">An object and parts separated from it</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is linked to something</singular>
                 <plural>are linked</plural>
@@ -2555,7 +2555,7 @@
         </element>
         <element>
             <name>Abilities with cooldowns</name>
-            <firstHalf type="noun pl" preference="plural">Abilities</firstHalf>
+            <firstHalf type="noun pl">Abilities</firstHalf>
             <secondHalf the="false">
                 <singular>cooldown</singular>
                 <plural>cooldowns</plural>
@@ -2592,7 +2592,7 @@
         </element>
         <element>
             <name>Special abilities can be used after gaining enough energy</name>
-            <firstHalf type="noun pl" preference="plural">Special abilities</firstHalf>
+            <firstHalf type="noun pl">Special abilities</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>after gaining enough energy</singular>
             </secondHalf>
@@ -2607,7 +2607,7 @@
         </element>
         <element>
             <name>Power-ups</name>
-            <firstHalf type="noun pl" preference="plural">Power-ups</firstHalf>
+            <firstHalf type="noun pl">Power-ups</firstHalf>
             <secondHalf the="false">
                 <singular>power-up</singular>
                 <plural>power-ups</plural>
@@ -2950,7 +2950,7 @@
         </element>
         <element>
             <name>Characters or objects can fuse and form a single entity</name>
-            <firstHalf type="noun pl" preference="plural">Characters or objects</firstHalf>
+            <firstHalf type="noun pl">Characters or objects</firstHalf>
             <secondHalf the="false">
                 <singular>fusion</singular>
             </secondHalf>
@@ -3196,7 +3196,7 @@
         </element>
         <element>
             <name>Zip lines</name>
-            <firstHalf type="noun pl" preference="plural">Zip lines</firstHalf>
+            <firstHalf type="noun pl">Zip lines</firstHalf>
             <secondHalf the="false">
                 <singular>line</singular>
                 <plural>lines</plural>
@@ -3336,14 +3336,14 @@
         </element>
         <element>
             <name>Waypoints</name>
-            <firstHalf type="noun pl" preference="plural">Waypoints</firstHalf>
+            <firstHalf type="noun pl">Waypoints</firstHalf>
             <secondHalf the="false">
                 <plural>waypoints</plural>
             </secondHalf>
         </element>
         <element>
             <name>Vehicles</name>
-            <firstHalf type="noun pl" preference="plural">Vehicles</firstHalf>
+            <firstHalf type="noun pl">Vehicles</firstHalf>
             <secondHalf the="false">
                 <singular>vehicle</singular>
                 <plural>vehicles</plural>
@@ -3549,7 +3549,7 @@
         </element>
         <element>
             <name>Mines</name>
-            <firstHalf type="noun pl" preference="plural">Mines</firstHalf>
+            <firstHalf type="noun pl">Mines</firstHalf>
             <secondHalf the="false">
                 <plural>mines</plural>
             </secondHalf>
@@ -3837,7 +3837,7 @@
         </element>
         <element>
             <name>Weapons can be found in the world</name>
-            <firstHalf type="noun pl" preference="plural">Weapons</firstHalf>
+            <firstHalf type="noun pl">Weapons</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be found in the world</singular>
             </secondHalf>
@@ -3930,7 +3930,7 @@
         </element>
         <element>
             <name>Enemies which spawn more enemies</name>
-            <firstHalf type="noun pl" preference="plural">Enemies</firstHalf>
+            <firstHalf type="noun pl">Enemies</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>spawns more enemies</singular>
                 <plural>spawn more enemies</plural>
@@ -3938,7 +3938,7 @@
         </element>
         <element>
             <name>Enemies which boost or heal others</name>
-            <firstHalf type="noun pl" preference="plural">Enemies</firstHalf>
+            <firstHalf type="noun pl">Enemies</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>boosts or heals</singular>
                 <plural>boost or heal</plural>
@@ -3975,7 +3975,7 @@
         </element>
         <element>
             <name>Enemy spawn points can be destroyed or otherwise tampered with</name>
-            <firstHalf type="noun pl" preference="plural">Enemy spawn points</firstHalf>
+            <firstHalf type="noun pl">Enemy spawn points</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be destroyed</singular>
             </secondHalf>
@@ -4005,7 +4005,7 @@
         </element>
         <element>
             <name>Enemies can't leave their territories</name>
-            <firstHalf type="noun pl" preference="plural">Enemies</firstHalf>
+            <firstHalf type="noun pl">Enemies</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can't leave its territory</singular>
                 <plural>can't leave their territories</plural>
@@ -4021,7 +4021,7 @@
         </element>
         <element>
             <name>Enemies or neutral characters attack when provoked</name>
-            <firstHalf type="noun pl" preference="plural">Enemies or neutral characters</firstHalf>
+            <firstHalf type="noun pl">Enemies or neutral characters</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>attacks when provoked</singular>
                 <plural>attack when provoked</plural>
@@ -4038,7 +4038,7 @@
     <category id="8" name="Thinking" shortName="Thi">
         <element>
             <name>Puzzles</name>
-            <firstHalf type="noun pl" preference="plural">Puzzles</firstHalf>
+            <firstHalf type="noun pl">Puzzles</firstHalf>
             <secondHalf the="false">
                 <singular>puzzle</singular>
                 <plural>puzzles</plural>
@@ -4046,7 +4046,7 @@
         </element>
         <element>
             <name>Riddles</name>
-            <firstHalf type="noun pl" preference="plural">Riddles</firstHalf>
+            <firstHalf type="noun pl">Riddles</firstHalf>
             <secondHalf the="false">
                 <singular>riddle</singular>
                 <plural>riddles</plural>
@@ -4198,7 +4198,7 @@
         </element>
         <element>
             <name>Multiple ways to solve a problem</name>
-            <firstHalf type="noun pl" preference="plural">Multiple ways to use</firstHalf>
+            <firstHalf type="noun pl">Multiple ways to use</firstHalf>
             <secondHalf the="false">
                 <singular>solution</singular>
                 <plural>solutions</plural>
@@ -4392,7 +4392,7 @@
         </element>
         <element>
             <name>Notifications or characters will tell if something is wrong</name>
-            <firstHalf type="noun pl" preference="plural">Sources of information</firstHalf>
+            <firstHalf type="noun pl">Sources of information</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>will tell if something is wrong</singular>
             </secondHalf>
@@ -4505,7 +4505,7 @@
         </element>
         <element>
             <name>Used options are locked out of play</name>
-            <firstHalf type="noun pl" preference="plural">Used options</firstHalf>
+            <firstHalf type="noun pl">Used options</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is locked out of play</singular>
                 <plural>are locked out of play</plural>
@@ -4513,7 +4513,7 @@
         </element>
         <element>
             <name>The player's choices affect the story or gameplay opportunities</name>
-            <firstHalf type="noun pl" preference="plural">The player's choices</firstHalf>
+            <firstHalf type="noun pl">The player's choices</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>affects gameplay opportunities</singular>
                 <plural>affect gameplay opportunities</plural>
@@ -4602,7 +4602,7 @@
         </element>
         <element>
             <name>Gifts</name>
-            <firstHalf type="noun pl" preference="plural">Gifts</firstHalf>
+            <firstHalf type="noun pl">Gifts</firstHalf>
             <secondHalf the="false">
                 <singular>gift</singular>
                 <plural>gifts</plural>
@@ -4625,7 +4625,7 @@
         </element>
         <element>
             <name>Blocks</name>
-            <firstHalf type="noun pl" preference="plural">Blocks</firstHalf>
+            <firstHalf type="noun pl">Blocks</firstHalf>
             <secondHalf the="false">
                 <singular>block</singular>
                 <plural>blocks</plural>
@@ -4776,7 +4776,7 @@
         </element>
         <element>
             <name>Maps are stored in the inventory</name>
-            <firstHalf type="noun pl" preference="plural">Maps</firstHalf>
+            <firstHalf type="noun pl">Maps</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is stored in the inventory</singular>
                 <plural>are stored in the inventory</plural>
@@ -4845,7 +4845,7 @@
         </element>
         <element>
             <name>Trade goods are valued differently in different places</name>
-            <firstHalf type="noun pl" preference="plural">Trade goods</firstHalf>
+            <firstHalf type="noun pl">Trade goods</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is valued differently in different places</singular>
                 <plural>are valued differently in different places</plural>
@@ -4874,21 +4874,21 @@
         </element>
         <element>
             <name>Items can become unusable</name>
-            <firstHalf type="noun pl" preference="plural">Items</firstHalf>
+            <firstHalf type="noun pl">Items</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can become unusable</singular>
             </secondHalf>
         </element>
         <element>
             <name>Unneeded items or perks can be stored for another character</name>
-            <firstHalf type="noun pl" preference="plural">Unneeded items or perks</firstHalf>
+            <firstHalf type="noun pl">Unneeded items or perks</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be stored for another character</singular>
             </secondHalf>
         </element>
         <element>
             <name>Useful items can be destroyed</name>
-            <firstHalf type="noun pl" preference="plural">Useful items</firstHalf>
+            <firstHalf type="noun pl">Useful items</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be destroyed</singular>
             </secondHalf>
@@ -4999,14 +4999,14 @@
         </element>
         <element>
             <name>Pick-ups</name>
-            <firstHalf type="noun pl" preference="plural">Pick-ups</firstHalf>
+            <firstHalf type="noun pl">Pick-ups</firstHalf>
             <secondHalf the="false">
                 <plural>pick-ups</plural>
             </secondHalf>
         </element>
         <element>
             <name>Health pick-ups are rare</name>
-            <firstHalf type="noun pl" preference="plural">Health pick-ups</firstHalf>
+            <firstHalf type="noun pl">Health pick-ups</firstHalf>
             <secondHalf the="false">
                 <singular>is rare</singular>
                 <plural>are rare</plural>
@@ -5079,7 +5079,7 @@
         </element>
         <element>
             <name>Defeated characters drop their equipment</name>
-            <firstHalf type="noun pl" preference="plural">Defeated characters</firstHalf>
+            <firstHalf type="noun pl">Defeated characters</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>drops equipment</singular>
                 <plural>drop equipment</plural>
@@ -5087,7 +5087,7 @@
         </element>
         <element>
             <name>Defeated characters drop resources</name>
-            <firstHalf type="noun pl" preference="plural">Defeated characters</firstHalf>
+            <firstHalf type="noun pl">Defeated characters</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>drops resources</singular>
                 <plural>drop resources</plural>
@@ -5550,7 +5550,7 @@
         </element>
         <element>
             <name>Stealing points from the opponent</name>
-            <firstHalf type="noun pl" preference="plural">Points</firstHalf>
+            <firstHalf type="noun pl">Points</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>can be stolen from the opponent</singular>
             </secondHalf>
@@ -5595,7 +5595,7 @@
         </element>
         <element>
             <name>New targets emerge at regular intervals</name>
-            <firstHalf type="noun pl" preference="plural">New targets</firstHalf>
+            <firstHalf type="noun pl">New targets</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>emerges at regular intervals</singular>
                 <plural>emerge at regular intervals</plural>
@@ -5716,7 +5716,7 @@
         </element>
         <element>
             <name>Cutscenes</name>
-            <firstHalf type="noun pl" preference="plural">Cutscenes</firstHalf>
+            <firstHalf type="noun pl">Cutscenes</firstHalf>
             <secondHalf the="false">
                 <singular>cutscene</singular>
                 <plural>cutscenes</plural>
@@ -5761,7 +5761,7 @@
         </element>
         <element>
             <name>Pixel art</name>
-            <firstHalf type="noun pl" preference="plural">Pixels</firstHalf>
+            <firstHalf type="noun pl">Pixels</firstHalf>
             <secondHalf the="false">
                 <plural>pixels</plural>
             </secondHalf>
@@ -5860,7 +5860,7 @@
         </element>
         <element>
             <name>Sounds/voices are important</name>
-            <firstHalf type="noun pl" preference="plural">Sounds/voices</firstHalf>
+            <firstHalf type="noun pl">Sounds/voices</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>is important</singular>
                 <plural>are important</plural>
@@ -5990,7 +5990,7 @@
         </element>
         <element>
             <name>Audio/visual cues for nearby hazards or points of interest</name>
-            <firstHalf type="noun pl" preference="plural" endsInPreposition="true">Audio/visual cues for</firstHalf>
+            <firstHalf type="noun pl" endsInPreposition="true">Audio/visual cues for</firstHalf>
             <secondHalf the="false">
                 <plural>points of interest</plural>
             </secondHalf>
@@ -6336,7 +6336,7 @@
         </element>
         <element>
             <name>Episodic game</name>
-            <firstHalf type="noun pl" preference="plural">Episodes</firstHalf>
+            <firstHalf type="noun pl">Episodes</firstHalf>
             <secondHalf the="false">
                 <singular>episode</singular>
                 <plural>episodes</plural>

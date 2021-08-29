@@ -111,18 +111,21 @@ public class Card {
                                  NameHalfType secondHalfPrefType,
                                  boolean endsInPreposition) {
         firstHalf = nameHalf;
+        firstHalfEndsInPreposition = endsInPreposition;
 
+        // The first half's type; default: verb
         if (type != null)
             firstHalfType = type;
         else
             firstHalfType = NameHalfType.verb;
 
+        // The first half's preference for the second half being plural
         if (secondHalfPrefType != null && secondHalfPrefType != NameHalfType.none)
             secondHalfPrefPlural = secondHalfPrefType == NameHalfType.plural;
-        else if (firstHalfType == NameHalfType.verb || firstHalfType == NameHalfType.adjective)
+        else if (firstHalfType == NameHalfType.verb
+                 || firstHalfType == NameHalfType.adjective
+                 || firstHalfType == NameHalfType.nounPlural)
             secondHalfPrefPlural = true;
-
-        this.firstHalfEndsInPreposition = endsInPreposition;
     }
 
     public void setNameSecondHalf(String nameHalf, NameHalfType type, boolean plural) {
