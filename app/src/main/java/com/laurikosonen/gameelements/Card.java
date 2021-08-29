@@ -7,11 +7,11 @@ public class Card {
     public String categoryShortName;
     public int categoryNum;
     private String firstHalf;
+    private String firstHalfNoEndPreposition;
     private String secondHalfSingular;
     private String secondHalfPlural;
     public NameHalfType firstHalfType;
     public NameHalfType secondHalfType;
-    private boolean firstHalfEndsInPreposition;
     private boolean secondHalfPrefPlural;
     protected boolean keepCaps; // unused?
 
@@ -53,11 +53,13 @@ public class Card {
                 // Default
                 result = firstHalf;
 
-                // Remove ending preposition if the second half's type is verb or modifier
-                if (firstHalfEndsInPreposition
+                // Use the version without ending preposition
+                // if the second half's type is verb or modifier
+                if (firstHalfNoEndPreposition != null
+                    && !firstHalfNoEndPreposition.isEmpty()
                     && (secondHalfCardType == NameHalfType.verb
                         || secondHalfCardType == NameHalfType.modifier)) {
-                    result = result.substring(0, result.lastIndexOf(" "));
+                    result = firstHalfNoEndPreposition;
                 }
             }
             else if (keepCaps) {
@@ -111,7 +113,6 @@ public class Card {
                                  NameHalfType secondHalfPrefType,
                                  boolean endsInPreposition) {
         firstHalf = nameHalf;
-        firstHalfEndsInPreposition = endsInPreposition;
 
         // The first half's type; default: verb
         if (type != null)
@@ -126,6 +127,11 @@ public class Card {
                  || firstHalfType == NameHalfType.adjective
                  || firstHalfType == NameHalfType.nounPlural)
             secondHalfPrefPlural = true;
+
+        // Set version without ending preposition
+        if (endsInPreposition) {
+            firstHalfNoEndPreposition = firstHalf.substring(0, firstHalf.lastIndexOf(" "));
+        }
     }
 
     public void setNameSecondHalf(String nameHalf, NameHalfType type, boolean plural) {
