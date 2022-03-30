@@ -21,6 +21,7 @@ public class Card {
         adjective,
         noun,
         nounPlural,
+        specifier,
         modifier,
         singular,
         plural
@@ -61,6 +62,15 @@ public class Card {
                         || secondHalfCardType == NameHalfType.modifier)) {
                     result = firstHalfNoEndPreposition;
                 }
+
+                // Pluralize a specifier which prefers plural second half
+                // and the second half is a verb or a modifier
+                if (firstHalfType == NameHalfType.specifier
+                    && secondHalfPrefPlural
+                    && (secondHalfCardType == NameHalfType.verb
+                        || secondHalfCardType == NameHalfType.modifier)) {
+                    result = result + 's';
+                }
             }
             else if (keepCaps) {
                 result = name;
@@ -88,6 +98,18 @@ public class Card {
             else if (otherFirstHalfType == NameHalfType.noun
                      && secondHalfType == NameHalfType.verb) {
                 result = secondHalfSingular;
+            }
+            else if (otherFirstHalfType == NameHalfType.specifier) {
+                // Plural because the first half is a specifier
+                // and the second not a verb or the first half prefers plural
+                if (secondHalfType != NameHalfType.verb
+                      || secondHalfTypePref == NameHalfType.plural) {
+                    result = secondHalfPlural;
+                }
+                // Otherwise singular for a specifier
+                else {
+                    result = secondHalfSingular;
+                }
             }
             // Plural, preference
             else if (secondHalfTypePref == NameHalfType.plural) {
@@ -162,6 +184,8 @@ public class Card {
             return NameHalfType.noun;
         else if (typeString.equalsIgnoreCase("noun pl"))
             return NameHalfType.nounPlural;
+        else if (typeString.equalsIgnoreCase("specifier"))
+            return NameHalfType.specifier;
         else if (typeString.equalsIgnoreCase("modifier"))
             return NameHalfType.modifier;
         else if (typeString.equalsIgnoreCase("singular"))
