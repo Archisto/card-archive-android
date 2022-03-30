@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Element count: [Regex:] <name>.+<POISTA/name> -->
+<!-- Element count / get name: [Regex:] (?<=<name>).+(?=<POISTA/name>) -->
 
 <resources>
     <category id="0" name="World" shortName="Wld">
@@ -172,6 +172,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Different areas have different gameplay mechanics</name>
+            <firstHalf type="verb">Different areas have different</firstHalf> <!-- abnormal verb / adjective? -->
+            <secondHalf the="false">
+                <plural>gameplay mechanics</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Enemy camps, forts or bases</name>
             <firstHalf type="specifier">Enemy</firstHalf>
             <secondHalf the="false">
@@ -321,6 +328,14 @@
         <element>
             <name>Traps</name>
             <firstHalf type="noun">Trap</firstHalf>
+            <secondHalf the="false">
+                <singular>trap</singular>
+                <plural>traps</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Triggered traps reset after a while</name>
+            <firstHalf type="verb">Resetting</firstHalf>
             <secondHalf the="false">
                 <singular>trap</singular>
                 <plural>traps</plural>
@@ -585,7 +600,7 @@
             <name>Barriers which only let through specific things</name>
             <firstHalf type="noun pl">Barriers which only let through</firstHalf> <!-- endsInPreposition="true"? -->
             <secondHalf the="false">
-                <singular>specific thing</singular> <!-- indefinite article -->
+                <singular>a specific thing</singular> <!-- indefinite article -->
                 <plural>specific things</plural>
             </secondHalf>
         </element>
@@ -616,6 +631,14 @@
             <firstHalf type="verb" endsInPreposition="true">Taking advantage of</firstHalf>
             <secondHalf the="true">
                 <singular>environment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The terrain type influences gameplay</name>
+            <firstHalf type="noun">Terrain</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>influences gameplay</singular>
+                <plural>influence gameplay</plural>
             </secondHalf>
         </element>
         <element>
@@ -783,6 +806,13 @@
             <firstHalf type="noun">Air</firstHalf>
             <secondHalf the="false">
                 <singular>supply</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Luck</name>
+            <firstHalf type="noun">Luck</firstHalf>
+            <secondHalf the="false">
+                <singular>luck</singular>
             </secondHalf>
         </element>
         <element>
@@ -975,14 +1005,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Antagonist</name>
-            <firstHalf type="noun">Antagonist</firstHalf>
-            <secondHalf the="false">
-                <singular>antagonist</singular>
-                <plural>antagonists</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Relentless pursuer</name>
             <firstHalf type="adjective">Relentless</firstHalf>
             <secondHalf the="false">
@@ -1128,7 +1150,7 @@
             <name>Choosing the right character for a certain task</name>
             <firstHalf type="noun">Chosen character</firstHalf>
             <secondHalf the="false">
-                <singular>certain task</singular> <!-- indefinite article -->
+                <singular>a certain task</singular> <!-- indefinite article -->
                 <plural>certain tasks</plural>
             </secondHalf>
         </element>
@@ -1190,7 +1212,7 @@
     <category id="2" name="Group" shortName="Grp">
         <element>
             <name>Multiplayer</name>
-            <firstHalf type="adjective">Multiplayer</firstHalf>
+            <firstHalf type="specifier">Multiplayer</firstHalf>
             <secondHalf the="true">
                 <singular>player</singular>
                 <plural>players</plural>
@@ -1649,49 +1671,6 @@
             <secondHalf the="false">
                 <singular>crowd/horde</singular>
                 <plural>crowds/hordes</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Hive mind</name>
-            <firstHalf type="adjective">Hive</firstHalf>
-            <secondHalf the="false">
-                <singular>mind</singular>
-                <plural>minds</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Secret society</name>
-            <firstHalf type="adjective">Secret</firstHalf>
-            <secondHalf the="false">
-                <singular>society</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Conspiracy</name>
-            <firstHalf type="noun">Conspiracy</firstHalf>
-            <secondHalf the="false">
-                <singular>conspiracy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Tyrannical leadership</name>
-            <firstHalf type="adjective">Tyrannical</firstHalf>
-            <secondHalf the="false">
-                <singular>leadership</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Criminal organization</name>
-            <firstHalf type="adjective">Criminal</firstHalf>
-            <secondHalf the="false">
-                <singular>organization</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Ancient civilization</name>
-            <firstHalf type="adjective">Ancient</firstHalf>
-            <secondHalf the="false">
-                <singular>civilization</singular>
             </secondHalf>
         </element>
     </category>
@@ -2586,14 +2565,14 @@
             </secondHalf>
         </element>
         <element>
-            <name>Marking things to make others focus on them</name> <!--Spotting-->
+            <name>Marking things to make others focus on them</name> <!--Spotting/tagging-->
             <firstHalf type="verb">Marking</firstHalf>
             <secondHalf the="false">
                 <singular>focus</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Calling out threats to others</name> <!--Spotting-->
+            <name>Calling out threats to others</name> <!--Spotting/tagging-->
             <firstHalf type="verb">Calling out</firstHalf>
             <secondHalf the="false">
                 <singular>another player</singular>
@@ -3082,14 +3061,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Following</name>
-            <firstHalf type="verb">Following</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>follows</singular>
-                <plural>follow</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>Peeking around corners</name>
             <firstHalf type="verb" endsInPreposition="true">Peeking around</firstHalf>
             <secondHalf the="false">
@@ -3367,13 +3338,6 @@
     </category>
     <category id="6" name="Navigation" shortName="Nav">
         <element>
-            <name>Jumping</name>
-            <firstHalf type="verb">Jumping</firstHalf>
-            <secondHalf the="false">
-                <singular>jump</singular>
-            </secondHalf>
-        </element>
-        <element>
             <name>Platforming</name>
             <firstHalf type="verb">Platforming</firstHalf>
             <secondHalf the="false">
@@ -3384,7 +3348,7 @@
         <element>
             <name>Climbing</name>
             <firstHalf type="verb">Climbing</firstHalf>
-            <secondHalf type="verb" the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>climbing</singular>
             </secondHalf>
         </element>
@@ -3411,51 +3375,65 @@
             </secondHalf>
         </element>
         <element>
+            <name>Extra speed</name> <!--Speed boosts-->
+            <firstHalf type="adjective">Extra</firstHalf>
+            <secondHalf the="false">
+                <singular>speed</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Running</name> <!--Sprinting-->
+            <firstHalf type="verb">Running</firstHalf>
+            <secondHalf the="false"> <!-- type="verb" -->
+                <singular>running</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Riding</name>
             <firstHalf type="verb">Riding</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>riding</singular>
             </secondHalf>
         </element>
         <element>
             <name>Swimming</name>
             <firstHalf type="verb">Swimming</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>swimming</singular>
             </secondHalf>
         </element>
         <element>
             <name>Diving</name>
             <firstHalf type="verb">Diving</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>diving</singular>
             </secondHalf>
         </element>
         <element>
             <name>Skydiving</name>
             <firstHalf type="verb">Skydiving</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>skydiving</singular>
             </secondHalf>
         </element>
         <element>
             <name>Gliding</name>
             <firstHalf type="verb">Gliding</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>gliding</singular>
             </secondHalf>
         </element>
         <element>
             <name>Flying</name>
             <firstHalf type="verb">Flying</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>flying</singular>
             </secondHalf>
         </element>
         <element>
             <name>Falling</name>
             <firstHalf type="verb">Falling</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>falling</singular>
             </secondHalf>
         </element>
@@ -3469,28 +3447,28 @@
         <element>
             <name>Pole vaulting</name>
             <firstHalf type="noun">Pole</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>vaulting</singular>
             </secondHalf>
         </element>
         <element>
             <name>Wall running</name>
             <firstHalf type="noun">Wall</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>running</singular>
             </secondHalf>
         </element>
         <element>
             <name>Sliding</name>
             <firstHalf type="verb">Sliding</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>sliding</singular>
             </secondHalf>
         </element>
         <element>
             <name>Crawling</name>
             <firstHalf type="verb">Crawling</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>crawling</singular>
             </secondHalf>
         </element>
@@ -3607,7 +3585,7 @@
         <element>
             <name>Being unable to stop moving</name>
             <firstHalf type="noun" endsInPreposition="true">Inability of</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>stopping</singular>
             </secondHalf>
         </element>
@@ -3634,9 +3612,30 @@
         </element>
         <element>
             <name>Spiral motion</name>
-            <firstHalf type="noun">Spiral</firstHalf>
+            <firstHalf type="specifier">Spiral</firstHalf>
             <secondHalf the="false">
                 <singular>motion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Slow motion</name>
+            <firstHalf type="adjective">Slow</firstHalf>
+            <secondHalf the="false">
+                <singular>motion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Jumping</name>
+            <firstHalf type="verb">Jumping</firstHalf>
+            <secondHalf the="false">
+                <singular>jump</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Super jump</name>
+            <firstHalf type="adjective">Super</firstHalf>
+            <secondHalf the="false">
+                <singular>jump</singular>
             </secondHalf>
         </element>
         <element>
@@ -3700,6 +3699,22 @@
             </secondHalf>
         </element>
         <element>
+            <name>Following</name>
+            <firstHalf type="verb">Following</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>follows</singular>
+                <plural>follow</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Following a trail</name>
+            <firstHalf type="verb">Following</firstHalf>
+            <secondHalf the="false">
+                <singular>trail</singular>
+                <plural>trails</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Vehicles</name>
             <firstHalf type="noun pl">Vehicles</firstHalf>
             <secondHalf the="false">
@@ -3748,7 +3763,7 @@
         </element>
         <element>
             <name>Autopilot</name>
-            <firstHalf type="adjective">Automatic</firstHalf>
+            <firstHalf type="noun">Autopilot</firstHalf>
             <secondHalf the="false">
                 <singular>pilot</singular>
                 <plural>pilots</plural>
@@ -4537,7 +4552,7 @@
             <name>Using certain tools or abilities on certain objects</name>
             <firstHalf type="verb" endsInPreposition="true">Using certain tools or abilities on</firstHalf>
             <secondHalf the="false">
-                <singular>certain object</singular> <!-- indefinite article -->
+                <singular>a certain object</singular> <!-- indefinite article -->
                 <plural>certain objects</plural>
             </secondHalf>
         </element>
@@ -4565,10 +4580,10 @@
             </secondHalf>
         </element>
         <element>
-            <name>Memorization</name>
-            <firstHalf type="verb">Memorizing</firstHalf>
+            <name>Memory</name>
+            <firstHalf type="noun">Memory</firstHalf>
             <secondHalf the="false">
-                <singular>memorization</singular>
+                <singular>memory</singular>
             </secondHalf>
         </element>
         <element>
@@ -5021,14 +5036,6 @@
             <secondHalf type="verb" the="false">
                 <singular>is locked out of play</singular>
                 <plural>are locked out of play</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>The player's choices affect the story or gameplay opportunities</name> <!--Branching plot-->
-            <firstHalf type="noun pl">The player's choices</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>affects gameplay opportunities</singular>
-                <plural>affect gameplay opportunities</plural>
             </secondHalf>
         </element>
     </category>
@@ -5667,7 +5674,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Equipment transmogrification</name>
+            <name>Equipment transmogrification</name> <!--Cosmetic override-->
             <firstHalf type="noun">Equipment</firstHalf>
             <secondHalf the="false">
                 <singular>transmogrification</singular>
@@ -5786,6 +5793,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Score multiplier</name>
+            <firstHalf type="noun">Score</firstHalf>
+            <secondHalf the="false">
+                <singular>multiplier</singular>
+                <plural>multipliers</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Time limit</name>
             <firstHalf type="noun">Time</firstHalf>
             <secondHalf the="false">
@@ -5801,8 +5816,16 @@
             </secondHalf>
         </element>
         <element>
+            <name>Campaign</name>
+            <firstHalf type="noun">Campaign</firstHalf>
+            <secondHalf the="false">
+                <singular>campaign</singular>
+                <plural>campaign</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Quests</name>
-            <firstHalf type="noun" preference="plural">Quest</firstHalf>
+            <firstHalf type="specifier">Quest</firstHalf>
             <secondHalf the="false">
                 <singular>quest</singular>
                 <plural>quests</plural>
@@ -5914,10 +5937,17 @@
         </element>
         <element>
             <name>God game</name>
-            <firstHalf type="verb">Total control over</firstHalf>
+            <firstHalf type="noun" endsInPreposition="true">Total control over</firstHalf>
             <secondHalf the="false">
                 <singular>game</singular>
                 <plural>games</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Simulation</name>
+            <firstHalf type="verb">Simulating</firstHalf>
+            <secondHalf the="false">
+                <singular>simulation</singular>
             </secondHalf>
         </element>
         <element>
@@ -6087,14 +6117,14 @@
             </secondHalf>
         </element>
         <element>
-            <name>Reaching an exit after completing the objective</name>
+            <name>Reaching an exit after completing the objective</name> <!--Extraction-->
             <firstHalf type="verb">Reaching an exit</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>after completing the objective</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Helping a character reach a place</name>
+            <name>Helping a character reach a place</name> <!--Escort quest-->
             <firstHalf type="verb">Helping</firstHalf>
             <secondHalf the="true">
                 <singular>destination</singular>
@@ -6275,6 +6305,13 @@
             </secondHalf>
         </element>
         <element>
+            <name>Finishing what someone else started</name>
+            <firstHalf type="verb">Finishing</firstHalf>
+            <secondHalf the="false">
+                <singular>remaining work</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Completing a set</name>
             <firstHalf type="verb">Completing</firstHalf>
             <secondHalf the="false">
@@ -6352,7 +6389,293 @@
             </secondHalf>
         </element>
     </category>
-    <category id="11" name="Audio &amp; Visuals" shortName="AV">
+    <category id="11" name="Story" shortName="Sto">
+        <element>
+            <name>Story</name>
+            <firstHalf type="noun">Story</firstHalf>
+            <secondHalf the="false">
+                <singular>story</singular>
+                <plural>stories</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Stories or other literature within the story</name>
+            <firstHalf type="noun pl">Stories</firstHalf>
+            <secondHalf type="modifier" the="false">
+                <singular>within the story</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Backstory</name> <!--Lore-->
+            <firstHalf type="adjective">Past</firstHalf>
+            <secondHalf the="false">
+                <singular>story</singular>
+                <plural>stories</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Emergent narrative</name>
+            <firstHalf type="adjective">Emergent</firstHalf>
+            <secondHalf the="false">
+                <singular>narrative</singular>
+                <plural>narratives</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>The player's choices affect the story or gameplay opportunities</name> <!--Branching plot-->
+            <firstHalf type="noun pl">The player's choices</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>affects gameplay opportunities</singular>
+                <plural>affect gameplay opportunities</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Loading a saved game affects the narrative</name>
+            <firstHalf type="verb">Loading</firstHalf>
+            <secondHalf the="false">
+                <singular>narrative</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Made-up language</name>
+            <firstHalf type="adjective">Made-up</firstHalf>
+            <secondHalf the="false">
+                <singular>language</singular>
+                <plural>languages</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Alternative history</name>
+            <firstHalf type="adjective">Alternative</firstHalf>
+            <secondHalf the="false">
+                <singular>history</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Comedy</name>
+            <firstHalf type="noun">Comedy</firstHalf>
+            <secondHalf the="false">
+                <singular>comedy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Drama</name>
+            <firstHalf type="noun">Drama</firstHalf>
+            <secondHalf the="false">
+                <singular>drama</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Romance</name>
+            <firstHalf type="noun">Romance</firstHalf>
+            <secondHalf the="false">
+                <singular>romance</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Musical</name>
+            <firstHalf type="adjective">Musical</firstHalf>
+            <secondHalf the="false">
+                <singular>music</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Adventure</name>
+            <firstHalf type="noun">Adventure</firstHalf>
+            <secondHalf the="false">
+                <singular>adventure</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Western</name>
+            <firstHalf type="adjective">Western</firstHalf>
+            <secondHalf the="false">
+                <singular>western</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Mystery</name>
+            <firstHalf type="adjective">Mystery</firstHalf>
+            <secondHalf the="false">
+                <singular>mystery</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Thriller</name>
+            <firstHalf type="noun">Thriller</firstHalf>
+            <secondHalf the="false">
+                <singular>thriller</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Horror</name>
+            <firstHalf type="noun">Horror</firstHalf>
+            <secondHalf the="false">
+                <singular>horror</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Fantasy</name>
+            <firstHalf type="noun">Fantasy</firstHalf>
+            <secondHalf the="false">
+                <singular>fantasy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Science fiction</name>
+            <firstHalf type="noun">Science</firstHalf>
+            <secondHalf the="false">
+                <singular>fiction</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Steampunk</name>
+            <firstHalf type="specifier">Steampunk</firstHalf>
+            <secondHalf the="false">
+                <singular>steampunk</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Science</name>
+            <firstHalf type="adjective">Scientific</firstHalf>
+            <secondHalf the="false">
+                <singular>science</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Realism</name>
+            <firstHalf type="adjective">Realistic</firstHalf>
+            <secondHalf the="false">
+                <singular>realism</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Surrealism</name>
+            <firstHalf type="adjective">Surreal</firstHalf>
+            <secondHalf the="false">
+                <singular>surrealism</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Supernatural phenomena</name>
+            <firstHalf type="adjective">Supernatural</firstHalf>
+            <secondHalf the="false">
+                <singular>phenomenon</singular>
+                <plural>phenomena</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Imaginary things</name>
+            <firstHalf type="adjective">Imaginary</firstHalf>
+            <secondHalf the="false">
+                <singular>imagination</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Happy, fun and cute things</name>
+            <firstHalf type="adjective">Happy</firstHalf>
+            <secondHalf the="false">
+                <singular>fun</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Dark and gloomy atmosphere</name>
+            <firstHalf type="adjective">Dark</firstHalf>
+            <secondHalf the="false">
+                <singular>atmosphere</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Crime and punishment</name>
+            <firstHalf type="noun">Crime</firstHalf>
+            <secondHalf the="false">
+                <singular>punishment</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Criminal organization</name>
+            <firstHalf type="adjective">Criminal</firstHalf>
+            <secondHalf the="false">
+                <singular>organization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Conspiracy</name>
+            <firstHalf type="noun">Conspiracy</firstHalf>
+            <secondHalf the="false">
+                <singular>conspiracy</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Secret society</name>
+            <firstHalf type="adjective">Secret</firstHalf>
+            <secondHalf the="false">
+                <singular>society</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Ancient civilization</name>
+            <firstHalf type="adjective">Ancient</firstHalf>
+            <secondHalf the="false">
+                <singular>civilization</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Expedition</name>
+            <firstHalf type="noun">Expedition</firstHalf>
+            <secondHalf the="false">
+                <singular>expedition</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Hive mind</name>
+            <firstHalf type="specifier">Hive</firstHalf>
+            <secondHalf the="false">
+                <singular>mind</singular>
+                <plural>minds</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Tyrannical leadership</name>
+            <firstHalf type="adjective">Tyrannical</firstHalf>
+            <secondHalf the="false">
+                <singular>leadership</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Heroism</name>
+            <firstHalf type="adjective">Heroic</firstHalf>
+            <secondHalf the="false">
+                <singular>hero</singular>
+                <plural>heroes</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Antagonist</name>
+            <firstHalf type="noun">Antagonist</firstHalf>
+            <secondHalf the="false">
+                <singular>antagonist</singular>
+                <plural>antagonists</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Bittersweet ending</name>
+            <firstHalf type="adjective">Bittersweet</firstHalf>
+            <secondHalf the="false">
+                <singular>ending</singular>
+                <plural>endings</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Multiple possible endings for the game</name>
+            <firstHalf type="adjective">Multiple possible</firstHalf>
+            <secondHalf the="false">
+                <singular>ending</singular>
+                <plural>endings</plural>
+            </secondHalf>
+        </element>
+    </category>
+    <category id="12" name="Audio &amp; Visuals" shortName="AV">
         <element>
             <name>2D</name>
             <firstHalf type="adjective">2D</firstHalf>
@@ -6774,6 +7097,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Visible sight lines or cones</name>
+            <firstHalf type="adjective">Visible</firstHalf>
+            <secondHalf the="false">
+                <singular>sight line or cone</singular>
+                <plural>sight lines or cones</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Seeing what another character sees</name>
             <firstHalf type="verb">Seeing</firstHalf>
             <secondHalf type="modifier" the="false">
@@ -6800,7 +7131,7 @@
             <name>Filtering out certain images or sounds</name>
             <firstHalf type="verb">Filtering</firstHalf>
             <secondHalf the="false">
-                <singular>certain image or sound</singular> <!-- indefinite article -->
+                <singular>a certain image or sound</singular> <!-- indefinite article -->
                 <plural>certain images or sounds</plural>
             </secondHalf>
         </element>
@@ -6899,7 +7230,7 @@
             </secondHalf>
         </element>
     </category>
-    <category id="12" name="Miscellaneous" shortName="Msc">
+    <category id="13" name="Miscellaneous" shortName="Msc">
         <element>
             <name>Gameplay modifiers</name>
             <firstHalf type="verb" endsInPreposition="true">Modifiers for</firstHalf>
@@ -7159,7 +7490,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Chances to fix the player's mistakes</name>
+            <name>Chances to fix mistakes</name>
             <firstHalf type="verb">Fixing</firstHalf>
             <secondHalf the="false">
                 <singular>mistake</singular>
@@ -7186,13 +7517,6 @@
             <firstHalf type="verb">Saving and loading</firstHalf>
             <secondHalf the="false">
                 <singular>anytime</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Loading a saved game affects the narrative</name>
-            <firstHalf type="verb">Loading</firstHalf>
-            <secondHalf the="false">
-                <singular>narrative</singular>
             </secondHalf>
         </element>
         <element>
@@ -7224,14 +7548,6 @@
             <firstHalf type="adjective">More</firstHalf>
             <secondHalf type="modifier" the="false">
                 <singular>after the game is over</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Multiple possible endings for the game</name>
-            <firstHalf type="adjective">Multiple possible</firstHalf>
-            <secondHalf the="false">
-                <singular>ending</singular>
-                <plural>endings</plural>
             </secondHalf>
         </element>
         <element>
@@ -7301,30 +7617,6 @@
             </secondHalf>
         </element>
         <element>
-            <name>Made-up language</name>
-            <firstHalf type="adjective">Made-up</firstHalf>
-            <secondHalf the="false">
-                <singular>language</singular>
-                <plural>languages</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Emergent narrative</name>
-            <firstHalf type="adjective">Emergent</firstHalf>
-            <secondHalf the="false">
-                <singular>narrative</singular>
-                <plural>narratives</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Backstory</name> <!--Lore-->
-            <firstHalf type="adjective">Past</firstHalf>
-            <secondHalf the="false">
-                <singular>story</singular>
-                <plural>stories</plural>
-            </secondHalf>
-        </element>
-        <element>
             <name>The four classical elements</name>
             <firstHalf type="adjective">Four</firstHalf>
             <secondHalf the="false">
@@ -7332,75 +7624,24 @@
             </secondHalf>
         </element>
         <element>
-            <name>Science</name>
-            <firstHalf type="adjective">Scientific</firstHalf>
-            <secondHalf the="false">
-                <singular>science</singular>
+            <name>Singing</name>
+            <firstHalf type="verb">Singing</firstHalf>
+            <secondHalf the="false"> <!-- type="verb" -->
+                <singular>singing</singular>
             </secondHalf>
         </element>
         <element>
-            <name>Realism</name>
-            <firstHalf type="adjective">Realistic</firstHalf>
-            <secondHalf the="false">
-                <singular>realism</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Surrealism</name>
-            <firstHalf type="adjective">Surreal</firstHalf>
-            <secondHalf the="false">
-                <singular>surrealism</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Happy, fun and cute things</name>
-            <firstHalf type="adjective">Happy</firstHalf>
-            <secondHalf the="false">
-                <singular>fun</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Dark and gloomy atmosphere</name>
-            <firstHalf type="adjective">Dark</firstHalf>
-            <secondHalf the="false">
-                <singular>atmosphere</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Crime and punishment</name>
-            <firstHalf type="noun">Crime</firstHalf>
-            <secondHalf the="false">
-                <singular>punishment</singular>
+            <name>Dancing</name>
+            <firstHalf type="verb">Dancing</firstHalf>
+            <secondHalf the="false"> <!-- type="verb" -->
+                <singular>dancing</singular>
             </secondHalf>
         </element>
         <element>
             <name>Gambling</name>
             <firstHalf type="verb">Gambling</firstHalf>
-            <secondHalf the="false">
+            <secondHalf the="false"> <!-- type="verb" -->
                 <singular>gambling</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Imaginary things</name>
-            <firstHalf type="adjective">Imaginary</firstHalf>
-            <secondHalf the="false">
-                <singular>imagination</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Promise</name>
-            <firstHalf type="noun">Promise</firstHalf>
-            <secondHalf the="false">
-                <singular>promise</singular>
-                <plural>promises</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Broken promise</name>
-            <firstHalf type="adjective">Broken</firstHalf>
-            <secondHalf the="false">
-                <singular>promise</singular>
-                <plural>promises</plural>
             </secondHalf>
         </element>
         <element>
@@ -7409,6 +7650,14 @@
             <secondHalf type="verb" the="false">
                 <singular>is unreliable</singular>
                 <plural>are unreliable</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Promise</name>
+            <firstHalf type="noun">Promise</firstHalf>
+            <secondHalf the="false">
+                <singular>promise</singular>
+                <plural>promises</plural>
             </secondHalf>
         </element>
         <element>
@@ -7427,6 +7676,20 @@
             </secondHalf>
         </element>
         <element>
+            <name>Confusion</name>
+            <firstHalf type="adjective">Confusing</firstHalf>
+            <secondHalf the="false">
+                <singular>confusion</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Malfunction</name>
+            <firstHalf type="adjective">Malfunctioning</firstHalf>
+            <secondHalf the="false">
+                <singular>malfunction</singular>
+            </secondHalf>
+        </element>
+        <element>
             <name>Jump scare</name>
             <firstHalf type="adjective">Scary</firstHalf>
             <secondHalf the="false">
@@ -7438,83 +7701,6 @@
             <firstHalf type="noun">Chaos</firstHalf>
             <secondHalf the="false">
                 <singular>chaos</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Comedy</name>
-            <firstHalf type="noun">Comedy</firstHalf>
-            <secondHalf the="false">
-                <singular>comedy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Drama</name>
-            <firstHalf type="noun">Drama</firstHalf>
-            <secondHalf the="false">
-                <singular>drama</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Romance</name>
-            <firstHalf type="noun">Romance</firstHalf>
-            <secondHalf the="false">
-                <singular>romance</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Musical</name>
-            <firstHalf type="adjective">Musical</firstHalf>
-            <secondHalf the="false">
-                <singular>music</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Adventure</name>
-            <firstHalf type="noun">Adventure</firstHalf>
-            <secondHalf the="false">
-                <singular>adventure</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Western</name>
-            <firstHalf type="adjective">Western</firstHalf>
-            <secondHalf the="false">
-                <singular>western</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Mystery</name>
-            <firstHalf type="adjective">Mystery</firstHalf>
-            <secondHalf the="false">
-                <singular>mystery</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Thriller</name>
-            <firstHalf type="noun">Thriller</firstHalf>
-            <secondHalf the="false">
-                <singular>thriller</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Horror</name>
-            <firstHalf type="noun">Horror</firstHalf>
-            <secondHalf the="false">
-                <singular>horror</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Fantasy</name>
-            <firstHalf type="noun">Fantasy</firstHalf>
-            <secondHalf the="false">
-                <singular>fantasy</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Science fiction</name>
-            <firstHalf type="noun">Science</firstHalf>
-            <secondHalf the="false">
-                <singular>fiction</singular>
             </secondHalf>
         </element>
     </category>
