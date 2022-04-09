@@ -1263,8 +1263,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Players versus environment</name> <!--PvE-->
-            <firstHalf type="noun pl">Players</firstHalf>
+            <name>Player versus environment</name> <!--PvE-->
+            <firstHalf type="noun">Player</firstHalf>
             <secondHalf the="false">
                 <singular>versus environment</singular>
             </secondHalf>
@@ -3939,6 +3939,14 @@
             </secondHalf>
         </element>
         <element>
+            <name>Sentry guns or other automatic damage dealers</name> <!--Turrets-->
+            <firstHalf type="noun pl">Sentry guns</firstHalf>
+            <secondHalf the="false">
+                <singular>damage dealer</singular>
+                <plural>damage dealers</plural>
+            </secondHalf>
+        </element>
+        <element>
             <name>Artillery</name>
             <firstHalf type="noun">Artillery</firstHalf>
             <secondHalf the="false">
@@ -3985,8 +3993,8 @@
             </secondHalf>
         </element>
         <element>
-            <name>Super attacks</name>
-            <firstHalf type="adjective">Super</firstHalf>
+            <name>Special attacks</name>
+            <firstHalf type="adjective">Special</firstHalf>
             <secondHalf the="false">
                 <singular>attack</singular>
                 <plural>attacks</plural>
@@ -4009,7 +4017,7 @@
             </secondHalf>
         </element>
         <element>
-            <name>Attacks move targets</name>
+            <name>Attacks move targets</name> <!--Knockback-->
             <firstHalf type="verb">Attacking</firstHalf>
             <secondHalf type="verb" the="false">
                 <singular>moves targets</singular>
@@ -4041,11 +4049,40 @@
             </secondHalf>
         </element>
         <element>
-            <name>Warning shots</name>
-            <firstHalf type="verb">Warning</firstHalf>
+            <name>Weapon can overheat</name>
+            <firstHalf type="noun">Weapon</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>can overheat</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Weapon or projectile can get stuck in the target</name>
+            <firstHalf type="noun">Weapon or projectile</firstHalf>
+            <secondHalf type="verb" the="false">
+                <singular>can get stuck</singular>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Retrieving launched projectiles</name>
+            <firstHalf type="verb">Retrieving</firstHalf>
             <secondHalf the="false">
-                <singular>shot</singular>
-                <plural>shots</plural>
+                <singular>launched projectile</singular>
+                <plural>launched projectiles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Destroying projectiles before they cause damage</name>
+            <firstHalf type="verb">Destroying</firstHalf>
+            <secondHalf the="false">
+                <singular>projectile</singular>
+                <plural>projectiles</plural>
+            </secondHalf>
+        </element>
+        <element>
+            <name>Destroying the target's armor before it can be damaged</name>
+            <firstHalf type="adjective">Armored</firstHalf>
+            <secondHalf the="false">
+                <singular>armor</singular>
             </secondHalf>
         </element>
         <element>
@@ -4087,40 +4124,11 @@
             </secondHalf>
         </element>
         <element>
-            <name>Weapon can overheat</name>
-            <firstHalf type="noun">Weapon</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>can overheat</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Weapon or projectile can get stuck in the target</name>
-            <firstHalf type="noun">Weapon or projectile</firstHalf>
-            <secondHalf type="verb" the="false">
-                <singular>can get stuck</singular>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Retrieving launched projectiles</name>
-            <firstHalf type="verb">Retrieving</firstHalf>
+            <name>Warning shots</name>
+            <firstHalf type="verb">Warning</firstHalf>
             <secondHalf the="false">
-                <singular>launched projectile</singular>
-                <plural>launched projectiles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Destroying projectiles before they cause damage</name>
-            <firstHalf type="verb">Destroying</firstHalf>
-            <secondHalf the="false">
-                <singular>projectile</singular>
-                <plural>projectiles</plural>
-            </secondHalf>
-        </element>
-        <element>
-            <name>Destroying the target's armor before it can be damaged</name>
-            <firstHalf type="adjective">Armored</firstHalf>
-            <secondHalf the="false">
-                <singular>armor</singular>
+                <singular>shot</singular>
+                <plural>shots</plural>
             </secondHalf>
         </element>
         <element>
